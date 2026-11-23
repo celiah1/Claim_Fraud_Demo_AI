@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 960" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2251FF"/></marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#051C2C" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1560" height="960" fill="#ffffff"/>
+
+  <!-- Header -->
+  <text x="40" y="44" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">HOW A CLAIM GETS FLAGGED</text>
+  <text x="40" y="84" font-family="Georgia, serif" font-size="30" fill="#051C2C">Two simple rules find the suspicious claims in the data before Claude is involved</text>
+  <line x1="40" y1="106" x2="1520" y2="106" stroke="#051C2C" stroke-width="2"/>
+
+  <!-- ===== A. Sample dataset ===== -->
+  <text x="40" y="142" font-size="13" font-weight="700" fill="#051C2C" letter-spacing="1.5">A · SAMPLE CLAIMS (SYNTHETIC)</text>
+  <g filter="url(#sh)"><rect x="40" y="156" width="900" height="420" rx="12" fill="#ffffff"/></g>
+  <!-- header row (dark → white text) -->
+  <path d="M40,168 a12,12 0 0 1 12,-12 h876 a12,12 0 0 1 12,12 v28 h-900 z" fill="#051C2C"/>
+  <g font-size="12" font-weight="700" fill="#ffffff">
+    <text x="56" y="182">claim_id</text><text x="160" y="182">member_id</text><text x="268" y="182">provider_id</text>
+    <text x="378" y="182">service_date</text><text x="490" y="182">cpt_code</text><text x="572" y="182">billed_amt</text>
+    <text x="664" y="182">std_minutes</text><text x="768" y="182">rule_flag</text>
+  </g>
+
+  <!-- rows: y start 196, h 34 -->
+  <!-- duplicate pair (red tint) -->
+  <rect x="40" y="196" width="900" height="34" fill="#FDECEC"/>
+  <rect x="40" y="230" width="900" height="34" fill="#FDECEC"/>
+  <!-- impossible day (amber tint) -->
+  <rect x="40" y="298" width="900" height="34" fill="#FFF4DB"/>
+  <rect x="40" y="332" width="900" height="34" fill="#FFF4DB"/>
+  <rect x="40" y="366" width="900" height="34" fill="#FFF4DB"/>
+  <rect x="40" y="400" width="900" height="34" fill="#FFF4DB"/>
+  <g stroke="#E3E8EE"><line x1="40" y1="230" x2="940" y2="230"/><line x1="40" y1="264" x2="940" y2="264"/><line x1="40" y1="298" x2="940" y2="298"/><line x1="40" y1="332" x2="940" y2="332"/><line x1="40" y1="366" x2="940" y2="366"/><line x1="40" y1="400" x2="940" y2="400"/><line x1="40" y1="434" x2="940" y2="434"/><line x1="40" y1="468" x2="940" y2="468"/><line x1="40" y1="502" x2="940" y2="502"/></g>
+
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#1F2A33">
+    <text x="56" y="218">CLM-10442</text><text x="160" y="218">MBR-5531</text><text x="268" y="218">PRV-2210</text><text x="378" y="218">2026-03-02</text><text x="490" y="218">72148</text><text x="572" y="218">$920.00</text><text x="664" y="218">45</text>
+    <text x="56" y="252">CLM-10457</text><text x="160" y="252">MBR-5531</text><text x="268" y="252">PRV-2210</text><text x="378" y="252">2026-03-03</text><text x="490" y="252">72148</text><text x="572" y="252">$920.00</text><text x="664" y="252">45</text>
+    <text x="56" y="286">CLM-10460</text><text x="160" y="286">MBR-6012</text><text x="268" y="286">PRV-2210</text><text x="378" y="286">2026-03-03</text><text x="490" y="286">99213</text><text x="572" y="286">$110.00</text><text x="664" y="286">20</text>
+    <text x="56" y="320">CLM-2207</text><text x="160" y="320">MBR-7720</text><text x="268" y="320">PRV-1042</text><text x="378" y="320">2026-03-04</text><text x="490" y="320">99215</text><text x="572" y="320">$210.00</text><text x="664" y="320">40</text>
+    <text x="56" y="354">CLM-2208</text><text x="160" y="354">MBR-7731</text><text x="268" y="354">PRV-1042</text><text x="378" y="354">2026-03-04</text><text x="490" y="354">99215</text><text x="572" y="354">$210.00</text><text x="664" y="354">40</text>
+    <text x="56" y="388">CLM-2209</text><text x="160" y="388">MBR-7745</text><text x="268" y="388">PRV-1042</text><text x="378" y="388">2026-03-04</text><text x="490" y="388">99214</text><text x="572" y="388">$150.00</text><text x="664" y="388">30</text>
+    <text x="56" y="422" fill="#8A6D1F">… +35 more claims</text><text x="268" y="422">PRV-1042</text><text x="378" y="422">2026-03-04</text><text x="490" y="422">mixed</text>
+    <text x="56" y="456">CLM-2301</text><text x="160" y="456">MBR-8120</text><text x="268" y="456">PRV-3305</text><text x="378" y="456">2026-03-04</text><text x="490" y="456">99214</text><text x="572" y="456">$150.00</text><text x="664" y="456">30</text>
+    <text x="56" y="490">CLM-2302</text><text x="160" y="490">MBR-8133</text><text x="268" y="490">PRV-3305</text><text x="378" y="490">2026-03-04</text><text x="490" y="490">99213</text><text x="572" y="490">$110.00</text><text x="664" y="490">20</text>
+    <text x="56" y="524">CLM-2303</text><text x="160" y="524">MBR-8140</text><text x="268" y="524">PRV-3305</text><text x="378" y="524">2026-03-05</text><text x="490" y="524">99213</text><text x="572" y="524">$110.00</text><text x="664" y="524">20</text>
+  </g>
+  <!-- flag pills -->
+  <g font-size="11" font-weight="700" text-anchor="middle">
+    <rect x="766" y="237" width="100" height="20" rx="10" fill="#E5484D"/><text x="816" y="251" fill="#ffffff">DUP_NEAR</text>
+    <rect x="766" y="305" width="150" height="20" rx="10" fill="#D97706"/><text x="841" y="319" fill="#ffffff">IMPOSSIBLE_DAY</text>
+    <rect x="766" y="339" width="150" height="20" rx="10" fill="#D97706"/><text x="841" y="353" fill="#ffffff">IMPOSSIBLE_DAY</text>
+    <rect x="766" y="373" width="150" height="20" rx="10" fill="#D97706"/><text x="841" y="387" fill="#ffffff">IMPOSSIBLE_DAY</text>
+    <rect x="766" y="407" width="150" height="20" rx="10" fill="#D97706"/><text x="841" y="421" fill="#ffffff">IMPOSSIBLE_DAY</text>
+  </g>
+  <g font-size="13" fill="#94A3B8"><text x="768" y="218">original</text><text x="768" y="286">—</text><text x="768" y="456">—</text><text x="768" y="490">—</text><text x="768" y="524">—</text></g>
+
+  <!-- legend under table -->
+  <g font-size="12.5" fill="#333F48">
+    <rect x="56" y="546" width="14" height="14" rx="3" fill="#FDECEC" stroke="#E5484D"/><text x="78" y="558">Duplicate billing</text>
+    <rect x="210" y="546" width="14" height="14" rx="3" fill="#FFF4DB" stroke="#D97706"/><text x="232" y="558">Impossible day</text>
+    <text x="370" y="558" fill="#5A6872">std_minutes = typical time for the CPT code, from reference data</text>
+  </g>
+
+  <!-- ===== Rules ===== -->
+  <text x="980" y="142" font-size="13" font-weight="700" fill="#051C2C" letter-spacing="1.5">B · THE TWO RULES</text>
+
+  <!-- Rule 1 -->
+  <g filter="url(#sh)"><rect x="980" y="156" width="540" height="170" rx="12" fill="#ffffff"/></g>
+  <rect x="980" y="156" width="8" height="170" rx="4" fill="#E5484D"/>
+  <text x="1006" y="188" font-size="17" font-weight="700" fill="#051C2C">Rule 1 · Duplicate billing</text>
+  <rect x="1006" y="202" width="494" height="74" rx="6" fill="#0B2A40"/>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#E6ECF2">
+    <text x="1020" y="224">same member_id + provider_id + cpt_code</text>
+    <text x="1020" y="244">AND service_date within ±1 day</text>
+    <text x="1020" y="264">AND billed_amt within 5%  <tspan fill="#FF8A8E">→ DUP_NEAR</tspan></text>
+  </g>
+  <text x="1006" y="304" font-size="13.5" fill="#333F48"><tspan font-weight="700" fill="#E5484D">Hit:</tspan> CLM-10457 repeats CLM-10442 one day later · <tspan font-weight="700">$920 exposure</tspan></text>
+
+  <!-- Rule 2 -->
+  <g filter="url(#sh)"><rect x="980" y="342" width="540" height="234" rx="12" fill="#ffffff"/></g>
+  <rect x="980" y="342" width="8" height="234" rx="4" fill="#D97706"/>
+  <text x="1006" y="374" font-size="17" font-weight="700" fill="#051C2C">Rule 2 · Impossible day</text>
+  <rect x="1006" y="388" width="494" height="54" rx="6" fill="#0B2A40"/>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#E6ECF2">
+    <text x="1020" y="410">SUM(std_minutes) per provider_id, service_date</text>
+    <text x="1020" y="430">&gt; 720 min (12 h)  <tspan fill="#FFC56B">→ IMPOSSIBLE_DAY</tspan></text>
+  </g>
+  <!-- mini bar chart -->
+  <text x="1006" y="466" font-size="12" font-weight="700" fill="#5A6872">Billed minutes on 4 Mar</text>
+  <g font-size="12.5">
+    <text x="1006" y="492" fill="#051C2C" font-weight="700">PRV-1042</text>
+    <rect x="1080" y="480" width="340" height="18" rx="3" fill="#D97706"/><text x="1412" y="494" text-anchor="end" fill="#ffffff" font-weight="700">1,360 min · 22.7 h</text>
+    <text x="1006" y="522" fill="#051C2C" font-weight="700">PRV-3305</text>
+    <rect x="1080" y="510" width="102" height="18" rx="3" fill="#94A3B8"/><text x="1190" y="524" fill="#333F48">410 min</text>
+    <text x="1006" y="552" fill="#051C2C" font-weight="700">PRV-2210</text>
+    <rect x="1080" y="540" width="16" height="18" rx="3" fill="#94A3B8"/><text x="1104" y="554" fill="#333F48">65 min</text>
+  </g>
+  <!-- threshold line at 720 (340px = 1360 → 720 = 180px) -->
+  <line x1="1260" y1="472" x2="1260" y2="566" stroke="#E5484D" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="1266" y="566" font-size="11" font-weight="700" fill="#E5484D">12 h limit</text>
+
+  <!-- ===== C. Risk score → routing ===== -->
+  <text x="40" y="626" font-size="13" font-weight="700" fill="#051C2C" letter-spacing="1.5">C · RISK SCORE AND ROUTING</text>
+  <rect x="40" y="640" width="1480" height="64" rx="32" fill="#EEF3FF"/>
+  <text x="76" y="680" font-family="Consolas, 'Courier New', monospace" font-size="16" fill="#051C2C">risk_score = rule_base <tspan fill="#5A6872">(DUP 60 · IMPOSSIBLE 70)</tspan> + magnitude <tspan fill="#5A6872">(0–30, vs. peers)</tspan></text>
+  <g font-size="12.5" font-weight="700">
+    <rect x="1080" y="658" width="122" height="28" rx="14" fill="#E5484D"/><text x="1141" y="677" text-anchor="middle" fill="#ffffff">≥80 High</text>
+    <rect x="1212" y="658" width="138" height="28" rx="14" fill="#FACC15"/><text x="1281" y="677" text-anchor="middle" fill="#051C2C">50–79 Medium</text>
+    <rect x="1360" y="658" width="122" height="28" rx="14" fill="#4ADE80"/><text x="1421" y="677" text-anchor="middle" fill="#051C2C">&lt;50 Low</text>
+  </g>
+
+  <!-- result cards -->
+  <g filter="url(#sh)">
+    <rect x="40" y="726" width="460" height="130" rx="12" fill="#ffffff"/>
+    <rect x="530" y="726" width="460" height="130" rx="12" fill="#ffffff"/>
+    <rect x="1020" y="726" width="500" height="130" rx="12" fill="#ffffff"/>
+  </g>
+  <!-- card 1 -->
+  <text x="64" y="790" font-family="Georgia, serif" font-size="46" fill="#E5484D">92</text>
+  <text x="140" y="764" font-size="15" font-weight="700" fill="#051C2C">PRV-1042 · 4 Mar</text>
+  <text x="140" y="786" font-size="13" fill="#5A6872">70 base + 22 magnitude (2.8× peers)</text>
+  <rect x="140" y="802" width="190" height="26" rx="13" fill="#2251FF"/><text x="235" y="820" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffffff">High → to Claude</text>
+  <!-- card 2 -->
+  <text x="554" y="790" font-family="Georgia, serif" font-size="46" fill="#D9A400">64</text>
+  <text x="630" y="764" font-size="15" font-weight="700" fill="#051C2C">CLM-10457</text>
+  <text x="630" y="786" font-size="13" fill="#5A6872">60 base + 4 magnitude (exact amount)</text>
+  <rect x="630" y="802" width="210" height="26" rx="13" fill="#2251FF"/><text x="735" y="820" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffffff">Medium → to Claude</text>
+  <!-- card 3 -->
+  <text x="1044" y="790" font-family="Georgia, serif" font-size="46" fill="#16A34A">0</text>
+  <text x="1100" y="764" font-size="15" font-weight="700" fill="#051C2C">All other claims (~95%+)</text>
+  <text x="1100" y="786" font-size="13" fill="#5A6872">No rule hit, so no LLM call and no token cost</text>
+  <rect x="1100" y="802" width="170" height="26" rx="13" fill="#F2F5F8"/><text x="1185" y="820" text-anchor="middle" font-size="12.5" font-weight="700" fill="#051C2C">Low → auto-approve</text>
+
+  <!-- footer -->
+  <line x1="40" y1="890" x2="1520" y2="890" stroke="#C9D3DD"/>
+  <text x="40" y="912" font-size="11.5" fill="#5A6872">Illustrative synthetic data. Thresholds (±1 day, 5%, 12 h) and score weights are starting assumptions to tune with your fraud team. CPT minutes are approximate typical times.</text>
+  <text x="40" y="930" font-size="11.5" fill="#5A6872">Flagged items then go to Claude's 5-step review. Feature calculations and field definitions are shown separately.</text>
+</svg>

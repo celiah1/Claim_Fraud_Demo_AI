@@ -1,0 +1,14 @@
+cpt_code,description,minutes,base_fee
+99213,"Office visit, established, low",20,110
+99214,"Office visit, established, moderate",30,165
+99215,"Office visit, established, high",40,230
+99204,"Office visit, new, moderate",45,250
+97110,"Therapeutic exercise, 15 min",15,45
+97140,"Manual therapy, 15 min",15,48
+90834,"Psychotherapy, 45 min",45,140
+90837,"Psychotherapy, 60 min",60,185
+20610,"Joint injection, major",15,120
+73721,MRI lower extremity,45,650
+71046,"Chest X-ray, 2 views",10,60
+80053,Comprehensive metabolic panel,5,35
+85025,Complete blood count,5,25

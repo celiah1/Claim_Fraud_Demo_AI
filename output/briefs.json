@@ -1,0 +1,2950 @@
+{
+ "DAY-PRV-1056-20260803": {
+  "source": "rules",
+  "headline": "Dr. M. Garcia (PRV-1056), Orthopedics billed 25.5 hours on 2026-08-03.",
+  "finding": "Billed time is 25.5 hours across 36 patients, against a specialty median of 4.2 hours.",
+  "evidence": [
+   "24 x 20610 Joint injection, major",
+   "8 x 73721 MRI lower extremity",
+   "4 x 99204 Office visit, new, moderate",
+   "1 x 99214 Office visit, established, moderate",
+   "15 x 99215 Office visit, established, high"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 13600.81
+ },
+ "DAY-PRV-1056-20260924": {
+  "source": "rules",
+  "headline": "Dr. M. Garcia (PRV-1056), Orthopedics billed 25.5 hours on 2026-09-24.",
+  "finding": "Billed time is 25.5 hours across 38 patients, against a specialty median of 4.2 hours.",
+  "evidence": [
+   "19 x 20610 Joint injection, major",
+   "7 x 73721 MRI lower extremity",
+   "8 x 99204 Office visit, new, moderate",
+   "7 x 99214 Office visit, established, moderate",
+   "9 x 99215 Office visit, established, high"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 12954.4
+ },
+ "DAY-PRV-1035-20260819": {
+  "source": "rules",
+  "headline": "Dr. K. Haddad (PRV-1035), Psychiatry billed 34.2 hours on 2026-08-19.",
+  "finding": "Billed time is 34.2 hours across 46 patients, against a specialty median of 5.0 hours.",
+  "evidence": [
+   "11 x 90834 Psychotherapy, 45 min",
+   "17 x 90837 Psychotherapy, 60 min",
+   "18 x 99214 Office visit, established, moderate"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 8075.37
+ },
+ "DAY-PRV-1033-20260825": {
+  "source": "rules",
+  "headline": "Dr. L. Rossi (PRV-1033), Psychiatry billed 34.8 hours on 2026-08-25.",
+  "finding": "Billed time is 34.8 hours across 45 patients, against a specialty median of 5.0 hours.",
+  "evidence": [
+   "11 x 90834 Psychotherapy, 45 min",
+   "19 x 90837 Psychotherapy, 60 min",
+   "15 x 99214 Office visit, established, moderate"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 8014.58
+ },
+ "DAY-PRV-1035-20260904": {
+  "source": "rules",
+  "headline": "Dr. K. Haddad (PRV-1035), Psychiatry billed 29.8 hours on 2026-09-04.",
+  "finding": "Billed time is 29.8 hours across 37 patients, against a specialty median of 5.0 hours.",
+  "evidence": [
+   "17 x 90834 Psychotherapy, 45 min",
+   "13 x 90837 Psychotherapy, 60 min",
+   "8 x 99214 Office visit, established, moderate"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 6525.85
+ },
+ "DAY-PRV-1036-20260928": {
+  "source": "rules",
+  "headline": "Dr. N. Smith (PRV-1036), Physical Therapy billed 25.2 hours on 2026-09-28.",
+  "finding": "Billed time is 25.2 hours across 38 patients, against a specialty median of 1.8 hours.",
+  "evidence": [
+   "52 x 97110 Therapeutic exercise, 15 min",
+   "49 x 97140 Manual therapy, 15 min"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 4951.55
+ },
+ "DAY-PRV-1033-20260826": {
+  "source": "rules",
+  "headline": "Dr. L. Rossi (PRV-1033), Psychiatry billed 23.8 hours on 2026-08-26.",
+  "finding": "Billed time is 23.8 hours across 32 patients, against a specialty median of 5.0 hours.",
+  "evidence": [
+   "15 x 90834 Psychotherapy, 45 min",
+   "7 x 90837 Psychotherapy, 60 min",
+   "11 x 99214 Office visit, established, moderate"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 5514.73
+ },
+ "DAY-PRV-1036-20260806": {
+  "source": "rules",
+  "headline": "Dr. N. Smith (PRV-1036), Physical Therapy billed 23.5 hours on 2026-08-06.",
+  "finding": "Billed time is 23.5 hours across 30 patients, against a specialty median of 1.8 hours.",
+  "evidence": [
+   "46 x 97110 Therapeutic exercise, 15 min",
+   "48 x 97140 Manual therapy, 15 min"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 4715.71
+ },
+ "UPC-PRV-1052": {
+  "source": "rules",
+  "headline": "Dr. F. Lopez (PRV-1052), Family Medicine bills 88% of office visits at the highest level.",
+  "finding": "88% of 85 established-patient visits were billed as 99215, against a peer median of 34% (2.8 standard deviations above 15 peers).",
+  "evidence": [
+   "99215: 75 visits",
+   "99214: 5 visits",
+   "99213: 5 visits",
+   "Common diagnoses: E11.9, Z00.00, I10"
+  ],
+  "innocent_explanations": [
+   "Genuinely sicker patient panel",
+   "Provider sees referral-only complex cases"
+  ],
+  "recommended_action": "Request a sample of clinical notes for 99215 visits and audit them against E/M documentation guidelines.",
+  "estimated_exposure_usd": 2983.5
+ },
+ "UPC-PRV-1032": {
+  "source": "rules",
+  "headline": "Dr. D. Osei (PRV-1032), Family Medicine bills 86% of office visits at the highest level.",
+  "finding": "86% of 77 established-patient visits were billed as 99215, against a peer median of 34% (2.6 standard deviations above 15 peers).",
+  "evidence": [
+   "99215: 66 visits",
+   "99213: 8 visits",
+   "99214: 3 visits",
+   "Common diagnoses: J06.9, E11.9, I10"
+  ],
+  "innocent_explanations": [
+   "Genuinely sicker patient panel",
+   "Provider sees referral-only complex cases"
+  ],
+  "recommended_action": "Request a sample of clinical notes for 99215 visits and audit them against E/M documentation guidelines.",
+  "estimated_exposure_usd": 2602.6
+ },
+ "DAY-PRV-1050-20260929": {
+  "source": "rules",
+  "headline": "Dr. L. Novak (PRV-1050), Orthopedics billed 22.5 hours on 2026-09-29.",
+  "finding": "Billed time is 22.5 hours across 33 patients, against a specialty median of 4.2 hours.",
+  "evidence": [
+   "24 x 20610 Joint injection, major",
+   "3 x 73721 MRI lower extremity",
+   "5 x 99204 Office visit, new, moderate",
+   "5 x 99214 Office visit, established, moderate",
+   "12 x 99215 Office visit, established, high"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 10476.56
+ },
+ "DUP-CLM-100029": {
+  "source": "rules",
+  "headline": "Claim CLM-100029 appears to duplicate CLM-105495.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-105495 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-17, $742.59, submitted 2026-09-06",
+   "Original: 2026-08-17, $742.59, submitted 2026-08-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 742.59
+ },
+ "DUP-CLM-101890": {
+  "source": "rules",
+  "headline": "Claim CLM-101890 appears to duplicate CLM-101323.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-101323 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-07, $674.24, submitted 2026-09-06",
+   "Original: 2026-08-07, $674.24, submitted 2026-08-26"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 674.24
+ },
+ "DUP-CLM-105457": {
+  "source": "rules",
+  "headline": "Claim CLM-105457 appears to duplicate CLM-103324.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-103324 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-09, $671.05, submitted 2026-09-24",
+   "Original: 2026-09-09, $671.05, submitted 2026-09-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 671.05
+ },
+ "DUP-CLM-101465": {
+  "source": "rules",
+  "headline": "Claim CLM-101465 appears to duplicate CLM-108294.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-108294 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-23, $654.81, submitted 2026-08-25",
+   "Original: 2026-07-23, $654.81, submitted 2026-07-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 654.81
+ },
+ "DUP-CLM-102157": {
+  "source": "rules",
+  "headline": "Claim CLM-102157 appears to duplicate CLM-105077.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-105077 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-18, $643.11, submitted 2026-10-07",
+   "Original: 2026-08-18, $643.11, submitted 2026-09-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 643.11
+ },
+ "DUP-CLM-107007": {
+  "source": "rules",
+  "headline": "Claim CLM-107007 appears to duplicate CLM-105955.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-105955 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-05, $629.08, submitted 2026-09-11",
+   "Original: 2026-08-05, $629.08, submitted 2026-08-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 629.08
+ },
+ "DUP-CLM-106840": {
+  "source": "rules",
+  "headline": "Claim CLM-106840 appears to duplicate CLM-101756.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-101756 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-23, $600.7, submitted 2026-09-12",
+   "Original: 2026-07-23, $600.7, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 600.7
+ },
+ "DUP-CLM-101011": {
+  "source": "rules",
+  "headline": "Claim CLM-101011 appears to duplicate CLM-103932.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-103932 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-21, $591.38, submitted 2026-08-18",
+   "Original: 2026-07-21, $591.38, submitted 2026-07-26"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 591.38
+ },
+ "DUP-CLM-105159": {
+  "source": "rules",
+  "headline": "Claim CLM-105159 appears to duplicate CLM-102368.",
+  "finding": "Same member, provider and procedure (73721) billed again: Exact duplicate of CLM-102368 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-08, $590.84, submitted 2026-10-05",
+   "Original: 2026-09-08, $590.84, submitted 2026-09-28"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 590.84
+ },
+ "DUP-CLM-100829": {
+  "source": "rules",
+  "headline": "Claim CLM-100829 appears to duplicate CLM-106733.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-106733 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-26, $286.12, submitted 2026-09-27",
+   "Original: 2026-08-26, $286.12, submitted 2026-09-01"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 286.12
+ },
+ "DUP-CLM-108238": {
+  "source": "rules",
+  "headline": "Claim CLM-108238 appears to duplicate CLM-105163.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-105163 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-30, $283.71, submitted 2026-08-29",
+   "Original: 2026-07-30, $283.71, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 283.71
+ },
+ "DUP-CLM-100678": {
+  "source": "rules",
+  "headline": "Claim CLM-100678 appears to duplicate CLM-105810.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-105810 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-17, $279.54, submitted 2026-10-11",
+   "Original: 2026-09-17, $279.54, submitted 2026-09-29"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 279.54
+ },
+ "DUP-CLM-108410": {
+  "source": "rules",
+  "headline": "Claim CLM-108410 appears to duplicate CLM-102430.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-102430 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-03, $274.12, submitted 2026-09-13",
+   "Original: 2026-08-03, $274.12, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 274.12
+ },
+ "DUP-CLM-105003": {
+  "source": "rules",
+  "headline": "Claim CLM-105003 appears to duplicate CLM-104298.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-104298 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-28, $268.01, submitted 2026-09-25",
+   "Original: 2026-08-28, $268.01, submitted 2026-09-10"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 268.01
+ },
+ "DUP-CLM-104924": {
+  "source": "rules",
+  "headline": "Claim CLM-104924 appears to duplicate CLM-100825.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-100825 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-28, $267.57, submitted 2026-09-19",
+   "Original: 2026-07-28, $267.57, submitted 2026-08-14"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 267.57
+ },
+ "DUP-CLM-105665": {
+  "source": "rules",
+  "headline": "Claim CLM-105665 appears to duplicate CLM-102332.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-102332 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-09, $256.79, submitted 2026-11-03",
+   "Original: 2026-09-09, $256.79, submitted 2026-09-29"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 256.79
+ },
+ "DUP-CLM-102673": {
+  "source": "rules",
+  "headline": "Claim CLM-102673 appears to duplicate CLM-106878.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-106878 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-31, $252.93, submitted 2026-09-20",
+   "Original: 2026-08-31, $252.93, submitted 2026-09-11"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 252.93
+ },
+ "DUP-CLM-106879": {
+  "source": "rules",
+  "headline": "Claim CLM-106879 appears to duplicate CLM-107694.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-107694 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-24, $252.23, submitted 2026-08-15",
+   "Original: 2026-07-24, $252.23, submitted 2026-08-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 252.23
+ },
+ "DUP-CLM-100893": {
+  "source": "rules",
+  "headline": "Claim CLM-100893 appears to duplicate CLM-106057.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-106057 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-23, $248.58, submitted 2026-08-12",
+   "Original: 2026-07-23, $248.58, submitted 2026-07-31"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 248.58
+ },
+ "DUP-CLM-100511": {
+  "source": "rules",
+  "headline": "Claim CLM-100511 appears to duplicate CLM-107461.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-107461 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-02, $248.41, submitted 2026-07-27",
+   "Original: 2026-07-02, $248.41, submitted 2026-07-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 248.41
+ },
+ "DUP-CLM-103971": {
+  "source": "rules",
+  "headline": "Claim CLM-103971 appears to duplicate CLM-101007.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-101007 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-21, $246.97, submitted 2026-11-06",
+   "Original: 2026-09-21, $246.97, submitted 2026-09-29"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 246.97
+ },
+ "DUP-CLM-103326": {
+  "source": "rules",
+  "headline": "Claim CLM-103326 appears to duplicate CLM-107646.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-107646 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-18, $246.81, submitted 2026-09-07",
+   "Original: 2026-08-18, $246.81, submitted 2026-09-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 246.81
+ },
+ "DUP-CLM-102900": {
+  "source": "rules",
+  "headline": "Claim CLM-102900 appears to duplicate CLM-100085.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-100085 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-28, $243.53, submitted 2026-10-30",
+   "Original: 2026-09-28, $243.53, submitted 2026-10-09"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 243.53
+ },
+ "DUP-CLM-105139": {
+  "source": "rules",
+  "headline": "Claim CLM-105139 appears to duplicate CLM-103408.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-103408 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-07, $243.29, submitted 2026-10-20",
+   "Original: 2026-09-07, $243.29, submitted 2026-09-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 243.29
+ },
+ "DUP-CLM-100110": {
+  "source": "rules",
+  "headline": "Claim CLM-100110 appears to duplicate CLM-100732.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-100732 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-14, $240.3, submitted 2026-08-17",
+   "Original: 2026-07-14, $240.3, submitted 2026-07-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 240.3
+ },
+ "DUP-CLM-103090": {
+  "source": "rules",
+  "headline": "Claim CLM-103090 appears to duplicate CLM-102755.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-102755 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-17, $237.98, submitted 2026-10-24",
+   "Original: 2026-09-17, $237.98, submitted 2026-10-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 237.98
+ },
+ "DUP-CLM-102843": {
+  "source": "rules",
+  "headline": "Claim CLM-102843 appears to duplicate CLM-106335.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-106335 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-22, $237.3, submitted 2026-10-05",
+   "Original: 2026-09-22, $237.3, submitted 2026-09-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 237.3
+ },
+ "DUP-CLM-108278": {
+  "source": "rules",
+  "headline": "Claim CLM-108278 appears to duplicate CLM-104810.",
+  "finding": "Same member, provider and procedure (99204) billed again: Exact duplicate of CLM-104810 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-07, $236.13, submitted 2026-08-12",
+   "Original: 2026-07-07, $236.13, submitted 2026-07-24"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 236.13
+ },
+ "DUP-CLM-104569": {
+  "source": "rules",
+  "headline": "Claim CLM-104569 appears to duplicate CLM-106725.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-106725 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-14, $229.3, submitted 2026-10-12",
+   "Original: 2026-09-14, $229.3, submitted 2026-10-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 229.3
+ },
+ "DUP-CLM-101105": {
+  "source": "rules",
+  "headline": "Claim CLM-101105 appears to duplicate CLM-102672.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-102672 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-17, $225.52, submitted 2026-08-11",
+   "Original: 2026-07-17, $225.52, submitted 2026-08-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 225.52
+ },
+ "DUP-CLM-100909": {
+  "source": "rules",
+  "headline": "Claim CLM-100909 appears to duplicate CLM-100084.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-100084 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-14, $209.17, submitted 2026-08-26",
+   "Original: 2026-08-14, $209.17, submitted 2026-08-19"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 209.17
+ },
+ "DUP-CLM-100763": {
+  "source": "rules",
+  "headline": "Claim CLM-100763 appears to duplicate CLM-107220.",
+  "finding": "Same member, provider and procedure (99215) billed again: Exact duplicate of CLM-107220 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-03, $208.44, submitted 2026-09-01",
+   "Original: 2026-08-03, $208.44, submitted 2026-08-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 208.44
+ },
+ "DUP-CLM-101451": {
+  "source": "rules",
+  "headline": "Claim CLM-101451 appears to duplicate CLM-107719.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-107719 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-14, $189.12, submitted 2026-09-27",
+   "Original: 2026-08-14, $189.12, submitted 2026-08-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 189.12
+ },
+ "DUP-CLM-108057": {
+  "source": "rules",
+  "headline": "Claim CLM-108057 appears to duplicate CLM-105705.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-105705 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-13, $188.8, submitted 2026-09-09",
+   "Original: 2026-08-13, $188.8, submitted 2026-08-26"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 188.8
+ },
+ "DUP-CLM-102883": {
+  "source": "rules",
+  "headline": "Claim CLM-102883 appears to duplicate CLM-100894.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-100894 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-07, $187.85, submitted 2026-07-22",
+   "Original: 2026-07-07, $187.85, submitted 2026-07-15"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 187.85
+ },
+ "DUP-CLM-101365": {
+  "source": "rules",
+  "headline": "Claim CLM-101365 appears to duplicate CLM-105491.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-105491 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-24, $185.03, submitted 2026-10-28",
+   "Original: 2026-09-24, $185.03, submitted 2026-10-12"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 185.03
+ },
+ "DUP-CLM-103015": {
+  "source": "rules",
+  "headline": "Claim CLM-103015 appears to duplicate CLM-100041.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-100041 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-26, $184.1, submitted 2026-09-09",
+   "Original: 2026-08-26, $184.1, submitted 2026-08-30"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 184.1
+ },
+ "DUP-CLM-106099": {
+  "source": "rules",
+  "headline": "Claim CLM-106099 appears to duplicate CLM-103844.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-103844 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-24, $183.8, submitted 2026-10-03",
+   "Original: 2026-08-24, $183.8, submitted 2026-09-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 183.8
+ },
+ "DUP-CLM-104306": {
+  "source": "rules",
+  "headline": "Claim CLM-104306 appears to duplicate CLM-103615.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-103615 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-29, $182.76, submitted 2026-09-02",
+   "Original: 2026-07-29, $182.76, submitted 2026-08-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 182.76
+ },
+ "DUP-CLM-108063": {
+  "source": "rules",
+  "headline": "Claim CLM-108063 appears to duplicate CLM-106080.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-106080 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-11, $182.49, submitted 2026-09-23",
+   "Original: 2026-08-11, $182.49, submitted 2026-08-26"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 182.49
+ },
+ "DUP-CLM-103442": {
+  "source": "rules",
+  "headline": "Claim CLM-103442 appears to duplicate CLM-100643.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-100643 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-27, $181.67, submitted 2026-09-19",
+   "Original: 2026-08-27, $181.67, submitted 2026-09-12"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 181.67
+ },
+ "DUP-CLM-106269": {
+  "source": "rules",
+  "headline": "Claim CLM-106269 appears to duplicate CLM-102552.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-102552 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-07, $179.32, submitted 2026-09-22",
+   "Original: 2026-09-07, $179.32, submitted 2026-09-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 179.32
+ },
+ "DUP-CLM-103594": {
+  "source": "rules",
+  "headline": "Claim CLM-103594 appears to duplicate CLM-105747.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-105747 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-24, $179.25, submitted 2026-09-05",
+   "Original: 2026-07-24, $179.25, submitted 2026-08-13"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 179.25
+ },
+ "DUP-CLM-102642": {
+  "source": "rules",
+  "headline": "Claim CLM-102642 appears to duplicate CLM-102869.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-102869 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-23, $179.14, submitted 2026-10-26",
+   "Original: 2026-09-23, $179.14, submitted 2026-09-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 179.14
+ },
+ "DUP-CLM-102115": {
+  "source": "rules",
+  "headline": "Claim CLM-102115 appears to duplicate CLM-107857.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-107857 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-18, $178.59, submitted 2026-10-27",
+   "Original: 2026-09-18, $178.59, submitted 2026-09-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 178.59
+ },
+ "DUP-CLM-108055": {
+  "source": "rules",
+  "headline": "Claim CLM-108055 appears to duplicate CLM-102890.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-102890 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-24, $178.5, submitted 2026-09-16",
+   "Original: 2026-08-24, $178.5, submitted 2026-08-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 178.5
+ },
+ "DUP-CLM-101104": {
+  "source": "rules",
+  "headline": "Claim CLM-101104 appears to duplicate CLM-103784.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-103784 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-17, $177.98, submitted 2026-07-31",
+   "Original: 2026-07-17, $177.98, submitted 2026-07-23"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 177.98
+ },
+ "DUP-CLM-105019": {
+  "source": "rules",
+  "headline": "Claim CLM-105019 appears to duplicate CLM-106351.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-106351 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-10, $168.49, submitted 2026-07-28",
+   "Original: 2026-07-10, $168.49, submitted 2026-07-14"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 168.49
+ },
+ "DUP-CLM-104800": {
+  "source": "rules",
+  "headline": "Claim CLM-104800 appears to duplicate CLM-105130.",
+  "finding": "Same member, provider and procedure (90837) billed again: Exact duplicate of CLM-105130 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-17, $167.9, submitted 2026-09-20",
+   "Original: 2026-08-17, $167.9, submitted 2026-08-24"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 167.9
+ },
+ "DUP-CLM-107944": {
+  "source": "rules",
+  "headline": "Claim CLM-107944 appears to duplicate CLM-105941.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-105941 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-18, $167.74, submitted 2026-10-26",
+   "Original: 2026-09-18, $167.74, submitted 2026-09-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 167.74
+ },
+ "DUP-CLM-106250": {
+  "source": "rules",
+  "headline": "Claim CLM-106250 appears to duplicate CLM-106864.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-106864 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-03, $166.78, submitted 2026-09-23",
+   "Original: 2026-08-03, $166.78, submitted 2026-08-15"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 166.78
+ },
+ "DUP-CLM-100258": {
+  "source": "rules",
+  "headline": "Claim CLM-100258 appears to duplicate CLM-104013.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-104013 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-03, $166.06, submitted 2026-10-24",
+   "Original: 2026-09-03, $166.06, submitted 2026-09-20"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 166.06
+ },
+ "DUP-CLM-101367": {
+  "source": "rules",
+  "headline": "Claim CLM-101367 appears to duplicate CLM-104767.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-104767 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-23, $165.34, submitted 2026-09-11",
+   "Original: 2026-07-23, $165.34, submitted 2026-08-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 165.34
+ },
+ "DUP-CLM-102100": {
+  "source": "rules",
+  "headline": "Claim CLM-102100 appears to duplicate CLM-107228.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-107228 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-13, $160.46, submitted 2026-09-30",
+   "Original: 2026-08-13, $160.46, submitted 2026-08-23"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 160.46
+ },
+ "DUP-CLM-102428": {
+  "source": "rules",
+  "headline": "Claim CLM-102428 appears to duplicate CLM-105610.",
+  "finding": "Same member, provider and procedure (90834) billed again: Exact duplicate of CLM-105610 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-21, $160.15, submitted 2026-08-20",
+   "Original: 2026-07-21, $160.15, submitted 2026-07-23"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 160.15
+ },
+ "DUP-CLM-107143": {
+  "source": "rules",
+  "headline": "Claim CLM-107143 appears to duplicate CLM-104505.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-104505 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-02, $159.0, submitted 2026-09-16",
+   "Original: 2026-09-02, $159.0, submitted 2026-09-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 159.0
+ },
+ "DUP-CLM-102936": {
+  "source": "rules",
+  "headline": "Claim CLM-102936 appears to duplicate CLM-102004.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-102004 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-14, $155.43, submitted 2026-10-31",
+   "Original: 2026-09-14, $155.43, submitted 2026-10-01"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 155.43
+ },
+ "DUP-CLM-105411": {
+  "source": "rules",
+  "headline": "Claim CLM-105411 appears to duplicate CLM-102480.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-102480 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-16, $153.93, submitted 2026-09-25",
+   "Original: 2026-09-16, $153.93, submitted 2026-09-19"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 153.93
+ },
+ "DUP-CLM-105856": {
+  "source": "rules",
+  "headline": "Claim CLM-105856 appears to duplicate CLM-106409.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-106409 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-26, $152.36, submitted 2026-09-23",
+   "Original: 2026-08-26, $152.36, submitted 2026-09-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 152.36
+ },
+ "DUP-CLM-103582": {
+  "source": "rules",
+  "headline": "Claim CLM-103582 appears to duplicate CLM-107912.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-107912 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-03, $151.08, submitted 2026-10-21",
+   "Original: 2026-09-03, $151.08, submitted 2026-09-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 151.08
+ },
+ "DUP-CLM-107095": {
+  "source": "rules",
+  "headline": "Claim CLM-107095 appears to duplicate CLM-100286.",
+  "finding": "Same member, provider and procedure (99214) billed again: Exact duplicate of CLM-100286 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-24, $149.61, submitted 2026-10-05",
+   "Original: 2026-08-24, $149.61, submitted 2026-08-31"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 149.61
+ },
+ "DUP-CLM-107850": {
+  "source": "rules",
+  "headline": "Claim CLM-107850 appears to duplicate CLM-104426.",
+  "finding": "Same member, provider and procedure (90834) billed again: Exact duplicate of CLM-104426 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-08, $142.33, submitted 2026-09-15",
+   "Original: 2026-09-08, $142.33, submitted 2026-09-10"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 142.33
+ },
+ "DUP-CLM-101773": {
+  "source": "rules",
+  "headline": "Claim CLM-101773 appears to duplicate CLM-105440.",
+  "finding": "Same member, provider and procedure (90834) billed again: Exact duplicate of CLM-105440 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-09, $134.28, submitted 2026-10-14",
+   "Original: 2026-09-09, $134.28, submitted 2026-09-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 134.28
+ },
+ "DUP-CLM-101754": {
+  "source": "rules",
+  "headline": "Claim CLM-101754 appears to duplicate CLM-105240.",
+  "finding": "Same member, provider and procedure (90834) billed again: Exact duplicate of CLM-105240 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-31, $133.05, submitted 2026-08-17",
+   "Original: 2026-07-31, $133.05, submitted 2026-08-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 133.05
+ },
+ "DUP-CLM-102155": {
+  "source": "rules",
+  "headline": "Claim CLM-102155 appears to duplicate CLM-104057.",
+  "finding": "Same member, provider and procedure (20610) billed again: Exact duplicate of CLM-104057 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-02, $129.51, submitted 2026-10-02",
+   "Original: 2026-09-02, $129.51, submitted 2026-09-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 129.51
+ },
+ "DUP-CLM-106539": {
+  "source": "rules",
+  "headline": "Claim CLM-106539 appears to duplicate CLM-103800.",
+  "finding": "Same member, provider and procedure (90834) billed again: Exact duplicate of CLM-103800 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-11, $128.01, submitted 2026-09-08",
+   "Original: 2026-08-11, $128.01, submitted 2026-08-24"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 128.01
+ },
+ "DUP-CLM-101913": {
+  "source": "rules",
+  "headline": "Claim CLM-101913 appears to duplicate CLM-101347.",
+  "finding": "Same member, provider and procedure (20610) billed again: Exact duplicate of CLM-101347 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-18, $119.32, submitted 2026-09-05",
+   "Original: 2026-08-18, $119.32, submitted 2026-08-26"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 119.32
+ },
+ "DUP-CLM-101270": {
+  "source": "rules",
+  "headline": "Claim CLM-101270 appears to duplicate CLM-101731.",
+  "finding": "Same member, provider and procedure (99213) billed again: Exact duplicate of CLM-101731 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-13, $107.12, submitted 2026-09-20",
+   "Original: 2026-08-13, $107.12, submitted 2026-08-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 107.12
+ },
+ "DUP-CLM-103221": {
+  "source": "rules",
+  "headline": "Claim CLM-103221 appears to duplicate CLM-107590.",
+  "finding": "Same member, provider and procedure (99213) billed again: Exact duplicate of CLM-107590 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-02, $105.3, submitted 2026-08-02",
+   "Original: 2026-07-02, $105.3, submitted 2026-07-07"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 105.3
+ },
+ "DUP-CLM-103682": {
+  "source": "rules",
+  "headline": "Claim CLM-103682 appears to duplicate CLM-105583.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-105583 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-28, $65.55, submitted 2026-09-14",
+   "Original: 2026-08-28, $65.55, submitted 2026-09-09"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 65.55
+ },
+ "DUP-CLM-103428": {
+  "source": "rules",
+  "headline": "Claim CLM-103428 appears to duplicate CLM-105314.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-105314 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-15, $64.56, submitted 2026-08-30",
+   "Original: 2026-07-15, $64.56, submitted 2026-07-29"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 64.56
+ },
+ "DUP-CLM-100554": {
+  "source": "rules",
+  "headline": "Claim CLM-100554 appears to duplicate CLM-105939.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-105939 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-03, $63.83, submitted 2026-07-14",
+   "Original: 2026-07-03, $63.83, submitted 2026-07-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 63.83
+ },
+ "DUP-CLM-107816": {
+  "source": "rules",
+  "headline": "Claim CLM-107816 appears to duplicate CLM-106602.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-106602 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-07, $60.18, submitted 2026-08-01",
+   "Original: 2026-07-07, $60.18, submitted 2026-07-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 60.18
+ },
+ "DUP-CLM-100940": {
+  "source": "rules",
+  "headline": "Claim CLM-100940 appears to duplicate CLM-107191.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-107191 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-27, $59.95, submitted 2026-08-17",
+   "Original: 2026-07-27, $59.95, submitted 2026-07-29"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 59.95
+ },
+ "DUP-CLM-106416": {
+  "source": "rules",
+  "headline": "Claim CLM-106416 appears to duplicate CLM-105100.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-105100 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-21, $58.3, submitted 2026-11-07",
+   "Original: 2026-09-21, $58.3, submitted 2026-10-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 58.3
+ },
+ "DUP-CLM-100844": {
+  "source": "rules",
+  "headline": "Claim CLM-100844 appears to duplicate CLM-106420.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-106420 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-28, $57.69, submitted 2026-09-30",
+   "Original: 2026-08-28, $57.69, submitted 2026-09-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 57.69
+ },
+ "DUP-CLM-101830": {
+  "source": "rules",
+  "headline": "Claim CLM-101830 appears to duplicate CLM-106820.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-106820 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-01, $57.55, submitted 2026-10-18",
+   "Original: 2026-09-01, $57.55, submitted 2026-09-12"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 57.55
+ },
+ "DUP-CLM-102998": {
+  "source": "rules",
+  "headline": "Claim CLM-102998 appears to duplicate CLM-107130.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-107130 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-05, $55.47, submitted 2026-09-09",
+   "Original: 2026-08-05, $55.47, submitted 2026-08-20"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 55.47
+ },
+ "DUP-CLM-105903": {
+  "source": "rules",
+  "headline": "Claim CLM-105903 appears to duplicate CLM-103397.",
+  "finding": "Same member, provider and procedure (71046) billed again: Exact duplicate of CLM-103397 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-15, $54.27, submitted 2026-11-01",
+   "Original: 2026-09-15, $54.27, submitted 2026-10-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 54.27
+ },
+ "DUP-CLM-101381": {
+  "source": "rules",
+  "headline": "Claim CLM-101381 appears to duplicate CLM-106044.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-106044 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-25, $53.72, submitted 2026-11-01",
+   "Original: 2026-09-25, $53.72, submitted 2026-10-09"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 53.72
+ },
+ "DUP-CLM-106448": {
+  "source": "rules",
+  "headline": "Claim CLM-106448 appears to duplicate CLM-103964.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-103964 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-29, $51.57, submitted 2026-09-07",
+   "Original: 2026-07-29, $51.57, submitted 2026-08-10"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 51.57
+ },
+ "DUP-CLM-103274": {
+  "source": "rules",
+  "headline": "Claim CLM-103274 appears to duplicate CLM-102130.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-102130 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-09-14, $51.49, submitted 2026-10-20",
+   "Original: 2026-09-14, $51.49, submitted 2026-09-30"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 51.49
+ },
+ "DUP-CLM-100035": {
+  "source": "rules",
+  "headline": "Claim CLM-100035 appears to duplicate CLM-102877.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-102877 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-21, $50.79, submitted 2026-09-23",
+   "Original: 2026-08-21, $50.79, submitted 2026-09-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 50.79
+ },
+ "DUP-CLM-101634": {
+  "source": "rules",
+  "headline": "Claim CLM-101634 appears to duplicate CLM-100804.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-100804 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-28, $50.64, submitted 2026-10-06",
+   "Original: 2026-08-28, $50.64, submitted 2026-09-17"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 50.64
+ },
+ "DUP-CLM-100848": {
+  "source": "rules",
+  "headline": "Claim CLM-100848 appears to duplicate CLM-101088.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-101088 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-09, $50.48, submitted 2026-08-19",
+   "Original: 2026-07-09, $50.48, submitted 2026-07-25"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 50.48
+ },
+ "DUP-CLM-106819": {
+  "source": "rules",
+  "headline": "Claim CLM-106819 appears to duplicate CLM-107852.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-107852 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-11, $49.0, submitted 2026-09-30",
+   "Original: 2026-08-11, $49.0, submitted 2026-08-29"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 49.0
+ },
+ "DUP-CLM-101483": {
+  "source": "rules",
+  "headline": "Claim CLM-101483 appears to duplicate CLM-103463.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-103463 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-14, $48.63, submitted 2026-08-23",
+   "Original: 2026-07-14, $48.63, submitted 2026-07-15"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 48.63
+ },
+ "DUP-CLM-108488": {
+  "source": "rules",
+  "headline": "Claim CLM-108488 appears to duplicate CLM-104877.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-104877 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-13, $47.96, submitted 2026-08-18",
+   "Original: 2026-07-13, $47.96, submitted 2026-07-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 47.96
+ },
+ "DUP-CLM-104137": {
+  "source": "rules",
+  "headline": "Claim CLM-104137 appears to duplicate CLM-104395.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-104395 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-27, $46.96, submitted 2026-09-10",
+   "Original: 2026-07-27, $46.96, submitted 2026-08-07"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 46.96
+ },
+ "DUP-CLM-103717": {
+  "source": "rules",
+  "headline": "Claim CLM-103717 appears to duplicate CLM-101693.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-101693 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-03, $46.25, submitted 2026-10-05",
+   "Original: 2026-09-03, $46.25, submitted 2026-09-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 46.25
+ },
+ "DUP-CLM-101030": {
+  "source": "rules",
+  "headline": "Claim CLM-101030 appears to duplicate CLM-103479.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-103479 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-21, $45.69, submitted 2026-09-30",
+   "Original: 2026-08-21, $45.69, submitted 2026-09-07"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 45.69
+ },
+ "DUP-CLM-106521": {
+  "source": "rules",
+  "headline": "Claim CLM-106521 appears to duplicate CLM-104071.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-104071 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-09, $44.87, submitted 2026-09-25",
+   "Original: 2026-09-09, $44.87, submitted 2026-09-11"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 44.87
+ },
+ "DUP-CLM-100600": {
+  "source": "rules",
+  "headline": "Claim CLM-100600 appears to duplicate CLM-107918.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-107918 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-10, $44.17, submitted 2026-08-21",
+   "Original: 2026-08-10, $44.17, submitted 2026-08-11"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 44.17
+ },
+ "DUP-CLM-105690": {
+  "source": "rules",
+  "headline": "Claim CLM-105690 appears to duplicate CLM-104972.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-104972 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-04, $43.93, submitted 2026-09-09",
+   "Original: 2026-08-04, $43.93, submitted 2026-08-20"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 43.93
+ },
+ "DUP-CLM-100482": {
+  "source": "rules",
+  "headline": "Claim CLM-100482 appears to duplicate CLM-102287.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-102287 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-10, $43.6, submitted 2026-09-29",
+   "Original: 2026-08-10, $43.6, submitted 2026-08-23"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 43.6
+ },
+ "DUP-CLM-108295": {
+  "source": "rules",
+  "headline": "Claim CLM-108295 appears to duplicate CLM-102404.",
+  "finding": "Same member, provider and procedure (97140) billed again: Exact duplicate of CLM-102404 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-09-21, $43.25, submitted 2026-10-09",
+   "Original: 2026-09-21, $43.25, submitted 2026-10-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 43.25
+ },
+ "DUP-CLM-102331": {
+  "source": "rules",
+  "headline": "Claim CLM-102331 appears to duplicate CLM-104866.",
+  "finding": "Same member, provider and procedure (97110) billed again: Exact duplicate of CLM-104866 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-10, $43.23, submitted 2026-09-09",
+   "Original: 2026-08-10, $43.23, submitted 2026-08-23"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 43.23
+ },
+ "DUP-CLM-100391": {
+  "source": "rules",
+  "headline": "Claim CLM-100391 appears to duplicate CLM-105547.",
+  "finding": "Same member, provider and procedure (80053) billed again: Exact duplicate of CLM-105547 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-09, $39.7, submitted 2026-07-26",
+   "Original: 2026-07-09, $39.7, submitted 2026-07-20"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 39.7
+ },
+ "DUP-CLM-102747": {
+  "source": "rules",
+  "headline": "Claim CLM-102747 appears to duplicate CLM-103753.",
+  "finding": "Same member, provider and procedure (80053) billed again: Exact duplicate of CLM-103753 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-17, $33.52, submitted 2026-09-30",
+   "Original: 2026-08-17, $33.52, submitted 2026-08-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 33.52
+ },
+ "DUP-CLM-101315": {
+  "source": "rules",
+  "headline": "Claim CLM-101315 appears to duplicate CLM-106519.",
+  "finding": "Same member, provider and procedure (80053) billed again: Exact duplicate of CLM-106519 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-08-05, $33.06, submitted 2026-08-16",
+   "Original: 2026-08-05, $33.06, submitted 2026-08-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 33.06
+ },
+ "DUP-CLM-108338": {
+  "source": "rules",
+  "headline": "Claim CLM-108338 appears to duplicate CLM-107198.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-107198 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-23, $28.26, submitted 2026-09-13",
+   "Original: 2026-07-23, $28.26, submitted 2026-08-07"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 28.26
+ },
+ "DUP-CLM-106402": {
+  "source": "rules",
+  "headline": "Claim CLM-106402 appears to duplicate CLM-103321.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-103321 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-06, $27.89, submitted 2026-08-11",
+   "Original: 2026-07-06, $27.89, submitted 2026-07-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 27.89
+ },
+ "DUP-CLM-104716": {
+  "source": "rules",
+  "headline": "Claim CLM-104716 appears to duplicate CLM-102861.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-102861 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-07-03, $27.55, submitted 2026-07-11",
+   "Original: 2026-07-03, $27.55, submitted 2026-07-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 27.55
+ },
+ "DUP-CLM-101690": {
+  "source": "rules",
+  "headline": "Claim CLM-101690 appears to duplicate CLM-107418.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-107418 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-27, $27.25, submitted 2026-10-13",
+   "Original: 2026-08-27, $27.25, submitted 2026-09-13"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 27.25
+ },
+ "DUP-CLM-105030": {
+  "source": "rules",
+  "headline": "Claim CLM-105030 appears to duplicate CLM-102117.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-102117 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-18, $26.16, submitted 2026-09-10",
+   "Original: 2026-08-18, $26.16, submitted 2026-09-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 26.16
+ },
+ "DUP-CLM-104421": {
+  "source": "rules",
+  "headline": "Claim CLM-104421 appears to duplicate CLM-103474.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-103474 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-06, $26.04, submitted 2026-08-27",
+   "Original: 2026-08-06, $26.04, submitted 2026-08-09"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 26.04
+ },
+ "DUP-CLM-106776": {
+  "source": "rules",
+  "headline": "Claim CLM-106776 appears to duplicate CLM-103355.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-103355 (same member, provider, code, date, amount).",
+  "evidence": [
+   "Flagged: 2026-08-12, $25.24, submitted 2026-09-19",
+   "Original: 2026-08-12, $25.24, submitted 2026-08-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 25.24
+ },
+ "DUP-CLM-107881": {
+  "source": "rules",
+  "headline": "Claim CLM-107881 appears to duplicate CLM-105789.",
+  "finding": "Same member, provider and procedure (85025) billed again: Exact duplicate of CLM-105789 (same member, provider, code, date, amount) | Provider has confirmed fraud on another case.",
+  "evidence": [
+   "Flagged: 2026-07-24, $23.1, submitted 2026-08-31",
+   "Original: 2026-07-24, $23.1, submitted 2026-08-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 23.1
+ },
+ "DAY-PRV-1050-20260824": {
+  "source": "rules",
+  "headline": "Dr. L. Novak (PRV-1050), Orthopedics billed 19.7 hours on 2026-08-24.",
+  "finding": "Billed time is 19.7 hours across 30 patients, against a specialty median of 4.2 hours.",
+  "evidence": [
+   "16 x 20610 Joint injection, major",
+   "7 x 73721 MRI lower extremity",
+   "5 x 99204 Office visit, new, moderate",
+   "8 x 99214 Office visit, established, moderate",
+   "4 x 99215 Office visit, established, high"
+  ],
+  "innocent_explanations": [
+   "Multiple clinicians billing under one provider ID",
+   "Data entry error"
+  ],
+  "recommended_action": "Request appointment logs and clinical notes for the date; refer to SIU if unsupported.",
+  "estimated_exposure_usd": 10819.67
+ },
+ "UPC-PRV-1023": {
+  "source": "rules",
+  "headline": "Dr. C. Walsh (PRV-1023), Orthopedics bills 82% of office visits at the highest level.",
+  "finding": "82% of 51 established-patient visits were billed as 99215, against a peer median of 52% (5.7 standard deviations above 11 peers).",
+  "evidence": [
+   "99215: 42 visits",
+   "99214: 9 visits",
+   "Common diagnoses: M25.561, S83.511A, M17.11"
+  ],
+  "innocent_explanations": [
+   "Genuinely sicker patient panel",
+   "Provider sees referral-only complex cases"
+  ],
+  "recommended_action": "Request a sample of clinical notes for 99215 visits and audit them against E/M documentation guidelines.",
+  "estimated_exposure_usd": 994.5
+ },
+ "UPC-PRV-1048": {
+  "source": "rules",
+  "headline": "Dr. H. Larsen (PRV-1048), Family Medicine bills 93% of office visits at the highest level.",
+  "finding": "93% of 85 established-patient visits were billed as 99215, against a peer median of 34% (3.1 standard deviations above 15 peers).",
+  "evidence": [
+   "99215: 79 visits",
+   "99214: 4 visits",
+   "99213: 2 visits",
+   "Common diagnoses: E11.9, J06.9, Z00.00"
+  ],
+  "innocent_explanations": [
+   "Genuinely sicker patient panel",
+   "Provider sees referral-only complex cases"
+  ],
+  "recommended_action": "Request a sample of clinical notes for 99215 visits and audit them against E/M documentation guidelines.",
+  "estimated_exposure_usd": 3259.75
+ },
+ "DUP-CLM-100075": {
+  "source": "rules",
+  "headline": "Claim CLM-100075 appears to duplicate CLM-105498.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-105498 (0d apart, 7% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-10, $781.66, submitted 2026-08-12",
+   "Original: 2026-07-10, $727.33, submitted 2026-07-17"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 781.66
+ },
+ "DUP-CLM-103142": {
+  "source": "rules",
+  "headline": "Claim CLM-103142 appears to duplicate CLM-107988.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-107988 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-15, $777.52, submitted 2026-10-13",
+   "Original: 2026-09-15, $746.18, submitted 2026-09-17"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 777.52
+ },
+ "DUP-CLM-107927": {
+  "source": "rules",
+  "headline": "Claim CLM-107927 appears to duplicate CLM-103579.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-103579 (0d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-07, $753.52, submitted 2026-08-07",
+   "Original: 2026-07-07, $709.04, submitted 2026-07-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 753.52
+ },
+ "DUP-CLM-105948": {
+  "source": "rules",
+  "headline": "Claim CLM-105948 appears to duplicate CLM-105300.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-105300 (1d apart, 3% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-21, $744.54, submitted 2026-09-29",
+   "Original: 2026-08-20, $721.15, submitted 2026-09-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 744.54
+ },
+ "DUP-CLM-107296": {
+  "source": "rules",
+  "headline": "Claim CLM-107296 appears to duplicate CLM-105090.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-105090 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-24, $736.75, submitted 2026-10-28",
+   "Original: 2026-09-24, $704.42, submitted 2026-09-28"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 736.75
+ },
+ "DUP-CLM-105201": {
+  "source": "rules",
+  "headline": "Claim CLM-105201 appears to duplicate CLM-100207.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-100207 (1d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-29, $713.13, submitted 2026-10-26",
+   "Original: 2026-09-28, $686.25, submitted 2026-10-13"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 713.13
+ },
+ "DUP-CLM-100280": {
+  "source": "rules",
+  "headline": "Claim CLM-100280 appears to duplicate CLM-104940.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-104940 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-21, $708.15, submitted 2026-09-18",
+   "Original: 2026-08-21, $674.84, submitted 2026-09-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 708.15
+ },
+ "DUP-CLM-101714": {
+  "source": "rules",
+  "headline": "Claim CLM-101714 appears to duplicate CLM-107887.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-107887 (0d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-09, $688.09, submitted 2026-07-27",
+   "Original: 2026-07-09, $677.76, submitted 2026-07-25"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 688.09
+ },
+ "DUP-CLM-105465": {
+  "source": "rules",
+  "headline": "Claim CLM-105465 appears to duplicate CLM-108374.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-108374 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-15, $646.4, submitted 2026-08-13",
+   "Original: 2026-07-15, $621.86, submitted 2026-08-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 646.4
+ },
+ "DUP-CLM-105722": {
+  "source": "rules",
+  "headline": "Claim CLM-105722 appears to duplicate CLM-105455.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-105455 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-31, $644.9, submitted 2026-08-31",
+   "Original: 2026-07-31, $612.69, submitted 2026-08-20"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 644.9
+ },
+ "DUP-CLM-105719": {
+  "source": "rules",
+  "headline": "Claim CLM-105719 appears to duplicate CLM-105640.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-105640 (0d apart, 9% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-15, $643.91, submitted 2026-08-22",
+   "Original: 2026-07-15, $593.41, submitted 2026-07-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 643.91
+ },
+ "DUP-CLM-104522": {
+  "source": "rules",
+  "headline": "Claim CLM-104522 appears to duplicate CLM-102942.",
+  "finding": "Same member, provider and procedure (73721) billed again: Near-duplicate of CLM-102942 (1d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-05, $590.09, submitted 2026-09-06",
+   "Original: 2026-08-04, $600.13, submitted 2026-08-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 590.09
+ },
+ "DUP-CLM-101490": {
+  "source": "rules",
+  "headline": "Claim CLM-101490 appears to duplicate CLM-106584.",
+  "finding": "Same member, provider and procedure (99204) billed again: Near-duplicate of CLM-106584 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-16, $286.15, submitted 2026-08-24",
+   "Original: 2026-07-16, $275.05, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 286.15
+ },
+ "DUP-CLM-101574": {
+  "source": "rules",
+  "headline": "Claim CLM-101574 appears to duplicate CLM-101819.",
+  "finding": "Same member, provider and procedure (99204) billed again: Near-duplicate of CLM-101819 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-20, $279.93, submitted 2026-10-01",
+   "Original: 2026-08-20, $269.69, submitted 2026-09-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 279.93
+ },
+ "DUP-CLM-101701": {
+  "source": "rules",
+  "headline": "Claim CLM-101701 appears to duplicate CLM-102562.",
+  "finding": "Same member, provider and procedure (99204) billed again: Near-duplicate of CLM-102562 (1d apart, 0% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-09, $273.07, submitted 2026-09-26",
+   "Original: 2026-09-08, $274.06, submitted 2026-09-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 273.07
+ },
+ "DUP-CLM-101246": {
+  "source": "rules",
+  "headline": "Claim CLM-101246 appears to duplicate CLM-108365.",
+  "finding": "Same member, provider and procedure (99215) billed again: Near-duplicate of CLM-108365 (1d apart, 0% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-03, $263.19, submitted 2026-09-25",
+   "Original: 2026-09-02, $264.3, submitted 2026-09-10"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 263.19
+ },
+ "DUP-CLM-100325": {
+  "source": "rules",
+  "headline": "Claim CLM-100325 appears to duplicate CLM-102644.",
+  "finding": "Same member, provider and procedure (99204) billed again: Near-duplicate of CLM-102644 (1d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-16, $262.2, submitted 2026-10-30",
+   "Original: 2026-09-15, $258.22, submitted 2026-10-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 262.2
+ },
+ "DUP-CLM-108002": {
+  "source": "rules",
+  "headline": "Claim CLM-108002 appears to duplicate CLM-105999.",
+  "finding": "Same member, provider and procedure (99215) billed again: Near-duplicate of CLM-105999 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-02, $259.03, submitted 2026-07-26",
+   "Original: 2026-07-01, $256.47, submitted 2026-07-11"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 259.03
+ },
+ "DUP-CLM-100091": {
+  "source": "rules",
+  "headline": "Claim CLM-100091 appears to duplicate CLM-104958.",
+  "finding": "Same member, provider and procedure (99215) billed again: Near-duplicate of CLM-104958 (1d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-22, $253.61, submitted 2026-10-09",
+   "Original: 2026-09-21, $243.7, submitted 2026-10-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 253.61
+ },
+ "DUP-CLM-107692": {
+  "source": "rules",
+  "headline": "Claim CLM-107692 appears to duplicate CLM-105721.",
+  "finding": "Same member, provider and procedure (99204) billed again: Near-duplicate of CLM-105721 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-14, $247.36, submitted 2026-10-22",
+   "Original: 2026-09-14, $237.02, submitted 2026-09-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 247.36
+ },
+ "DUP-CLM-100890": {
+  "source": "rules",
+  "headline": "Claim CLM-100890 appears to duplicate CLM-100895.",
+  "finding": "Same member, provider and procedure (99215) billed again: Near-duplicate of CLM-100895 (0d apart, 8% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-29, $243.71, submitted 2026-08-27",
+   "Original: 2026-07-29, $226.48, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 243.71
+ },
+ "DUP-CLM-106212": {
+  "source": "rules",
+  "headline": "Claim CLM-106212 appears to duplicate CLM-104754.",
+  "finding": "Same member, provider and procedure (99215) billed again: Near-duplicate of CLM-104754 (0d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-16, $237.83, submitted 2026-10-04",
+   "Original: 2026-09-16, $223.77, submitted 2026-09-25"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 237.83
+ },
+ "DUP-CLM-105916": {
+  "source": "rules",
+  "headline": "Claim CLM-105916 appears to duplicate CLM-100362.",
+  "finding": "Same member, provider and procedure (99215) billed again: Near-duplicate of CLM-100362 (0d apart, 7% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-10, $227.65, submitted 2026-08-06",
+   "Original: 2026-07-10, $212.75, submitted 2026-07-17"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 227.65
+ },
+ "DUP-CLM-100925": {
+  "source": "rules",
+  "headline": "Claim CLM-100925 appears to duplicate CLM-100120.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-100120 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-10, $216.76, submitted 2026-07-31",
+   "Original: 2026-07-10, $205.67, submitted 2026-07-17"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 216.76
+ },
+ "DUP-CLM-104941": {
+  "source": "rules",
+  "headline": "Claim CLM-104941 appears to duplicate CLM-104510.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-104510 (0d apart, 3% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-03, $207.97, submitted 2026-08-18",
+   "Original: 2026-08-03, $201.63, submitted 2026-08-13"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 207.97
+ },
+ "DUP-CLM-106862": {
+  "source": "rules",
+  "headline": "Claim CLM-106862 appears to duplicate CLM-103531.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-103531 (1d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-18, $206.32, submitted 2026-08-07",
+   "Original: 2026-07-17, $210.15, submitted 2026-08-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 206.32
+ },
+ "DUP-CLM-105778": {
+  "source": "rules",
+  "headline": "Claim CLM-105778 appears to duplicate CLM-105882.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-105882 (0d apart, 0% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-15, $204.55, submitted 2026-07-21",
+   "Original: 2026-07-15, $205.37, submitted 2026-07-17"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 204.55
+ },
+ "DUP-CLM-101348": {
+  "source": "rules",
+  "headline": "Claim CLM-101348 appears to duplicate CLM-101102.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-101102 (0d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-24, $203.62, submitted 2026-09-07",
+   "Original: 2026-08-24, $192.05, submitted 2026-08-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 203.62
+ },
+ "DUP-CLM-106358": {
+  "source": "rules",
+  "headline": "Claim CLM-106358 appears to duplicate CLM-104947.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-104947 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-21, $193.67, submitted 2026-10-25",
+   "Original: 2026-09-21, $184.03, submitted 2026-10-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 193.67
+ },
+ "DUP-CLM-106813": {
+  "source": "rules",
+  "headline": "Claim CLM-106813 appears to duplicate CLM-107224.",
+  "finding": "Same member, provider and procedure (90837) billed again: Near-duplicate of CLM-107224 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-02, $192.1, submitted 2026-10-07",
+   "Original: 2026-09-02, $185.1, submitted 2026-09-21"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 192.1
+ },
+ "DUP-CLM-107638": {
+  "source": "rules",
+  "headline": "Claim CLM-107638 appears to duplicate CLM-103448.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-103448 (1d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-22, $189.34, submitted 2026-10-27",
+   "Original: 2026-09-21, $182.53, submitted 2026-10-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 189.34
+ },
+ "DUP-CLM-102312": {
+  "source": "rules",
+  "headline": "Claim CLM-102312 appears to duplicate CLM-106391.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-106391 (1d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-11, $186.9, submitted 2026-08-04",
+   "Original: 2026-07-10, $177.64, submitted 2026-07-24"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 186.9
+ },
+ "DUP-CLM-101889": {
+  "source": "rules",
+  "headline": "Claim CLM-101889 appears to duplicate CLM-101650.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-101650 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-09, $184.59, submitted 2026-08-16",
+   "Original: 2026-07-08, $182.1, submitted 2026-07-12"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 184.59
+ },
+ "DUP-CLM-103076": {
+  "source": "rules",
+  "headline": "Claim CLM-103076 appears to duplicate CLM-107643.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-107643 (0d apart, 8% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-01, $184.58, submitted 2026-07-23",
+   "Original: 2026-07-01, $171.32, submitted 2026-07-13"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 184.58
+ },
+ "DUP-CLM-107378": {
+  "source": "rules",
+  "headline": "Claim CLM-107378 appears to duplicate CLM-100020.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-100020 (1d apart, 0% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-08, $181.86, submitted 2026-08-29",
+   "Original: 2026-08-07, $182.18, submitted 2026-08-11"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 181.86
+ },
+ "DUP-CLM-105936": {
+  "source": "rules",
+  "headline": "Claim CLM-105936 appears to duplicate CLM-106202.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-106202 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-18, $163.38, submitted 2026-08-22",
+   "Original: 2026-07-17, $165.25, submitted 2026-07-30"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 163.38
+ },
+ "DUP-CLM-105188": {
+  "source": "rules",
+  "headline": "Claim CLM-105188 appears to duplicate CLM-102627.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-102627 (1d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-21, $162.95, submitted 2026-09-08",
+   "Original: 2026-08-20, $154.32, submitted 2026-08-28"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 162.95
+ },
+ "DUP-CLM-103653": {
+  "source": "rules",
+  "headline": "Claim CLM-103653 appears to duplicate CLM-102844.",
+  "finding": "Same member, provider and procedure (99214) billed again: Near-duplicate of CLM-102844 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-22, $159.36, submitted 2026-08-17",
+   "Original: 2026-07-22, $151.99, submitted 2026-08-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 159.36
+ },
+ "DUP-CLM-106785": {
+  "source": "rules",
+  "headline": "Claim CLM-106785 appears to duplicate CLM-102473.",
+  "finding": "Same member, provider and procedure (90834) billed again: Near-duplicate of CLM-102473 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-04, $138.06, submitted 2026-08-03",
+   "Original: 2026-07-03, $136.63, submitted 2026-07-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 138.06
+ },
+ "DUP-CLM-106486": {
+  "source": "rules",
+  "headline": "Claim CLM-106486 appears to duplicate CLM-102254.",
+  "finding": "Same member, provider and procedure (90834) billed again: Near-duplicate of CLM-102254 (1d apart, 0% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-18, $128.56, submitted 2026-10-29",
+   "Original: 2026-09-17, $128.06, submitted 2026-10-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 128.56
+ },
+ "DUP-CLM-103441": {
+  "source": "rules",
+  "headline": "Claim CLM-103441 appears to duplicate CLM-103302.",
+  "finding": "Same member, provider and procedure (20610) billed again: Near-duplicate of CLM-103302 (1d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-15, $121.34, submitted 2026-10-11",
+   "Original: 2026-09-14, $114.57, submitted 2026-09-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 121.34
+ },
+ "DUP-CLM-104806": {
+  "source": "rules",
+  "headline": "Claim CLM-104806 appears to duplicate CLM-101204.",
+  "finding": "Same member, provider and procedure (20610) billed again: Near-duplicate of CLM-101204 (1d apart, 3% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-08, $116.81, submitted 2026-08-14",
+   "Original: 2026-07-07, $120.05, submitted 2026-07-16"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 116.81
+ },
+ "DUP-CLM-106258": {
+  "source": "rules",
+  "headline": "Claim CLM-106258 appears to duplicate CLM-103927.",
+  "finding": "Same member, provider and procedure (99213) billed again: Near-duplicate of CLM-103927 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-24, $111.13, submitted 2026-11-03",
+   "Original: 2026-09-23, $110.2, submitted 2026-10-13"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 111.13
+ },
+ "DUP-CLM-105035": {
+  "source": "rules",
+  "headline": "Claim CLM-105035 appears to duplicate CLM-102601.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-102601 (0d apart, 9% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-05, $72.96, submitted 2026-09-22",
+   "Original: 2026-08-05, $67.19, submitted 2026-08-19"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 72.96
+ },
+ "DUP-CLM-104092": {
+  "source": "rules",
+  "headline": "Claim CLM-104092 appears to duplicate CLM-100871.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-100871 (1d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-18, $69.27, submitted 2026-10-01",
+   "Original: 2026-08-17, $66.36, submitted 2026-09-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 69.27
+ },
+ "DUP-CLM-108261": {
+  "source": "rules",
+  "headline": "Claim CLM-108261 appears to duplicate CLM-105212.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-105212 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-23, $67.59, submitted 2026-10-23",
+   "Original: 2026-09-23, $64.75, submitted 2026-09-27"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 67.59
+ },
+ "DUP-CLM-105336": {
+  "source": "rules",
+  "headline": "Claim CLM-105336 appears to duplicate CLM-100063.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-100063 (0d apart, 7% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-30, $67.48, submitted 2026-10-24",
+   "Original: 2026-09-30, $62.94, submitted 2026-10-07"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 67.48
+ },
+ "DUP-CLM-105375": {
+  "source": "rules",
+  "headline": "Claim CLM-105375 appears to duplicate CLM-103940.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-103940 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-26, $63.49, submitted 2026-11-03",
+   "Original: 2026-09-25, $62.89, submitted 2026-10-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 63.49
+ },
+ "DUP-CLM-103328": {
+  "source": "rules",
+  "headline": "Claim CLM-103328 appears to duplicate CLM-108058.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-108058 (0d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-02, $62.54, submitted 2026-10-17",
+   "Original: 2026-09-02, $58.78, submitted 2026-09-08"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 62.54
+ },
+ "DUP-CLM-102630": {
+  "source": "rules",
+  "headline": "Claim CLM-102630 appears to duplicate CLM-101299.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-101299 (1d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-18, $62.35, submitted 2026-10-17",
+   "Original: 2026-09-17, $59.36, submitted 2026-09-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 62.35
+ },
+ "DUP-CLM-106452": {
+  "source": "rules",
+  "headline": "Claim CLM-106452 appears to duplicate CLM-103907.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-103907 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-02, $58.71, submitted 2026-10-11",
+   "Original: 2026-09-02, $55.98, submitted 2026-09-15"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 58.71
+ },
+ "DUP-CLM-106490": {
+  "source": "rules",
+  "headline": "Claim CLM-106490 appears to duplicate CLM-104463.",
+  "finding": "Same member, provider and procedure (71046) billed again: Near-duplicate of CLM-104463 (1d apart, 3% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-18, $57.34, submitted 2026-10-09",
+   "Original: 2026-09-17, $55.69, submitted 2026-10-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 57.34
+ },
+ "DUP-CLM-103380": {
+  "source": "rules",
+  "headline": "Claim CLM-103380 appears to duplicate CLM-104082.",
+  "finding": "Same member, provider and procedure (97140) billed again: Near-duplicate of CLM-104082 (0d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-18, $57.19, submitted 2026-10-18",
+   "Original: 2026-09-18, $54.02, submitted 2026-09-24"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 57.19
+ },
+ "DUP-CLM-101233": {
+  "source": "rules",
+  "headline": "Claim CLM-101233 appears to duplicate CLM-100162.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-100162 (0d apart, 8% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-18, $55.21, submitted 2026-09-19",
+   "Original: 2026-08-18, $51.28, submitted 2026-08-22"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 55.21
+ },
+ "DUP-CLM-107225": {
+  "source": "rules",
+  "headline": "Claim CLM-107225 appears to duplicate CLM-104713.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-104713 (0d apart, 7% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-03, $54.47, submitted 2026-08-03",
+   "Original: 2026-07-03, $50.74, submitted 2026-07-19"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 54.47
+ },
+ "DUP-CLM-102506": {
+  "source": "rules",
+  "headline": "Claim CLM-102506 appears to duplicate CLM-106134.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-106134 (0d apart, 7% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-19, $52.32, submitted 2026-09-09",
+   "Original: 2026-08-19, $48.8, submitted 2026-09-02"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 52.32
+ },
+ "DUP-CLM-104757": {
+  "source": "rules",
+  "headline": "Claim CLM-104757 appears to duplicate CLM-105669.",
+  "finding": "Same member, provider and procedure (97140) billed again: Near-duplicate of CLM-105669 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-19, $51.09, submitted 2026-09-29",
+   "Original: 2026-08-18, $50.4, submitted 2026-08-23"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 51.09
+ },
+ "DUP-CLM-104707": {
+  "source": "rules",
+  "headline": "Claim CLM-104707 appears to duplicate CLM-107500.",
+  "finding": "Same member, provider and procedure (97140) billed again: Near-duplicate of CLM-107500 (1d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-04, $51.03, submitted 2026-08-31",
+   "Original: 2026-08-03, $49.2, submitted 2026-08-11"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 51.03
+ },
+ "DUP-CLM-108461": {
+  "source": "rules",
+  "headline": "Claim CLM-108461 appears to duplicate CLM-104739.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-104739 (1d apart, 3% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-19, $50.94, submitted 2026-09-09",
+   "Original: 2026-08-18, $49.6, submitted 2026-08-25"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 50.94
+ },
+ "DUP-CLM-102835": {
+  "source": "rules",
+  "headline": "Claim CLM-102835 appears to duplicate CLM-108210.",
+  "finding": "Same member, provider and procedure (97140) billed again: Near-duplicate of CLM-108210 (0d apart, 9% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-23, $48.92, submitted 2026-10-06",
+   "Original: 2026-09-23, $53.62, submitted 2026-10-04"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 48.92
+ },
+ "DUP-CLM-100030": {
+  "source": "rules",
+  "headline": "Claim CLM-100030 appears to duplicate CLM-106093.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-106093 (1d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-10-01, $47.33, submitted 2026-11-08",
+   "Original: 2026-09-30, $46.57, submitted 2026-10-03"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 47.33
+ },
+ "DUP-CLM-105276": {
+  "source": "rules",
+  "headline": "Claim CLM-105276 appears to duplicate CLM-102346.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-102346 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-09, $46.97, submitted 2026-08-27",
+   "Original: 2026-07-08, $46.55, submitted 2026-07-24"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 46.97
+ },
+ "DUP-CLM-105344": {
+  "source": "rules",
+  "headline": "Claim CLM-105344 appears to duplicate CLM-102290.",
+  "finding": "Same member, provider and procedure (97140) billed again: Near-duplicate of CLM-102290 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-07, $46.18, submitted 2026-07-28",
+   "Original: 2026-07-07, $44.1, submitted 2026-07-16"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 46.18
+ },
+ "DUP-CLM-105909": {
+  "source": "rules",
+  "headline": "Claim CLM-105909 appears to duplicate CLM-107429.",
+  "finding": "Same member, provider and procedure (97140) billed again: Near-duplicate of CLM-107429 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-23, $46.04, submitted 2026-10-17",
+   "Original: 2026-09-22, $46.54, submitted 2026-10-06"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 46.04
+ },
+ "DUP-CLM-105867": {
+  "source": "rules",
+  "headline": "Claim CLM-105867 appears to duplicate CLM-105746.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-105746 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-14, $45.68, submitted 2026-08-24",
+   "Original: 2026-07-13, $45.35, submitted 2026-07-26"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 45.68
+ },
+ "DUP-CLM-103414": {
+  "source": "rules",
+  "headline": "Claim CLM-103414 appears to duplicate CLM-108276.",
+  "finding": "Same member, provider and procedure (97110) billed again: Near-duplicate of CLM-108276 (0d apart, 5% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-23, $44.03, submitted 2026-09-11",
+   "Original: 2026-07-23, $41.88, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 44.03
+ },
+ "DUP-CLM-108227": {
+  "source": "rules",
+  "headline": "Claim CLM-108227 appears to duplicate CLM-105749.",
+  "finding": "Same member, provider and procedure (80053) billed again: Near-duplicate of CLM-105749 (0d apart, 7% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-29, $33.79, submitted 2026-09-12",
+   "Original: 2026-07-29, $31.54, submitted 2026-08-18"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 33.79
+ },
+ "DUP-CLM-100806": {
+  "source": "rules",
+  "headline": "Claim CLM-100806 appears to duplicate CLM-105795.",
+  "finding": "Same member, provider and procedure (80053) billed again: Near-duplicate of CLM-105795 (0d apart, 3% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-17, $33.27, submitted 2026-08-30",
+   "Original: 2026-08-17, $34.41, submitted 2026-08-25"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 33.27
+ },
+ "DUP-CLM-106412": {
+  "source": "rules",
+  "headline": "Claim CLM-106412 appears to duplicate CLM-103132.",
+  "finding": "Same member, provider and procedure (85025) billed again: Near-duplicate of CLM-103132 (0d apart, 4% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-24, $29.88, submitted 2026-09-02",
+   "Original: 2026-07-24, $28.61, submitted 2026-08-12"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 29.88
+ },
+ "DUP-CLM-101811": {
+  "source": "rules",
+  "headline": "Claim CLM-101811 appears to duplicate CLM-106678.",
+  "finding": "Same member, provider and procedure (85025) billed again: Near-duplicate of CLM-106678 (1d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-07-28, $28.77, submitted 2026-08-29",
+   "Original: 2026-07-27, $28.23, submitted 2026-08-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 28.77
+ },
+ "DUP-CLM-103039": {
+  "source": "rules",
+  "headline": "Claim CLM-103039 appears to duplicate CLM-106387.",
+  "finding": "Same member, provider and procedure (85025) billed again: Near-duplicate of CLM-106387 (1d apart, 1% amount diff).",
+  "evidence": [
+   "Flagged: 2026-08-27, $26.12, submitted 2026-09-09",
+   "Original: 2026-08-26, $26.46, submitted 2026-08-31"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 26.12
+ },
+ "DUP-CLM-107636": {
+  "source": "rules",
+  "headline": "Claim CLM-107636 appears to duplicate CLM-100254.",
+  "finding": "Same member, provider and procedure (85025) billed again: Near-duplicate of CLM-100254 (1d apart, 6% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-19, $25.49, submitted 2026-10-13",
+   "Original: 2026-09-18, $24.16, submitted 2026-10-05"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 25.49
+ },
+ "DUP-CLM-107502": {
+  "source": "rules",
+  "headline": "Claim CLM-107502 appears to duplicate CLM-100341.",
+  "finding": "Same member, provider and procedure (85025) billed again: Near-duplicate of CLM-100341 (1d apart, 2% amount diff).",
+  "evidence": [
+   "Flagged: 2026-09-03, $23.72, submitted 2026-10-13",
+   "Original: 2026-09-02, $23.19, submitted 2026-09-10"
+  ],
+  "innocent_explanations": [
+   "Corrected claim re-submitted without a void",
+   "Two genuine same-day services"
+  ],
+  "recommended_action": "Hold payment and confirm with the provider whether this is a corrected claim.",
+  "estimated_exposure_usd": 23.72
+ }
+}

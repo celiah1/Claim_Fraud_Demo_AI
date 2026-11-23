@@ -1,0 +1,32 @@
+CLAIMGUARD - HOW TO OPEN ON ANOTHER LAPTOP (Windows)
+====================================================
+
+1. Unzip this folder anywhere (e.g. Desktop). Do not run it from inside the zip.
+
+2. Python 3.10 or newer is required.
+   If the laptop doesn't have it, install Python 3.12 from https://www.python.org/downloads/
+   and tick "Add python.exe to PATH" during install.
+
+3. Double-click  Start_ClaimGuard.bat
+   - The first time, it installs the needed packages (internet needed, 1-3 minutes).
+   - Your browser opens  http://claimguard.localhost:8503
+     (if that address doesn't load, use  http://localhost:8503 )
+   - Keep the black window open while you use the app; close it to stop.
+
+WHAT'S INSIDE
+- app.py ..................... the ClaimGuard web app
+- src\ ....................... detection rules, AI briefs, feedback loop, ML model
+- data\claims.csv ............ synthetic demo claims (no real patient data)
+- models\, output\ ........... trained ML model, results, demo investigator decisions
+- *.svg, *.pptx, docs\ ....... architecture diagrams, presentation deck, walkthrough
+- README.md .................. full technical documentation
+
+OPTIONAL: CLAUDE AI CASE BRIEFS
+The app works without this; briefs fall back to rule-based text.
+To use Claude, set an Anthropic API key (with credit) on that laptop:
+   setx ANTHROPIC_API_KEY "your-key"
+then reopen Start_ClaimGuard.bat. The key is NOT included in this zip.
+
+Mac / Linux: install Python, then in a terminal in this folder run
+   pip install -r requirements.txt
+   python -m streamlit run app.py

@@ -1,0 +1,73 @@
+{
+ "label_source": "synthetic ground truth (demo; not enough investigator labels yet)",
+ "train_claims": 5537,
+ "test_claims": 2961,
+ "test_fraud_rate": 0.08578183046268152,
+ "roc_auc": 0.9951860007155552,
+ "avg_precision": 0.9691340133729781,
+ "precision_at_80": 0.9004149377593361,
+ "recall_at_80": 0.8543307086614174,
+ "precision_top100": 1.0,
+ "importance": [
+  {
+   "feature": "provider_day_hours",
+   "description": "Provider's billed hours that day",
+   "importance": 0.47105929368538496
+  },
+  {
+   "feature": "submit_lag_days",
+   "description": "Days between service and submission",
+   "importance": 0.10334148627213266
+  },
+  {
+   "feature": "provider_top_level_share",
+   "description": "Provider's share of office visits billed 99215",
+   "importance": 0.07027235549319288
+  },
+  {
+   "feature": "is_99215",
+   "description": "Claim is a top-level office visit",
+   "importance": 0.06924278977655432
+  },
+  {
+   "feature": "near_match_claims",
+   "description": "Other claims: same member, provider, code within \u00b11 day",
+   "importance": 0.019773749791429852
+  },
+  {
+   "feature": "provider_day_hours_vs_peers",
+   "description": "Provider-day hours \u00f7 specialty median",
+   "importance": 0.006791173342606061
+  },
+  {
+   "feature": "provider_top_level_z",
+   "description": "That share vs specialty peers (std devs)",
+   "importance": 0.0014755446780483571
+  },
+  {
+   "feature": "member_claims_90d",
+   "description": "Member's claims in the period",
+   "importance": 0.0006104952933893681
+  },
+  {
+   "feature": "provider_day_claims",
+   "description": "Provider's claims that day",
+   "importance": 1.1730710657364974e-05
+  },
+  {
+   "feature": "units",
+   "description": "Units billed",
+   "importance": 0.0
+  },
+  {
+   "feature": "exact_match_claims",
+   "description": "Other claims: identical member, provider, code, date, amount",
+   "importance": -0.001316031299534237
+  },
+  {
+   "feature": "amount_vs_code_median",
+   "description": "Billed amount \u00f7 median for the same CPT code",
+   "importance": -0.004937063733186498
+  }
+ ]
+}

@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 900" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2b5f94"/></marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f2d52" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1560" height="900" fill="#ffffff"/>
+
+  <!-- Header -->
+  <text x="40" y="44" font-size="12" font-weight="700" fill="#2b5f94" letter-spacing="2">SOLUTION ARCHITECTURE · MVP</text>
+  <text x="40" y="84" font-family="Georgia, serif" font-size="30" fill="#0f2d52">Rules flag, Claude explains, investigators decide: one pipeline from claim to case</text>
+  <line x1="40" y1="106" x2="1520" y2="106" stroke="#0f2d52" stroke-width="2"/>
+
+  <!-- Flow line behind circles -->
+  <line x1="180" y1="210" x2="1380" y2="210" stroke="#DCE6F2" stroke-width="6"/>
+  <g stroke="#2b5f94" stroke-width="3" fill="none" marker-end="url(#ar)">
+    <path d="M240,210 L414,210"/><path d="M540,210 L714,210"/><path d="M840,210 L1012,210"/><path d="M1148,210 L1314,210"/>
+  </g>
+
+  <!-- ===== Stage circles with icons ===== -->
+  <!-- 1 Data: database -->
+  <g filter="url(#sh)"><circle cx="180" cy="210" r="56" fill="#EEF3FA" stroke="#0f2d52" stroke-width="2"/></g>
+  <ellipse cx="180" cy="188" rx="24" ry="8" fill="#0f2d52"/><rect x="156" y="188" width="48" height="40" fill="#0f2d52"/><ellipse cx="180" cy="228" rx="24" ry="8" fill="#0f2d52"/>
+  <ellipse cx="180" cy="188" rx="24" ry="8" fill="#3b7cc4"/><path d="M156,202 a24,8 0 0 0 48,0 M156,215 a24,8 0 0 0 48,0" stroke="#3b7cc4" stroke-width="2" fill="none"/>
+  <!-- 2 Prepare: funnel -->
+  <g filter="url(#sh)"><circle cx="480" cy="210" r="56" fill="#EEF3FA" stroke="#0f2d52" stroke-width="2"/></g>
+  <path d="M454,188 h52 l-20,24 v18 l-12,6 v-24 z" fill="#0f2d52"/>
+  <!-- 3 Detect: magnifier -->
+  <g filter="url(#sh)"><circle cx="780" cy="210" r="56" fill="#EEF3FA" stroke="#0f2d52" stroke-width="2"/></g>
+  <circle cx="774" cy="204" r="18" fill="none" stroke="#0f2d52" stroke-width="6"/><line x1="787" y1="217" x2="802" y2="232" stroke="#0f2d52" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="774" cy="204" r="6" fill="#DC2626"/>
+  <!-- 4 Claude: teal, sparkle -->
+  <g filter="url(#sh)"><circle cx="1080" cy="210" r="66" fill="#0f766e"/></g>
+  <path d="M1080,168 C1086,196 1094,204 1122,210 C1094,216 1086,224 1080,252 C1074,224 1066,216 1038,210 C1066,204 1074,196 1080,168 z" fill="#ffffff"/>
+  <!-- 5 App: monitor -->
+  <g filter="url(#sh)"><circle cx="1380" cy="210" r="56" fill="#EEF3FA" stroke="#0f2d52" stroke-width="2"/></g>
+  <rect x="1352" y="188" width="56" height="38" rx="4" fill="#0f2d52"/>
+  <rect x="1358" y="210" width="8" height="10" fill="#3b7cc4"/><rect x="1370" y="202" width="8" height="18" fill="#3b7cc4"/><rect x="1382" y="196" width="8" height="24" fill="#3b7cc4"/>
+  <rect x="1372" y="230" width="16" height="6" fill="#0f2d52"/>
+
+  <!-- Step numbers -->
+  <g font-size="13" font-weight="700" text-anchor="middle">
+    <circle cx="226" cy="162" r="14" fill="#0f2d52"/><text x="226" y="167" fill="#ffffff">1</text>
+    <circle cx="526" cy="162" r="14" fill="#0f2d52"/><text x="526" y="167" fill="#ffffff">2</text>
+    <circle cx="826" cy="162" r="14" fill="#0f2d52"/><text x="826" y="167" fill="#ffffff">3</text>
+    <circle cx="1134" cy="152" r="14" fill="#0f2d52"/><text x="1134" y="157" fill="#ffffff">4</text>
+    <circle cx="1426" cy="162" r="14" fill="#0f2d52"/><text x="1426" y="167" fill="#ffffff">5</text>
+  </g>
+
+  <!-- Stage titles -->
+  <g text-anchor="middle" font-size="18" font-weight="700">
+    <text x="180" y="304" fill="#0f2d52">Data</text>
+    <text x="480" y="304" fill="#0f2d52">Prepare</text>
+    <text x="780" y="304" fill="#0f2d52">Detect</text>
+    <text x="1080" y="304" fill="#0f766e">Claude explains</text>
+    <text x="1380" y="304" fill="#0f2d52">Act</text>
+  </g>
+
+  <!-- ===== Cards ===== -->
+  <g filter="url(#sh)">
+    <rect x="50" y="324" width="260" height="226" rx="12" fill="#ffffff"/>
+    <rect x="350" y="324" width="260" height="226" rx="12" fill="#ffffff"/>
+    <rect x="650" y="324" width="260" height="226" rx="12" fill="#ffffff"/>
+    <rect x="950" y="324" width="260" height="226" rx="12" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+    <rect x="1250" y="324" width="260" height="226" rx="12" fill="#ffffff"/>
+  </g>
+
+  <!-- Card 1 Data -->
+  <g font-size="14" fill="#1E293B">
+    <circle cx="74" cy="356" r="5" fill="#2b5f94"/><text x="88" y="361">Claims file (CSV)</text>
+    <circle cx="74" cy="390" r="5" fill="#2b5f94"/><text x="88" y="395">CPT time &amp; fee reference</text>
+    <circle cx="74" cy="424" r="5" fill="#2b5f94"/><text x="88" y="429">Provider specialties</text>
+  </g>
+  <rect x="66" y="500" width="228" height="30" rx="15" fill="#EEF3FA"/>
+  <text x="180" y="520" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f2d52">Synthetic now → real later</text>
+
+  <!-- Card 2 Prepare -->
+  <g font-size="14" fill="#1E293B">
+    <circle cx="374" cy="356" r="5" fill="#2b5f94"/><text x="388" y="361">Validate &amp; clean</text>
+    <circle cx="374" cy="390" r="5" fill="#2b5f94"/><text x="388" y="395">Standardize codes</text>
+    <circle cx="374" cy="424" r="5" fill="#2b5f94"/><text x="388" y="429">Tokenize member IDs</text>
+    <circle cx="374" cy="458" r="5" fill="#2b5f94"/><text x="388" y="463">Build 10 features</text>
+  </g>
+  <rect x="366" y="500" width="228" height="30" rx="15" fill="#EEF3FA"/>
+  <text x="480" y="520" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f2d52">Python · pandas</text>
+
+  <!-- Card 3 Detect -->
+  <g font-size="13.5" font-weight="700">
+    <rect x="666" y="340" width="228" height="34" rx="8" fill="#EEF3FA"/><text x="680" y="362" fill="#0f2d52">Duplicate billing</text>
+    <rect x="666" y="382" width="228" height="34" rx="8" fill="#EEF3FA"/><text x="680" y="404" fill="#0f2d52">Impossible days</text>
+    <rect x="666" y="424" width="228" height="34" rx="8" fill="#ffffff" stroke="#94A3B8" stroke-dasharray="5 4"/><text x="680" y="446" fill="#64748B">Upcoding</text>
+    <text x="880" y="446" text-anchor="end" font-size="11" fill="#64748B">PHASE 2</text>
+  </g>
+  <rect x="666" y="474" width="228" height="56" rx="10" fill="#0f2d52"/>
+  <text x="680" y="498" font-size="14" font-weight="700" fill="#ffffff">Risk score 0–100</text>
+  <text x="680" y="518" font-size="12" fill="#C7D7EA">+ reason code per flag</text>
+
+  <!-- Card 4 Claude -->
+  <g font-size="14" fill="#1E293B">
+    <circle cx="974" cy="356" r="5" fill="#0f766e"/><text x="988" y="361">Flagged claims only (1–5%)</text>
+    <circle cx="974" cy="390" r="5" fill="#0f766e"/><text x="988" y="395">Case brief + cited evidence</text>
+    <circle cx="974" cy="424" r="5" fill="#0f766e"/><text x="988" y="429">Structured JSON output</text>
+  </g>
+  <text x="966" y="466" font-size="11" font-weight="700" fill="#64748B" letter-spacing="1">TRIAGE</text>
+  <g font-size="12" font-weight="700" text-anchor="middle">
+    <rect x="966" y="476" width="70" height="28" rx="14" fill="#16A34A"/><text x="1001" y="495" fill="#ffffff">Low</text>
+    <rect x="1044" y="476" width="78" height="28" rx="14" fill="#F59E0B"/><text x="1083" y="495" fill="#1E293B">Medium</text>
+    <rect x="1130" y="476" width="64" height="28" rx="14" fill="#DC2626"/><text x="1162" y="495" fill="#ffffff">High</text>
+    <text x="1001" y="526" font-weight="400" font-size="11.5" fill="#475569">pay</text>
+    <text x="1083" y="526" font-weight="400" font-size="11.5" fill="#475569">review</text>
+    <text x="1162" y="526" font-weight="400" font-size="11.5" fill="#475569">SIU</text>
+  </g>
+
+  <!-- Card 5 App -->
+  <g font-size="14" fill="#1E293B">
+    <circle cx="1274" cy="356" r="5" fill="#2b5f94"/><text x="1288" y="361">KPI dashboard</text>
+    <circle cx="1274" cy="390" r="5" fill="#2b5f94"/><text x="1288" y="395">Investigator queue</text>
+    <circle cx="1274" cy="424" r="5" fill="#2b5f94"/><text x="1288" y="429">AI briefs per case</text>
+    <circle cx="1274" cy="458" r="5" fill="#2b5f94"/><text x="1288" y="463">Export flagged CSV</text>
+  </g>
+  <rect x="1266" y="500" width="228" height="30" rx="15" fill="#EEF3FA"/>
+  <text x="1380" y="520" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f2d52">Streamlit web app</text>
+
+  <!-- ===== Bottom row: evaluation, users, feedback ===== -->
+  <!-- Evaluation under Detect -->
+  <path d="M780,550 L780,606" stroke="#2b5f94" stroke-width="3" fill="none" marker-end="url(#ar)"/>
+  <g filter="url(#sh)"><rect x="650" y="612" width="260" height="78" rx="12" fill="#ffffff"/></g>
+  <circle cx="692" cy="651" r="20" fill="#2b5f94"/><circle cx="692" cy="651" r="9" fill="none" stroke="#ffffff" stroke-width="2.5"/><circle cx="692" cy="651" r="3" fill="#ffffff"/>
+  <text x="724" y="646" font-size="15" font-weight="700" fill="#0f2d52">Evaluation report</text>
+  <text x="724" y="666" font-size="12.5" fill="#475569">Precision / recall</text>
+
+  <!-- Users under App -->
+  <path d="M1380,550 L1380,606" stroke="#2b5f94" stroke-width="3" fill="none" marker-end="url(#ar)"/>
+  <g filter="url(#sh)"><rect x="1250" y="612" width="260" height="78" rx="12" fill="#0f2d52"/></g>
+  <circle cx="1292" cy="642" r="9" fill="#9CC3EE"/><path d="M1276,668 c2,-12 9,-15 16,-15 c7,0 14,3 16,15 z" fill="#9CC3EE"/>
+  <text x="1324" y="646" font-size="15" font-weight="700" fill="#ffffff">Investigators decide</text>
+  <text x="1324" y="666" font-size="12.5" fill="#C7D7EA">SIU · claims managers</text>
+
+  <!-- Feedback loop (phase 2) -->
+  <path d="M1250,651 L1220,651 L1220,740 L180,740 L180,556" stroke="#94A3B8" stroke-width="2.5" stroke-dasharray="8 6" fill="none" marker-end="url(#arg)"/>
+  <rect x="520" y="724" width="420" height="32" rx="16" fill="#ffffff" stroke="#CBD5E1"/>
+  <text x="730" y="745" text-anchor="middle" font-size="13" fill="#475569"><tspan font-weight="700" fill="#0f2d52">Feedback loop</tspan> · outcomes become new labels (phase 2)</text>
+
+  <!-- Legend -->
+  <line x1="40" y1="800" x2="1520" y2="800" stroke="#E2E8F0"/>
+  <g font-size="12.5" fill="#475569">
+    <circle cx="48" cy="830" r="8" fill="#0f2d52"/><text x="64" y="835">Rules &amp; data (no token cost)</text>
+    <circle cx="288" cy="830" r="8" fill="#0f766e"/><text x="304" y="835">LLM step (token cost)</text>
+    <rect x="474" y="822" width="16" height="16" rx="3" fill="#ffffff" stroke="#94A3B8" stroke-dasharray="3 2"/><text x="498" y="835">Phase 2</text>
+    <circle cx="590" cy="830" r="6" fill="#16A34A"/><circle cx="606" cy="830" r="6" fill="#F59E0B"/><circle cx="622" cy="830" r="6" fill="#DC2626"/><text x="636" y="835">Risk levels</text>
+  </g>
+  <text x="1520" y="835" text-anchor="end" font-size="12.5" fill="#475569">Stack: Python · pandas · Streamlit · Claude API</text>
+  <text x="40" y="874" font-size="11.5" fill="#64748B">MVP on synthetic data. Claude runs only on flagged claims; every flag carries an explainable reason code, and an investigator makes the final decision.</text>
+</svg>

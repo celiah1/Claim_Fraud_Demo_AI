@@ -1,0 +1,47 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Claim Fraud Detection</title>
+<style>
+@page { size: 1600px 900px; margin: 0; }
+html, body { margin: 0; padding: 0; background: #ffffff; font-family: Arial, Helvetica, sans-serif; }
+.page { width: 1600px; height: 900px; page-break-after: always; break-after: page; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #ffffff; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.page img { width: 1560px; height: 860px; object-fit: contain; }
+.cover { background: #051C2C; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 120px; box-sizing: border-box; gap: 28px; }
+.eyebrow { font-size: 22px; font-weight: 700; letter-spacing: 4px; color: #7FA6FF; margin: 0; }
+.cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 76px; line-height: 1.1; color: #F4F7FB; margin: 0; max-width: 1300px; }
+.rule { width: 140px; height: 6px; background: #2251FF; }
+.lead { font-size: 28px; line-height: 1.45; color: #C7D2DC; margin: 0; max-width: 1150px; }
+.meta { font-size: 20px; color: #9FB3C8; margin: 0; }
+.agenda { flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 120px; box-sizing: border-box; background: #FBFBF8; }
+.agenda h2 { font-family: Georgia, serif; font-weight: 400; font-size: 56px; color: #051C2C; margin: 0 0 48px; }
+.agenda ol { margin: 0; padding: 0; list-style: none; counter-reset: n; }
+.agenda li { counter-increment: n; font-size: 30px; color: #051C2C; padding: 18px 0; border-bottom: 1px solid #D9E0E7; width: 1100px; display: flex; gap: 32px; }
+.agenda li::before { content: counter(n, decimal-leading-zero); color: #2251FF; font-weight: 700; width: 60px; }
+.agenda li span { color: #5A6872; font-size: 24px; margin-left: auto; align-self: center; }
+</style></head>
+<body>
+<div class="page cover">
+  <p class="eyebrow">HEALTH INSURANCE · CLAIM FRAUD DETECTION</p>
+  <h1>An AI-powered workflow that turns fraud flags into investigator-ready cases</h1>
+  <div class="rule"></div>
+  <p class="lead">Rules find the suspicious claims. Claude explains them with cited evidence. Investigators make the decision.</p>
+  <p class="meta">Solution overview · MVP · [Client name] · [Date]</p>
+</div>
+<div class="page agenda">
+  <h2>Contents</h2>
+  <ol>
+    <li>Solution architecture<span>End-to-end view</span></li>
+    <li>AI reasoning layer<span>Six steps, flag to brief</span></li>
+    <li>How a claim gets flagged<span>Sample data and rules</span></li>
+    <li>Engineered features<span>The 10 calculations</span></li>
+    <li>How Claude analyzes a claim<span>Five-step review</span></li>
+    <li>Technical data elements<span>Fields, JSON and stack</span></li>
+  </ol>
+</div>
+<div class="page"><img src="architecture.svg" alt="Solution architecture"></div>
+<div class="page"><img src="ai_architecture.svg" alt="AI reasoning layer"></div>
+<div class="page"><img src="claims_flagging.svg" alt="How a claim gets flagged"></div>
+<div class="page"><img src="feature_engineering.svg" alt="Engineered features"></div>
+<div class="page"><img src="claude_reasoning.svg" alt="How Claude analyzes a claim"></div>
+<div class="page"><img src="data_elements.svg" alt="Technical data elements"></div>
+</body></html>

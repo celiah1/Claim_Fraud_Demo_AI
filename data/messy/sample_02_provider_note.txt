@@ -1,0 +1,19 @@
+HARBOR PHYSICAL THERAPY & REHAB -- daily treatment log / superbill
+(faxed copy, page 1 of 1)        Provider: PRV 1011  / NPI on file
+-------------------------------------------------------------------
+Pt name: WEBB, T.          ID: mbr-101794         Date: 2026-10-14
+Therapist: Dr G. Walsh, DPT
+
+S: pt reports L knee pain 6/10, worse on stairs.
+O: ROM limited flex 95deg. Dx M25.561 (pain R knee?? -- chart says L)
+
+Tx provided:
+   97110  ther exercise ........ 4 units   $ 95.00 ea
+   97140  manual therapy ....... 4 units   $ 88.00 ea
+   97530  therapeutic activ. ... 4 units   $ 92.50 ea
+   97112  neuromusc re-ed ...... 3 units
+
+Total time: approx 3.5 hrs today (pt tolerated well)
+Charges total: $1,382.00 (re-ed amount missing, will add later)
+
+submitted 10/30/2026  -- signed GW

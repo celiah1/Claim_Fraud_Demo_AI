@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 900" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2251FF"/></marker>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#051C2C" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1560" height="900" fill="#ffffff"/>
+
+  <!-- Header -->
+  <text x="40" y="44" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">HOW CLAUDE ANALYZES A FLAGGED CLAIM</text>
+  <text x="40" y="84" font-family="Georgia, serif" font-size="30" fill="#051C2C">Claude follows a fixed 5-step review, like a trained analyst, and shows its evidence</text>
+  <line x1="40" y1="106" x2="1520" y2="106" stroke="#051C2C" stroke-width="2"/>
+
+  <!-- Input band -->
+  <rect x="40" y="126" width="1480" height="58" rx="29" fill="#EEF3FF"/>
+  <text x="70" y="161" font-size="13" font-weight="700" fill="#051C2C" letter-spacing="1.5">INPUT: EVIDENCE PACK</text>
+  <g font-size="13" font-weight="600" text-anchor="middle">
+    <rect x="300" y="140" width="170" height="30" rx="15" fill="#ffffff" stroke="#C9D3DD"/><text x="385" y="160" fill="#051C2C">Flagged claims</text>
+    <rect x="490" y="140" width="190" height="30" rx="15" fill="#ffffff" stroke="#C9D3DD"/><text x="585" y="160" fill="#051C2C">Rule reason codes</text>
+    <rect x="700" y="140" width="190" height="30" rx="15" fill="#ffffff" stroke="#C9D3DD"/><text x="795" y="160" fill="#051C2C">Provider history</text>
+    <rect x="910" y="140" width="190" height="30" rx="15" fill="#ffffff" stroke="#C9D3DD"/><text x="1005" y="160" fill="#051C2C">Peer benchmarks</text>
+    <rect x="1120" y="140" width="190" height="30" rx="15" fill="#ffffff" stroke="#C9D3DD"/><text x="1215" y="160" fill="#051C2C">Fraud rubric</text>
+  </g>
+  <text x="1335" y="161" font-size="12.5" fill="#5A6872">Nothing else: no web,</text>
+  <text x="1335" y="177" font-size="12.5" fill="#5A6872">no outside data</text>
+
+  <!-- Row labels -->
+  <g font-size="11" font-weight="700" fill="#5A6872" letter-spacing="1.2">
+    <text x="40" y="350">QUESTION</text>
+    <text x="40" y="470">EXAMPLE</text>
+  </g>
+
+  <!-- ===== Stage cards ===== -->
+  <!-- x positions: 130, 410, 690, 970 ; output 1250 ; width 250 -->
+  <g filter="url(#sh)">
+    <rect x="130" y="210" width="250" height="360" rx="14" fill="#ffffff"/>
+    <rect x="410" y="210" width="250" height="360" rx="14" fill="#ffffff"/>
+    <rect x="690" y="210" width="250" height="360" rx="14" fill="#ffffff"/>
+    <rect x="970" y="210" width="250" height="360" rx="14" fill="#ffffff"/>
+    <rect x="1250" y="210" width="270" height="360" rx="14" fill="#051C2C"/>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#2251FF" stroke-width="3" fill="none" marker-end="url(#ar)">
+    <path d="M382,260 L408,260"/><path d="M662,260 L688,260"/><path d="M942,260 L968,260"/><path d="M1222,260 L1248,260"/>
+  </g>
+
+  <!-- Stage 1 READ (eye) -->
+  <circle cx="175" cy="260" r="28" fill="#051C2C"/>
+  <path d="M157,260 Q175,244 193,260 Q175,276 157,260 z" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle cx="175" cy="260" r="5" fill="#ffffff"/>
+  <text x="215" y="255" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="1">STEP 1</text>
+  <text x="215" y="276" font-size="19" font-weight="700" fill="#051C2C">Read the facts</text>
+  <text x="150" y="340" font-size="14.5" font-style="italic" fill="#2251FF">"What exactly was billed?"</text>
+  <line x1="150" y1="400" x2="360" y2="400" stroke="#E3E8EE"/>
+  <rect x="150" y="440" width="210" height="110" rx="8" fill="#F2F5F8"/>
+  <text x="165" y="470" font-size="14" font-weight="700" fill="#051C2C">Dr. A · 4 Mar</text>
+  <text x="165" y="494" font-size="13.5" fill="#333F48">38 visits billed</text>
+  <text x="165" y="516" font-size="13.5" fill="#333F48">22 × long visit</text>
+  <text x="165" y="538" font-size="13.5" fill="#333F48">(CPT 99215)</text>
+
+  <!-- Stage 2 COMPARE (bars) -->
+  <circle cx="455" cy="260" r="28" fill="#051C2C"/>
+  <rect x="442" y="262" width="6" height="12" fill="#ffffff"/><rect x="452" y="254" width="6" height="20" fill="#ffffff"/><rect x="462" y="246" width="6" height="28" fill="#4ADE80"/>
+  <text x="495" y="255" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="1">STEP 2</text>
+  <text x="495" y="276" font-size="19" font-weight="700" fill="#051C2C">Compare</text>
+  <text x="430" y="340" font-size="14.5" font-style="italic" fill="#2251FF">"How far from normal?"</text>
+  <line x1="430" y1="400" x2="640" y2="400" stroke="#E3E8EE"/>
+  <rect x="430" y="440" width="210" height="110" rx="8" fill="#F2F5F8"/>
+  <!-- mini bar compare -->
+  <text x="445" y="468" font-size="12.5" fill="#333F48">Billed hours that day</text>
+  <rect x="445" y="482" width="180" height="16" rx="3" fill="#E5484D"/><text x="618" y="495" text-anchor="end" font-size="12" font-weight="700" fill="#ffffff">22.7 h</text>
+  <rect x="445" y="508" width="55" height="16" rx="3" fill="#94A3B8"/><text x="508" y="521" font-size="12" font-weight="700" fill="#051C2C">8 h peer median</text>
+  <text x="445" y="542" font-size="12.5" font-weight="700" fill="#E5484D">2.8× peers · &gt;12 h limit</text>
+
+  <!-- Stage 3 WEIGH (scale) -->
+  <circle cx="735" cy="260" r="28" fill="#051C2C"/>
+  <line x1="735" y1="244" x2="735" y2="276" stroke="#ffffff" stroke-width="2.5"/>
+  <line x1="719" y1="250" x2="751" y2="250" stroke="#ffffff" stroke-width="2.5"/>
+  <path d="M713,262 l6,-12 l6,12 z" fill="#ffffff"/><path d="M745,262 l6,-12 l6,12 z" fill="#ffffff"/>
+  <line x1="727" y1="276" x2="743" y2="276" stroke="#ffffff" stroke-width="2.5"/>
+  <text x="775" y="255" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="1">STEP 3</text>
+  <text x="775" y="276" font-size="19" font-weight="700" fill="#051C2C">Weigh both sides</text>
+  <text x="710" y="340" font-size="14.5" font-style="italic" fill="#2251FF">"Any innocent reason?"</text>
+  <line x1="710" y1="400" x2="920" y2="400" stroke="#E3E8EE"/>
+  <rect x="710" y="440" width="210" height="110" rx="8" fill="#F2F5F8"/>
+  <circle cx="728" cy="468" r="7" fill="#E5484D"/><text x="742" y="473" font-size="13" fill="#333F48">Solo provider ID</text>
+  <circle cx="728" cy="494" r="7" fill="#E5484D"/><text x="742" y="499" font-size="13" fill="#333F48">Pattern on 6 days</text>
+  <circle cx="728" cy="520" r="7" fill="#4ADE80"/><text x="742" y="525" font-size="13" fill="#333F48">Possible clinic</text>
+  <text x="742" y="541" font-size="13" fill="#333F48">ID sharing</text>
+
+  <!-- Stage 4 SCORE (gauge) -->
+  <circle cx="1015" cy="260" r="28" fill="#051C2C"/>
+  <path d="M997,268 A18,18 0 0 1 1033,268" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <line x1="1015" y1="268" x2="1027" y2="252" stroke="#E5484D" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="1015" cy="268" r="3" fill="#ffffff"/>
+  <text x="1055" y="255" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="1">STEP 4</text>
+  <text x="1055" y="276" font-size="19" font-weight="700" fill="#051C2C">Score</text>
+  <text x="990" y="340" font-size="14.5" font-style="italic" fill="#2251FF">"How serious? How sure?"</text>
+  <line x1="990" y1="400" x2="1200" y2="400" stroke="#E3E8EE"/>
+  <rect x="990" y="440" width="210" height="110" rx="8" fill="#F2F5F8"/>
+  <text x="1005" y="468" font-size="12.5" fill="#333F48">Severity</text>
+  <rect x="1005" y="476" width="60" height="10" rx="5" fill="#4ADE80"/><rect x="1067" y="476" width="60" height="10" rx="5" fill="#FACC15"/><rect x="1129" y="476" width="60" height="10" rx="5" fill="#E5484D"/>
+  <path d="M1159,470 l-6,-9 h12 z" fill="#051C2C"/>
+  <text x="1005" y="512" font-size="12.5" fill="#333F48">Confidence</text>
+  <rect x="1005" y="520" width="184" height="10" rx="5" fill="#E3E8EE"/><rect x="1005" y="520" width="156" height="10" rx="5" fill="#2251FF"/>
+  <text x="1189" y="546" text-anchor="end" font-size="12.5" font-weight="700" fill="#051C2C">High · 85%</text>
+
+  <!-- Stage 5 / Output (dark card, light text) -->
+  <circle cx="1295" cy="260" r="28" fill="#2251FF"/>
+  <path d="M1281,260 h22 M1295,250 l10,10 l-10,10" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1335" y="255" font-size="12" font-weight="700" fill="#7FA6FF" letter-spacing="1">STEP 5</text>
+  <text x="1335" y="276" font-size="19" font-weight="700" fill="#ffffff">Recommend</text>
+  <text x="1270" y="340" font-size="14.5" font-style="italic" fill="#A9C1FF">"What should happen next?"</text>
+  <line x1="1270" y1="400" x2="1500" y2="400" stroke="#1F3B52"/>
+  <rect x="1270" y="440" width="230" height="110" rx="8" fill="#0F2E47"/>
+  <text x="1285" y="468" font-size="14" font-weight="700" fill="#ffffff">→ Route to SIU</text>
+  <text x="1285" y="492" font-size="13" fill="#DCE6F0">Request records for</text>
+  <text x="1285" y="512" font-size="13" fill="#DCE6F0">6 dates · $14,200 at risk</text>
+  <text x="1285" y="536" font-size="12" fill="#7FA6FF">Cites: CLM-2207, -2215, -2231</text>
+
+  <!-- ===== Trust strip ===== -->
+  <text x="40" y="622" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">WHY YOU CAN EXPLAIN IT TO A CLIENT</text>
+  <g filter="url(#sh)">
+    <rect x="40"   y="640" width="355" height="150" rx="14" fill="#ffffff"/>
+    <rect x="415"  y="640" width="355" height="150" rx="14" fill="#ffffff"/>
+    <rect x="790"  y="640" width="355" height="150" rx="14" fill="#ffffff"/>
+    <rect x="1165" y="640" width="355" height="150" rx="14" fill="#ffffff"/>
+  </g>
+  <!-- tile 1: rubric -->
+  <circle cx="90" cy="690" r="24" fill="#EEF3FF"/>
+  <g stroke="#2251FF" stroke-width="3" stroke-linecap="round"><line x1="80" y1="682" x2="100" y2="682"/><line x1="80" y1="690" x2="100" y2="690"/><line x1="80" y1="698" x2="94" y2="698"/></g>
+  <text x="128" y="686" font-size="16" font-weight="700" fill="#051C2C">Same rubric every time</text>
+  <text x="128" y="708" font-size="13" fill="#5A6872">Steps are fixed in the</text>
+  <text x="128" y="726" font-size="13" fill="#5A6872">prompt, not improvised</text>
+  <!-- tile 2: citations -->
+  <circle cx="465" cy="690" r="24" fill="#EEF3FF"/>
+  <path d="M455,684 h8 v10 h-8 z M467,684 h8 v10 h-8 z" fill="#2251FF"/>
+  <text x="503" y="686" font-size="16" font-weight="700" fill="#051C2C">Every point is cited</text>
+  <text x="503" y="708" font-size="13" fill="#5A6872">Each finding links to a</text>
+  <text x="503" y="726" font-size="13" fill="#5A6872">claim ID you can open</text>
+  <!-- tile 3: verified -->
+  <circle cx="840" cy="690" r="24" fill="#EEF3FF"/>
+  <path d="M829,690 l8,8 l15,-16" stroke="#2251FF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="878" y="686" font-size="16" font-weight="700" fill="#051C2C">Checked by code</text>
+  <text x="878" y="708" font-size="13" fill="#5A6872">Cited facts are matched</text>
+  <text x="878" y="726" font-size="13" fill="#5A6872">to source data before use</text>
+  <!-- tile 4: human -->
+  <circle cx="1215" cy="690" r="24" fill="#EEF3FF"/>
+  <circle cx="1215" cy="682" r="7" fill="#2251FF"/><path d="M1202,702 c2,-10 8,-12 13,-12 c5,0 11,2 13,12 z" fill="#2251FF"/>
+  <text x="1253" y="686" font-size="16" font-weight="700" fill="#051C2C">Advises, never decides</text>
+  <text x="1253" y="708" font-size="13" fill="#5A6872">An investigator approves,</text>
+  <text x="1253" y="726" font-size="13" fill="#5A6872">overrides or closes</text>
+
+  <g font-size="12" font-weight="700">
+    <rect x="128" y="744" width="140" height="24" rx="12" fill="#F2F5F8"/><text x="198" y="760" text-anchor="middle" fill="#051C2C">Auditable</text>
+    <rect x="503" y="744" width="140" height="24" rx="12" fill="#F2F5F8"/><text x="573" y="760" text-anchor="middle" fill="#051C2C">Traceable</text>
+    <rect x="878" y="744" width="140" height="24" rx="12" fill="#F2F5F8"/><text x="948" y="760" text-anchor="middle" fill="#051C2C">Grounded</text>
+    <rect x="1253" y="744" width="140" height="24" rx="12" fill="#F2F5F8"/><text x="1323" y="760" text-anchor="middle" fill="#051C2C">Accountable</text>
+  </g>
+
+  <!-- Footer -->
+  <line x1="40" y1="824" x2="1520" y2="824" stroke="#C9D3DD"/>
+  <text x="40" y="846" font-size="11.5" fill="#5A6872">Illustrative example (synthetic data). The 5 steps are instructions in Claude's prompt; Claude returns its findings, evidence and citations as structured JSON for each step.</text>
+  <text x="40" y="864" font-size="11.5" fill="#5A6872">Claude's internal reasoning is not shown, but the written rationale and cited evidence are: these are what the guardrails check and the investigator reviews.</text>
+</svg>

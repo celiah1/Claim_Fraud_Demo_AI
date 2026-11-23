@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 920" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2251FF"/></marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#051C2C" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1560" height="920" fill="#ffffff"/>
+
+  <!-- Header -->
+  <text x="40" y="44" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">DATA ETL PIPELINE ARCHITECTURE</text>
+  <text x="40" y="84" font-family="Georgia, serif" font-size="30" fill="#051C2C">Raw claims are loaded, cleaned and enriched daily into analysis-ready fraud features</text>
+  <line x1="40" y1="106" x2="1520" y2="106" stroke="#051C2C" stroke-width="2"/>
+
+  <!-- Stage headers -->
+  <g font-size="12" font-weight="700" letter-spacing="1.5">
+    <text x="40" y="142" fill="#0369A1">① SOURCES</text>
+    <text x="330" y="142" fill="#475569">② EXTRACT</text>
+    <text x="580" y="142" fill="#475569">③ TRANSFORM</text>
+    <text x="880" y="142" fill="#B45309">④ LOAD · DATA LAYERS</text>
+    <text x="1260" y="142" fill="#15803D">⑤ CONSUMERS</text>
+  </g>
+
+  <!-- ===== 1 Sources ===== -->
+  <g font-size="14" font-weight="700">
+    <g filter="url(#sh)">
+      <rect x="40" y="160" width="250" height="66" rx="10" fill="#ffffff"/>
+      <rect x="40" y="240" width="250" height="66" rx="10" fill="#ffffff"/>
+      <rect x="40" y="320" width="250" height="66" rx="10" fill="#ffffff"/>
+      <rect x="40" y="400" width="250" height="66" rx="10" fill="#ffffff"/>
+    </g>
+    <rect x="40" y="480" width="250" height="66" rx="10" fill="#ffffff" stroke="#94A3B8" stroke-dasharray="5 4"/>
+    <!-- icons: doc -->
+    <circle cx="74" cy="193" r="18" fill="#E0F2FE"/><path d="M66,183 h12 l5,5 v15 h-17 z" fill="none" stroke="#0369A1" stroke-width="2.2"/>
+    <circle cx="74" cy="273" r="18" fill="#E0F2FE"/><circle cx="74" cy="268" r="5" fill="#0369A1"/><path d="M65,283 c1,-6 5,-8 9,-8 c4,0 8,2 9,8 z" fill="#0369A1"/>
+    <circle cx="74" cy="353" r="18" fill="#E0F2FE"/><circle cx="70" cy="349" r="4" fill="#0369A1"/><circle cx="79" cy="349" r="4" fill="#0369A1"/><path d="M62,362 c1,-5 4,-7 8,-7 c4,0 7,2 8,7 z M71,362 c1,-5 4,-7 8,-7 c4,0 7,2 8,7 z" fill="#0369A1"/>
+    <circle cx="74" cy="433" r="18" fill="#E0F2FE"/><rect x="65" y="425" width="18" height="16" rx="2" fill="none" stroke="#0369A1" stroke-width="2.2"/><line x1="65" y1="431" x2="83" y2="431" stroke="#0369A1" stroke-width="2"/>
+    <circle cx="74" cy="513" r="18" fill="#F1F5F9"/><g stroke="#64748B" stroke-width="2.2"><line x1="66" y1="506" x2="82" y2="506"/><line x1="66" y1="513" x2="82" y2="513"/><line x1="66" y1="520" x2="76" y2="520"/></g>
+    <text x="104" y="189" fill="#051C2C">Medical claims</text>
+    <text x="104" y="269" fill="#051C2C">Provider master</text>
+    <text x="104" y="349" fill="#051C2C">Member eligibility</text>
+    <text x="104" y="429" fill="#051C2C">Code reference</text>
+    <text x="104" y="509" fill="#64748B">Clinical notes</text>
+  </g>
+  <g font-size="12" fill="#5A6872">
+    <text x="104" y="209">837 / CSV · daily</text>
+    <text x="104" y="289">NPI, specialty, region</text>
+    <text x="104" y="369">Coverage periods</text>
+    <text x="104" y="449">CPT minutes, fee schedule</text>
+    <text x="104" y="529">Free text · phase 2</text>
+  </g>
+
+  <!-- ===== 2 Extract ===== -->
+  <g filter="url(#sh)"><rect x="330" y="160" width="210" height="386" rx="12" fill="#ffffff"/></g>
+  <path d="M330,172 a12,12 0 0 1 12,-12 h186 a12,12 0 0 1 12,12 v40 h-210 z" fill="#475569"/>
+  <text x="350" y="191" font-size="16" font-weight="700" fill="#ffffff">Ingest</text>
+  <!-- download icon -->
+  <circle cx="435" cy="268" r="34" fill="#F1F5F9"/>
+  <path d="M435,248 v28 M423,265 l12,12 l12,-12" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="419" y1="287" x2="451" y2="287" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+  <g font-size="13" fill="#333F48">
+    <text x="350" y="334" font-weight="700" fill="#051C2C">Daily batch load</text>
+    <text x="350" y="356">Incremental by</text>
+    <text x="350" y="374">service date</text>
+    <text x="350" y="410" font-weight="700" fill="#051C2C">Landing zone</text>
+    <text x="350" y="432">Files kept as received,</text>
+    <text x="350" y="450">read-only, timestamped</text>
+  </g>
+  <rect x="350" y="490" width="170" height="28" rx="14" fill="#F1F5F9"/>
+  <text x="435" y="509" text-anchor="middle" font-size="12" font-weight="700" fill="#051C2C">Row counts logged</text>
+
+  <!-- ===== 3 Transform ===== -->
+  <g filter="url(#sh)"><rect x="580" y="160" width="260" height="386" rx="12" fill="#ffffff"/></g>
+  <path d="M580,172 a12,12 0 0 1 12,-12 h236 a12,12 0 0 1 12,12 v40 h-260 z" fill="#475569"/>
+  <text x="600" y="191" font-size="16" font-weight="700" fill="#ffffff">Clean &amp; enrich</text>
+  <g font-size="13.5">
+    <g>
+      <circle cx="614" cy="244" r="16" fill="#051C2C"/><path d="M607,244 l5,5 l9,-10" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <text x="640" y="240" font-weight="700" fill="#051C2C">Validate</text>
+      <text x="640" y="258" font-size="12" fill="#5A6872">Schema, types, required</text>
+    </g>
+    <g>
+      <circle cx="614" cy="300" r="16" fill="#051C2C"/><rect x="606" y="293" width="9" height="9" fill="#ffffff"/><rect x="613" y="298" width="9" height="9" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <text x="640" y="296" font-weight="700" fill="#051C2C">De-duplicate records</text>
+      <text x="640" y="314" font-size="12" fill="#5A6872">Exact file re-sends only</text>
+    </g>
+    <g>
+      <circle cx="614" cy="356" r="16" fill="#051C2C"/><g stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"><line x1="606" y1="351" x2="622" y2="351"/><line x1="606" y1="361" x2="622" y2="361"/></g>
+      <text x="640" y="352" font-weight="700" fill="#051C2C">Standardize</text>
+      <text x="640" y="370" font-size="12" fill="#5A6872">Dates, CPT / ICD-10, amounts</text>
+    </g>
+    <g>
+      <circle cx="614" cy="412" r="16" fill="#051C2C"/><rect x="607" y="410" width="14" height="10" rx="2" fill="#ffffff"/><path d="M609,410 v-4 a5,5 0 0 1 10,0 v4" stroke="#ffffff" stroke-width="2.2" fill="none"/>
+      <text x="640" y="408" font-weight="700" fill="#051C2C">Tokenize PHI</text>
+      <text x="640" y="426" font-size="12" fill="#5A6872">Names / IDs → tokens</text>
+    </g>
+    <g>
+      <circle cx="614" cy="468" r="16" fill="#051C2C"/><path d="M606,468 h16 M614,460 v16" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="640" y="464" font-weight="700" fill="#051C2C">Join &amp; enrich</text>
+      <text x="640" y="482" font-size="12" fill="#5A6872">+ provider, member, CPT time</text>
+    </g>
+  </g>
+  <rect x="600" y="504" width="220" height="28" rx="14" fill="#FDECEC"/>
+  <text x="710" y="523" text-anchor="middle" font-size="12" font-weight="700" fill="#B42318">Bad rows → quarantine</text>
+
+  <!-- ===== 4 Medallion layers ===== -->
+  <!-- Bronze -->
+  <g filter="url(#sh)"><rect x="880" y="160" width="340" height="112" rx="12" fill="#ffffff"/></g>
+  <ellipse cx="930" cy="190" rx="26" ry="9" fill="#C8A27A"/><rect x="904" y="190" width="52" height="38" fill="#B98B5E"/><ellipse cx="930" cy="228" rx="26" ry="9" fill="#A97B4F"/><ellipse cx="930" cy="190" rx="26" ry="9" fill="#D9B48C"/>
+  <text x="976" y="192" font-size="16" font-weight="700" fill="#051C2C">Bronze · raw</text>
+  <text x="976" y="214" font-size="12.5" fill="#5A6872">As received, full history</text>
+  <text x="976" y="234" font-family="Consolas, monospace" font-size="12" fill="#333F48">raw_claims, raw_providers</text>
+
+  <!-- Silver -->
+  <g filter="url(#sh)"><rect x="880" y="290" width="340" height="112" rx="12" fill="#ffffff"/></g>
+  <ellipse cx="930" cy="320" rx="26" ry="9" fill="#CBD5E1"/><rect x="904" y="320" width="52" height="38" fill="#B6C2D1"/><ellipse cx="930" cy="358" rx="26" ry="9" fill="#9AA8BA"/><ellipse cx="930" cy="320" rx="26" ry="9" fill="#E2E8F0"/>
+  <text x="976" y="322" font-size="16" font-weight="700" fill="#051C2C">Silver · clean</text>
+  <text x="976" y="344" font-size="12.5" fill="#5A6872">Validated, tokenized, joined</text>
+  <text x="976" y="364" font-family="Consolas, monospace" font-size="12" fill="#333F48">claims, providers, members</text>
+
+  <!-- Gold -->
+  <g filter="url(#sh)"><rect x="880" y="420" width="340" height="126" rx="12" fill="#051C2C"/></g>
+  <ellipse cx="930" cy="452" rx="26" ry="9" fill="#F5C451"/><rect x="904" y="452" width="52" height="38" fill="#E0A82E"/><ellipse cx="930" cy="490" rx="26" ry="9" fill="#C48E1C"/><ellipse cx="930" cy="452" rx="26" ry="9" fill="#FADB8A"/>
+  <text x="976" y="454" font-size="16" font-weight="700" fill="#ffffff">Gold · features</text>
+  <text x="976" y="476" font-size="12.5" fill="#C7D2DC">10 engineered features + scores</text>
+  <text x="976" y="496" font-family="Consolas, monospace" font-size="12" fill="#FADB8A">claim_features</text>
+  <text x="976" y="514" font-family="Consolas, monospace" font-size="12" fill="#FADB8A">provider_day_stats, peer_stats</text>
+  <text x="976" y="532" font-family="Consolas, monospace" font-size="12" fill="#FADB8A">flagged_claims</text>
+
+  <!-- layer arrows -->
+  <g stroke="#2251FF" stroke-width="2.5" fill="none" marker-end="url(#ar)">
+    <path d="M1050,272 L1050,288"/><path d="M1050,402 L1050,418"/>
+  </g>
+
+  <!-- ===== 5 Consumers ===== -->
+  <g filter="url(#sh)">
+    <rect x="1260" y="160" width="260" height="84" rx="12" fill="#ffffff"/>
+    <rect x="1260" y="260" width="260" height="84" rx="12" fill="#ffffff"/>
+    <rect x="1260" y="360" width="260" height="84" rx="12" fill="#ffffff"/>
+    <rect x="1260" y="460" width="260" height="86" rx="12" fill="#ffffff"/>
+  </g>
+  <!-- rules -->
+  <circle cx="1298" cy="202" r="20" fill="#B45309"/><path d="M1290,202 h16 M1298,194 v16" stroke="#ffffff" stroke-width="0"/><text x="1298" y="208" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">R</text>
+  <text x="1330" y="198" font-size="15" font-weight="700" fill="#051C2C">Rules &amp; scoring</text>
+  <text x="1330" y="218" font-size="12" fill="#5A6872">Duplicate, impossible day</text>
+  <!-- claude -->
+  <circle cx="1298" cy="302" r="20" fill="#2251FF"/><path d="M1298,288 C1300,298 1303,300 1312,302 C1303,304 1300,306 1298,316 C1296,306 1293,304 1284,302 C1293,300 1296,298 1298,288 z" fill="#ffffff"/>
+  <text x="1330" y="298" font-size="15" font-weight="700" fill="#051C2C">Claude evidence packs</text>
+  <text x="1330" y="318" font-size="12" fill="#5A6872">Flagged claims only</text>
+  <!-- app -->
+  <circle cx="1298" cy="402" r="20" fill="#15803D"/><rect x="1288" y="394" width="20" height="14" rx="2" fill="none" stroke="#ffffff" stroke-width="2.2"/><line x1="1294" y1="412" x2="1302" y2="412" stroke="#ffffff" stroke-width="2.2"/>
+  <text x="1330" y="398" font-size="15" font-weight="700" fill="#051C2C">Streamlit app</text>
+  <text x="1330" y="418" font-size="12" fill="#5A6872">Dashboard &amp; queue</text>
+  <!-- eval -->
+  <circle cx="1298" cy="503" r="20" fill="#051C2C"/><circle cx="1298" cy="503" r="9" fill="none" stroke="#ffffff" stroke-width="2.2"/><circle cx="1298" cy="503" r="3" fill="#ffffff"/>
+  <text x="1330" y="499" font-size="15" font-weight="700" fill="#051C2C">Evaluation &amp; reports</text>
+  <text x="1330" y="519" font-size="12" fill="#5A6872">Precision / recall</text>
+
+  <!-- ===== main flow arrows ===== -->
+  <g stroke="#2251FF" stroke-width="3" fill="none" marker-end="url(#ar)">
+    <path d="M292,353 L326,353"/>
+    <path d="M542,353 L576,353"/>
+    <path d="M842,353 L876,353"/>
+    <path d="M1222,483 L1240,483 L1240,202 L1256,202"/>
+    <path d="M1240,302 L1256,302"/>
+    <path d="M1240,402 L1256,402"/>
+    <path d="M1240,503 L1256,503"/>
+  </g>
+
+  <!-- ===== Orchestration & governance band ===== -->
+  <text x="40" y="596" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">RUNS ACROSS EVERY STAGE</text>
+  <rect x="40" y="610" width="1480" height="96" rx="48" fill="#EEF3FF"/>
+  <g font-size="14.5" font-weight="700" fill="#051C2C">
+    <circle cx="96" cy="658" r="22" fill="#051C2C"/><circle cx="96" cy="658" r="10" fill="none" stroke="#ffffff" stroke-width="2.5"/><path d="M96,652 v6 l4,3" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <text x="130" y="654">Orchestration</text><text x="130" y="674" font-size="12" font-weight="400" fill="#5A6872">Daily schedule, retries</text>
+
+    <circle cx="396" cy="658" r="22" fill="#051C2C"/><path d="M387,658 l6,6 l12,-13" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="430" y="654">Data-quality checks</text><text x="430" y="674" font-size="12" font-weight="400" fill="#5A6872">Nulls, ranges, volumes</text>
+
+    <circle cx="706" cy="658" r="22" fill="#051C2C"/><circle cx="699" cy="658" r="4" fill="#ffffff"/><circle cx="713" cy="651" r="4" fill="#ffffff"/><circle cx="713" cy="666" r="4" fill="#ffffff"/><path d="M699,658 L713,651 M699,658 L713,666" stroke="#ffffff" stroke-width="2"/>
+    <text x="740" y="654">Lineage &amp; logging</text><text x="740" y="674" font-size="12" font-weight="400" fill="#5A6872">Every row traceable to source</text>
+
+    <circle cx="1036" cy="658" r="22" fill="#051C2C"/><rect x="1028" y="656" width="16" height="12" rx="2" fill="#ffffff"/><path d="M1031,656 v-4 a5,5 0 0 1 10,0 v4" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+    <text x="1070" y="654">Access &amp; privacy</text><text x="1070" y="674" font-size="12" font-weight="400" fill="#5A6872">Role-based access, PHI tokens</text>
+
+    <circle cx="1316" cy="658" r="22" fill="#051C2C"/><path d="M1306,666 l7,-8 l5,5 l9,-12" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <text x="1350" y="654">Monitoring</text><text x="1350" y="674" font-size="12" font-weight="400" fill="#5A6872">Run time, failures, drift</text>
+  </g>
+
+  <!-- ===== Tech stack: MVP vs scale ===== -->
+  <text x="40" y="752" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">TECHNOLOGY</text>
+  <g filter="url(#sh)">
+    <rect x="40" y="766" width="720" height="84" rx="12" fill="#ffffff"/>
+    <rect x="800" y="766" width="720" height="84" rx="12" fill="#ffffff"/>
+  </g>
+  <text x="64" y="798" font-size="15" font-weight="700" fill="#051C2C">MVP (local)</text>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <rect x="64" y="812" width="130" height="26" rx="13" fill="#475569"/><text x="129" y="830" fill="#ffffff">Python · pandas</text>
+    <rect x="204" y="812" width="110" height="26" rx="13" fill="#475569"/><text x="259" y="830" fill="#ffffff">Parquet files</text>
+    <rect x="324" y="812" width="90" height="26" rx="13" fill="#475569"/><text x="369" y="830" fill="#ffffff">DuckDB</text>
+    <rect x="424" y="812" width="150" height="26" rx="13" fill="#475569"/><text x="499" y="830" fill="#ffffff">Pandera DQ checks</text>
+    <rect x="584" y="812" width="150" height="26" rx="13" fill="#475569"/><text x="659" y="830" fill="#ffffff">Scheduled script</text>
+  </g>
+  <text x="824" y="798" font-size="15" font-weight="700" fill="#051C2C">Production (phase 2 options)</text>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <rect x="824" y="812" width="170" height="26" rx="13" fill="#E8EDFF"/><text x="909" y="830" fill="#1E3FCC">Microsoft Fabric</text>
+    <rect x="1004" y="812" width="130" height="26" rx="13" fill="#E8EDFF"/><text x="1069" y="830" fill="#1E3FCC">Databricks</text>
+    <rect x="1144" y="812" width="160" height="26" rx="13" fill="#E8EDFF"/><text x="1224" y="830" fill="#1E3FCC">Delta Lake tables</text>
+    <rect x="1314" y="812" width="180" height="26" rx="13" fill="#E8EDFF"/><text x="1404" y="830" fill="#1E3FCC">Airflow / pipelines</text>
+  </g>
+
+  <!-- footer -->
+  <line x1="40" y1="876" x2="1520" y2="876" stroke="#C9D3DD"/>
+  <text x="40" y="898" font-size="11.5" fill="#5A6872">Bronze / Silver / Gold = raw, cleaned and analysis-ready data layers (medallion pattern). The MVP runs on synthetic files; production tooling depends on the client's existing data platform.</text>
+</svg>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claim Fraud Detection — App Mockup</title>
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--tealbg:#f0fdfa;--bg:#f4f6fa;--card:#fff;--line:#e2e8f0;--txt:#0f172a;--mut:#64748b;--hi:#dc2626;--md:#d97706;--lo:#16a34a}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--txt);font-size:14px}
+.app{display:flex;min-height:100vh}
+aside{width:250px;background:var(--navy);color:#cbd5e1;padding:22px 18px;flex-shrink:0}
+aside h1{color:#fff;font-size:17px;margin:0 0 4px}aside .sub{font-size:12px;color:#94a3b8;margin-bottom:26px}
+aside label{display:block;font-size:11px;font-weight:700;letter-spacing:.6px;color:#94a3b8;margin:18px 0 6px}
+.drop{border:1.5px dashed #47658c;border-radius:8px;padding:14px;text-align:center;font-size:12px;color:#cbd5e1}
+.drop b{color:#fff;display:block;margin-bottom:3px}
+.sel{background:#1b3d66;border-radius:6px;padding:8px 10px;font-size:13px;color:#fff;display:flex;justify-content:space-between}
+.chk{font-size:13px;margin:6px 0}.chk span{display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--blue2);margin-right:8px;vertical-align:-2px}
+.run{margin-top:26px;background:var(--teal);color:#fff;border-radius:8px;padding:11px;text-align:center;font-weight:600}
+.nav{margin-top:28px;border-top:1px solid #244a77;padding-top:14px}.nav div{padding:8px 10px;border-radius:6px;font-size:13px;margin-bottom:2px}.nav .on{background:#1b3d66;color:#fff;font-weight:600}
+main{flex:1;padding:24px 28px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.top h2{margin:0;font-size:22px}.top p{margin:3px 0 0;color:var(--mut);font-size:13px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--blue)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;border-top:3px solid var(--blue)}
+.kpi .l{font-size:12px;color:var(--mut)}.kpi .v{font-size:26px;font-weight:700;margin:4px 0 2px}.kpi .d{font-size:12px;color:var(--mut)}
+.kpi.t{border-top-color:var(--teal)}
+.row{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 12px;font-size:14px}
+.bar{display:flex;align-items:center;margin:9px 0;font-size:12.5px}.bar .n{width:150px;color:#334155}.bar .t{flex:1;background:#eef2f7;border-radius:4px;height:16px;margin:0 10px}.bar .f{height:100%;border-radius:4px;background:var(--blue)}.bar .x{width:56px;text-align:right;color:var(--mut)}
+.chart{display:flex;align-items:flex-end;gap:10px;height:150px;padding-top:6px;border-bottom:1px solid var(--line)}
+.chart div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+.chart i{display:block;border-radius:3px 3px 0 0}.lab{display:flex;gap:10px;font-size:11px;color:var(--mut);margin-top:5px}.lab span{flex:1;text-align:center}
+.leg{font-size:11.5px;color:var(--mut);margin-top:8px}.leg b{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px;vertical-align:-1px}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;font-size:11.5px;color:var(--mut);font-weight:600;padding:8px;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.4px}
+td{padding:10px 8px;border-bottom:1px solid #f1f5f9}tr.sel td{background:#eff6ff}
+.pill{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11.5px;font-weight:700}
+.h{background:#fee2e2;color:var(--hi)}.m{background:#fef3c7;color:var(--md)}.lo{background:#dcfce7;color:var(--lo)}
+.tag{display:inline-block;background:#eef2f7;color:#334155;border-radius:4px;padding:1px 7px;font-size:11.5px;margin-right:4px}
+.score{font-weight:700}
+.brief{background:var(--tealbg);border:1px solid #99f6e4;border-radius:10px;padding:16px}
+.brief .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ai{background:var(--teal);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.4px}
+.brief h4{margin:12px 0 5px;font-size:12px;color:var(--teal);text-transform:uppercase;letter-spacing:.5px}
+.brief p,.brief li{margin:0;font-size:13px;line-height:1.5;color:#1e293b}.brief ul{margin:0;padding-left:18px}
+.acts{display:flex;gap:8px;margin-top:14px}.acts div{padding:7px 12px;border-radius:7px;font-size:12.5px;font-weight:600}
+.a1{background:var(--hi);color:#fff}.a2{background:#fff;border:1px solid var(--line)}.a3{background:#fff;border:1px solid var(--line);color:var(--mut)}
+.note{margin-top:18px;font-size:12px;color:var(--mut);text-align:center}
+@media(max-width:900px){.app{flex-direction:column}aside{width:auto}.kpis{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr}main{padding:16px}}
+</style></head><body>
+<div class="app">
+<aside>
+  <h1>🛡 ClaimGuard</h1><div class="sub">Health claim fraud detection</div>
+  <label>CLAIMS FILE</label>
+  <div class="drop"><b>claims_2026_Q3.csv</b>8,412 claims · 1.9 MB</div>
+  <label>DATE RANGE</label><div class="sel">Jul 1 – Sep 30, 2026 <span>▾</span></div>
+  <label>CHECKS</label>
+  <div class="chk"><span></span>Duplicate billing</div>
+  <div class="chk"><span></span>Impossible days</div>
+  <div class="chk" style="opacity:.5"><span style="background:#47658c"></span>Upcoding (phase 2)</div>
+  <label>AI SUMMARIES</label><div class="sel">Claude · High-risk only <span>▾</span></div>
+  <div class="run">▶ Run detection</div>
+  <div class="nav"><div class="on">Overview</div><div>Investigator queue</div><div>Providers</div><div>Model evaluation</div></div>
+</aside>
+<main>
+  <div class="top"><div><h2>Fraud overview</h2><p>Q3 2026 · last run 17 Nov 2026, 09:42 · 8,412 claims scanned</p></div><div class="btn">⬇ Export flagged claims</div></div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Claims flagged</div><div class="v">312</div><div class="d">3.7% of claims</div></div>
+    <div class="kpi"><div class="l">Dollars at risk</div><div class="v">$486K</div><div class="d">avg $1,558 per claim</div></div>
+    <div class="kpi"><div class="l">High-risk → SIU</div><div class="v">47</div><div class="d">18 providers involved</div></div>
+    <div class="kpi t"><div class="l">AI briefs generated</div><div class="v">47</div><div class="d">cost ≈ $0.09</div></div>
+  </div>
+
+  <div class="row">
+    <div class="card"><h3>Flags by week and check</h3>
+      <div class="chart">
+        <div><i style="height:40px;background:var(--blue2)"></i><i style="height:22px;background:var(--navy)"></i></div>
+        <div><i style="height:52px;background:var(--blue2)"></i><i style="height:18px;background:var(--navy)"></i></div>
+        <div><i style="height:46px;background:var(--blue2)"></i><i style="height:30px;background:var(--navy)"></i></div>
+        <div><i style="height:61px;background:var(--blue2)"></i><i style="height:26px;background:var(--navy)"></i></div>
+        <div><i style="height:58px;background:var(--blue2)"></i><i style="height:41px;background:var(--navy)"></i></div>
+        <div><i style="height:73px;background:var(--blue2)"></i><i style="height:35px;background:var(--navy)"></i></div>
+        <div><i style="height:66px;background:var(--blue2)"></i><i style="height:48px;background:var(--navy)"></i></div>
+        <div><i style="height:84px;background:var(--blue2)"></i><i style="height:44px;background:var(--navy)"></i></div>
+      </div>
+      <div class="lab"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
+      <div class="leg"><b style="background:var(--blue2);margin-left:0"></b>Duplicate billing<b style="background:var(--navy)"></b>Impossible days</div>
+    </div>
+    <div class="card"><h3>Top providers by $ at risk</h3>
+      <div class="bar"><span class="n">Dr. A. Patel · Ortho</span><span class="t"><span class="f" style="width:100%;display:block"></span></span><span class="x">$92K</span></div>
+      <div class="bar"><span class="n">Westside Imaging</span><span class="t"><span class="f" style="width:74%;display:block"></span></span><span class="x">$68K</span></div>
+      <div class="bar"><span class="n">Dr. L. Moreno · PT</span><span class="t"><span class="f" style="width:58%;display:block"></span></span><span class="x">$53K</span></div>
+      <div class="bar"><span class="n">CityLab Diagnostics</span><span class="t"><span class="f" style="width:41%;display:block"></span></span><span class="x">$38K</span></div>
+      <div class="bar"><span class="n">Dr. K. Osei · Psych</span><span class="t"><span class="f" style="width:30%;display:block"></span></span><span class="x">$27K</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card"><h3>Investigator queue</h3>
+      <table><thead><tr><th>Claim</th><th>Provider</th><th>Reason</th><th>Score</th><th>Risk</th></tr></thead><tbody>
+      <tr class="sel"><td>CLM-104882</td><td>Dr. A. Patel</td><td><span class="tag">Impossible day</span></td><td class="score">94</td><td><span class="pill h">High</span></td></tr>
+      <tr><td>CLM-102117</td><td>Westside Imaging</td><td><span class="tag">Duplicate</span></td><td class="score">89</td><td><span class="pill h">High</span></td></tr>
+      <tr><td>CLM-105530</td><td>Dr. L. Moreno</td><td><span class="tag">Impossible day</span></td><td class="score">81</td><td><span class="pill h">High</span></td></tr>
+      <tr><td>CLM-100943</td><td>CityLab Diagnostics</td><td><span class="tag">Near-duplicate</span></td><td class="score">63</td><td><span class="pill m">Medium</span></td></tr>
+      <tr><td>CLM-106201</td><td>Dr. K. Osei</td><td><span class="tag">Near-duplicate</span></td><td class="score">55</td><td><span class="pill m">Medium</span></td></tr>
+      <tr><td>CLM-101376</td><td>Sunrise Family Med</td><td><span class="tag">Duplicate</span></td><td class="score">34</td><td><span class="pill lo">Low</span></td></tr>
+      </tbody></table>
+    </div>
+    <div class="brief">
+      <div class="hd"><strong>Case brief · CLM-104882</strong><span class="ai">✦ AI GENERATED</span></div>
+      <p><b>Dr. A. Patel (Orthopedics)</b> · 12 Aug 2026 · $4,860 billed</p>
+      <h4>Finding</h4>
+      <p>The provider billed <b>27.5 hours</b> of services in one day across 31 patients, which is beyond what one clinician can physically deliver.</p>
+      <h4>Evidence</h4>
+      <ul><li>14 × CPT 99215 (40 min each) plus 9 × 97110</li><li>The provider exceeded 16 billed hours on 6 other days this quarter</li><li>Specialty peer median is 7.8 hours a day</li></ul>
+      <h4>Recommended action</h4>
+      <p>Refer to SIU. Request appointment logs and clinical notes for 12 Aug.</p>
+      <div class="acts"><div class="a1">Refer to SIU</div><div class="a2">Mark reviewed</div><div class="a3">Dismiss</div></div>
+    </div>
+  </div>
+  <div class="note">Mockup only. Providers and figures are illustrative synthetic data.</div>
+</main></div>
+</body></html>

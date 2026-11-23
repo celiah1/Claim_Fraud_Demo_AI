@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 960" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2251FF"/></marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#051C2C" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1560" height="960" fill="#ffffff"/>
+
+  <!-- Header -->
+  <text x="40" y="44" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">TECHNICAL DATA ELEMENTS</text>
+  <text x="40" y="84" font-family="Georgia, serif" font-size="30" fill="#051C2C">10 raw fields become 10 features, which feed one structured Claude request and response</text>
+  <line x1="40" y1="106" x2="1520" y2="106" stroke="#051C2C" stroke-width="2"/>
+
+  <!-- Column cards -->
+  <g filter="url(#sh)">
+    <rect x="40"   y="130" width="460" height="600" rx="12" fill="#ffffff"/>
+    <rect x="550"  y="130" width="460" height="600" rx="12" fill="#ffffff"/>
+    <rect x="1060" y="130" width="460" height="600" rx="12" fill="#ffffff"/>
+  </g>
+  <!-- headers (dark → white text) -->
+  <path d="M40,142 a12,12 0 0 1 12,-12 h436 a12,12 0 0 1 12,12 v44 h-460 z" fill="#0369A1"/>
+  <path d="M550,142 a12,12 0 0 1 12,-12 h436 a12,12 0 0 1 12,12 v44 h-460 z" fill="#B45309"/>
+  <path d="M1060,142 a12,12 0 0 1 12,-12 h436 a12,12 0 0 1 12,12 v44 h-460 z" fill="#2251FF"/>
+  <g font-size="16" font-weight="700" fill="#ffffff">
+    <text x="62" y="164">① Raw claim fields</text>
+    <text x="572" y="164">② Engineered features</text>
+    <text x="1082" y="164">③ Claude input / output</text>
+  </g>
+  <g font-size="12" fill="#ffffff" text-anchor="end">
+    <text x="482" y="164">source: claims file</text>
+    <text x="992" y="164">built in Python</text>
+    <text x="1502" y="164">JSON schema</text>
+  </g>
+
+  <!-- flow arrows between columns -->
+  <g stroke="#2251FF" stroke-width="3" fill="none" marker-end="url(#ar)">
+    <path d="M504,430 L546,430"/><path d="M1014,430 L1056,430"/>
+  </g>
+
+  <!-- sub-header row labels -->
+  <g font-size="11" font-weight="700" fill="#5A6872" letter-spacing="1">
+    <text x="62" y="212">FIELD</text><text x="250" y="212">TYPE</text><text x="340" y="212">EXAMPLE</text>
+    <text x="572" y="212">FEATURE</text><text x="772" y="212">LOGIC</text><text x="930" y="212">VALUE</text>
+  </g>
+
+  <!-- ===== Column 1 rows ===== -->
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13">
+    <!-- y from 240 step 46 -->
+    <g fill="#051C2C" font-weight="700">
+      <text x="62" y="242">claim_id</text><text x="62" y="288">member_id</text><text x="62" y="334">provider_id</text><text x="62" y="380">specialty</text><text x="62" y="426">service_date</text>
+      <text x="62" y="472">cpt_code</text><text x="62" y="518">icd10_code</text><text x="62" y="564">units</text><text x="62" y="610">billed_amt</text><text x="62" y="656">place_of_svc</text>
+    </g>
+    <g fill="#333F48">
+      <text x="340" y="242">CLM-2207</text><text x="340" y="288">MBR-7720</text><text x="340" y="334">PRV-1042</text><text x="340" y="380">Family Med</text><text x="340" y="426">2026-03-04</text>
+      <text x="340" y="472">99215</text><text x="340" y="518">E11.9</text><text x="340" y="564">1</text><text x="340" y="610">210.00</text><text x="340" y="656">11 (office)</text>
+    </g>
+  </g>
+  <!-- type badges -->
+  <g font-size="11" font-weight="700" text-anchor="middle">
+    <rect x="246" y="228" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="242" fill="#0369A1">string</text>
+    <rect x="246" y="274" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="288" fill="#0369A1">token</text>
+    <rect x="246" y="320" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="334" fill="#0369A1">string</text>
+    <rect x="246" y="366" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="380" fill="#0369A1">string</text>
+    <rect x="246" y="412" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="426" fill="#0369A1">date</text>
+    <rect x="246" y="458" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="472" fill="#0369A1">string</text>
+    <rect x="246" y="504" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="518" fill="#0369A1">string</text>
+    <rect x="246" y="550" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="564" fill="#0369A1">int</text>
+    <rect x="246" y="596" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="610" fill="#0369A1">decimal</text>
+    <rect x="246" y="642" width="64" height="20" rx="10" fill="#E0F2FE"/><text x="278" y="656" fill="#0369A1">string</text>
+  </g>
+  <g stroke="#EEF1F4"><line x1="56" y1="257" x2="484" y2="257"/><line x1="56" y1="303" x2="484" y2="303"/><line x1="56" y1="349" x2="484" y2="349"/><line x1="56" y1="395" x2="484" y2="395"/><line x1="56" y1="441" x2="484" y2="441"/><line x1="56" y1="487" x2="484" y2="487"/><line x1="56" y1="533" x2="484" y2="533"/><line x1="56" y1="579" x2="484" y2="579"/><line x1="56" y1="625" x2="484" y2="625"/></g>
+  <text x="62" y="704" font-size="12" fill="#5A6872">member_id is tokenized: real member identity never leaves your environment</text>
+
+  <!-- ===== Column 2 rows ===== -->
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13">
+    <g fill="#051C2C" font-weight="700">
+      <text x="572" y="242">dup_key</text><text x="572" y="288">dup_gap_days</text><text x="572" y="334">amt_diff_pct</text><text x="572" y="380">std_minutes</text><text x="572" y="426">prov_day_min</text>
+      <text x="572" y="472">peer_median_min</text><text x="572" y="518">peer_ratio</text><text x="572" y="564">days_flagged_90d</text><text x="572" y="610">reason_codes</text><text x="572" y="656">risk_score</text>
+    </g>
+  </g>
+  <g font-size="12.5" fill="#5A6872">
+    <text x="772" y="242">mbr+prov+cpt hash</text><text x="772" y="288">Δ vs. match</text><text x="772" y="334">|Δ amt| / amt</text><text x="772" y="380">CPT lookup</text><text x="772" y="426">Σ min/prov/day</text>
+    <text x="772" y="472">same specialty</text><text x="772" y="518">prov ÷ peer</text><text x="772" y="564">repeat pattern</text><text x="772" y="610">rule hits</text><text x="772" y="656">base + magnitude</text>
+  </g>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#051C2C" text-anchor="end">
+    <text x="990" y="242">a91f…</text><text x="990" y="288">1</text><text x="990" y="334">0.00</text><text x="990" y="380">40</text><text x="990" y="426" fill="#B45309" font-weight="700">1,360</text>
+    <text x="990" y="472">480</text><text x="990" y="518" fill="#B45309" font-weight="700">2.8×</text><text x="990" y="564">6</text><text x="990" y="610">[IMPOSSIBLE]</text><text x="990" y="656" fill="#E5484D" font-weight="700">92</text>
+  </g>
+  <g stroke="#EEF1F4"><line x1="566" y1="257" x2="994" y2="257"/><line x1="566" y1="303" x2="994" y2="303"/><line x1="566" y1="349" x2="994" y2="349"/><line x1="566" y1="395" x2="994" y2="395"/><line x1="566" y1="441" x2="994" y2="441"/><line x1="566" y1="487" x2="994" y2="487"/><line x1="566" y1="533" x2="994" y2="533"/><line x1="566" y1="579" x2="994" y2="579"/><line x1="566" y1="625" x2="994" y2="625"/></g>
+  <g font-size="11" font-weight="700">
+    <rect x="572" y="684" width="120" height="22" rx="11" fill="#FDECEC"/><text x="632" y="699" text-anchor="middle" fill="#B42318">Rule 1 inputs</text>
+    <rect x="702" y="684" width="120" height="22" rx="11" fill="#FFF4DB"/><text x="762" y="699" text-anchor="middle" fill="#8A5A00">Rule 2 inputs</text>
+    <text x="834" y="699" fill="#5A6872" font-weight="400" font-size="12">first 3 = Rule 1 · next 5 = Rule 2</text>
+  </g>
+
+  <!-- ===== Column 3: Claude I/O ===== -->
+  <text x="1082" y="214" font-size="11" font-weight="700" fill="#5A6872" letter-spacing="1">REQUEST · EVIDENCE PACK</text>
+  <rect x="1082" y="224" width="416" height="196" rx="8" fill="#0B2A40"/>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="12.5" fill="#E6ECF2">
+    <text x="1096" y="246">{ "provider_id": "PRV-1042",</text>
+    <text x="1096" y="266">  "specialty": "Family Med",</text>
+    <text x="1096" y="286">  "date": "2026-03-04",</text>
+    <text x="1096" y="306">  "reason_codes": ["IMPOSSIBLE_DAY"],</text>
+    <text x="1096" y="326">  "prov_day_min": 1360,</text>
+    <text x="1096" y="346">  "peer_median_min": 480,</text>
+    <text x="1096" y="366">  "days_flagged_90d": 6,</text>
+    <text x="1096" y="386">  "claims": [ <tspan fill="#9FB3C8">…38 lines…</tspan> ],</text>
+    <text x="1096" y="406">  "risk_score": 92 }</text>
+  </g>
+
+  <text x="1082" y="450" font-size="11" font-weight="700" fill="#5A6872" letter-spacing="1">RESPONSE · ENFORCED SCHEMA</text>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="13">
+    <g fill="#051C2C" font-weight="700">
+      <text x="1082" y="480">scheme</text><text x="1082" y="512">severity</text><text x="1082" y="544">confidence</text><text x="1082" y="576">findings[]</text>
+      <text x="1082" y="608">innocent_reasons[]</text><text x="1082" y="640">exposure_usd</text><text x="1082" y="672">action</text>
+    </g>
+    <g fill="#333F48">
+      <text x="1330" y="480">impossible_day</text><text x="1330" y="512">high</text><text x="1330" y="544">0.85</text><text x="1330" y="576">5 steps + IDs</text>
+      <text x="1330" y="608">clinic ID?</text><text x="1330" y="640">14200</text><text x="1330" y="672">route_SIU</text>
+    </g>
+  </g>
+  <g font-size="11" font-weight="700" text-anchor="middle">
+    <rect x="1252" y="466" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="480" fill="#2251FF">enum</text>
+    <rect x="1252" y="498" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="512" fill="#2251FF">enum</text>
+    <rect x="1252" y="530" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="544" fill="#2251FF">0–1</text>
+    <rect x="1252" y="562" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="576" fill="#2251FF">list</text>
+    <rect x="1252" y="594" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="608" fill="#2251FF">list</text>
+    <rect x="1252" y="626" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="640" fill="#2251FF">decimal</text>
+    <rect x="1252" y="658" width="64" height="20" rx="10" fill="#E8EDFF"/><text x="1284" y="672" fill="#2251FF">enum</text>
+  </g>
+  <text x="1082" y="710" font-size="12" fill="#5A6872">Each finding must cite claim_ids; code verifies they exist</text>
+
+  <!-- ===== Tech stack strip ===== -->
+  <text x="40" y="776" font-size="13" font-weight="700" fill="#051C2C" letter-spacing="1.5">TECHNICAL STACK</text>
+  <rect x="40" y="792" width="1480" height="80" rx="40" fill="#EEF3FF"/>
+  <g font-size="14" font-weight="700" text-anchor="middle">
+    <rect x="70"   y="812" width="200" height="40" rx="20" fill="#0369A1"/><text x="170"  y="837" fill="#ffffff">CSV / Parquet</text>
+    <rect x="320"  y="812" width="200" height="40" rx="20" fill="#475569"/><text x="420"  y="837" fill="#ffffff">Python · pandas</text>
+    <rect x="570"  y="812" width="200" height="40" rx="20" fill="#B45309"/><text x="670"  y="837" fill="#ffffff">Rules + scoring</text>
+    <rect x="820"  y="812" width="200" height="40" rx="20" fill="#2251FF"/><text x="920"  y="837" fill="#ffffff">Claude Batch API</text>
+    <rect x="1070" y="812" width="200" height="40" rx="20" fill="#051C2C"/><text x="1170" y="837" fill="#ffffff">Pydantic validation</text>
+    <rect x="1320" y="812" width="180" height="40" rx="20" fill="#15803D"/><text x="1410" y="837" fill="#ffffff">Streamlit app</text>
+  </g>
+  <g stroke="#2251FF" stroke-width="2.5" fill="none" marker-end="url(#ar)">
+    <path d="M272,832 L316,832"/><path d="M522,832 L566,832"/><path d="M772,832 L816,832"/><path d="M1022,832 L1066,832"/><path d="M1272,832 L1316,832"/>
+  </g>
+
+  <!-- footer -->
+  <line x1="40" y1="900" x2="1520" y2="900" stroke="#C9D3DD"/>
+  <text x="40" y="922" font-size="11.5" fill="#5A6872">Illustrative synthetic values, consistent with the worked example (PRV-1042, 4 Mar 2026). Field names are proposed for the MVP and can be mapped to your claims system (e.g. 837 / UB-04 fields) in phase 2.</text>
+</svg>

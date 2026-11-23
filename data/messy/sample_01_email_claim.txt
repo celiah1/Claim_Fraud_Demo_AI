@@ -1,0 +1,24 @@
+From: billing@morenofamilyclinic.example
+To: claims-intake@insurer.example
+Sent: Mon 17 Nov 2026 4:52 PM
+Subject: FW: claim resubmit - pt Mbr 101082 (pls process asap)
+
+Hi team,
+
+resending this one, portal kept timing out on us. details below
+
+Patient: J. Alvarez   member # MBR101082
+seen by: Dr B. Moreno (fam med)   prov id PRV-1045
+DOS 11/3/26
+
+visit was an est. pt office visit, high complexity -- cpt 99215 x1
+dx: z00.00 (annual / general exam)
+also did 96127 (brief emotional/behav assessment) units: 3
+
+Total billed amt: $1,094.50
+  - 99215 ..... $225.67
+  - 96127 ..... $868.83 (3 @ 289.61)
+
+orig claim ref was CLM-10O417 i think?? (typo maybe, check)
+thx,
+Rosa  | Moreno Family Clinic billing

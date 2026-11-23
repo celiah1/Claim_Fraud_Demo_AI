@@ -1,0 +1,6 @@
+check,planted,flagged,true_pos,false_pos,missed,precision,recall
+Duplicate (exact),110,110,110,0,0,1.0,1.0
+Near-duplicate,70,74,70,4,0,0.9459459459459459,1.0
+Impossible day,368,368,368,0,0,1.0,1.0
+Upcoding,140,262,140,122,0,0.5343511450381679,1.0
+Overall,688,811,688,123,0,0.8483353884093712,1.0

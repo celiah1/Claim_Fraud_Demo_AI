@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Environment / secrets
+.env
+*.env
+secrets.toml
+
+# Streamlit secrets (keep template, not values)
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+
+# Claude Code internal
+.claude/
+
+# Zip packages (too large for git)
+*.zip
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temp
+*.tmp
+*.log

@@ -1,0 +1,86 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claim Intake Mockup</title>
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--red:#c0392b;--amber:#d68910;--green:#1e8449;--bg:#f4f6f9;--line:#d8dee8;--txt:#1b2433;--mut:#5b6678}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--txt)}
+.wrap{display:flex;min-height:100vh}
+aside{width:250px;background:var(--navy);color:#fff;padding:20px 14px;flex-shrink:0}
+.logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:700;margin-bottom:22px}
+.panel{border:1px solid #2c4a73;border-radius:10px;padding:12px;margin-bottom:14px}
+.panel h4{margin:0 0 8px;font-size:12px;letter-spacing:.08em;color:#a9bfdc;text-transform:uppercase}
+.nav{display:block;padding:9px 10px;border-radius:7px;font-size:14px;color:#dbe6f4;margin-bottom:4px}
+.nav.on{background:var(--blue2);color:#fff;font-weight:600}
+.new{font-size:10px;background:var(--teal);padding:2px 6px;border-radius:8px;margin-left:6px}
+.small{font-size:12px;color:#c6d4e8}
+main{flex:1;padding:28px 34px;min-width:0}
+h1{margin:0;font-size:34px;color:var(--navy)}.purpose{color:var(--mut);font-size:16px;margin:6px 0 20px}
+.steps{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.step{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px}
+.step b{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;text-align:center;line-height:22px;margin-right:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:18px}
+.card h3{margin:0 0 4px;color:var(--navy);font-size:19px}.card p.sub{margin:0 0 14px;color:var(--mut);font-size:14px}
+.drop{border:2px dashed #9fb6d3;border-radius:10px;padding:26px;text-align:center;color:var(--mut);background:#f8fafd}
+.btn{display:inline-block;padding:8px 14px;border-radius:7px;font-size:14px;border:1px solid var(--blue);color:var(--blue);background:#fff;margin:4px}
+.btn.pri{background:var(--blue);color:#fff}
+.files{margin-top:12px;font-size:13px}.files span{display:inline-block;background:#eef3fa;border:1px solid var(--line);border-radius:14px;padding:4px 10px;margin:3px}
+.kpis{display:flex;gap:12px;flex-wrap:wrap}.kpi{flex:1;min-width:130px;border:1px solid var(--line);border-radius:10px;padding:12px}
+.kpi .v{font-size:28px;font-weight:700;color:var(--navy)}.kpi .l{font-size:14px;color:var(--mut)}
+.engine{font-size:13px;color:var(--mut);margin-top:10px}
+.two{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+@media(max-width:900px){.two{grid-template-columns:1fr}aside{display:none}main{padding:16px}}
+.tblw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}th{background:#eef3fa;color:var(--navy);text-align:left;padding:7px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px;border-bottom:1px solid #edf0f5;white-space:nowrap}tr.sel td{background:#eaf2fc}
+.miss{background:#fdecea;color:var(--red);font-weight:600}.inf{background:#fef5e7;color:#9a6408}
+.pill{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600}.ok{background:#e8f6ee;color:var(--green)}.fix{background:#fdecea;color:var(--red)}
+pre{background:#f8fafd;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:12px;white-space:pre-wrap;margin:0}
+mark{background:#d6e6f7;padding:0 2px;border-radius:3px}mark.r{background:#f9d5d1}
+.legend{font-size:12px;color:var(--mut);margin-top:8px}
+.note{font-size:12px;color:var(--mut);margin-top:6px}
+</style></head><body><div class="wrap">
+<aside>
+ <div class="logo"><svg width="40" height="44" viewBox="0 0 40 44"><path d="M20 2 L37 8 V21 C37 32 29 39 20 42 C11 39 3 32 3 21 V8 Z" fill="#3b7cc4" stroke="#fff" stroke-width="2"/><path d="M12 22 l6 6 l10 -12" fill="none" stroke="#fff" stroke-width="3.5"/></svg>ClaimGuard</div>
+ <div class="panel"><h4>Pages</h4>
+  <span class="nav on">Claim Intake <span class="new">NEW</span></span><span class="nav">Data Upload</span><span class="nav">Fraud Overview</span><span class="nav">Provider Risk</span><span class="nav">Investigator Queue</span><span class="nav">Feedback Loop</span><span class="nav">Model Evaluation</span></div>
+ <div class="panel"><h4>Extraction Engine</h4><div class="small">● Rules (active, $0)<br>○ Claude (off: no API credit)</div></div>
+</aside>
+<main>
+ <h1>Claim Intake</h1>
+ <div class="purpose">Turn messy, unstructured claim documents into a clean, analysis-ready CSV.</div>
+ <div class="steps"><div class="step"><b>1</b>Upload messy claims</div><div class="step"><b>2</b>Extract fields</div><div class="step"><b>3</b>Review &amp; fix</div><div class="step"><b>4</b>Export / run detection</div></div>
+
+ <div class="card"><h3>1 · Upload Messy Claims</h3><p class="sub">Emails, faxed superbills, free-text notes, text PDFs or spreadsheets with odd column names.</p>
+  <div class="drop">⬆ Drag &amp; drop files here &nbsp;·&nbsp; .txt .eml .pdf .csv .xlsx<br><br><span class="btn">Browse files</span><span class="btn">Load messy sample</span></div>
+  <div class="files">📄 <span>sample_01_email_claim.txt</span><span>sample_02_provider_note.txt</span></div></div>
+
+ <div class="card"><h3>2 · Extract Fields</h3><p class="sub">Each document is split into claim lines, and the 12 required fields are pulled out by rules.</p>
+  <div class="kpis"><div class="kpi"><div class="v">2</div><div class="l">Documents</div></div><div class="kpi"><div class="v">6</div><div class="l">Claim lines found</div></div><div class="kpi"><div class="v" style="color:var(--green)">4</div><div class="l">Ready</div></div><div class="kpi"><div class="v" style="color:var(--red)">2</div><div class="l">Need fixing</div></div></div>
+  <div class="engine">Engine: <b>Rules</b>. Claude extraction will plug in here when API credit is added.</div></div>
+
+ <div class="card"><h3>3 · Review &amp; Fix</h3><p class="sub">Click a row to see its source text. Red = missing or invalid, amber = inferred (hover shows the reason).</p>
+  <div class="two"><div class="tblw"><table>
+   <tr><th>Status</th><th>claim_id</th><th>member_id</th><th>provider_id</th><th>service_date</th><th>cpt_code</th><th>units</th><th>billed_amount</th><th>icd10</th></tr>
+   <tr><td><span class="pill ok">Ready</span></td><td class="inf">INT-0001</td><td>MBR-101082</td><td>PRV-1045</td><td>2026-11-03</td><td>99215</td><td>1</td><td>225.67</td><td>Z00.00</td></tr>
+   <tr><td><span class="pill ok">Ready</span></td><td class="inf">INT-0002</td><td>MBR-101082</td><td>PRV-1045</td><td>2026-11-03</td><td>96127</td><td>3</td><td>868.83</td><td>Z00.00</td></tr>
+   <tr class="sel"><td><span class="pill ok">Ready</span></td><td class="inf">INT-0003</td><td>MBR-101794</td><td>PRV-1011</td><td>2026-10-14</td><td>97110</td><td>4</td><td>380.00</td><td>M25.561</td></tr>
+   <tr><td><span class="pill ok">Ready</span></td><td class="inf">INT-0004</td><td>MBR-101794</td><td>PRV-1011</td><td>2026-10-14</td><td>97140</td><td>4</td><td>352.00</td><td>M25.561</td></tr>
+   <tr><td><span class="pill fix">Fix</span></td><td class="inf">INT-0005</td><td>MBR-101794</td><td>PRV-1011</td><td>2026-10-14</td><td class="miss">97530?</td><td>4</td><td>370.00</td><td>M25.561</td></tr>
+   <tr><td><span class="pill fix">Fix</span></td><td class="inf">INT-0006</td><td>MBR-101794</td><td>PRV-1011</td><td>2026-10-14</td><td>97112</td><td>3</td><td class="miss">missing</td><td>M25.561</td></tr>
+  </table>
+  <div class="legend">⚠ Doc 2: line totals ($1,102) don't match the stated total ($1,382) · 97530 is not in the CPT reference · 15 units of 15-min codes (3.75 h) logged on one day</div></div>
+  <div><b style="font-size:13px;color:var(--navy)">Source: sample_02_provider_note.txt</b>
+<pre>Pt name: WEBB, T.   ID: <mark>mbr-101794</mark>   Date: <mark>2026-10-14</mark>
+Provider: <mark>PRV 1011</mark>
+Dx <mark>M25.561</mark>
+   <mark>97110</mark>  ther exercise .. <mark>4 units</mark>  <mark>$ 95.00</mark> ea
+   97140  manual therapy . 4 units  $ 88.00 ea
+   <mark class="r">97530</mark>  therapeutic ... 4 units  $ 92.50 ea
+   97112  neuromusc ..... 3 units  <mark class="r">(no $)</mark>
+Charges total: $1,382.00</pre>
+  <div class="note">Inferred: provider_name and specialty from PRV-1011 history · claim_id generated · amount = units × unit price</div></div></div></div>
+
+ <div class="card"><h3>4 · Export</h3><p class="sub">Once every row is Ready, save the clean CSV or send it straight to detection.</p>
+  <span class="btn pri">⬇ Download clean CSV</span><span class="btn pri">Send to Data Upload →</span><span class="btn">Append to demo dataset</span>
+  <div class="note">Output columns: claim_id, member_id, provider_id, provider_name, specialty, service_date, submitted_date, cpt_code, cpt_description, icd10_code, units, billed_amount</div></div>
+</main></div></body></html>

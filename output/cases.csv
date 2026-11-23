@@ -1,0 +1,196 @@
+case_id,provider_id,provider_name,specialty,service_date,claims,billed_amount,risk_score,reasons,case_type,risk_level,route
+DAY-PRV-1056-20260803,PRV-1056,Dr. M. Garcia,Orthopedics,2026-08-03,36,13600.81,97.0,Provider billed 25.5 hrs on 03 Aug 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1056-20260924,PRV-1056,Dr. M. Garcia,Orthopedics,2026-09-24,38,12954.4,97.0,Provider billed 25.5 hrs on 24 Sep 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1035-20260819,PRV-1035,Dr. K. Haddad,Psychiatry,2026-08-19,46,8075.37,97.0,Provider billed 34.2 hrs on 19 Aug 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1033-20260825,PRV-1033,Dr. L. Rossi,Psychiatry,2026-08-25,45,8014.58,97.0,Provider billed 34.8 hrs on 25 Aug 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1035-20260904,PRV-1035,Dr. K. Haddad,Psychiatry,2026-09-04,38,6525.85,97.0,Provider billed 29.8 hrs on 04 Sep 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1036-20260928,PRV-1036,Dr. N. Smith,Physical Therapy,2026-09-28,39,4951.55,97.0,Provider billed 25.2 hrs on 28 Sep 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1033-20260826,PRV-1033,Dr. L. Rossi,Psychiatry,2026-08-26,33,5514.73,95.0,Provider billed 23.8 hrs on 26 Aug 2026,impossible_day,High,Refer to SIU
+DAY-PRV-1036-20260806,PRV-1036,Dr. N. Smith,Physical Therapy,2026-08-06,30,4715.71,94.0,Provider billed 23.5 hrs on 06 Aug 2026,impossible_day,High,Refer to SIU
+UPC-PRV-1052,PRV-1052,Dr. F. Lopez,Family Medicine,2026-07-03,75,17870.67,92.0,Provider bills 99215 on 88% of office visits vs peer median 34%,upcoding,High,Refer to SIU
+UPC-PRV-1032,PRV-1032,Dr. D. Osei,Family Medicine,2026-09-18,66,15455.81,92.0,Provider bills 99215 on 86% of office visits vs peer median 34%,upcoding,High,Refer to SIU
+DAY-PRV-1050-20260929,PRV-1050,Dr. L. Novak,Orthopedics,2026-09-29,33,10476.56,92.0,Provider billed 22.5 hrs on 29 Sep 2026,impossible_day,High,Refer to SIU
+DUP-CLM-100029,PRV-1005,Prime Lab Services,Radiology,2026-08-17,1,742.59,92.0,"Exact duplicate of CLM-105495 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101890,PRV-1000,Westside Imaging,Radiology,2026-08-07,1,674.24,92.0,"Exact duplicate of CLM-101323 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105457,PRV-1001,Dr. G. Brooks,Orthopedics,2026-09-09,1,671.05,92.0,"Exact duplicate of CLM-103324 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101465,PRV-1015,Dr. N. Nguyen,Radiology,2026-07-23,1,654.81,92.0,"Exact duplicate of CLM-108294 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102157,PRV-1011,Harbor Imaging,Radiology,2026-08-18,1,643.11,92.0,"Exact duplicate of CLM-105077 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107007,PRV-1011,Harbor Imaging,Radiology,2026-08-05,1,629.08,92.0,"Exact duplicate of CLM-105955 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106840,PRV-1013,Dr. B. Lopez,Orthopedics,2026-07-23,1,600.7,92.0,"Exact duplicate of CLM-101756 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101011,PRV-1059,Dr. N. Haddad,Orthopedics,2026-07-21,1,591.38,92.0,"Exact duplicate of CLM-103932 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105159,PRV-1026,Dr. R. Garcia,Orthopedics,2026-09-08,1,590.84,92.0,"Exact duplicate of CLM-102368 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100829,PRV-1038,Dr. E. Okafor,Family Medicine,2026-08-26,1,286.12,92.0,"Exact duplicate of CLM-106733 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108238,PRV-1045,Dr. B. Moreno,Family Medicine,2026-07-30,1,283.71,92.0,"Exact duplicate of CLM-105163 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100678,PRV-1056,Dr. M. Garcia,Orthopedics,2026-09-17,1,279.54,92.0,"Exact duplicate of CLM-105810 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108410,PRV-1022,Dr. K. Larsen,Family Medicine,2026-08-03,1,274.12,92.0,"Exact duplicate of CLM-102430 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105003,PRV-1021,Dr. L. Rossi,Family Medicine,2026-08-28,1,268.01,92.0,"Exact duplicate of CLM-104298 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104924,PRV-1049,Dr. C. Chen,Orthopedics,2026-07-28,1,267.57,92.0,"Exact duplicate of CLM-100825 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105665,PRV-1022,Dr. K. Larsen,Family Medicine,2026-09-09,1,256.79,92.0,"Exact duplicate of CLM-102332 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102673,PRV-1023,Dr. C. Walsh,Orthopedics,2026-08-31,1,252.93,92.0,"Exact duplicate of CLM-106878 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106879,PRV-1054,Dr. N. Lopez,Family Medicine,2026-07-24,1,252.23,92.0,"Exact duplicate of CLM-107694 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100893,PRV-1021,Dr. L. Rossi,Family Medicine,2026-07-23,1,248.58,92.0,"Exact duplicate of CLM-106057 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100511,PRV-1045,Dr. B. Moreno,Family Medicine,2026-07-02,1,248.41,92.0,"Exact duplicate of CLM-107461 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103971,PRV-1013,Dr. B. Lopez,Orthopedics,2026-09-21,1,246.97,92.0,"Exact duplicate of CLM-101007 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103326,PRV-1009,Dr. H. Kim,Orthopedics,2026-08-18,1,246.81,92.0,"Exact duplicate of CLM-107646 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102900,PRV-1051,Dr. S. Moreno,Orthopedics,2026-09-28,1,243.53,92.0,"Exact duplicate of CLM-100085 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105139,PRV-1059,Dr. N. Haddad,Orthopedics,2026-09-07,1,243.29,92.0,"Exact duplicate of CLM-103408 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100110,PRV-1022,Dr. K. Larsen,Family Medicine,2026-07-14,1,240.3,92.0,"Exact duplicate of CLM-100732 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103090,PRV-1040,Dr. P. Garcia,Family Medicine,2026-09-17,1,237.98,92.0,"Exact duplicate of CLM-102755 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102843,PRV-1017,Dr. M. Larsen,Family Medicine,2026-09-22,1,237.3,92.0,"Exact duplicate of CLM-106335 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108278,PRV-1054,Dr. N. Lopez,Family Medicine,2026-07-07,1,236.13,92.0,"Exact duplicate of CLM-104810 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104569,PRV-1006,Dr. P. Rossi,Family Medicine,2026-09-14,1,229.3,92.0,"Exact duplicate of CLM-106725 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101105,PRV-1056,Dr. M. Garcia,Orthopedics,2026-07-17,1,225.52,92.0,"Exact duplicate of CLM-102672 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100909,PRV-1037,Dr. F. Okafor,Family Medicine,2026-08-14,1,209.17,92.0,"Exact duplicate of CLM-100084 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100763,PRV-1006,Dr. P. Rossi,Family Medicine,2026-08-03,1,208.44,92.0,"Exact duplicate of CLM-107220 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101451,PRV-1037,Dr. F. Okafor,Family Medicine,2026-08-14,1,189.12,92.0,"Exact duplicate of CLM-107719 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108057,PRV-1018,Dr. F. Lopez,Psychiatry,2026-08-13,1,188.8,92.0,"Exact duplicate of CLM-105705 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102883,PRV-1009,Dr. H. Kim,Orthopedics,2026-07-07,1,187.85,92.0,"Exact duplicate of CLM-100894 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101365,PRV-1046,Dr. M. Rossi,Psychiatry,2026-09-24,1,185.03,92.0,"Exact duplicate of CLM-105491 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103015,PRV-1046,Dr. M. Rossi,Psychiatry,2026-08-26,1,184.1,92.0,"Exact duplicate of CLM-100041 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106099,PRV-1018,Dr. F. Lopez,Psychiatry,2026-08-24,1,183.8,92.0,"Exact duplicate of CLM-103844 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104306,PRV-1030,Dr. E. Mensah,Psychiatry,2026-07-29,1,182.76,92.0,"Exact duplicate of CLM-103615 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108063,PRV-1046,Dr. M. Rossi,Psychiatry,2026-08-11,1,182.49,92.0,"Exact duplicate of CLM-106080 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103442,PRV-1008,Dr. G. Walsh,Psychiatry,2026-08-27,1,181.67,92.0,"Exact duplicate of CLM-100643 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106269,PRV-1028,Dr. N. Patel,Family Medicine,2026-09-07,1,179.32,92.0,"Exact duplicate of CLM-102552 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103594,PRV-1012,Dr. C. Mensah,Psychiatry,2026-07-24,1,179.25,92.0,"Exact duplicate of CLM-105747 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102642,PRV-1041,Dr. G. Larsen,Family Medicine,2026-09-23,1,179.14,92.0,"Exact duplicate of CLM-102869 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102115,PRV-1013,Dr. B. Lopez,Orthopedics,2026-09-18,1,178.59,92.0,"Exact duplicate of CLM-107857 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108055,PRV-1033,Dr. L. Rossi,Psychiatry,2026-08-24,1,178.5,92.0,"Exact duplicate of CLM-102890 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101104,PRV-1033,Dr. L. Rossi,Psychiatry,2026-07-17,1,177.98,92.0,"Exact duplicate of CLM-103784 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105019,PRV-1030,Dr. E. Mensah,Psychiatry,2026-07-10,1,168.49,92.0,"Exact duplicate of CLM-106351 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104800,PRV-1027,Dr. L. Osei,Psychiatry,2026-08-17,1,167.9,92.0,"Exact duplicate of CLM-105130 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107944,PRV-1030,Dr. E. Mensah,Psychiatry,2026-09-18,1,167.74,92.0,"Exact duplicate of CLM-105941 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106250,PRV-1030,Dr. E. Mensah,Psychiatry,2026-08-03,1,166.78,92.0,"Exact duplicate of CLM-106864 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100258,PRV-1009,Dr. H. Kim,Orthopedics,2026-09-03,1,166.06,92.0,"Exact duplicate of CLM-104013 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101367,PRV-1028,Dr. N. Patel,Family Medicine,2026-07-23,1,165.34,92.0,"Exact duplicate of CLM-104767 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102100,PRV-1018,Dr. F. Lopez,Psychiatry,2026-08-13,1,160.46,92.0,"Exact duplicate of CLM-107228 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102428,PRV-1002,Dr. D. Moreno,Psychiatry,2026-07-21,1,160.15,92.0,"Exact duplicate of CLM-105610 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107143,PRV-1054,Dr. N. Lopez,Family Medicine,2026-09-02,1,159.0,92.0,"Exact duplicate of CLM-104505 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102936,PRV-1024,Dr. B. Smith,Psychiatry,2026-09-14,1,155.43,92.0,"Exact duplicate of CLM-102004 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105411,PRV-1002,Dr. D. Moreno,Psychiatry,2026-09-16,1,153.93,92.0,"Exact duplicate of CLM-102480 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105856,PRV-1007,Dr. C. Ahmed,Orthopedics,2026-08-26,1,152.36,92.0,"Exact duplicate of CLM-106409 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103582,PRV-1007,Dr. C. Ahmed,Orthopedics,2026-09-03,1,151.08,92.0,"Exact duplicate of CLM-107912 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107095,PRV-1007,Dr. C. Ahmed,Orthopedics,2026-08-24,1,149.61,92.0,"Exact duplicate of CLM-100286 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107850,PRV-1035,Dr. K. Haddad,Psychiatry,2026-09-08,1,142.33,92.0,"Exact duplicate of CLM-104426 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101773,PRV-1012,Dr. C. Mensah,Psychiatry,2026-09-09,1,134.28,92.0,"Exact duplicate of CLM-105440 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101754,PRV-1024,Dr. B. Smith,Psychiatry,2026-07-31,1,133.05,92.0,"Exact duplicate of CLM-105240 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102155,PRV-1050,Dr. L. Novak,Orthopedics,2026-09-02,1,129.51,92.0,"Exact duplicate of CLM-104057 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106539,PRV-1008,Dr. G. Walsh,Psychiatry,2026-08-11,1,128.01,92.0,"Exact duplicate of CLM-103800 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101913,PRV-1019,Dr. R. Chen,Orthopedics,2026-08-18,1,119.32,92.0,"Exact duplicate of CLM-101347 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101270,PRV-1006,Dr. P. Rossi,Family Medicine,2026-08-13,1,107.12,92.0,"Exact duplicate of CLM-101731 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103221,PRV-1045,Dr. B. Moreno,Family Medicine,2026-07-02,1,105.3,92.0,"Exact duplicate of CLM-107590 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103682,PRV-1005,Prime Lab Services,Radiology,2026-08-28,1,65.55,92.0,"Exact duplicate of CLM-105583 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103428,PRV-1011,Harbor Imaging,Radiology,2026-07-15,1,64.56,92.0,"Exact duplicate of CLM-105314 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100554,PRV-1025,Dr. G. Walsh,Radiology,2026-07-03,1,63.83,92.0,"Exact duplicate of CLM-105939 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107816,PRV-1004,Northgate Radiology,Radiology,2026-07-07,1,60.18,92.0,"Exact duplicate of CLM-106602 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100940,PRV-1025,Dr. G. Walsh,Radiology,2026-07-27,1,59.95,92.0,"Exact duplicate of CLM-107191 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106416,PRV-1044,Dr. F. Nguyen,Radiology,2026-09-21,1,58.3,92.0,"Exact duplicate of CLM-105100 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100844,PRV-1011,Harbor Imaging,Radiology,2026-08-28,1,57.69,92.0,"Exact duplicate of CLM-106420 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101830,PRV-1011,Harbor Imaging,Radiology,2026-09-01,1,57.55,92.0,"Exact duplicate of CLM-106820 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102998,PRV-1005,Prime Lab Services,Radiology,2026-08-05,1,55.47,92.0,"Exact duplicate of CLM-107130 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105903,PRV-1004,Northgate Radiology,Radiology,2026-09-15,1,54.27,92.0,"Exact duplicate of CLM-103397 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101381,PRV-1058,Dr. M. Kim,Physical Therapy,2026-09-25,1,53.72,92.0,"Exact duplicate of CLM-106044 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106448,PRV-1042,Dr. J. Mensah,Physical Therapy,2026-07-29,1,51.57,92.0,"Exact duplicate of CLM-103964 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103274,PRV-1031,Dr. J. Haddad,Physical Therapy,2026-09-14,1,51.49,92.0,"Exact duplicate of CLM-102130 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100035,PRV-1036,Dr. N. Smith,Physical Therapy,2026-08-21,1,50.79,92.0,"Exact duplicate of CLM-102877 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101634,PRV-1042,Dr. J. Mensah,Physical Therapy,2026-08-28,1,50.64,92.0,"Exact duplicate of CLM-100804 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100848,PRV-1020,Dr. N. Nguyen,Physical Therapy,2026-07-09,1,50.48,92.0,"Exact duplicate of CLM-101088 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106819,PRV-1031,Dr. J. Haddad,Physical Therapy,2026-08-11,1,49.0,92.0,"Exact duplicate of CLM-107852 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101483,PRV-1020,Dr. N. Nguyen,Physical Therapy,2026-07-14,1,48.63,92.0,"Exact duplicate of CLM-103463 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108488,PRV-1031,Dr. J. Haddad,Physical Therapy,2026-07-13,1,47.96,92.0,"Exact duplicate of CLM-104877 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104137,PRV-1020,Dr. N. Nguyen,Physical Therapy,2026-07-27,1,46.96,92.0,"Exact duplicate of CLM-104395 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-103717,PRV-1016,Dr. H. Patel,Physical Therapy,2026-09-03,1,46.25,92.0,"Exact duplicate of CLM-101693 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101030,PRV-1042,Dr. J. Mensah,Physical Therapy,2026-08-21,1,45.69,92.0,"Exact duplicate of CLM-103479 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106521,PRV-1058,Dr. M. Kim,Physical Therapy,2026-09-09,1,44.87,92.0,"Exact duplicate of CLM-104071 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100600,PRV-1042,Dr. J. Mensah,Physical Therapy,2026-08-10,1,44.17,92.0,"Exact duplicate of CLM-107918 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105690,PRV-1034,Dr. B. Mensah,Physical Therapy,2026-08-04,1,43.93,92.0,"Exact duplicate of CLM-104972 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100482,PRV-1034,Dr. B. Mensah,Physical Therapy,2026-08-10,1,43.6,92.0,"Exact duplicate of CLM-102287 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108295,PRV-1058,Dr. M. Kim,Physical Therapy,2026-09-21,1,43.25,92.0,"Exact duplicate of CLM-102404 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102331,PRV-1010,Dr. R. Moreno,Physical Therapy,2026-08-10,1,43.23,92.0,"Exact duplicate of CLM-104866 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-100391,PRV-1003,CityLab Diagnostics,Laboratory,2026-07-09,1,39.7,92.0,"Exact duplicate of CLM-105547 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-102747,PRV-1053,Dr. H. Larsen,Laboratory,2026-08-17,1,33.52,92.0,"Exact duplicate of CLM-103753 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101315,PRV-1053,Dr. H. Larsen,Laboratory,2026-08-05,1,33.06,92.0,"Exact duplicate of CLM-106519 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-108338,PRV-1028,Dr. N. Patel,Family Medicine,2026-07-23,1,28.26,92.0,"Exact duplicate of CLM-107198 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106402,PRV-1006,Dr. P. Rossi,Family Medicine,2026-07-06,1,27.89,92.0,"Exact duplicate of CLM-103321 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104716,PRV-1021,Dr. L. Rossi,Family Medicine,2026-07-03,1,27.55,92.0,"Exact duplicate of CLM-102861 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-101690,PRV-1041,Dr. G. Larsen,Family Medicine,2026-08-27,1,27.25,92.0,"Exact duplicate of CLM-107418 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-105030,PRV-1045,Dr. B. Moreno,Family Medicine,2026-08-18,1,26.16,92.0,"Exact duplicate of CLM-102117 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-104421,PRV-1053,Dr. H. Larsen,Laboratory,2026-08-06,1,26.04,92.0,"Exact duplicate of CLM-103474 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-106776,PRV-1057,Dr. H. Ahmed,Family Medicine,2026-08-12,1,25.24,92.0,"Exact duplicate of CLM-103355 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DUP-CLM-107881,PRV-1053,Dr. H. Larsen,Laboratory,2026-07-24,1,23.1,92.0,"Exact duplicate of CLM-105789 (same member, provider, code, date, amount)",duplicate,High,Refer to SIU
+DAY-PRV-1050-20260824,PRV-1050,Dr. L. Novak,Orthopedics,2026-08-24,30,10819.67,85.0,Provider billed 19.7 hrs on 24 Aug 2026,impossible_day,High,Refer to SIU
+UPC-PRV-1023,PRV-1023,Dr. C. Walsh,Orthopedics,2026-09-11,42,9894.4,84.0,Provider bills 99215 on 82% of office visits vs peer median 52%,upcoding,High,Refer to SIU
+UPC-PRV-1048,PRV-1048,Dr. H. Larsen,Family Medicine,2026-07-10,79,18671.06,71.0,Provider bills 99215 on 93% of office visits vs peer median 34%,upcoding,Medium,Manual review
+DUP-CLM-100075,PRV-1044,Dr. F. Nguyen,Radiology,2026-07-10,1,781.66,68.0,"Near-duplicate of CLM-105498 (0d apart, 7% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103142,PRV-1023,Dr. C. Walsh,Orthopedics,2026-09-15,1,777.52,68.0,"Near-duplicate of CLM-107988 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107927,PRV-1049,Dr. C. Chen,Orthopedics,2026-07-07,1,753.52,68.0,"Near-duplicate of CLM-103579 (0d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105948,PRV-1051,Dr. S. Moreno,Orthopedics,2026-08-21,1,744.54,68.0,"Near-duplicate of CLM-105300 (1d apart, 3% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107296,PRV-1000,Westside Imaging,Radiology,2026-09-24,1,736.75,68.0,"Near-duplicate of CLM-105090 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105201,PRV-1011,Harbor Imaging,Radiology,2026-09-29,1,713.13,68.0,"Near-duplicate of CLM-100207 (1d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100280,PRV-1023,Dr. C. Walsh,Orthopedics,2026-08-21,1,708.15,68.0,"Near-duplicate of CLM-104940 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101714,PRV-1039,Dr. A. Kim,Radiology,2026-07-09,1,688.09,68.0,"Near-duplicate of CLM-107887 (0d apart, 2% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105465,PRV-1023,Dr. C. Walsh,Orthopedics,2026-07-15,1,646.4,68.0,"Near-duplicate of CLM-108374 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105722,PRV-1039,Dr. A. Kim,Radiology,2026-07-31,1,644.9,68.0,"Near-duplicate of CLM-105455 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105719,PRV-1026,Dr. R. Garcia,Orthopedics,2026-07-15,1,643.91,68.0,"Near-duplicate of CLM-105640 (0d apart, 9% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-104522,PRV-1023,Dr. C. Walsh,Orthopedics,2026-08-05,1,590.09,68.0,"Near-duplicate of CLM-102942 (1d apart, 2% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101490,PRV-1040,Dr. P. Garcia,Family Medicine,2026-07-16,1,286.15,68.0,"Near-duplicate of CLM-106584 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101574,PRV-1048,Dr. H. Larsen,Family Medicine,2026-08-20,1,279.93,68.0,"Near-duplicate of CLM-101819 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101701,PRV-1022,Dr. K. Larsen,Family Medicine,2026-09-09,1,273.07,68.0,"Near-duplicate of CLM-102562 (1d apart, 0% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101246,PRV-1050,Dr. L. Novak,Orthopedics,2026-09-03,1,263.19,68.0,"Near-duplicate of CLM-108365 (1d apart, 0% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100325,PRV-1037,Dr. F. Okafor,Family Medicine,2026-09-16,1,262.2,68.0,"Near-duplicate of CLM-102644 (1d apart, 2% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-108002,PRV-1013,Dr. B. Lopez,Orthopedics,2026-07-02,1,259.03,68.0,"Near-duplicate of CLM-105999 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100091,PRV-1013,Dr. B. Lopez,Orthopedics,2026-09-22,1,253.61,68.0,"Near-duplicate of CLM-104958 (1d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107692,PRV-1017,Dr. M. Larsen,Family Medicine,2026-09-14,1,247.36,68.0,"Near-duplicate of CLM-105721 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100890,PRV-1001,Dr. G. Brooks,Orthopedics,2026-07-29,1,243.71,68.0,"Near-duplicate of CLM-100895 (0d apart, 8% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106212,PRV-1017,Dr. M. Larsen,Family Medicine,2026-09-16,1,237.83,68.0,"Near-duplicate of CLM-104754 (0d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105916,PRV-1040,Dr. P. Garcia,Family Medicine,2026-07-10,1,227.65,68.0,"Near-duplicate of CLM-100362 (0d apart, 7% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100925,PRV-1008,Dr. G. Walsh,Psychiatry,2026-07-10,1,216.76,68.0,"Near-duplicate of CLM-100120 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-104941,PRV-1024,Dr. B. Smith,Psychiatry,2026-08-03,1,207.97,68.0,"Near-duplicate of CLM-104510 (0d apart, 3% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106862,PRV-1035,Dr. K. Haddad,Psychiatry,2026-07-18,1,206.32,68.0,"Near-duplicate of CLM-103531 (1d apart, 2% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105778,PRV-1018,Dr. F. Lopez,Psychiatry,2026-07-15,1,204.55,68.0,"Near-duplicate of CLM-105882 (0d apart, 0% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101348,PRV-1008,Dr. G. Walsh,Psychiatry,2026-08-24,1,203.62,68.0,"Near-duplicate of CLM-101102 (0d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106358,PRV-1018,Dr. F. Lopez,Psychiatry,2026-09-21,1,193.67,68.0,"Near-duplicate of CLM-104947 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106813,PRV-1024,Dr. B. Smith,Psychiatry,2026-09-02,1,192.1,68.0,"Near-duplicate of CLM-107224 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107638,PRV-1043,Dr. G. Okafor,Psychiatry,2026-09-22,1,189.34,68.0,"Near-duplicate of CLM-103448 (1d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-102312,PRV-1022,Dr. K. Larsen,Family Medicine,2026-07-11,1,186.9,68.0,"Near-duplicate of CLM-106391 (1d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101889,PRV-1024,Dr. B. Smith,Psychiatry,2026-07-09,1,184.59,68.0,"Near-duplicate of CLM-101650 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103076,PRV-1035,Dr. K. Haddad,Psychiatry,2026-07-01,1,184.58,68.0,"Near-duplicate of CLM-107643 (0d apart, 8% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107378,PRV-1030,Dr. E. Mensah,Psychiatry,2026-08-08,1,181.86,68.0,"Near-duplicate of CLM-100020 (1d apart, 0% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105936,PRV-1013,Dr. B. Lopez,Orthopedics,2026-07-18,1,163.38,68.0,"Near-duplicate of CLM-106202 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105188,PRV-1051,Dr. S. Moreno,Orthopedics,2026-08-21,1,162.95,68.0,"Near-duplicate of CLM-102627 (1d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103653,PRV-1043,Dr. G. Okafor,Psychiatry,2026-07-22,1,159.36,68.0,"Near-duplicate of CLM-102844 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106785,PRV-1008,Dr. G. Walsh,Psychiatry,2026-07-04,1,138.06,68.0,"Near-duplicate of CLM-102473 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106486,PRV-1043,Dr. G. Okafor,Psychiatry,2026-09-18,1,128.56,68.0,"Near-duplicate of CLM-102254 (1d apart, 0% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103441,PRV-1050,Dr. L. Novak,Orthopedics,2026-09-15,1,121.34,68.0,"Near-duplicate of CLM-103302 (1d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-104806,PRV-1019,Dr. R. Chen,Orthopedics,2026-07-08,1,116.81,68.0,"Near-duplicate of CLM-101204 (1d apart, 3% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106258,PRV-1041,Dr. G. Larsen,Family Medicine,2026-09-24,1,111.13,68.0,"Near-duplicate of CLM-103927 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105035,PRV-1005,Prime Lab Services,Radiology,2026-08-05,1,72.96,68.0,"Near-duplicate of CLM-102601 (0d apart, 9% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-104092,PRV-1005,Prime Lab Services,Radiology,2026-08-18,1,69.27,68.0,"Near-duplicate of CLM-100871 (1d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-108261,PRV-1029,Dr. N. Larsen,Radiology,2026-09-23,1,67.59,68.0,"Near-duplicate of CLM-105212 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105336,PRV-1029,Dr. N. Larsen,Radiology,2026-09-30,1,67.48,68.0,"Near-duplicate of CLM-100063 (0d apart, 7% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105375,PRV-1029,Dr. N. Larsen,Radiology,2026-09-26,1,63.49,68.0,"Near-duplicate of CLM-103940 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103328,PRV-1044,Dr. F. Nguyen,Radiology,2026-09-02,1,62.54,68.0,"Near-duplicate of CLM-108058 (0d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-102630,PRV-1015,Dr. N. Nguyen,Radiology,2026-09-18,1,62.35,68.0,"Near-duplicate of CLM-101299 (1d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106452,PRV-1015,Dr. N. Nguyen,Radiology,2026-09-02,1,58.71,68.0,"Near-duplicate of CLM-103907 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106490,PRV-1044,Dr. F. Nguyen,Radiology,2026-09-18,1,57.34,68.0,"Near-duplicate of CLM-104463 (1d apart, 3% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103380,PRV-1034,Dr. B. Mensah,Physical Therapy,2026-09-18,1,57.19,68.0,"Near-duplicate of CLM-104082 (0d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101233,PRV-1020,Dr. N. Nguyen,Physical Therapy,2026-08-18,1,55.21,68.0,"Near-duplicate of CLM-100162 (0d apart, 8% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107225,PRV-1016,Dr. H. Patel,Physical Therapy,2026-07-03,1,54.47,68.0,"Near-duplicate of CLM-104713 (0d apart, 7% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-102506,PRV-1036,Dr. N. Smith,Physical Therapy,2026-08-19,1,52.32,68.0,"Near-duplicate of CLM-106134 (0d apart, 7% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-104757,PRV-1016,Dr. H. Patel,Physical Therapy,2026-08-19,1,51.09,68.0,"Near-duplicate of CLM-105669 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-104707,PRV-1034,Dr. B. Mensah,Physical Therapy,2026-08-04,1,51.03,68.0,"Near-duplicate of CLM-107500 (1d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-108461,PRV-1036,Dr. N. Smith,Physical Therapy,2026-08-19,1,50.94,68.0,"Near-duplicate of CLM-104739 (1d apart, 3% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-102835,PRV-1010,Dr. R. Moreno,Physical Therapy,2026-09-23,1,48.92,68.0,"Near-duplicate of CLM-108210 (0d apart, 9% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100030,PRV-1020,Dr. N. Nguyen,Physical Therapy,2026-10-01,1,47.33,68.0,"Near-duplicate of CLM-106093 (1d apart, 2% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105276,PRV-1042,Dr. J. Mensah,Physical Therapy,2026-07-09,1,46.97,68.0,"Near-duplicate of CLM-102346 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105344,PRV-1034,Dr. B. Mensah,Physical Therapy,2026-07-07,1,46.18,68.0,"Near-duplicate of CLM-102290 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105909,PRV-1031,Dr. J. Haddad,Physical Therapy,2026-09-23,1,46.04,68.0,"Near-duplicate of CLM-107429 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-105867,PRV-1042,Dr. J. Mensah,Physical Therapy,2026-07-14,1,45.68,68.0,"Near-duplicate of CLM-105746 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103414,PRV-1016,Dr. H. Patel,Physical Therapy,2026-07-23,1,44.03,68.0,"Near-duplicate of CLM-108276 (0d apart, 5% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-108227,PRV-1003,CityLab Diagnostics,Laboratory,2026-07-29,1,33.79,68.0,"Near-duplicate of CLM-105749 (0d apart, 7% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-100806,PRV-1014,Summit Diagnostics,Laboratory,2026-08-17,1,33.27,68.0,"Near-duplicate of CLM-105795 (0d apart, 3% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-106412,PRV-1054,Dr. N. Lopez,Family Medicine,2026-07-24,1,29.88,68.0,"Near-duplicate of CLM-103132 (0d apart, 4% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-101811,PRV-1037,Dr. F. Okafor,Family Medicine,2026-07-28,1,28.77,68.0,"Near-duplicate of CLM-106678 (1d apart, 2% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-103039,PRV-1040,Dr. P. Garcia,Family Medicine,2026-08-27,1,26.12,68.0,"Near-duplicate of CLM-106387 (1d apart, 1% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107636,PRV-1032,Dr. D. Osei,Family Medicine,2026-09-19,1,25.49,68.0,"Near-duplicate of CLM-100254 (1d apart, 6% amount diff)",near_duplicate,Medium,Manual review
+DUP-CLM-107502,PRV-1054,Dr. N. Lopez,Family Medicine,2026-09-03,1,23.72,68.0,"Near-duplicate of CLM-100341 (1d apart, 2% amount diff)",near_duplicate,Medium,Manual review

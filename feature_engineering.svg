@@ -1,0 +1,260 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 960" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#051C2C" flood-opacity="0.12"/></filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2251FF"/></marker>
+  </defs>
+  <rect width="1560" height="960" fill="#ffffff"/>
+
+  <!-- Header -->
+  <text x="40" y="44" font-size="12" font-weight="700" fill="#2251FF" letter-spacing="2">ENGINEERED FEATURES, STEP BY STEP</text>
+  <text x="40" y="84" font-family="Georgia, serif" font-size="30" fill="#051C2C">Each feature is one simple calculation that turns raw claims into a fraud signal</text>
+  <line x1="40" y1="106" x2="1520" y2="106" stroke="#051C2C" stroke-width="2"/>
+  <g font-size="12.5" font-weight="700">
+    <rect x="40" y="120" width="14" height="14" rx="3" fill="#C2410C"/><text x="62" y="132" fill="#051C2C">Duplicate signals (Rule 1)</text>
+    <rect x="260" y="120" width="14" height="14" rx="3" fill="#B45309"/><text x="282" y="132" fill="#051C2C">Volume signals (Rule 2)</text>
+    <rect x="470" y="120" width="14" height="14" rx="3" fill="#2251FF"/><text x="492" y="132" fill="#051C2C">Scoring</text>
+    <text x="600" y="132" font-weight="400" fill="#5A6872">Worked example: PRV-1042 on 4 Mar 2026, plus the CLM-10442 / CLM-10457 duplicate pair</text>
+  </g>
+
+  <!-- ================= ROW 1 ================= -->
+  <!-- 01 dup_key -->
+  <g transform="translate(40,150)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#C2410C"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFD9C2">01</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">dup_key</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"Is this the same service,</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">same patient, same doctor?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="138" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">hash(member + provider + cpt)</text>
+    <g font-family="Consolas, monospace" font-size="11" font-weight="700" text-anchor="middle">
+      <rect x="16" y="180" width="76" height="24" rx="12" fill="#FFE8DB"/><text x="54" y="196" fill="#7C2D12">MBR-5531</text>
+      <rect x="102" y="180" width="76" height="24" rx="12" fill="#FFE8DB"/><text x="140" y="196" fill="#7C2D12">PRV-2210</text>
+      <rect x="188" y="180" width="76" height="24" rx="12" fill="#FFE8DB"/><text x="226" y="196" fill="#7C2D12">72148</text>
+    </g>
+    <g font-size="12" fill="#333F48">
+      <text x="16" y="236">CLM-10442  →</text><text x="140" y="236" font-family="Consolas, monospace" font-weight="700" fill="#051C2C">a91f…</text>
+      <text x="16" y="262">CLM-10457  →</text><text x="140" y="262" font-family="Consolas, monospace" font-weight="700" fill="#051C2C">a91f…</text>
+    </g>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFE8DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#7C2D12">Keys match → candidate pair</text>
+  </g>
+
+  <!-- 02 dup_gap_days -->
+  <g transform="translate(340,150)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#C2410C"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFD9C2">02</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">dup_gap_days</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"How close together</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">were they billed?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="138" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">|date_2 − date_1| in days</text>
+    <!-- timeline -->
+    <line x1="30" y1="220" x2="250" y2="220" stroke="#CBD5E1" stroke-width="3"/>
+    <g font-size="11" fill="#5A6872" text-anchor="middle">
+      <line x1="50" y1="212" x2="50" y2="228" stroke="#CBD5E1" stroke-width="2"/><text x="50" y="248">1 Mar</text>
+      <line x1="110" y1="212" x2="110" y2="228" stroke="#CBD5E1" stroke-width="2"/><text x="110" y="248">2 Mar</text>
+      <line x1="170" y1="212" x2="170" y2="228" stroke="#CBD5E1" stroke-width="2"/><text x="170" y="248">3 Mar</text>
+      <line x1="230" y1="212" x2="230" y2="228" stroke="#CBD5E1" stroke-width="2"/><text x="230" y="248">4 Mar</text>
+    </g>
+    <circle cx="110" cy="220" r="9" fill="#C2410C"/><circle cx="170" cy="220" r="9" fill="#C2410C"/>
+    <path d="M114,196 Q140,180 166,196" fill="none" stroke="#051C2C" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="140" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#051C2C">1 day</text>
+    <text x="16" y="276" font-size="12" fill="#5A6872">Rule window: ≤ 1 day</text>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFE8DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#7C2D12">= 1 → inside window ✓</text>
+  </g>
+
+  <!-- 03 amt_diff_pct -->
+  <g transform="translate(640,150)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#C2410C"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFD9C2">03</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">amt_diff_pct</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"Is the amount the same</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">or nearly the same?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="138" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">|amt_2 − amt_1| ÷ amt_1</text>
+    <g font-size="12">
+      <text x="16" y="200" fill="#333F48">CLM-10442</text><rect x="96" y="188" width="150" height="16" rx="3" fill="#C2410C"/><text x="240" y="201" text-anchor="end" font-weight="700" fill="#ffffff">$920</text>
+      <text x="16" y="230" fill="#333F48">CLM-10457</text><rect x="96" y="218" width="150" height="16" rx="3" fill="#C2410C"/><text x="240" y="231" text-anchor="end" font-weight="700" fill="#ffffff">$920</text>
+    </g>
+    <text x="16" y="266" font-size="12" fill="#5A6872">Tolerance: ≤ 5% (catches small edits)</text>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFE8DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#7C2D12">= 0% → DUP_NEAR fires</text>
+  </g>
+
+  <!-- 04 std_minutes -->
+  <g transform="translate(940,150)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#B45309"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFE3B8">04</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">std_minutes</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"How long does this service</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">normally take?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="138" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">lookup(cpt_code) → minutes</text>
+    <rect x="16" y="174" width="248" height="26" fill="#FFF4DB"/>
+    <g font-size="12" font-weight="700" fill="#8A5A00"><text x="28" y="192">CPT</text><text x="100" y="192">Visit type</text><text x="250" y="192" text-anchor="end">Min</text></g>
+    <g font-size="12.5" fill="#333F48">
+      <text x="28" y="222" font-family="Consolas, monospace">99213</text><text x="100" y="222">Standard</text><text x="250" y="222" text-anchor="end">20</text>
+      <text x="28" y="248" font-family="Consolas, monospace">99214</text><text x="100" y="248">Moderate</text><text x="250" y="248" text-anchor="end">30</text>
+      <text x="28" y="274" font-family="Consolas, monospace" font-weight="700" fill="#051C2C">99215</text><text x="100" y="274" font-weight="700" fill="#051C2C">Complex</text><text x="250" y="274" text-anchor="end" font-weight="700" fill="#051C2C">40</text>
+    </g>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFF4DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8A5A00">CLM-2207 (99215) = 40 min</text>
+  </g>
+
+  <!-- 05 prov_day_min -->
+  <g transform="translate(1240,150)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#B45309"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFE3B8">05</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">prov_day_min</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"How much time did this</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">doctor bill in one day?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="130" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">SUM(std_minutes)</text>
+    <text x="28" y="148" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">GROUP BY provider, date</text>
+    <!-- stacked bar -->
+    <rect x="16" y="184" width="140" height="26" fill="#B45309"/><rect x="156" y="184" width="76" height="26" fill="#F0A64B"/>
+    <text x="86" y="202" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">22 × 40 = 880</text>
+    <text x="194" y="202" text-anchor="middle" font-size="11.5" font-weight="700" fill="#051C2C">480</text>
+    <text x="232" y="226" font-size="11" fill="#5A6872" text-anchor="end">16 × 30 = 480</text>
+    <line x1="130" y1="176" x2="130" y2="218" stroke="#E5484D" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="16" y="250" font-size="12" fill="#333F48">22 complex + 16 moderate visits</text>
+    <text x="16" y="270" font-size="12" fill="#E5484D" font-weight="700">Red line = 12 h limit (720 min)</text>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFF4DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8A5A00">= 1,360 min (22.7 h)</text>
+  </g>
+
+  <!-- ================= ROW 2 ================= -->
+  <!-- 06 peer_median_min -->
+  <g transform="translate(40,510)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#B45309"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFE3B8">06</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">peer_median_min</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"What does a typical doctor</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">in the same specialty bill?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="130" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">MEDIAN(prov_day_min)</text>
+    <text x="28" y="148" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">WHERE specialty = Family Med</text>
+    <!-- dot strip -->
+    <line x1="24" y1="220" x2="256" y2="220" stroke="#CBD5E1" stroke-width="2"/>
+    <g fill="#94A3B8">
+      <circle cx="40" cy="220" r="6"/><circle cx="62" cy="220" r="6"/><circle cx="80" cy="220" r="6"/><circle cx="96" cy="220" r="6"/>
+      <circle cx="108" cy="208" r="6"/><circle cx="116" cy="220" r="6"/><circle cx="124" cy="232" r="6"/><circle cx="138" cy="220" r="6"/>
+      <circle cx="156" cy="220" r="6"/><circle cx="174" cy="220" r="6"/><circle cx="194" cy="220" r="6"/>
+    </g>
+    <line x1="116" y1="190" x2="116" y2="250" stroke="#051C2C" stroke-width="2.5"/>
+    <text x="116" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#051C2C">median</text>
+    <g font-size="11" fill="#5A6872"><text x="24" y="270">0</text><text x="116" y="270" text-anchor="middle">480</text><text x="256" y="270" text-anchor="end">960 min</text></g>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFF4DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8A5A00">= 480 min (8 h) per day</text>
+  </g>
+
+  <!-- 07 peer_ratio -->
+  <g transform="translate(340,510)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#B45309"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFE3B8">07</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">peer_ratio</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"How many times more than</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">a normal doctor?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="138" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">prov_day_min ÷ peer_median_min</text>
+    <!-- division visual -->
+    <g text-anchor="middle">
+      <text x="70" y="214" font-family="Georgia, serif" font-size="28" fill="#B45309">1,360</text>
+      <text x="140" y="214" font-size="24" fill="#5A6872">÷</text>
+      <text x="208" y="214" font-family="Georgia, serif" font-size="28" fill="#5A6872">480</text>
+    </g>
+    <!-- gauge bar -->
+    <rect x="16" y="240" width="248" height="12" rx="6" fill="#E3E8EE"/>
+    <rect x="16" y="240" width="62" height="12" rx="6" fill="#4ADE80"/>
+    <rect x="16" y="240" width="175" height="12" rx="6" fill="#F0A64B" opacity=".85"/>
+    <circle cx="191" cy="246" r="8" fill="#B45309" stroke="#ffffff" stroke-width="2"/>
+    <g font-size="11" fill="#5A6872"><text x="16" y="272">1× normal</text><text x="264" y="272" text-anchor="end">4×</text></g>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFF4DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8A5A00">= 2.8× the peer median</text>
+  </g>
+
+  <!-- 08 days_flagged_90d -->
+  <g transform="translate(640,510)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#B45309"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#FFE3B8">08</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">days_flagged_90d</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"Is this a one-off,</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">or a pattern?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="130" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">COUNT(days with &gt;720 min)</text>
+    <text x="28" y="148" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">over last 90 days</text>
+    <!-- calendar grid 3 x 13 -->
+    <g fill="#E3E8EE">
+      <rect x="18" y="176" width="14" height="14" rx="2"/><rect x="36" y="176" width="14" height="14" rx="2"/><rect x="54" y="176" width="14" height="14" rx="2"/><rect x="72" y="176" width="14" height="14" rx="2"/><rect x="90" y="176" width="14" height="14" rx="2"/><rect x="108" y="176" width="14" height="14" rx="2"/><rect x="126" y="176" width="14" height="14" rx="2"/><rect x="144" y="176" width="14" height="14" rx="2"/><rect x="162" y="176" width="14" height="14" rx="2"/><rect x="180" y="176" width="14" height="14" rx="2"/><rect x="198" y="176" width="14" height="14" rx="2"/><rect x="216" y="176" width="14" height="14" rx="2"/><rect x="234" y="176" width="14" height="14" rx="2"/>
+      <rect x="18" y="194" width="14" height="14" rx="2"/><rect x="36" y="194" width="14" height="14" rx="2"/><rect x="54" y="194" width="14" height="14" rx="2"/><rect x="72" y="194" width="14" height="14" rx="2"/><rect x="90" y="194" width="14" height="14" rx="2"/><rect x="108" y="194" width="14" height="14" rx="2"/><rect x="126" y="194" width="14" height="14" rx="2"/><rect x="144" y="194" width="14" height="14" rx="2"/><rect x="162" y="194" width="14" height="14" rx="2"/><rect x="180" y="194" width="14" height="14" rx="2"/><rect x="198" y="194" width="14" height="14" rx="2"/><rect x="216" y="194" width="14" height="14" rx="2"/><rect x="234" y="194" width="14" height="14" rx="2"/>
+      <rect x="18" y="212" width="14" height="14" rx="2"/><rect x="36" y="212" width="14" height="14" rx="2"/><rect x="54" y="212" width="14" height="14" rx="2"/><rect x="72" y="212" width="14" height="14" rx="2"/><rect x="90" y="212" width="14" height="14" rx="2"/><rect x="108" y="212" width="14" height="14" rx="2"/><rect x="126" y="212" width="14" height="14" rx="2"/><rect x="144" y="212" width="14" height="14" rx="2"/><rect x="162" y="212" width="14" height="14" rx="2"/><rect x="180" y="212" width="14" height="14" rx="2"/><rect x="198" y="212" width="14" height="14" rx="2"/><rect x="216" y="212" width="14" height="14" rx="2"/><rect x="234" y="212" width="14" height="14" rx="2"/>
+    </g>
+    <g fill="#B45309">
+      <rect x="54" y="176" width="14" height="14" rx="2"/><rect x="126" y="194" width="14" height="14" rx="2"/><rect x="162" y="176" width="14" height="14" rx="2"/>
+      <rect x="198" y="212" width="14" height="14" rx="2"/><rect x="216" y="194" width="14" height="14" rx="2"/><rect x="234" y="212" width="14" height="14" rx="2"/>
+    </g>
+    <text x="16" y="248" font-size="11.5" fill="#5A6872">Each square = one working day (sample)</text>
+    <text x="16" y="270" font-size="12" fill="#333F48">More days = stronger pattern signal</text>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#FFF4DB"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8A5A00">= 6 days → repeated pattern</text>
+  </g>
+
+  <!-- 09 reason_codes -->
+  <g transform="translate(940,510)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#2251FF"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#C9D7FF">09</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">reason_codes</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"Which rules fired,</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">in plain labels?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="130" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">list of rules where</text>
+    <text x="28" y="148" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">condition = TRUE</text>
+    <g font-size="12.5">
+      <text x="16" y="194" fill="#333F48">Rule 1 · Duplicate</text><text x="264" y="194" text-anchor="end" font-weight="700" fill="#94A3B8">✗ no</text>
+      <line x1="16" y1="206" x2="264" y2="206" stroke="#EEF1F4"/>
+      <text x="16" y="228" fill="#333F48">Rule 2 · Impossible day</text><text x="264" y="228" text-anchor="end" font-weight="700" fill="#16A34A">✓ yes</text>
+    </g>
+    <rect x="16" y="248" width="150" height="24" rx="12" fill="#D97706"/>
+    <text x="91" y="264" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">IMPOSSIBLE_DAY</text>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#E8EDFF"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1E3FCC">Tells Claude what to check</text>
+  </g>
+
+  <!-- 10 risk_score -->
+  <g transform="translate(1240,510)">
+    <rect width="280" height="340" rx="12" fill="#ffffff" filter="url(#sh)"/>
+    <path d="M0,12 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v36 h-280 z" fill="#2251FF"/>
+    <text x="16" y="30" font-size="12" font-weight="700" fill="#C9D7FF">10</text>
+    <text x="44" y="30" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#ffffff">risk_score</text>
+    <text x="16" y="76" font-size="13.5" font-style="italic" fill="#2251FF">"How urgent is this,</text>
+    <text x="16" y="94" font-size="13.5" font-style="italic" fill="#2251FF">from 0 to 100?"</text>
+    <rect x="16" y="110" width="248" height="46" rx="6" fill="#0B2A40"/>
+    <text x="28" y="130" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">base(rule) + min(30,</text>
+    <text x="28" y="148" font-family="Consolas, monospace" font-size="12" fill="#E6ECF2">  12 × (peer_ratio − 1))</text>
+    <!-- stacked score bar -->
+    <rect x="16" y="186" width="248" height="28" rx="4" fill="#E3E8EE"/>
+    <rect x="16" y="186" width="174" height="28" rx="4" fill="#051C2C"/>
+    <rect x="190" y="186" width="55" height="28" fill="#2251FF"/>
+    <text x="103" y="205" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">base 70</text>
+    <text x="217" y="205" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">+22</text>
+    <text x="16" y="240" font-size="12" fill="#333F48">12 × (2.8 − 1) ≈ 22</text>
+    <text x="16" y="262" font-size="12" fill="#5A6872">≥80 High · 50–79 Med · &lt;50 Low</text>
+    <rect x="16" y="298" width="248" height="30" rx="15" fill="#2251FF"/>
+    <text x="140" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#ffffff">= 92 → High → to Claude</text>
+  </g>
+
+  <!-- footer -->
+  <line x1="40" y1="884" x2="1520" y2="884" stroke="#C9D3DD"/>
+  <text x="40" y="906" font-size="11.5" fill="#5A6872">All features are plain Python / pandas calculations: no AI, fully reproducible and auditable. Thresholds (±1 day, 5%, 12 h), CPT minutes and score weights are starting assumptions to tune.</text>
+  <text x="40" y="924" font-size="11.5" fill="#5A6872">Illustrative synthetic data, consistent with the other slides. The duplicate pair scores 60 base + 4 = 64 (Medium) via the same formula family.</text>
+</svg>
