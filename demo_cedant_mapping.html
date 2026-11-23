@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cedant Spreadsheet Mapping</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--bg:#f6f8fb;--line:#e6eaf0;--mut:#64748b;--txt:#1e293b;--red:#dc2626;--amber:#d97706;--green:#16a34a;--sh:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",sans-serif;background:var(--bg);color:var(--txt)}
+.bar0{background:#111827;color:#e5e7eb;font-size:12px;padding:7px 16px;text-align:center}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 24px 50px}
+h1{margin:0 0 6px;font-size:30px;color:var(--navy);letter-spacing:-.02em}.lead{color:var(--mut);margin:0 0 18px;font-size:15.5px;max-width:860px}
+.story{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.story div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--mut);box-shadow:var(--sh)}
+.story b{display:block;color:var(--navy);font-size:14px;margin-bottom:3px}.story i{font-style:normal;font-size:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:18px 20px;margin-bottom:16px}
+.card h3{margin:0 0 4px;color:var(--navy);font-size:18px;display:flex;gap:8px;align-items:center}.sub{margin:0 0 12px;color:var(--mut);font-size:14px}
+.n{display:inline-flex;width:26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 12px;font:600 13px Inter;cursor:pointer;color:#475569}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.sheet{overflow-x:auto;border:1px solid #d7dde6;border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+.xl th{background:#e8f0e8;color:#1d4d2b;font-weight:700;border:1px solid #cfd8cf;padding:6px 9px;text-align:left;white-space:nowrap;font-family:Calibri,Segoe UI,sans-serif}
+.xl td{border:1px solid #e1e5ea;padding:6px 9px;white-space:nowrap;font-family:Calibri,Segoe UI,sans-serif}
+.xl .rn{background:#f3f4f6;color:#94a3b8;text-align:center;width:28px}
+.pain{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.pain span{font-size:12px;background:#fdf1e1;color:#8a5200;border-radius:12px;padding:3px 9px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:9px;padding:11px 18px;font:700 14px Inter;cursor:pointer;background:var(--teal);color:#fff}
+.btn.b{background:var(--blue)}.btn.g{background:#fff;color:var(--blue);border:1px solid #c9d7e8}
+.center{text-align:center;margin:4px 0 16px}
+.map th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.map td{padding:9px 8px;border-bottom:1px solid #f0f3f7;vertical-align:top}
+.src{font-family:Consolas,monospace;background:#f1f5f9;border-radius:5px;padding:2px 6px;font-size:12px}
+.arrow{color:var(--teal);font-weight:800}
+.std{font-weight:700;color:var(--navy)}
+.conf{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}.c-hi{background:#e3f4ea;color:var(--green)}.c-md{background:#fdf1e1;color:#a35d07}
+.why{font-size:12.5px;color:var(--mut)}
+.fix{font-size:12px;color:var(--blue);cursor:pointer;text-decoration:underline}
+.out th{background:#eef4fc;color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:7px 9px;text-align:left;white-space:nowrap}
+.out td{padding:7px 9px;border-bottom:1px solid #f0f3f7;white-space:nowrap}
+.tagc{font-size:11px;font-weight:700;border-radius:10px;padding:2px 8px;color:#fff}
+.saved{display:flex;gap:12px;align-items:center;background:#f0fdfa;border:1px solid #b6efe4;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:12px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.compare div{border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.6}
+.compare .before{background:#fef2f2;border:1px solid #fecaca}.compare .after{background:#f0fdf4;border:1px solid #bbf7d0}
+.compare b{display:block;font-size:15px;margin-bottom:4px}
+.hidden{display:none}
+.ai{background:var(--teal);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+@media(max-width:860px){.story,.compare{grid-template-columns:1fr 1fr}.wrap{padding:16px}}
+@media(max-width:560px){.story,.compare{grid-template-columns:1fr}}
+</style></head><body>
+<div class="bar0">EXPLAINER · AI use case #8 "Learn a cedant's spreadsheet layout" · made-up data · the AI step is simulated</div>
+<div class="wrap">
+ <h1>What is "learning a cedant's spreadsheet layout"?</h1>
+ <p class="lead">A reinsurer receives claims spreadsheets (called <b>bordereaux</b>) from many insurers (called <b>cedants</b>). Every cedant sends a different layout. Before anyone can compare them, someone has to work out which column means what. AI can do that step.</p>
+
+ <div class="story">
+  <div><i>🏢</i><b>Cedants</b>Insurers in HK, Singapore and mainland China pass part of their risk to the reinsurer</div>
+  <div><i>📊</i><b>Bordereaux</b>Each month, every cedant sends a claims spreadsheet in <u>its own</u> format</div>
+  <div><i>😩</i><b>The pain</b>Analysts spend hours re-mapping columns by hand before any analysis</div>
+  <div><i>✨</i><b>With AI</b>AI suggests the mapping once, a person approves it, and it's saved for every later month</div>
+ </div>
+
+ <div class="card"><h3><span class="n">1</span>Three cedants, three different spreadsheets</h3><p class="sub">Same kind of data, but click each one: different column names, languages, date formats and currencies.</p>
+  <div class="tabs"><button class="tab on" data-c="A">🇭🇰 Cedant A · Hong Kong</button><button class="tab" data-c="B">🇸🇬 Cedant B · Singapore</button><button class="tab" data-c="C">🇨🇳 Cedant C · Guangdong</button></div>
+  <div class="sheet"><table class="xl" id="sheet"></table></div>
+  <div class="pain" id="pain"></div>
+ </div>
+
+ <div class="center"><button class="btn" id="go">✨ Let AI map these 3 layouts</button></div>
+
+ <div id="after" class="hidden">
+  <div class="card"><h3><span class="n">2</span>AI suggests what each column means <span class="ai">AI</span></h3><p class="sub">For each column, the AI reads the column name <b>and a few sample values</b>, then suggests the standard field, a confidence level and its reason. A person approves or corrects it.</p>
+   <div class="tabs"><button class="tab on" data-m="A">Cedant A</button><button class="tab" data-m="B">Cedant B</button><button class="tab" data-m="C">Cedant C</button></div>
+   <table class="map" id="map"></table>
+   <div style="margin-top:12px"><button class="btn b" id="approve">✓ Approve mappings &amp; save templates</button></div>
+  </div>
+
+  <div id="after2" class="hidden">
+   <div class="card"><h3><span class="n">3</span>One clean, comparable table</h3><p class="sub">All three cedants in the same columns, with dates in one format and every amount converted to USD. Now the screening rules can compare them.</p>
+    <div class="sheet"><table class="out" id="out"></table></div>
+    <div class="saved">💾 <div><b style="color:var(--teal)">3 templates saved.</b> Next month, when Cedant A sends its sheet, ClaimGuard recognises the layout and maps it <b>instantly, with no AI call and no human work</b>. AI is only used again if a cedant changes its layout.</div></div>
+   </div>
+   <div class="card"><h3>Why a reinsurer cares</h3>
+    <div class="compare">
+     <div class="before"><b>❌ Today (manual)</b>• An analyst re-maps each cedant's sheet in Excel<br>• Hours per cedant per month; errors creep in<br>• New cedants take days to onboard<br>• Cedants are hard to compare, so leakage stays hidden</div>
+     <div class="after"><b>✅ With AI mapping</b>• Minutes to map a new cedant, approved by a person<br>• Saved templates make later months automatic<br>• Every cedant in one comparable table<br>• Screening rules and dashboards work across all cedants</div>
+    </div>
+    <p class="why" style="margin-top:12px">Why it's rated <b>easy to deploy</b>: the AI only needs the <b>column names plus 3–5 sample rows</b>, which can be anonymised first, not the whole claims file. It's a one-off step per cedant, so the cost is tiny.</p>
+   </div>
+  </div>
+ </div>
+</div>
+<script>
+const SHEETS={
+ A:{cols:["Claim Ref","Policy No.","Insured Name","Adm Date","Disch Date","Hospital","Dx Code","Total Charge (HKD)","Paid Amt (HKD)"],
+  rows:[["HK-24-00871","P8812345","CHAN T** M**","03/11/2026","07/11/2026","Kwong Wah Hosp","K35.80","86,400.00","79,200.00"],["HK-24-00872","P8812990","LEE K** W**","05/11/2026","06/11/2026","St. Teresa's","J18.9","32,150.00","32,150.00"],["HK-24-00873","P8820013","WONG S** Y**","09/11/2026","21/11/2026","Kwong Wah Hosp","K35.80","241,800.00","205,000.00"]],
+  pain:["Dates are day/month/year","Amounts in HKD","Names partly masked","Admission and discharge dates, not one service date"]},
+ B:{cols:["clm_id","member","provider","svc_from","svc_to","icd10","billed_sgd","approved_sgd"],
+  rows:[["SG2611-0042","M-55102","Mount E. Hospital","2026-11-02","2026-11-04","K35.80","14,820","13,900"],["SG2611-0043","M-55877","Raffles MC","2026-11-03","2026-11-03","J06.9","420","420"],["SG2611-0044","M-56001","Mount E. Hospital","2026-11-08","2026-11-15","K35.80","38,600","31,000"]],
+  pain:["Lower-case codes as headers","Amounts in SGD, no decimals","Year-month-day dates"]},
+ C:{cols:["赔案号","被保险人编号","就诊医院","入院日期","出院日期","诊断编码","申请金额(元)","赔付金额(元)"],
+  rows:[["GD20261102-17","GZ-330192","广州某三甲医院","2026年11月2日","2026年11月12日","K35.80","68,500.00","52,000.00"],["GD20261103-04","GZ-331870","深圳某医院","2026年11月3日","2026年11月4日","J18.9","9,860.00","9,860.00"],["GD20261106-22","GZ-330192","广州某三甲医院","2026年11月6日","2026年11月9日","K35.80","41,200.00","0.00"]],
+  pain:["Headers in Simplified Chinese","Amounts in RMB (元)","Dates written in Chinese","Same member twice in 4 days (worth a look)"]}};
+const MAP={
+ A:[["Claim Ref","claim_id","hi","Unique per row, looks like a reference (HK-24-…)"],["Policy No.","member_id","md","Identifies the insured person; no separate member ID column"],["Insured Name","(not used)","hi","Personal name, so dropped to protect privacy"],["Adm Date","admission_date","hi","'Adm' = admission; values are dates in DD/MM/YYYY"],["Disch Date","discharge_date","hi","'Disch' = discharge; used to work out length of stay"],["Hospital","provider_name","hi","Values are hospital names"],["Dx Code","diagnosis_icd10","hi","Values match ICD-10 format (K35.80)"],["Total Charge (HKD)","billed_amount","hi","'Charge' = billed; currency HKD read from header"],["Paid Amt (HKD)","paid_amount","hi","'Paid' = what the cedant paid"]],
+ B:[["clm_id","claim_id","hi","Abbreviation of claim ID"],["member","member_id","hi","Values look like member numbers (M-55102)"],["provider","provider_name","hi","Values are hospital and clinic names"],["svc_from","admission_date","md","'Service from'; treated as admission for inpatient rows"],["svc_to","discharge_date","md","'Service to'; treated as discharge"],["icd10","diagnosis_icd10","hi","Header says ICD-10"],["billed_sgd","billed_amount","hi","'Billed' in SGD; whole dollars"],["approved_sgd","paid_amount","md","'Approved' usually means paid; please confirm"]],
+ C:[["赔案号","claim_id","hi","'Claim case number'"],["被保险人编号","member_id","hi","'Insured person number'"],["就诊医院","provider_name","hi","'Treating hospital'"],["入院日期","admission_date","hi","'Admission date'; Chinese date format converted"],["出院日期","discharge_date","hi","'Discharge date'"],["诊断编码","diagnosis_icd10","hi","'Diagnosis code'; values are ICD-10"],["申请金额(元)","billed_amount","hi","'Amount claimed' in RMB (元)"],["赔付金额(元)","paid_amount","hi","'Amount paid' in RMB"]]};
+const OUT=[["A","HK-24-00871","P8812345","Kwong Wah Hosp","2026-11-03","4","K35.80","11,077","10,154"],["A","HK-24-00873","P8820013","Kwong Wah Hosp","2026-11-09","12","K35.80","31,000","26,282"],["B","SG2611-0042","M-55102","Mount E. Hospital","2026-11-02","2","K35.80","11,400","10,692"],["B","SG2611-0044","M-56001","Mount E. Hospital","2026-11-08","7","K35.80","29,692","23,846"],["C","GD20261102-17","GZ-330192","广州某三甲医院","2026-11-02","10","K35.80","9,514","7,222"],["C","GD20261106-22","GZ-330192","广州某三甲医院","2026-11-06","3","K35.80","5,722","0"]];
+const COL={A:"#2b5f94",B:"#0f2d52",C:"#3b7cc4"};
+function sheet(c){const s=SHEETS[c];document.getElementById('sheet').innerHTML=`<tr><th class="rn"></th>${s.cols.map(h=>`<th>${h}</th>`).join('')}</tr>`+s.rows.map((r,i)=>`<tr><td class="rn">${i+2}</td>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('');
+ document.getElementById('pain').innerHTML=s.pain.map(p=>`<span>⚠ ${p}</span>`).join('');document.querySelectorAll('[data-c]').forEach(t=>t.classList.toggle('on',t.dataset.c===c))}
+function map(c){document.getElementById('map').innerHTML=`<tr><th>Cedant's column</th><th></th><th>Standard field</th><th>Confidence</th><th>AI's reason</th><th></th></tr>`+MAP[c].map(([s,t,cf,w])=>`<tr><td><span class="src">${s}</span></td><td class="arrow">→</td><td class="std">${t}</td><td><span class="conf c-${cf}">${cf==='hi'?'High':'Check'}</span></td><td class="why">${w}</td><td><span class="fix">change</span></td></tr>`).join('');document.querySelectorAll('[data-m]').forEach(t=>t.classList.toggle('on',t.dataset.m===c))}
+document.addEventListener('click',e=>{const t=e.target;
+ if(t.dataset.c)sheet(t.dataset.c);if(t.dataset.m)map(t.dataset.m);
+ if(t.id==='go'){t.textContent='✨ Mapping… (simulated)';setTimeout(()=>{document.getElementById('after').classList.remove('hidden');t.parentElement.classList.add('hidden');map('A');document.getElementById('after').scrollIntoView({behavior:'smooth'})},700)}
+ if(t.id==='approve'){document.getElementById('out').innerHTML=`<tr><th>Cedant</th><th>claim_id</th><th>member_id</th><th>provider_name</th><th>admission_date</th><th>Length of stay (days)</th><th>diagnosis_icd10</th><th>billed (USD)</th><th>paid (USD)</th></tr>`+OUT.map(r=>`<tr><td><span class="tagc" style="background:${COL[r[0]]}">${r[0]}</span></td>${r.slice(1).map((v,i)=>`<td${i===4&&+v>=10?' style="color:var(--red);font-weight:700"':''}>${v}</td>`).join('')}</tr>`).join('')+`<tr><td colspan="9" class="why" style="padding-top:10px">Same diagnosis (K35.80, appendicitis) now comparable across all 3 cedants: stays of <b style="color:var(--red)">10–12 days</b> stand out next to 2–7 days elsewhere. (USD at illustrative rates: 7.8 HKD, 1.3 SGD, 7.2 RMB.) This is exactly what the screening rules would flag.</td></tr>`;
+  document.getElementById('after2').classList.remove('hidden');t.textContent='✓ Approved & saved';t.disabled=true;document.getElementById('after2').scrollIntoView({behavior:'smooth'})}});
+sheet('A');
+</script>
+</body></html>

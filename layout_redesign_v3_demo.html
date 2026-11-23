@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClaimGuard Guided Layout</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--bg:#f6f8fb;--line:#e6eaf0;--mut:#64748b;--txt:#1e293b;--red:#dc2626;--amber:#d97706;--green:#16a34a;--sh:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",sans-serif;background:var(--bg);color:var(--txt)}
+.demo-bar{background:#111827;color:#e5e7eb;font-size:12px;padding:7px 16px;text-align:center}
+.app{display:flex;min-height:calc(100vh - 30px)}
+/* sidebar */
+.side{width:260px;flex-shrink:0;background:#fff;border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px;margin:0 6px 18px}.brand b{font-size:24px;color:var(--navy);font-weight:800}.brand small{display:block;color:var(--mut);font-size:12px}
+.help-btn{display:flex;align-items:center;gap:8px;width:100%;border:1px solid #cfdff2;background:#eef4fc;color:var(--navy);font:600 14px Inter;border-radius:10px;padding:10px 12px;cursor:pointer;margin-bottom:18px}
+.help-btn.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.stage{margin-bottom:14px}
+.stage h5{margin:0 6px 6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;display:flex;justify-content:space-between}
+.nav{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;font-size:14px;color:#475569;cursor:pointer}
+.nav:hover{background:#f1f5fa}.nav.on{background:#eef4fc;color:var(--navy);font-weight:700;box-shadow:inset 4px 0 0 var(--blue2)}
+.dot{width:20px;height:20px;border-radius:50%;border:2px solid #cbd5e1;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#94a3b8;font-weight:700}
+.nav.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+.nav.on .dot{border-color:var(--blue2);color:var(--blue2)}
+.tag{margin-left:auto;font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:#eef4fc;color:var(--blue)}
+.tag.ai{background:#e6f4f2;color:var(--teal)}
+.ds{border:1px solid var(--line);background:#f8fafc;border-radius:12px;padding:10px 12px;font-size:12px;color:var(--mut);margin-top:8px}.ds b{color:var(--navy);display:block;font-size:13px}
+/* main */
+.main{flex:1;min-width:0}
+.top{background:#fff;border-bottom:1px solid var(--line);padding:12px 32px;position:sticky;top:0;z-index:5}
+.track{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tk{display:flex;align-items:center;gap:6px;font-size:12px;color:#94a3b8;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:20px}
+.tk.done{color:var(--green)}.tk.on{color:#fff;background:var(--navy)}
+.tk-sep{color:#cbd5e1}
+.page{padding:26px 32px 40px;max-width:1240px;display:none}.page.on{display:block}
+.crumb{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue2)}
+h1{margin:4px 0 6px;font-size:34px;color:var(--navy);letter-spacing:-.02em}
+.lead{color:var(--mut);font-size:16px;margin:0 0 18px;max-width:820px}
+.todo{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.todo div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--mut);box-shadow:var(--sh)}
+.todo b{display:block;color:var(--navy);font-size:14px;margin-bottom:2px}
+.todo .k{font-size:11px;font-weight:700;color:var(--blue2);text-transform:uppercase;letter-spacing:.06em}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:18px 20px;margin-bottom:16px}
+.card h3{margin:0 0 4px;color:var(--navy);font-size:18px;display:flex;align-items:center;gap:8px}
+.card .sub{margin:0 0 12px;color:var(--mut);font-size:14px}
+.n{display:inline-flex;width:26px;height:26px;border-radius:8px;background:#eef4fc;color:var(--blue);align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.tip{display:inline-flex;width:18px;height:18px;border-radius:50%;background:#e2e8f0;color:#475569;font-size:11px;align-items:center;justify-content:center;cursor:help;position:relative}
+.tip:hover::after{content:attr(data-t);position:absolute;left:24px;top:-6px;width:240px;background:var(--navy);color:#fff;font-size:12px;font-weight:400;padding:8px 10px;border-radius:8px;z-index:9;line-height:1.4}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:14px 16px}
+.kpi .l{font-size:13px;color:var(--mut);font-weight:600}.kpi .v{font-size:28px;font-weight:800;color:var(--navy)}.kpi .d{font-size:12px;color:var(--mut)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.drop{border:1.5px dashed #b8cbe2;background:#fafcff;border-radius:12px;padding:22px;text-align:center;color:var(--mut);font-size:13px}
+.btn{display:inline-block;border:0;border-radius:9px;padding:9px 15px;font:600 13px Inter;cursor:pointer;background:var(--blue);color:#fff;margin:8px 6px 0 0}
+.btn.g{background:#fff;color:var(--blue);border:1px solid #c9d7e8}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);padding:8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid #f0f3f7}tr.sel td{background:#eef4fc}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+.hi{background:#fde8e8;color:var(--red)}.md{background:#fdf1e1;color:#a35d07}.ok{background:#e3f4ea;color:var(--green)}
+.bar{height:10px;border-radius:5px;background:#eef2f7;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue2)}
+.nextbar{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #cfdff2;border-radius:14px;padding:14px 18px;margin-top:24px;box-shadow:var(--sh)}
+.nextbar span{color:var(--mut);font-size:14px}.nextbar b{color:var(--navy)}
+/* guide page */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 18px}
+.fstage{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:16px 18px;border-top:4px solid var(--blue2)}
+.fstage:nth-child(2){border-top-color:var(--blue)}.fstage:nth-child(3){border-top-color:var(--navy)}
+.fstage h4{margin:0 0 2px;color:var(--navy);font-size:16px}.fstage p{margin:0 0 10px;font-size:13px;color:var(--mut)}
+.fstage a{display:flex;justify-content:space-between;font-size:14px;color:var(--txt);padding:7px 0;border-top:1px solid #f0f3f7;cursor:pointer;text-decoration:none}
+.fstage a:hover{color:var(--blue2)}.fstage a em{font-style:normal;color:var(--mut);font-size:12px}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.role{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafcff;font-size:13px;color:var(--mut)}
+.role b{display:block;color:var(--navy);font-size:14px;margin-bottom:4px}
+.role ol{margin:6px 0 0;padding-left:18px;color:var(--txt);line-height:1.6}
+details{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px;background:#fff}
+summary{font-weight:600;color:var(--navy);cursor:pointer;font-size:14px}details p{font-size:14px;color:var(--mut);margin:8px 0 0}
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 20px;font-size:14px}.gloss div{padding:6px 0;border-bottom:1px solid #f0f3f7}.gloss b{color:var(--navy)}
+.banner{background:linear-gradient(120deg,#0f2d52,#2b5f94);color:#fff;border-radius:16px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
+.banner p{margin:4px 0 0;color:#cfe2f7;font-size:14px}.banner .btn{background:#fff;color:var(--navy);margin:0;white-space:nowrap}
+.callout{border-left:4px solid var(--blue2);background:#eef4fc;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--txt);margin:0 0 14px}
+/* ---- v3 additions ---- */
+.top{display:flex;align-items:center;gap:14px}.top .track{flex:1}
+.synth{display:inline-flex;align-items:center;gap:6px;background:#fff7e6;border:1px solid #f6d28b;color:#8a5a00;font-size:12px;font-weight:700;padding:5px 10px;border-radius:20px;white-space:nowrap}
+.synth.xs{font-size:10px;padding:1px 6px;vertical-align:2px}
+.warn{background:#fff7e6;border:1px solid #f6d28b;color:#6b4700;border-radius:12px;padding:11px 14px;font-size:14px;margin-bottom:14px}
+.flagnote{margin-top:10px;border:1px solid var(--line);background:#f8fafc;border-radius:10px;padding:10px 12px;font-size:12.5px;color:var(--mut)}.flagnote b{color:var(--navy)}
+.legend3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.legend3 div{border-radius:12px;padding:12px 14px;font-size:13px}.legend3 b{display:block;font-size:14px;margin-bottom:2px}
+.hero2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-bottom:18px}
+.hero2 .pitch{background:linear-gradient(125deg,#0f2d52,#2b5f94);color:#fff;border-radius:16px;padding:22px 26px}
+.hero2 .pitch h2{margin:4px 0 8px;font-size:24px}.hero2 .pitch p{margin:0 0 14px;color:#d5e5f7;font-size:14.5px;line-height:1.5}
+.hero2 .pitch .btn{background:#fff;color:var(--navy);font-size:14.5px;padding:11px 16px}.hero2 .pitch .btn.g{background:transparent;color:#fff;border-color:#8fb3dc}
+.qs{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--sh)}.qs h4{margin:0 0 6px;color:var(--navy)}
+.q{display:flex;gap:10px;padding:8px 0;border-top:1px solid #f0f3f7;font-size:13px;color:var(--mut)}.q:first-of-type{border:0}
+.q i{font-style:normal;flex-shrink:0;width:24px;height:24px;border-radius:7px;background:#eef4fc;color:var(--blue);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:12px}.q b{display:block;color:var(--navy);font-size:13.5px}
+.qhead{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap;margin:-6px 0 12px}
+.chip{font-size:12px;background:#eef4fc;color:var(--navy);border-radius:14px;padding:4px 10px;font-weight:600}
+.filters{position:relative}.fpanel{display:none;position:absolute;right:0;top:42px;width:280px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(15,45,82,.15);padding:14px;z-index:8;font-size:13px}
+.fpanel.on{display:block}.fpanel label{display:flex;gap:8px;padding:4px 0}.fpanel h6{margin:8px 0 4px;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.split{display:grid;grid-template-columns:340px 1fr;gap:16px;align-items:start}
+.list{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);overflow:hidden;position:sticky;top:64px}
+.list .lh{display:flex;justify-content:space-between;padding:10px 14px;font-size:12px;color:var(--mut);border-bottom:1px solid var(--line);background:#fafbfd}
+.row{display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid #f0f3f7;cursor:pointer}
+.row:hover{background:#f7faff}.row.on{background:#eef4fc;box-shadow:inset 4px 0 0 var(--blue2)}
+.score{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+.s-hi{background:#fde8e8;color:var(--red)}.s-md{background:#fdf1e1;color:#a35d07}
+.row b{display:block;font-size:13px;color:var(--navy)}.row span{font-size:12px;color:var(--mut)}
+.st{font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;white-space:nowrap}
+.st-open{background:#eef2f7;color:#475569}.st-conf{background:#fde8e8;color:var(--red)}.st-clear{background:#e3f4ea;color:var(--green)}.st-ref{background:#fdf1e1;color:#a35d07}
+.chead{display:flex;gap:14px;align-items:center}.chead .score{width:56px;height:56px;font-size:21px;border-radius:14px}
+.chead h2{margin:0;font-size:20px;color:var(--navy)}.chead p{margin:2px 0 0;color:var(--mut);font-size:13.5px}
+.facts{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #f0f3f7;font-size:13px;color:var(--mut)}.facts b{color:var(--txt)}
+.blk{border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
+.blk>header{display:flex;gap:10px;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f3f7;background:#fbfcfe}
+.blk>header i{font-style:normal;width:26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.blk>header b{color:var(--navy);font-size:15px}.blk>header span{color:var(--mut);font-size:12.5px;margin-left:auto}
+.blk .in{padding:15px 18px}
+.reason{font-size:14.5px;line-height:1.5;margin:0 0 12px}.reason b{color:var(--navy)}
+.cmp{display:grid;grid-template-columns:150px 1fr 70px;gap:8px 12px;align-items:center;font-size:13px;margin-bottom:12px}
+.cmp .bar{height:14px;border-radius:7px}.cmp .bar i{border-radius:7px}
+.scoreexp{display:flex;gap:12px;align-items:flex-start;background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--mut);margin-bottom:12px}
+.scale{display:flex;height:8px;border-radius:4px;width:160px;flex-shrink:0;margin-top:5px;position:relative}.scale i{flex:1}
+.scale em{position:absolute;top:-4px;width:3px;height:16px;background:var(--navy);border-radius:2px}
+details.rows{border:1px solid var(--line);border-radius:10px;padding:0;margin:0 0 4px}details.rows summary{padding:10px 12px;color:var(--blue)}
+details.rows table{font-size:12.5px}td.hl{background:#fff4f4;font-weight:700;color:var(--red)}
+.brief2{background:#f0fdfa;border:1px solid #b6efe4;border-radius:10px;padding:11px 13px;font-size:13px;margin-top:12px}.brief2 b{color:var(--teal);font-size:11px;letter-spacing:.06em}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f3f5f8;font-size:14px}.check:last-child{border:0}
+.check input{width:17px;height:17px;margin-top:2px;accent-color:var(--blue)}.check small{display:block;color:var(--mut);font-size:12.5px}
+textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:14px Inter,"Segoe UI",sans-serif;min-height:60px;resize:vertical;margin-top:4px}
+.recorded{display:none;align-items:center;gap:10px;background:#f6f8fb;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px}.recorded.on{display:flex}.recorded .sp{flex:1}
+.recorded .btn{margin:0}
+.hint{font-size:12px;color:var(--mut);margin-top:8px}
+.prof{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.prof div{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--mut)}.prof b{display:block;font-size:20px;color:var(--navy)}
+#ptable tr{cursor:pointer}#ptable tr:hover td{background:#f7faff}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;display:none;z-index:20}
+@media(max-width:1100px){.split,.hero2{grid-template-columns:1fr}.list{position:static}}
+@media(max-width:1000px){.side{display:none}.todo,.flow,.roles,.kpis,.grid2,.gloss{grid-template-columns:1fr}.page,.top{padding-left:16px;padding-right:16px}}
+</style></head><body>
+<div class="demo-bar">DEMO of the proposed layout · clickable · numbers are illustrative · the real app is unchanged</div>
+<div class="app">
+<aside class="side">
+ <div class="brand"><svg width="34" height="38" viewBox="0 0 40 44"><path d="M20 2 L37 8 V21 C37 32 29 39 20 42 C11 39 3 32 3 21 V8 Z" fill="#3b7cc4"/><path d="M12 22 l6 6 l10 -12" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg><div><b>ClaimGuard</b><small>Health claim screening</small></div></div>
+ <button class="help-btn" data-go="guide">❓ How to Use ClaimGuard</button>
+ <div class="stage"><h5>① Bring in claims</h5>
+  <div class="nav done" data-go="intake"><span class="dot">✓</span>Claim Intake<span class="tag">NEW</span></div>
+  <div class="nav done" data-go="upload"><span class="dot">✓</span>Data Upload</div></div>
+ <div class="stage"><h5>② Find unusual claims</h5>
+  <div class="nav" data-go="overview"><span class="dot">3</span>Flag Overview</div>
+  <div class="nav" data-go="providers"><span class="dot">4</span>Provider Risk</div></div>
+ <div class="stage"><h5>③ Review &amp; improve</h5>
+  <div class="nav" data-go="queue"><span class="dot">5</span>Investigator Queue<span class="tag" id="openct" style="background:#fde8e8;color:var(--red)">4 open</span></div>
+  <div class="nav" data-go="feedback"><span class="dot">6</span>Feedback Loop</div>
+  <div class="nav" data-go="model"><span class="dot">7</span>Model Evaluation</div></div>
+ <div class="ds"><b>Sample dataset</b>8,498 claims · 1 Jul – 1 Oct 2026<br><a style="color:var(--blue2);cursor:pointer" data-go="upload">Change dataset</a></div>
+ <div class="ds"><b style="display:inline;font-size:12px">Flag ≠ fraud.</b> A flag means "worth a look". Only a recorded review decision confirms a problem.</div>
+</aside>
+
+<main class="main">
+ <div class="top"><div class="track" id="track"></div><span class="synth" title="All claims, providers and decisions in this demo are made up.">⚠ Synthetic demo data · decisions can be undone</span></div>
+
+ <!-- ===== HOW TO USE ===== -->
+ <section class="page" id="guide">
+  <div class="crumb">Start here</div><h1>How to Use ClaimGuard</h1>
+  <p class="lead">ClaimGuard screens health claims with explainable rules and helps investigators decide which ones need a closer look. It works in three stages. Follow them left to right, or jump straight to the part your role needs.</p>
+  <div class="hero2">
+   <div class="pitch"><div class="crumb" style="color:#9cc3ee">For claims investigators &amp; payment-integrity teams</div>
+    <h2>See it in 1 minute: review a real-looking case</h2>
+    <p>Opens the top flagged case from the sample data. You'll see why it was flagged, what to check, and where to record a decision. No upload needed.</p>
+    <button class="btn" data-case="DAY-0412">▶ Review a sample case</button> &nbsp;<button class="btn g" data-go="intake">Prepare claim documents</button> &nbsp;<button class="btn g" data-go="intake">Full 7-step tour →</button></div>
+   <div class="qs"><h4>Every case answers three questions</h4>
+    <div class="q"><i>1</i><div><b>Why was this flagged?</b>The rule, the comparison and the exact claim rows.</div></div>
+    <div class="q"><i>2</i><div><b>What should I check next?</b>A checklist for that flag reason.</div></div>
+    <div class="q"><i>3</i><div><b>Where do I record my decision?</b>Confirm, clear or refer, with a note. Undo any time.</div></div></div>
+  </div>
+
+  <div class="card"><h3>The workflow</h3><p class="sub">Each stage feeds the next. The tracker at the top of every page shows where you are.</p>
+   <div class="flow">
+    <div class="fstage"><h4>① Bring in claims</h4><p>Get claims into a clean, standard table.</p>
+     <a data-go="intake">Claim Intake <em>messy PDFs, emails, spreadsheets → rows</em></a><a data-go="upload">Data Upload <em>check and load a claims CSV</em></a></div>
+    <div class="fstage"><h4>② Find unusual claims</h4><p>Rules score every claim and show where the flags are.</p>
+     <a data-go="overview">Flag Overview <em>how many, how much billed, why</em></a><a data-go="providers">Provider Risk <em>who is behind it</em></a></div>
+    <div class="fstage"><h4>③ Review &amp; improve</h4><p>People decide; their decisions make the system smarter.</p>
+     <a data-go="queue">Investigator Queue <em>work cases one by one</em></a><a data-go="feedback">Feedback Loop <em>what reviewers decided</em></a><a data-go="model">Model Evaluation <em>how accurate it is</em></a></div>
+   </div></div>
+
+  <div class="card"><h3>Pick your path</h3><p class="sub">You don't need every page. Start from the one that matches your job.</p>
+   <div class="roles">
+    <div class="role"><b>🧾 Claims processor</b>I receive claim documents.<ol><li>Claim Intake: upload, fix red rows</li><li>Add rows to the dataset</li><li>Check Flag Overview for new flags</li></ol></div>
+    <div class="role"><b>🔍 Investigator</b>I review flagged cases.<ol><li>Investigator Queue: click the top case</li><li>Read why it was flagged, tick the checks</li><li>Record: Confirmed / Not a problem / Refer</li></ol></div>
+    <div class="role"><b>📊 Manager</b>I need the big picture.<ol><li>Flag Overview: flagged vs confirmed</li><li>Provider Risk: top providers</li><li>Model Evaluation: is it accurate?</li></ol></div>
+   </div></div>
+
+  <div class="grid2">
+   <div class="card"><h3>Words you'll see</h3><div class="gloss" style="grid-template-columns:1fr">
+    <div><b>Risk score (0–100)</b>: how unusual a case is compared with peers. 0–49 normal, 50–79 review, 80+ high. A screening score, <b>not</b> a probability of fraud.</div>
+    <div><b>Billed · Flagged · Confirmed</b>: what was charged · what a rule found unusual · what a reviewer confirmed.</div>
+    <div><b>Case</b>: one or more related flagged claims, reviewed together.</div>
+    <div><b>Duplicate</b>: the same service billed twice.</div>
+    <div><b>Impossible day</b>: a provider bills more hours than fit in a day.</div>
+    <div><b>Upcoding</b>: billing a more expensive visit than peers usually do.</div>
+    <div><b>Ready / Check / Fix</b>: intake row status: usable, read the warning, or missing a value.</div></div></div>
+   <div class="card"><h3>Common questions</h3>
+    <details open><summary>Where do I start?</summary><p>Click <b>Review a sample case</b> above for the 1-minute version, or <b>Full 7-step tour</b> to walk through every page with the sample data.</p></details>
+    <details><summary>Does a flag mean the provider committed fraud?</summary><p>No. A flag means "worth a look". Only an investigator's decision in the Queue confirms fraud.</p></details>
+    <details><summary>Why can't ClaimGuard read my scanned image?</summary><p>Intake reads text PDFs, emails and spreadsheets. Scanned images need the Claude AI reader, coming once API credit is added.</p></details>
+    <details><summary>Will my decisions change the scores?</summary><p>Yes. Confirmed providers get a repeat-offender boost, and the model retrains on your labels.</p></details>
+    <details><summary>Is this real data?</summary><p>No. Everything in this demo is synthetic, including the accuracy figures. Sample decisions can be undone.</p></details>
+   </div></div>
+  </div>
+ </section>
+
+ <!-- ===== INTAKE ===== -->
+ <section class="page" id="intake">
+  <div class="crumb">Stage ① · Step 1 of 7</div><h1>Claim Intake</h1>
+  <p class="lead">Turn messy claim documents into clean claim rows the screening rules can check.</p>
+  <div class="todo"><div><span class="k">You will</span><b>Upload documents</b>PDF receipts, emails or spreadsheets</div><div><span class="k">Then</span><b>Fix rows marked red</b>a required value is missing</div><div><span class="k">Finish by</span><b>Adding rows to the dataset</b>so the screening rules see them</div></div>
+  <div class="grid2">
+   <div class="card"><h3><span class="n">1</span>Upload <span class="tip" data-t="Text PDFs, .txt/.eml notes, .csv/.xlsx with any column names. Scanned images are not supported yet.">?</span></h3><p class="sub">Drop files, or try the samples.</p>
+    <div class="drop">⬆ Drop claim documents here<br>.pdf .txt .eml .csv .xlsx</div><button class="btn g">📂 Load messy samples</button></div>
+   <div class="card"><h3><span class="n">2</span>Result</h3><p class="sub">17 claim lines from 5 documents.</p>
+    <div class="kpis" style="grid-template-columns:repeat(3,1fr);margin:0"><div class="kpi"><div class="l">🟢 Ready</div><div class="v">2</div></div><div class="kpi"><div class="l">🟠 Check</div><div class="v">12</div></div><div class="kpi"><div class="l">🔴 Fix</div><div class="v">3</div></div></div></div>
+  </div>
+  <div class="card"><h3><span class="n">3</span>Review &amp; fix <span class="tip" data-t="Click a cell to edit it. Hover a status to see why. Red rows are left out of the export.">?</span></h3><p class="sub">Start with 🔴 rows. Click a cell to edit it.</p>
+   <table><tr><th>Status</th><th>Member</th><th>Provider</th><th>Date</th><th>CPT</th><th>Units</th><th>Amount</th><th>Why</th></tr>
+    <tr><td><span class="pill hi">Fix</span></td><td>MBR-101794</td><td>PRV-1011</td><td>2026-10-14</td><td>97112</td><td>3</td><td style="color:var(--red)">missing</td><td>No price on the document</td></tr>
+    <tr><td><span class="pill md">Check</span></td><td>MBR-101082</td><td>PRV-1045</td><td>2026-11-03</td><td>99215</td><td>1</td><td>$225.67</td><td>Same claim sent twice</td></tr>
+    <tr><td><span class="pill ok">Ready</span></td><td>MBR-100915</td><td>PRV-1045</td><td>2026-10-05</td><td>99215</td><td>1</td><td>$231.40</td><td>-</td></tr></table></div>
+  <div class="nextbar"><span><b>Next:</b> add the 14 usable rows to the dataset and check them.</span><button class="btn" data-go="upload" style="margin:0">Add rows &amp; continue →</button></div>
+ </section>
+
+ <!-- ===== UPLOAD ===== -->
+ <section class="page" id="upload">
+  <div class="crumb">Stage ① · Step 2 of 7</div><h1>Data Upload</h1>
+  <p class="lead">Check that the claims table has everything the screening rules need, then run them.</p>
+  <div class="todo"><div><span class="k">You will</span><b>Choose a dataset</b>sample data, or your own CSV</div><div><span class="k">Then</span><b>Read the green checks</b>all 12 columns must be present</div><div><span class="k">Finish by</span><b>Running the analysis</b>takes a few seconds</div></div>
+  <div class="kpis"><div class="kpi"><div class="l">Claims</div><div class="v">8,512</div><div class="d">incl. 14 from intake</div></div><div class="kpi"><div class="l">Providers</div><div class="v">60</div></div><div class="kpi"><div class="l">Period</div><div class="v">93 days</div></div><div class="kpi"><div class="l">Columns</div><div class="v" style="color:var(--green)">12/12 ✓</div></div></div>
+  <div class="nextbar"><span><b>Next:</b> see what the rules flagged.</span><button class="btn" data-go="overview" style="margin:0">Run analysis &amp; continue →</button></div>
+ </section>
+
+ <!-- ===== OVERVIEW ===== -->
+ <section class="page" id="overview">
+  <div class="crumb">Stage ② · Step 3 of 7</div><h1>Flag Overview</h1>
+  <p class="lead">How many claims the rules flagged, how much was billed on them, and which flag reasons drive it. Amounts are <b>billed</b>, not confirmed losses.</p>
+  <div class="callout">📌 <b>Key finding:</b> 186 flagged cases · $412K billed. "Unusual billed hours in one day" accounts for the most billed dollars. 38 cases confirmed after review so far.</div>
+  <div class="kpis"><div class="kpi"><div class="l">Billed on flagged claims <span class="tip" data-t="Total billed on claims with a risk score of 50 or more. This is what was charged, not a confirmed loss.">?</span></div><div class="v">$412K</div><div class="d">of $1.61M billed in total</div></div><div class="kpi"><div class="l">Flagged cases</div><div class="v">186</div><div class="d">42 high score (80+)</div></div><div class="kpi"><div class="l">Providers with flags</div><div class="v">58</div><div class="d">top 5 hold 55% of flagged $</div></div><div class="kpi"><div class="l">Confirmed after review</div><div class="v" style="color:var(--red)">38</div><div class="d">of 60 reviewed · 126 still open</div></div></div>
+  <div class="card"><h3>Three different numbers. Don't mix them up.</h3>
+   <div class="legend3" style="margin-top:8px"><div style="background:#f1f5fa"><b>Billed</b>What providers charged. Every claim has this.</div><div style="background:#fdf1e1"><b>Flagged</b>A rule found something unusual. Worth a look, not proof.</div><div style="background:#fde8e8"><b>Confirmed</b>An investigator reviewed it and recorded "Confirmed problem".</div></div></div>
+  <div class="card"><h3>Billed on flagged claims, by flag reason</h3>
+   <table><tr><th>Flag reason</th><th></th><th>Billed</th><th>Cases</th><th>Confirmed after review</th></tr>
+    <tr><td style="width:230px">Unusual billed hours in one day</td><td><div class="bar"><i style="width:82%"></i></div></td><td style="width:70px">$168K</td><td>48</td><td>17 of 24 reviewed</td></tr>
+    <tr><td>Repeated claim (exact duplicate)</td><td><div class="bar"><i style="width:58%;background:var(--navy)"></i></div></td><td>$118K</td><td>61</td><td>15 of 22 reviewed</td></tr>
+    <tr><td>Visit level above specialty peers</td><td><div class="bar"><i style="width:44%;background:#93b4d9"></i></div></td><td>$89K</td><td>29</td><td>6 of 14 reviewed</td></tr>
+    <tr><td>Near-repeated claim (±1 day, ±10%)</td><td><div class="bar"><i style="width:18%;background:var(--blue)"></i></div></td><td>$37K</td><td>48</td><td>0 reviewed</td></tr></table></div>
+  <div class="nextbar"><span><b>Next:</b> find out which providers are behind the flags.</span><button class="btn" data-go="providers" style="margin:0">Go to Provider Risk →</button></div>
+ </section>
+
+ <!-- ===== PROVIDERS ===== -->
+ <section class="page" id="providers">
+  <div class="crumb">Stage ② · Step 4 of 7</div><h1>Provider Risk</h1>
+  <p class="lead">Which providers are behind the flagged billing. Click a row to see their profile against peers.</p>
+  <div class="todo"><div><span class="k">You will</span><b>Scan the ranking</b>most billed on flagged claims first</div><div><span class="k">Then</span><b>Click a provider</b>the profile below updates</div><div><span class="k">Finish by</span><b>Opening their cases</b>in the Investigator Queue</div></div>
+  <div class="card"><h3>Overall picture</h3><p class="sub">58 of 60 providers have at least one flag, but the money is concentrated: the top 5 hold 55% of flagged billed dollars.</p>
+   <table><tr><th>Specialty</th><th>Billed on flagged claims</th><th></th></tr>
+    <tr><td style="width:170px">Orthopedics</td><td><div class="bar"><i style="width:88%"></i></div></td><td style="width:60px">$71K</td></tr>
+    <tr><td>Family Medicine</td><td><div class="bar"><i style="width:73%;background:var(--navy)"></i></div></td><td>$59K</td></tr>
+    <tr><td>Psychiatry</td><td><div class="bar"><i style="width:42%;background:#93b4d9"></i></div></td><td>$34K</td></tr>
+    <tr><td>Physical Therapy</td><td><div class="bar"><i style="width:15%;background:var(--blue)"></i></div></td><td>$12K</td></tr></table></div>
+  <div class="card"><h3>Provider ranking</h3><p class="sub">Click a provider.</p><table id="ptable"><tr><th>ID</th><th>Provider</th><th>Specialty</th><th>Flagged cases</th><th>Billed on flagged</th><th>Confirmed</th></tr>
+   <tr class="sel" data-prov="osei"><td>PRV-1031</td><td>Dr. K. Osei</td><td>Orthopedics</td><td>14</td><td>$38K</td><td>4</td></tr>
+   <tr data-prov="moreno"><td>PRV-1045</td><td>Dr. B. Moreno</td><td>Family Medicine</td><td>11</td><td>$29K</td><td>2</td></tr>
+   <tr data-prov="walsh"><td>PRV-1008</td><td>Dr. G. Walsh</td><td>Psychiatry</td><td>9</td><td>$21K</td><td>0</td></tr></table></div>
+  <div class="card" id="pprof"></div>
+  <div class="nextbar"><span id="pnext"><b>Next:</b> review Dr. K. Osei's cases.</span><button class="btn" data-case="DAY-0412" id="pbtn" style="margin:0">Open their top case →</button></div>
+ </section>
+
+ <!-- ===== QUEUE ===== -->
+ <section class="page" id="queue">
+  <div class="crumb">Stage ③ · Step 5 of 7</div><h1>Investigator Queue</h1>
+  <p class="lead">Work through flagged cases one at a time. Click a case; it opens beside the list.</p>
+  <div class="todo"><div><span class="k">1 · Why</span><b>Read why it was flagged</b>rule, comparison, claim rows</div><div><span class="k">2 · Check</span><b>Tick the next checks</b>records and comparisons</div><div><span class="k">3 · Decide</span><b>Record a decision</b>with a note · undo any time</div></div>
+  <div class="qhead"><span class="chip">Status: Open</span><span class="chip">All flag reasons</span><span class="chip">1 Jul – 1 Oct 2026</span>
+   <div class="filters"><button class="btn g" id="fbtn" style="margin:0">⚙ Filters</button>
+    <div class="fpanel" id="fpanel"><h6>Status</h6><label><input type="checkbox" checked> Open</label><label><input type="checkbox"> Decided</label>
+     <h6>Flag reason</h6><label><input type="checkbox" checked> Unusual billed hours</label><label><input type="checkbox" checked> Repeated claim</label><label><input type="checkbox" checked> Visit level above peers</label>
+     <h6>Service dates</h6><div style="color:var(--mut)">1 Jul 2026 – 1 Oct 2026</div><button class="btn" id="fclose">Apply</button></div></div></div>
+  <div class="split">
+   <div class="list"><div class="lh"><span>4 flagged cases · $25.4K billed</span><span>Score</span></div><div id="rows"></div></div>
+   <div id="detail"></div>
+  </div>
+  <div class="nextbar"><span><b>Next:</b> after a few decisions, see what reviewers found.</span><button class="btn" data-go="feedback" style="margin:0">Go to Feedback Loop →</button></div>
+ </section>
+
+ <!-- ===== FEEDBACK ===== -->
+ <section class="page" id="feedback">
+  <div class="crumb">Stage ③ · Step 6 of 7</div><h1>Feedback Loop</h1>
+  <p class="lead">What investigators decided, which flag reasons are most often confirmed, and how decisions feed back into the scores.</p>
+  <div class="warn">⚠ <b>Synthetic sample decisions.</b> These 60 reviews were generated for the demo. Your own decisions in the Queue are added below and can be undone there.</div>
+  <div class="kpis"><div class="kpi"><div class="l">Decisions recorded</div><div class="v" id="fb-total">60</div></div><div class="kpi"><div class="l">Confirmed problem</div><div class="v" id="fb-conf" style="color:var(--red)">38</div></div><div class="kpi"><div class="l">Not a problem</div><div class="v" id="fb-clear">14</div></div><div class="kpi"><div class="l">Referred for audit</div><div class="v" id="fb-ref">8</div></div></div>
+  <div class="grid2">
+   <div class="card"><h3>How often each flag reason is confirmed</h3><p class="sub">Helps tune rules: low confirmation means many false alarms.</p>
+    <table><tr><th>Flag reason</th><th>Reviewed</th><th>Confirmed</th><th></th></tr>
+     <tr><td>Unusual billed hours</td><td>24</td><td>17</td><td style="width:120px"><div class="bar"><i style="width:71%;background:var(--green)"></i></div></td></tr>
+     <tr><td>Repeated claim</td><td>22</td><td>15</td><td><div class="bar"><i style="width:68%;background:var(--green)"></i></div></td></tr>
+     <tr><td>Visit level above peers</td><td>14</td><td>6</td><td><div class="bar"><i style="width:43%;background:var(--amber)"></i></div></td></tr></table></div>
+   <div class="card"><h3>What your decisions change</h3>
+    <ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.8;color:var(--txt)"><li><b>Confirmed</b> → that provider's other open cases get +10 risk (repeat offender)</li><li><b>Not a problem</b> → case closes; counts as a false alarm for the rule</li><li><b>Referred</b> → stays open for the audit team</li><li>All decisions become training labels for the model</li></ul>
+    <div class="flagnote" id="fb-mine">No decisions from you yet. Record one in the Investigator Queue.</div></div>
+  </div>
+  <div class="nextbar"><span><b>Next:</b> see how accurate the scoring is.</span><button class="btn" data-go="model" style="margin:0">Go to Model Evaluation →</button></div>
+ </section>
+
+ <!-- ===== MODEL ===== -->
+ <section class="page" id="model">
+  <div class="crumb">Stage ③ · Step 7 of 7</div><h1>Model Evaluation</h1>
+  <p class="lead">How well the risk scores separate claims that turned out to be problems from normal claims.</p>
+  <div class="warn">⚠ <b>Synthetic result.</b> These figures come from made-up data with planted problems. They show how accuracy will be reported, <b>not</b> how accurate ClaimGuard is on real claims. Real accuracy is measured in a pilot.</div>
+  <div class="kpis"><div class="kpi"><div class="l">Precision @80 <span class="synth xs">synthetic</span> <span class="tip" data-t="Of the claims scored 80+, the share that were planted problems.">?</span></div><div class="v">90%</div></div><div class="kpi"><div class="l">Recall @80 <span class="synth xs">synthetic</span> <span class="tip" data-t="Of all planted problems, the share scored 80+.">?</span></div><div class="v">85%</div></div><div class="kpi"><div class="l">AUC <span class="synth xs">synthetic</span> <span class="tip" data-t="Ranking quality: 1.0 is perfect, 0.5 is a coin toss.">?</span></div><div class="v">0.995</div></div><div class="kpi"><div class="l">Reviewer agreement</div><div class="v">63%</div><div class="d">flags confirmed (38 of 60)</div></div></div>
+  <div class="card"><h3>Choosing the score cut-off <span class="synth xs">synthetic</span></h3><p class="sub">A higher cut-off sends fewer, more certain cases to investigators.</p>
+   <table><tr><th>Cut-off</th><th>Cases sent to review</th><th>Share that were problems</th><th>Problems caught</th></tr><tr><td>50+</td><td>186</td><td>61%</td><td>97%</td></tr><tr style="background:#eef4fc"><td><b>80+ (current)</b></td><td>42</td><td>90%</td><td>85%</td></tr><tr><td>90+</td><td>23</td><td>96%</td><td>58%</td></tr></table></div>
+  <div class="nextbar"><span><b>You've seen the whole workflow.</b> Go back to the guide any time.</span><button class="btn" data-go="guide" style="margin:0">❓ How to Use →</button></div>
+ </section>
+</main></div>
+<div class="toast" id="toast"></div>
+<script>
+const order=["intake","upload","overview","providers","queue","feedback","model"],
+ names={intake:"Intake",upload:"Upload",overview:"Overview",providers:"Providers",queue:"Queue",feedback:"Feedback",model:"Model"};
+function go(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id===id));
+ document.querySelectorAll('.side .nav').forEach(n=>n.classList.toggle('on',n.dataset.go===id));
+ document.querySelector('.help-btn').classList.toggle('on',id==='guide');
+ const i=order.indexOf(id);
+ document.querySelectorAll('.side .nav').forEach(n=>{const j=order.indexOf(n.dataset.go);n.classList.toggle('done',i>=0&&j<i||(i<0&&j<2))});
+ document.getElementById('track').innerHTML=order.map((o,j)=>`<span class="tk ${o===id?'on':(i>=0?j<i:j<2)?'done':''}" data-go="${o}">${(i>=0?j<i:j<2)?'✓':j+1} ${names[o]}</span>`).join('<span class="tk-sep">›</span>');
+ window.scrollTo(0,0);
+}
+const CASES={
+ "DAY-0412":{score:97,lvl:"hi",reason:"Unusual billed hours in one day",prov:"Dr. K. Osei",pid:"PRV-1031",spec:"Orthopedics",date:"14 Aug 2026",claims:31,billed:"$9,840",
+  why:"<b>Dr. K. Osei billed 19.5 hours of treatment on 14 Aug 2026.</b> Orthopedists in this dataset usually bill about 6 hours a day. More than 16 hours in one day is scored high risk.",
+  cmp:[["This provider, 14 Aug",19.5,"var(--red)"],["Peer median day",6.1,"var(--blue2)"],["High-risk line",16,"#94a3b8"]],max:24,unit:"h",
+  rows:[["CLM-104211","MBR-101554","97110","Therapeutic exercise, 15 min","4","60 min","$180.00"],["CLM-104212","MBR-100873","97140","Manual therapy, 15 min","4","60 min","$192.00"],["CLM-104213","MBR-102001","99215","Office visit, high","1","40 min","$231.50"],["CLM-104214","MBR-101009","97110","Therapeutic exercise, 15 min","3","45 min","$135.00"],["CLM-104215","MBR-100412","20610","Joint injection, major","1","15 min","$120.00"]],more:26,
+  checks:[["Request treatment records for 14 Aug","Do the notes support 15-minute therapy units for each patient?"],["Compare with this provider's other days","Is 14 Aug a one-off or a pattern? (3 other days over 12 h)"],["Check who actually treated the patients","Assistants' time billed under the doctor's ID?"],["Look for the same patients on other claims","Same members billed again elsewhere that day?"]],
+  brief:"31 claims on one day; 18 use 15-minute therapy codes at 3–4 units each. Pattern is consistent with unit inflation. Records request recommended."},
+ "DUP-INT-0003":{score:92,lvl:"hi",reason:"Repeated claim (exact duplicate)",prov:"Dr. B. Moreno",pid:"PRV-1045",spec:"Family Medicine",date:"3 Nov 2026",claims:2,billed:"$451.34",
+  why:"<b>The same visit was billed twice:</b> same member, provider, procedure code, date and amount. One copy came as a printed receipt and one as an email, both sent on 17 Nov.",
+  cmp:[["Copy 1 (receipt)",225.67,"var(--blue2)"],["Copy 2 (email)",225.67,"var(--red)"]],max:300,unit:"$",
+  rows:[["INT-0001","MBR-101082","99215","Office visit, high","1","40 min","$225.67"],["INT-0003","MBR-101082","99215","Office visit, high","1","40 min","$225.67"]],more:0,
+  checks:[["Check if the first claim was paid","If paid, the second one is a duplicate payment risk."],["Read the resubmission note","The clinic says the portal timed out. Was the original rejected?"],["Confirm the claim reference","The document's reference \"CLM-10O417\" looks mistyped."]],
+  brief:"Two identical claims for one visit. Likely an accidental resubmission rather than fraud; pay only one."},
+ "UPC-1045":{score:71,lvl:"md",reason:"Visit level above specialty peers",prov:"Dr. B. Moreno",pid:"PRV-1045",spec:"Family Medicine",date:"Jul–Sep 2026",claims:212,billed:"$12,960",
+  why:"<b>62% of this provider's office visits were billed at the highest level (99215).</b> Family medicine peers bill that level for about 18% of visits.",
+  cmp:[["This provider",62,"var(--red)"],["Peer median",18,"var(--blue2)"]],max:100,unit:"%",
+  rows:[["CLM-100000","MBR-101082","99215","Office visit, high","1","40 min","$225.67"],["CLM-100318","MBR-100221","99215","Office visit, high","1","40 min","$229.10"],["CLM-100977","MBR-101640","99215","Office visit, high","1","40 min","$226.85"]],more:209,
+  checks:[["Sample 10 high-level visits","Do the notes show the complexity a 99215 requires?"],["Check the patient mix","Does this provider see unusually complex patients?"],["Compare month by month","Did the share jump suddenly?"]],
+  brief:"High-level visit share is 3.4× the peer median. Needs a record sample before any conclusion."},
+ "DAY-0388":{score:68,lvl:"md",reason:"Unusual billed hours in one day",prov:"Harbor PT & Rehab",pid:"PRV-1011",spec:"Physical Therapy",date:"14 Oct 2026",claims:9,billed:"$2,104",
+  why:"<b>13.2 hours billed on 14 Oct 2026</b> against a peer median of 7.0. Over 12 hours is flagged for review; over 16 is high risk.",
+  cmp:[["This provider, 14 Oct",13.2,"var(--amber)"],["Peer median day",7.0,"var(--blue2)"],["Review line",12,"#94a3b8"]],max:24,unit:"h",
+  rows:[["INT-0005","MBR-101794","97110","Therapeutic exercise, 15 min","4","60 min","$380.00"],["INT-0006","MBR-101794","97140","Manual therapy, 15 min","4","60 min","$352.00"]],more:7,
+  checks:[["Check the stated total","The superbill total ($1,382) doesn't match its lines ($1,102)."],["Confirm the provider identity","PRV-1011 is on file as a radiology clinic."]],
+  brief:"Moderate excess hours plus document inconsistencies. Worth a records request."}};
+const PROV={
+ osei:{name:"Dr. K. Osei",id:"PRV-1031",spec:"Orthopedics",days:4,maxh:"19.5 h",peerh:"6.1 h",hi:"21%",peerhi:"20%",cases:"14",top:"DAY-0412",note:"4 days over 12 billed hours, the most of any provider. Visit levels are normal."},
+ moreno:{name:"Dr. B. Moreno",id:"PRV-1045",spec:"Family Medicine",days:0,maxh:"7.2 h",peerh:"6.5 h",hi:"62%",peerhi:"18%",cases:"11",top:"UPC-1045",note:"Hours are normal, but 62% of visits are billed at the top level vs 18% for peers. Also 1 repeated claim."},
+ walsh:{name:"Dr. G. Walsh",id:"PRV-1008",spec:"Psychiatry",days:1,maxh:"12.4 h",peerh:"7.8 h",hi:"9%",peerhi:"11%",cases:"9",top:"DAY-0388",note:"Mostly repeated psychotherapy claims (same member, same day). One long day."}};
+const CORDER=Object.keys(CASES);const DEC={};let cur=null;
+const LABEL={conf:"Confirmed problem",clear:"Not a problem",ref:"Referred for audit"};
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.style.display='block';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',2200)}
+function stTag(id){const d=DEC[id];return d?`<span class="st st-${d.k}">${LABEL[d.k]}</span>`:'<span class="st st-open">Open</span>'}
+function renderList(){
+ document.getElementById('rows').innerHTML=CORDER.map(id=>{const c=CASES[id];return `<div class="row ${id===cur?'on':''}" data-case="${id}"><div class="score s-${c.lvl}">${c.score}</div><div><b>${c.reason}</b><span>${c.prov} · ${c.date} · ${c.billed} billed</span></div>${stTag(id)}</div>`}).join('');
+ const open=CORDER.filter(i=>!DEC[i]).length,oc=document.getElementById('openct');oc.textContent=open+' open';oc.style.display=open?'':'none';
+ const ks=Object.values(DEC),n=k=>ks.filter(d=>d.k===k).length;
+ document.getElementById('fb-total').textContent=60+ks.length;document.getElementById('fb-conf').textContent=38+n('conf');document.getElementById('fb-clear').textContent=14+n('clear');document.getElementById('fb-ref').textContent=8+n('ref');
+ document.getElementById('fb-mine').innerHTML=ks.length?'<b>Your decisions this session:</b> '+Object.entries(DEC).map(([id,d])=>`${id} → ${LABEL[d.k]}`).join(' · '):'No decisions from you yet. Record one in the Investigator Queue.'}
+function renderCase(id){const c=CASES[id],d=DEC[id];
+ const bars=c.cmp.map(([l,v,col])=>`<div>${l}</div><div class="bar"><i style="width:${Math.min(100,v/c.max*100)}%;background:${col}"></i></div><div><b>${c.unit==="$"?"$"+v:v+(c.unit==="%"?"%":" h")}</b></div>`).join('');
+ document.getElementById('detail').innerHTML=`
+ <div class="card"><div class="chead"><div class="score s-${c.lvl}">${c.score}</div><div><div class="crumb">Case ${id} · ${stTag(id)}</div><h2>${c.reason}</h2><p>${c.prov} (${c.pid}) · ${c.spec}</p></div></div>
+  <div class="facts"><span>Service date <b>${c.date}</b></span><span>Claims in case <b>${c.claims}</b></span><span>Billed <b>${c.billed}</b></span><span>Status <b>${d?LABEL[d.k]:"Flagged, not reviewed"}</b></span></div></div>
+ <div class="blk"><header><i>1</i><b>Why was this flagged?</b><span>Rule-based, explainable</span></header><div class="in">
+  <p class="reason">${c.why}</p><div class="cmp">${bars}</div>
+  <div class="scoreexp"><div class="scale"><i style="background:#e3f4ea"></i><i style="background:#fdf1e1"></i><i style="background:#fde8e8"></i><em style="left:${Math.min(97,c.score)}%"></em></div><div><b style="color:var(--navy)">Risk score ${c.score} of 100.</b> How unusual this case is compared with peers: 0–49 normal, 50–79 review, 80–100 high. <b>A screening score, not a probability of fraud.</b> 100 means "as unusual as anything the rules measure".</div></div>
+  <details class="rows"><summary>▸ Show the ${c.rows.length+c.more} claim rows used in this calculation</summary>
+   <table><tr><th>Claim</th><th>Member</th><th>CPT</th><th>Description</th><th>Units</th><th>Time counted</th><th>Billed</th></tr>${c.rows.map(r=>`<tr>${r.map((x,i)=>`<td class="${i===5&&c.unit==='h'?'hl':''}">${x}</td>`).join('')}</tr>`).join('')}${c.more?`<tr><td colspan="7" style="color:var(--mut)">+ ${c.more} more rows · ⬇ download all as CSV</td></tr>`:''}</table></details>
+  <div class="brief2"><b>CASE BRIEF</b> <span style="color:var(--mut);font-size:11px">(rule-based · ✦ AI version when enabled)</span><br>${c.brief}</div></div></div>
+ <div class="blk"><header><i>2</i><b>What should I check next?</b><span>Tick as you go</span></header><div class="in">
+  ${c.checks.map(([t,s])=>`<label class="check"><input type="checkbox"><div>${t}<small>${s}</small></div></label>`).join('')}</div></div>
+ <div class="blk"><header><i>3</i><b>Record your decision</b><span>Saved to the review log · can be undone</span></header><div class="in">
+  <button class="btn" style="background:var(--red)" data-dec="conf">Confirmed problem</button><button class="btn" style="background:var(--green)" data-dec="clear">Not a problem</button><button class="btn g" data-dec="ref">Refer for audit</button>
+  <textarea id="note" placeholder="Note for the record (what you checked, why you decided)">${d?d.note:""}</textarea>
+  <div class="recorded ${d?'on':''}">${d?`✅ Recorded as <b>${LABEL[d.k]}</b> · just now · demo reviewer`:''}<span class="sp"></span><button class="btn g" id="undo">↶ Undo</button><button class="btn" id="nextcase">Next case →</button></div>
+  <p class="hint">Until a decision is recorded, this case is only <b>flagged</b>. Only "Confirmed problem" counts as confirmed in reports.</p></div></div>`}
+function openCase(id){cur=id;go('queue');renderList();renderCase(id)}
+function showProv(k){const p=PROV[k];document.querySelectorAll('#ptable tr[data-prov]').forEach(r=>r.classList.toggle('sel',r.dataset.prov===k));
+ document.getElementById('pprof').innerHTML=`<h3>${p.name} (${p.id}) · ${p.spec}</h3><p class="sub">${p.note}</p>
+  <div class="prof"><div><b>${p.days}</b>days over 12 billed hours</div><div><b>${p.maxh}</b>longest day (peer median ${p.peerh})</div><div><b>${p.hi}</b>top-level visits (peers ${p.peerhi})</div><div><b>${p.cases}</b>flagged cases</div></div>`;
+ document.getElementById('pnext').innerHTML=`<b>Next:</b> review ${p.name}'s top case.`;document.getElementById('pbtn').dataset.case=p.top}
+document.addEventListener('click',e=>{
+ const pr=e.target.closest('[data-prov]');if(pr){showProv(pr.dataset.prov);return}
+ const c=e.target.closest('[data-case]');if(c){openCase(c.dataset.case);return}
+ const t=e.target.closest('[data-go]');if(t){go(t.dataset.go);if(t.dataset.go==='queue'&&!cur)openCase(CORDER[0]);return}
+ const d=e.target.closest('[data-dec]');if(d){DEC[cur]={k:d.dataset.dec,note:document.getElementById('note').value};renderList();renderCase(cur);toast('Recorded: '+LABEL[d.dataset.dec]);return}
+ if(e.target.id==='undo'){delete DEC[cur];renderList();renderCase(cur);toast('Decision undone. Case is open again.');return}
+ if(e.target.id==='nextcase'){const n=CORDER.find(i=>!DEC[i]);n?openCase(n):toast('All cases decided');return}
+ if(e.target.id==='fbtn'){document.getElementById('fpanel').classList.toggle('on');return}
+ if(e.target.id==='fclose'){document.getElementById('fpanel').classList.remove('on')}});
+renderList();showProv('osei');go('guide');
+
+</script>
+</body></html>

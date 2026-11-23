@@ -1,7 +1,14 @@
 # ClaimGuard: Health Claim Fraud Detection (MVP)
 
-An AI-powered workflow that flags suspicious health insurance claims and writes investigator case briefs.
-See `architecture.svg` for the design and `app_mockup.html` for the original UI mockup.
+ClaimGuard helps health insurance investigators decide which claims to review first. It flags billing patterns such as duplicate submissions, groups flagged claims into cases, and shows the evidence for each case. Investigators review that evidence and record their decision.
+
+The app opens on **How to Use**: click **▶ Review a sample case** to jump straight into the top flagged case. Pages are grouped in three stages: ① Bring in claims (Claim Intake, Data Upload) → ② Find unusual claims (Flag Overview, Provider Risk) → ③ Review & improve (Investigator Queue, Feedback Loop, Model Evaluation). A progress tracker, a "You will / Then / Finish by" box and a **Next** button on every page guide users through.
+
+**Investigator Queue:** click a case in the list and it opens beside it in three blocks: **1 Why was this flagged?** (plain-language reason, comparison chart, risk-score explanation, the exact claim rows, case brief), **2 What should I check next?** (checklist for that flag reason) and **3 Record your decision** (note, Confirmed problem / Not a problem / Refer for audit, **Undo**, Next case). The app uses screening language: a flag means "worth a look"; only a recorded decision confirms a problem.
+
+**✦ Ask your data** (top right of every page) answers questions about the loaded claims, e.g. top providers, billed by flag reason, a provider's long days, why a case was flagged, or a different score cut-off. Each answer shows **How I got this** (method and equivalent SQL). It is rule-based today (`src/assistant.py`, no API cost), read-only, shows member IDs only and won't judge guilt.
+
+Design: `docs/design/layout_redesign_v5_FROZEN.html` (locked layout, built). Architecture: `architecture.svg`.
 
 ## What it detects
 | Check | Rule | Risk |
@@ -64,16 +71,30 @@ anything to an external API.**
 
 Upcoding is a provider-level signal. The rule flags all of a flagged provider's 99215 claims, including the genuine ones, so claim-level precision is lower by design; the audit decides which visits were upcoded. Real fraud is messier, so expect lower numbers.
 
-## Feedback loop
-Investigators close cases in the queue as **Confirmed fraud**, **Not fraud** or **Referred to SIU**, with an optional note.
-Decisions are saved to `output/feedback.csv`, so they survive restarts, and they are used to:
-- hide closed cases from the queue (a toggle shows them again),
-- add +10 risk to open cases of providers who already have confirmed fraud (repeat offenders),
-- measure each rule's real confirmed rate and suggest tightening or loosening it (after 5 or more reviews),
-- export claim-level training labels to `output/labels.csv`.
+## Review outcomes, history and data boundary (v5)
+Reviewers record **structured outcomes**, not fraud findings: **No issue found**, **Billing or coding issue
+substantiated**, **Insufficient evidence** or **Refer to SIU**. A reason is always required, and an evidence reference
+(claim lines or a document reference) for every outcome except Insufficient evidence. An SIU referral needs an owner and
+a next step; a substantiation over $5,000 waits for supervisor approval. Payment, denial and recovery stay in the
+claims system; formal fraud findings stay with SIU.
 
-The **Feedback loop** page shows all of this. For a demo, `python src/simulate_feedback.py --reset` records
-60 reviews based on the synthetic ground truth.
+Everything is stored in SQLite (`output/claimguard.db`, `src/feedback.py`), keyed by organisation and dataset so the
+synthetic demo (dataset `SYN-2026Q3`) never mixes with pilot data:
+- **events**: every outcome, reversal, approval and assignment with reviewer, role, prior → new status, reason, evidence;
+- **case_state**: owner, due date, saved checklist and evidence notes (views: My cases / Unassigned / Referred / All);
+- **line_findings**: per-claim-line findings; only substantiated / not-substantiated lines become training labels
+  (`output/labels.csv`), uncertain and unreviewed lines stay unlabeled;
+- **audit**: case views, exports, outcomes and intake batches.
+
+Review priority = the rule's base score + an optional "prior substantiated billing issue" adjustment, which is shown but
+**not applied** until validated. Routing: Priority review (80+), Routine review (50–79), No additional review recommended.
+Rule or model changes proposed from outcomes need independent validation and approval.
+
+New pages: **Review Outcomes** (rates with denominators), **Executive Dashboard** (duplicate-billing shadow pilot,
+actionable cases, backlog, verified value), **Data & Access** (scope, roles, AI data flows, audit log) and **Under the
+Hood** (pipeline, data contract, rules and formulas, model, stack). The sidebar has a demo sign-in to switch between
+investigator, supervisor and analyst roles. For a demo, `python src/simulate_feedback.py --reset` reseeds 60
+simulated outcomes with line-level findings.
 
 ## ML risk model
 `python src/ml_model.py` trains a gradient-boosted tree model (scikit-learn) on 12 explainable claim features,

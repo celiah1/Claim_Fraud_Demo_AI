@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>837 Import Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--bg:#f6f8fb;--line:#e6eaf0;--mut:#64748b;--txt:#1e293b;--red:#dc2626;--amber:#d97706;--green:#16a34a;--sh:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",sans-serif;background:var(--bg);color:var(--txt)}
+.demo-bar{background:#111827;color:#e5e7eb;font-size:12px;padding:7px 16px;text-align:center}
+.wrap{max-width:1200px;margin:0 auto;padding:26px 28px 50px}
+.crumb{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue2)}
+h1{margin:4px 0 6px;font-size:32px;color:var(--navy);letter-spacing:-.02em}.lead{color:var(--mut);margin:0 0 20px;max-width:860px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:18px 20px;margin-bottom:16px}
+.card h3{margin:0 0 4px;color:var(--navy);font-size:18px;display:flex;gap:8px;align-items:center}.sub{margin:0 0 12px;color:var(--mut);font-size:14px}
+.n{display:inline-flex;width:26px;height:26px;border-radius:8px;background:#eef4fc;color:var(--blue);align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.explain{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.explain .card{margin:0;border-top:4px solid var(--blue2)}.explain .card:nth-child(2){border-top-color:var(--navy)}
+.explain p{font-size:14px;color:var(--mut);margin:6px 0 0;line-height:1.55}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+pre{margin:0;background:#0f172a;color:#cbd5e1;border-radius:10px;padding:14px;font-size:12.5px;line-height:1.7;overflow:auto;white-space:pre-wrap;word-break:break-all}
+pre span{border-radius:3px;padding:0 2px;cursor:help}
+.s-clm{background:#1e3a5f;color:#93c5fd}.s-sv1{background:#14432a;color:#86efac}.s-dtp{background:#4a3410;color:#fcd34d}.s-nm1{background:#3b1f4a;color:#d8b4fe}.s-hi{background:#4a1d1d;color:#fca5a5}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:12px;color:var(--mut)}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.btn{display:inline-block;border:0;border-radius:9px;padding:9px 16px;font:600 14px Inter;cursor:pointer;background:var(--blue);color:#fff}
+.btn.g{background:#fff;color:var(--blue);border:1px solid #c9d7e8}
+.arrow{text-align:center;color:var(--mut);font-size:13px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);padding:8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid #f0f3f7;vertical-align:top}
+tr.flag td{background:#fef2f2}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}.hi{background:#fde8e8;color:var(--red)}.ok{background:#e3f4ea;color:var(--green)}.md{background:#fdf1e1;color:#a35d07}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:14px 16px}.kpi .l{font-size:13px;color:var(--mut);font-weight:600}.kpi .v{font-size:28px;font-weight:800;color:var(--navy)}.kpi .d{font-size:12px;color:var(--mut)}
+.edit{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;background:#fafcff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}
+.code{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.code b{display:block;color:var(--navy);font-size:16px}.code small{color:var(--mut)}
+.vs{font-weight:800;color:var(--red);font-size:13px;text-align:center}
+.reason{font-size:13px;color:var(--txt);margin-top:8px;grid-column:1/-1;background:#fff;border-left:4px solid var(--red);border-radius:6px;padding:8px 12px}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+.hidden{display:none}
+@media(max-width:900px){.explain,.grid,.kpis{grid-template-columns:1fr}.wrap{padding:16px}}
+</style></head><body>
+<div class="demo-bar">DEMO · Step 2: read real insurer claim files (X12 837) and check them against NCCI rules · sample data, simplified file</div>
+<div class="wrap">
+ <div class="crumb">Stage ① · Bring in claims</div><h1>Insurer File Import &amp; NCCI Check</h1>
+ <p class="lead">Load the electronic claim file an insurer already receives from hospitals and clinics. ClaimGuard turns it into claim rows, then checks every claim against Medicare's list of codes that must not be billed together.</p>
+
+ <div class="explain">
+  <div class="card"><h3>📄 What is an 837 file?</h3><p>The standard electronic format every US insurer receives claims in. It's coded text, not a spreadsheet. Reading it directly means an insurer can drop in <b>real claims on day one</b>, with no conversion step.</p></div>
+  <div class="card"><h3>📘 What are NCCI edits?</h3><p>A free list published by Medicare of procedure pairs that should <b>not</b> be billed together, because one already includes the other. Billing both is called <b>unbundling</b>: charging twice for the same work.</p></div>
+ </div>
+
+ <div class="card"><h3><span class="n">1</span>Load an 837 claim file</h3><p class="sub">Hover a coloured part to see what it means. This sample holds 3 claims from 2 providers.</p>
+  <div class="grid">
+   <pre id="raw"></pre>
+   <div>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--mut)">Each line is a <b>segment</b>. The first word says what it holds:</p>
+    <table><tr><th>Segment</th><th>Means</th><th>Becomes column</th></tr>
+     <tr><td><span class="s-nm1" style="padding:2px 6px;border-radius:4px">NM1*82</span></td><td>Rendering provider + NPI</td><td>provider_id, provider_name</td></tr>
+     <tr><td><span class="s-nm1" style="padding:2px 6px;border-radius:4px">NM1*IL</span></td><td>Patient / member ID</td><td>member_id</td></tr>
+     <tr><td><span class="s-clm" style="padding:2px 6px;border-radius:4px">CLM</span></td><td>Claim number + total charge</td><td>claim_id</td></tr>
+     <tr><td><span class="s-hi" style="padding:2px 6px;border-radius:4px">HI</span></td><td>Diagnosis code</td><td>icd10_code</td></tr>
+     <tr><td><span class="s-sv1" style="padding:2px 6px;border-radius:4px">SV1</span></td><td>One service line: code, charge, units</td><td>cpt_code, billed_amount, units</td></tr>
+     <tr><td><span class="s-dtp" style="padding:2px 6px;border-radius:4px">DTP*472</span></td><td>Date of service</td><td>service_date</td></tr></table>
+    <div style="margin-top:14px"><button class="btn" id="parse">▶ Convert to claim rows</button> <button class="btn g">⬆ Upload my .837 file</button></div>
+   </div>
+  </div>
+ </div>
+
+ <div id="out" class="hidden">
+  <div class="arrow">▼ converted in 0.2 s ▼</div>
+  <div class="card"><h3><span class="n">2</span>Claim rows</h3><p class="sub">The same 12 columns as every other ClaimGuard input. Red rows break an NCCI rule.</p>
+   <table id="rows"><tr><th>Claim</th><th>Member</th><th>Provider</th><th>Date</th><th>CPT</th><th>Description</th><th>Units</th><th>Amount</th><th>NCCI</th></tr></table>
+  </div>
+
+  <div class="kpis"><div class="kpi"><div class="l">Claims in file</div><div class="v">3</div><div class="d">7 service lines</div></div><div class="kpi"><div class="l">NCCI breaks</div><div class="v" style="color:var(--red)">2</div><div class="d">in 2 claims</div></div><div class="kpi"><div class="l">Dollars at stake</div><div class="v">$370</div><div class="d">$18 + $352 on the flagged lines</div></div><div class="kpi"><div class="l">Rules source</div><div class="v">NCCI</div><div class="d">official CMS files, updated quarterly</div></div></div>
+
+  <div class="card"><h3><span class="n">3</span>NCCI findings</h3><p class="sub">Each finding names the rule it broke, so an investigator can quote it.</p>
+   <div class="edit"><div class="code"><b>80053</b><small>Comprehensive metabolic panel · $42.00</small></div><div class="vs">ALREADY<br>INCLUDES</div><div class="code"><b>82947</b><small>Glucose test · $18.00</small></div>
+    <div class="reason"><span class="pill hi">Unbundling</span> &nbsp;Claim <b>CLM-88213</b>, PRV-1022, 03 Nov 2026: the glucose test is part of the metabolic panel, so billing it separately charges twice. <b>Suggested action:</b> deny line 2 ($18.00).</div></div>
+   <div class="edit"><div class="code"><b>97530</b><small>Therapeutic activities · 4 units · $370.00</small></div><div class="vs">NOT WITH</div><div class="code"><b>97140</b><small>Manual therapy · 4 units · $352.00</small></div>
+    <div class="reason"><span class="pill md">Needs modifier</span> &nbsp;Claim <b>CLM-88214</b>, PRV-1011, 14 Oct 2026: these can't be billed together on the same day unless done in separate sessions (modifier 59). No modifier on the claim. <b>Suggested action:</b> ask for records, or deny the lower line.</div></div>
+   <p class="note">Code pairs shown are examples of the kind of edits NCCI contains. The real build would load the official quarterly NCCI files from CMS.</p>
+  </div>
+
+  <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><span style="color:var(--mut)"><b style="color:var(--navy)">Next:</b> send these 3 claims to the fraud checks. NCCI breaks appear as a new pattern, next to duplicates and upcoding.</span><button class="btn">Add to dataset &amp; analyse →</button></div>
+ </div>
+</div>
+<script>
+const seg=[
+ ["s-nm1","NM1*82*1*OSEI*KWAME****XX*1093847562~","Rendering provider: Dr Kwame Osei, NPI 1093847562 → PRV-1022"],
+ ["s-nm1","NM1*IL*1*ALVAREZ*JUAN****MI*MBR101082~","Patient: member ID MBR101082"],
+ ["s-clm","CLM*CLM-88213*285.67***11:B:1~","Claim CLM-88213, total $285.67, office visit (place of service 11)"],
+ ["s-hi","HI*ABK:E119~","Diagnosis E11.9 (type 2 diabetes)"],
+ ["s-sv1","SV1*HC:80053*42.00*UN*1~","Line 1: CPT 80053 metabolic panel, $42.00, 1 unit"],
+ ["s-dtp","DTP*472*D8*20261103~","Service date 3 Nov 2026"],
+ ["s-sv1","SV1*HC:82947*18.00*UN*1~","Line 2: CPT 82947 glucose, $18.00, 1 unit"],
+ ["s-dtp","DTP*472*D8*20261103~","Service date 3 Nov 2026"],
+ ["s-sv1","SV1*HC:99215*225.67*UN*1~","Line 3: CPT 99215 office visit, high, $225.67"],
+ ["s-dtp","DTP*472*D8*20261103~","Service date 3 Nov 2026"],
+ ["s-nm1","NM1*82*2*HARBOR PT AND REHAB*****XX*1548200193~","Rendering provider: Harbor PT & Rehab → PRV-1011"],
+ ["s-nm1","NM1*IL*1*WEBB*TARA****MI*MBR101794~","Patient: member ID MBR101794"],
+ ["s-clm","CLM*CLM-88214*1102.00***11:B:1~","Claim CLM-88214, total $1,102.00"],
+ ["s-hi","HI*ABK:M25561~","Diagnosis M25.561 (knee pain)"],
+ ["s-sv1","SV1*HC:97110*380.00*UN*4~","Line 1: CPT 97110 exercise, $380.00, 4 units"],
+ ["s-sv1","SV1*HC:97140*352.00*UN*4~","Line 2: CPT 97140 manual therapy, $352.00, 4 units"],
+ ["s-sv1","SV1*HC:97530*370.00*UN*4~","Line 3: CPT 97530 therapeutic activities, $370.00, 4 units (no modifier 59)"],
+ ["s-dtp","DTP*472*D8*20261014~","Service date 14 Oct 2026"],
+ ["s-clm","CLM*CLM-88215*190.00***11:B:1~","Claim CLM-88215, total $190.00"],
+ ["s-sv1","SV1*HC:90837*190.00*UN*1~","Line 1: CPT 90837 psychotherapy 60 min, $190.00"]];
+document.getElementById('raw').innerHTML="ISA*00*...*ZZ*CLINICSUBMITTER*ZZ*INSURER*261118~\nGS*HC*...~ ST*837*0001~\n"+seg.map(s=>`<span class="${s[0]}" title="${s[2]}">${s[1]}</span>`).join("\n")+"\nSE*24*0001~ GE*1*1~ IEA*1*000000001~";
+const rows=[
+ ["CLM-88213","MBR-101082","PRV-1022","2026-11-03","80053","Comprehensive metabolic panel",1,"$42.00",""],
+ ["CLM-88213","MBR-101082","PRV-1022","2026-11-03","82947","Glucose test",1,"$18.00","hi|Included in 80053"],
+ ["CLM-88213","MBR-101082","PRV-1022","2026-11-03","99215","Office visit, established, high",1,"$225.67",""],
+ ["CLM-88214","MBR-101794","PRV-1011","2026-10-14","97110","Therapeutic exercise",4,"$380.00",""],
+ ["CLM-88214","MBR-101794","PRV-1011","2026-10-14","97140","Manual therapy",4,"$352.00",""],
+ ["CLM-88214","MBR-101794","PRV-1011","2026-10-14","97530","Therapeutic activities",4,"$370.00","md|Not with 97140 without modifier"],
+ ["CLM-88215","MBR-100377","PRV-1008","2026-10-02","90837","Psychotherapy, 60 min",1,"$190.00",""]];
+document.getElementById('parse').onclick=()=>{
+ const t=document.getElementById('rows');
+ t.innerHTML=t.rows[0].outerHTML+rows.map(r=>{const f=r[8]?r[8].split('|'):null;return `<tr class="${f?'flag':''}">${r.slice(0,8).map(c=>`<td>${c}</td>`).join('')}<td>${f?`<span class="pill ${f[0]}">${f[1]}</span>`:'<span class="pill ok">OK</span>'}</td></tr>`}).join('');
+ document.getElementById('out').classList.remove('hidden');
+ document.getElementById('out').scrollIntoView({behavior:'smooth'});
+};
+</script>
+</body></html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClaimGuard Pilot Offer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--line:#e6eaf0;--mut:#64748b;--txt:#1e293b;--green:#16a34a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",sans-serif;background:#e9edf2;color:var(--txt)}
+.demo-bar{background:#111827;color:#e5e7eb;font-size:12px;padding:7px 16px;text-align:center}
+.demo-bar button{margin-left:10px;border:0;border-radius:14px;padding:4px 12px;font:600 12px Inter;cursor:pointer}
+.sheet{max-width:880px;margin:24px auto;background:#fff;box-shadow:0 10px 40px rgba(15,45,82,.12);border-radius:6px;overflow:hidden}
+.head{background:linear-gradient(120deg,#0f2d52,#2b5f94);color:#fff;padding:28px 36px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;opacity:.95}
+.head h1{margin:16px 0 6px;font-size:30px;letter-spacing:-.02em;line-height:1.2}.head p{margin:0;color:#cfe2f7;font-size:16px;max-width:640px}
+.body{padding:26px 36px 30px}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2);margin:22px 0 10px}
+h2:first-child{margin-top:0}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.promise div{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafcff}
+.promise b{display:block;font-size:22px;color:var(--navy)}.promise span{font-size:13px;color:var(--mut)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.step{padding:0 10px;text-align:center;position:relative}
+.step:not(:last-child)::after{content:"";position:absolute;top:18px;left:calc(50% + 22px);right:calc(-50% + 22px);height:2px;background:#cfdff2}
+.step i{display:inline-flex;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;font-style:normal;font-weight:700;align-items:center;justify-content:center}
+.step b{display:block;margin:8px 0 2px;color:var(--navy);font-size:14px}.step span{font-size:12.5px;color:var(--mut);line-height:1.45;display:block}
+.step em{display:inline-block;margin-top:6px;font-style:normal;font-size:11px;font-weight:700;color:var(--blue);background:#eef4fc;padding:2px 8px;border-radius:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+ul{margin:0;padding-left:0;list-style:none}li{padding:6px 0 6px 24px;position:relative;font-size:14px;line-height:1.45;border-bottom:1px solid #f0f3f7}
+li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+.lock li::before{content:"🔒";font-size:12px}
+.report{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.report .rh{background:#f6f8fb;padding:10px 14px;font-size:13px;font-weight:700;color:var(--navy);border-bottom:1px solid var(--line)}
+.report .rb{display:grid;grid-template-columns:repeat(4,1fr)}
+.report .rb div{padding:12px 14px;border-right:1px solid var(--line)}.report .rb div:last-child{border:0}
+.report small{display:block;font-size:11px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.04em}.report b{font-size:20px;color:var(--navy)}
+.report .rf{padding:10px 14px;font-size:12px;color:var(--mut);border-top:1px solid var(--line)}
+.price{display:flex;gap:16px;align-items:center;background:#f0f6fd;border:1px solid #cfdff2;border-radius:12px;padding:16px 18px}
+.price .big{font-size:26px;font-weight:800;color:var(--navy);white-space:nowrap}.price p{margin:0;font-size:14px;color:var(--txt)}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;padding-top:18px;border-top:2px solid var(--navy)}
+.cta b{color:var(--navy);font-size:16px}.cta span{font-size:13px;color:var(--mut)}
+.btn{border:0;border-radius:9px;padding:11px 18px;font:700 14px Inter;background:var(--navy);color:#fff;white-space:nowrap}
+.fine{font-size:11px;color:#94a3b8;margin-top:14px;line-height:1.5}
+.ed{outline:1px dashed transparent}.editing .ed{outline-color:#f59e0b;background:#fffbeb}
+@media(max-width:760px){.promise,.steps,.two,.report .rb{grid-template-columns:1fr}.step::after{display:none}.step{margin-bottom:14px}.body,.head{padding:20px}.sheet{margin:0}.cta,.price{flex-direction:column;align-items:flex-start}}
+@media print{body{background:#fff}.demo-bar{display:none}.sheet{box-shadow:none;margin:0;max-width:none}}
+</style></head><body>
+<div class="demo-bar">DEMO · Step 3: one-page pilot offer for a prospective customer · <span style="color:#fcd34d">yellow = fill in before sending</span>
+ <button onclick="document.body.classList.toggle('editing')">Highlight blanks</button><button onclick="print()">Print / Save as PDF</button></div>
+<div class="sheet">
+ <div class="head">
+  <div class="brand"><svg width="26" height="30" viewBox="0 0 40 44"><path d="M20 2 L37 8 V21 C37 32 29 39 20 42 C11 39 3 32 3 21 V8 Z" fill="#3b7cc4" stroke="#fff" stroke-width="2"/><path d="M12 22 l6 6 l10 -12" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg>ClaimGuard · Pilot Offer</div>
+  <h1>Find out what last year's claims are hiding, in 4 weeks, with no change to your systems.</h1>
+  <p>Send us 12 months of paid claims. We'll show you which suspicious claims ClaimGuard would have caught, with the reason for each and the dollars involved.</p>
+ </div>
+ <div class="body">
+  <h2>What you get</h2>
+  <div class="promise">
+   <div><b>$ found</b><span>Dollars in suspicious claims, ranked by provider and fraud pattern</span></div>
+   <div><b>Top 25 cases</b><span>Ready for your investigators, each with evidence and a plain-English brief</span></div>
+   <div><b>Proof, not promises</b><span>We compare our flags with the fraud you already found, so you can check our accuracy</span></div>
+  </div>
+
+  <h2>How it works</h2>
+  <div class="steps">
+   <div class="step"><i>1</i><b>Agree &amp; sign</b><span>Short pilot agreement and a Business Associate Agreement (HIPAA)</span><em>Week 0</em></div>
+   <div class="step"><i>2</i><b>Send data</b><span>12 months of paid claims (837 files or CSV) plus your list of known fraud cases</span><em>Week 1</em></div>
+   <div class="step"><i>3</i><b>We analyse</b><span>Duplicate, impossible-day, upcoding and NCCI unbundling checks on every claim</span><em>Weeks 2–3</em></div>
+   <div class="step"><i>4</i><b>Results meeting</b><span>1-hour walkthrough of findings with your payment-integrity team</span><em>Week 4</em></div>
+  </div>
+
+  <h2>Sample results page</h2>
+  <div class="report"><div class="rh">Pilot results: example layout (numbers are illustrative)</div>
+   <div class="rb"><div><small>Claims analysed</small><b>1.2M</b></div><div><small>Flagged high-risk</small><b>3,840</b></div><div><small>Dollars at risk</small><b>$2.7M</b></div><div><small>Not found before</small><b style="color:var(--teal)">$1.1M</b></div></div>
+   <div class="rf">Accuracy check: of the fraud cases you already knew about, ClaimGuard flagged <b>X of Y</b>.</div></div>
+
+  <div class="two" style="margin-top:6px">
+   <div><h2>What we need from you</h2><ul>
+    <li>12 months of paid professional claims (837P export or CSV)</li>
+    <li>A list of claims or providers you already confirmed as fraud</li>
+    <li>One contact in payment integrity or SIU, about 2 hours in total</li></ul></div>
+   <div><h2>How your data is protected</h2><ul class="lock">
+    <li>Signed Business Associate Agreement before any data moves</li>
+    <li>Encrypted transfer and storage in a HIPAA-eligible cloud</li>
+    <li>Access limited to named analysts; every view is logged</li>
+    <li>All your data deleted 30 days after the pilot, with written confirmation</li></ul></div>
+  </div>
+
+  <h2>Cost</h2>
+  <div class="price"><div class="big ed">$0</div><p class="ed">The pilot is free. If you continue, pricing is <b>[$ per member per month]</b> or <b>[% of dollars recovered]</b>, your choice. No obligation to continue.</p></div>
+
+  <div class="cta"><div><b>Ready to see what you're missing?</b><br><span class="ed">Contact: [Your name] · [email] · [phone]</span></div><div class="btn">Book a 20-minute intro call</div></div>
+  <p class="fine">ClaimGuard flags claims for human review; it does not make payment or legal decisions. Results depend on the data provided. <span class="ed">[Company name, address]</span></p>
+ </div>
+</div>
+</body></html>
