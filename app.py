@@ -30,47 +30,53 @@ REQUIRED = ["claim_id", "member_id", "provider_id", "provider_name", "specialty"
 
 st.set_page_config(page_title="ClaimGuard", page_icon="🛡", layout="wide")
 st.markdown(f"""<style>
-[data-testid="stSidebar"]{{background:{NAVY}}}
-[data-testid="stSidebar"] :is(h1,h2,h3,p,label,span,small) {{color:#e2e8f0}}
-[data-testid="stSidebar"] :is(input,[data-baseweb="select"] span,[data-testid="stFileUploaderDropzone"] *) {{color:#0f172a;-webkit-text-fill-color:#0f172a}}
-[data-testid="stSidebar"] [data-testid="stDateInput"] :is(input,span){{color:#0f172a !important;-webkit-text-fill-color:#0f172a !important}}
-[data-testid="stSidebar"] [data-testid="stWidgetLabel"] *{{color:#e2e8f0 !important;-webkit-text-fill-color:#e2e8f0 !important}}
-[data-testid="stSidebar"] .stButton button{{width:100%;border-radius:8px;padding:9px 14px;min-height:0;justify-content:flex-start}}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+html,body,[data-testid="stApp"],[data-testid="stApp"] :is(p,div,span,label,button,input,h1,h2,h3,h4,li,td,th):not([data-testid="stIconMaterial"]):not([class*="material"]){{font-family:Inter,"Segoe UI",sans-serif}}
+[data-testid="stApp"]{{background:#f6f8fb}}
+[data-testid="stHeader"]{{background:transparent}}
+[data-testid="stSidebar"]{{background:#fff;border-right:1px solid #e6eaf0}}
+[data-testid="stSidebar"] :is(h1,h2,h3,p,label,span,small) {{color:#334155}}
+[data-testid="stSidebar"] .stButton button{{width:100%;border-radius:9px;padding:9px 14px;min-height:0;justify-content:flex-start}}
 [data-testid="stSidebar"] .stButton button > div{{justify-content:flex-start}}
 [data-testid="stSidebar"] .stButton button p{{font-size:15px !important}}
-[data-testid="stSidebar"] .stButton button[kind="secondary"]{{background:transparent;border:0;}}
-[data-testid="stSidebar"] .stButton button[kind="secondary"] p{{color:#cbd5e1 !important}}
-[data-testid="stSidebar"] .stButton button[kind="secondary"]:hover{{background:#1b3d66}}
-[data-testid="stSidebar"] .stButton button[kind="primary"]{{background:#fff;border:0;border-left:5px solid {TEAL}}}
+[data-testid="stSidebar"] .stButton button[kind="secondary"]{{background:transparent;border:0;box-shadow:none}}
+[data-testid="stSidebar"] .stButton button[kind="secondary"] p{{color:#475569 !important;font-weight:500}}
+[data-testid="stSidebar"] .stButton button[kind="secondary"]:hover{{background:#f1f5fa}}
+[data-testid="stSidebar"] .stButton button[kind="primary"]{{background:#eef4fc;border:0;box-shadow:inset 4px 0 0 {BLUE2}}}
 [data-testid="stSidebar"] .stButton button[kind="primary"] p{{color:{NAVY} !important;font-weight:700}}
 [data-testid="stSidebar"] .stButton button[kind="tertiary"]{{background:{TEAL};justify-content:center}}
 [data-testid="stSidebar"] .stButton button[kind="tertiary"] p{{color:#fff !important;font-weight:600}}
 .brand{{display:flex;align-items:center;gap:14px;margin:4px 0 18px}}
-.brand .bname{{font-size:30px;font-weight:800;color:#fff;letter-spacing:.3px;line-height:1.1}}
-.brand .btag{{font-size:13px;color:#94a3b8;margin-top:3px}}
-[data-testid="stSidebar"] [data-testid="stLayoutWrapper"] > [data-testid="stVerticalBlock"]{{background:#143559;border:1px solid #2f5683 !important;border-radius:12px;padding:12px 12px 14px}}
+.brand .bname{{font-size:28px;font-weight:800;color:{NAVY};letter-spacing:-.3px;line-height:1.1}}
+.brand .btag{{font-size:13px;color:#64748b;margin-top:3px}}
+[data-testid="stSidebar"] [data-testid="stLayoutWrapper"] > [data-testid="stVerticalBlock"]{{background:#f8fafc;border:1px solid #e6eaf0 !important;border-radius:14px;padding:12px 12px 14px}}
 .navlabel{{font-size:11px;font-weight:700;letter-spacing:1.2px;color:#94a3b8;margin:18px 0 6px}}
-.src{{background:#1b3d66;border-radius:8px;padding:10px 12px;font-size:13px;color:#e2e8f0;margin-top:6px}}
-.src b{{color:#fff}}
-.check{{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;font-size:15px;color:#1e293b}}
+.src{{background:#eef4fc;border-radius:9px;padding:10px 12px;font-size:13px;color:#334155;margin-top:6px}}
+.src b{{color:{NAVY}}}
+.check{{background:#fff;border:1px solid #e6eaf0;border-radius:14px;padding:14px 18px;font-size:15px;color:#1e293b;box-shadow:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05)}}
 .ok{{color:#16a34a;font-weight:700}}.bad{{color:#dc2626;font-weight:700}}
-[data-testid="stMain"] h2{{font-size:2.6rem !important;font-weight:800;margin-bottom:0}}
-.purpose{{font-size:17px;color:#334155;margin:4px 0 22px;padding:12px 16px;background:#fff;border-left:4px solid {BLUE};border-radius:6px}}
-.sec{{display:flex;align-items:center;gap:12px;margin:30px 0 4px}}
-.sec .n{{background:{NAVY};color:#fff;font-weight:700;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px}}
-.sec .t{{font-size:23px;font-weight:700;color:#0f172a}}
-.take{{font-size:16px;color:#334155;margin:0 0 12px 42px}}
-.take b{{color:#0f172a}}
-.kpi{{background:#fff;border:1px solid #e2e8f0;border-top:3px solid {BLUE};border-radius:10px;padding:14px 16px;height:100%}}
-.kpi.t{{border-top-color:{TEAL}}}
-.kpi .l{{font-size:16px;font-weight:600;color:#334155}}.kpi .v{{font-size:34px;font-weight:700;color:#0f172a}}.kpi .d{{font-size:14px;color:#475569}}
-.route{{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px;height:100%}}
-.route .h{{font-size:15px;font-weight:700;margin-bottom:6px}}.route .v{{font-size:30px;font-weight:700;color:#0f172a}}
-.route .d{{font-size:14px;color:#475569}}
-.steps{{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;margin-bottom:14px}}
+[data-testid="stMain"] h2{{font-size:2.5rem !important;font-weight:800;margin-bottom:0;color:{NAVY};letter-spacing:-.02em}}
+.purpose{{font-size:16px;color:#64748b;margin:2px 0 24px;padding:0;background:none;border:0}}
+.purpose b{{color:{BLUE};font-weight:600}}
+.sec{{display:flex;align-items:center;gap:12px;margin:32px 0 4px}}
+.sec .n{{background:#eef4fc;color:{BLUE};font-weight:700;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}}
+.sec .t{{font-size:21px;font-weight:700;color:{NAVY}}}
+.take{{font-size:15px;color:#64748b;margin:0 0 12px 42px}}
+.take b{{color:#1e293b}}
+.kpi,.route,.steps{{background:#fff;border:1px solid #e6eaf0;border-radius:14px;box-shadow:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05)}}
+.kpi{{padding:16px 18px;height:100%}}
+.kpi.t .l{{color:{TEAL}}}
+.kpi .l{{font-size:14px;font-weight:600;color:#64748b}}.kpi .v{{font-size:32px;font-weight:800;color:{NAVY};margin-top:2px}}.kpi .d{{font-size:13px;color:#64748b}}
+.route{{padding:16px;height:100%}}
+.route .h{{font-size:15px;font-weight:700;margin-bottom:6px}}.route .v{{font-size:30px;font-weight:800;color:{NAVY}}}
+.route .d{{font-size:14px;color:#64748b}}
+.steps{{padding:14px 18px;margin-bottom:14px}}
 .steps ol{{margin:6px 0 0 0;padding-left:20px;font-size:15px;color:#1e293b;line-height:1.7}}
-.next{{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:16px;color:#1e293b;margin-top:18px}}
-.brief{{background:#f0fdfa;border:1px solid #99f6e4;border-radius:10px;padding:16px 18px;color:#1e293b}}
+.next{{background:#eef4fc;border:1px solid #cfdff2;border-radius:14px;padding:14px 18px;font-size:16px;color:#1e293b;margin-top:18px}}
+[data-testid="stMain"] [data-testid="stLayoutWrapper"] > [data-testid="stVerticalBlock"][class*="border"],[data-testid="stPlotlyChart"],[data-testid="stDataFrame"]{{border-radius:14px}}
+[data-testid="stPlotlyChart"]{{background:#fff;border:1px solid #e6eaf0;padding:6px;box-shadow:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05)}}
+[data-testid="stMain"] .stButton button[kind="primary"],[data-testid="stMain"] .stDownloadButton button{{border-radius:9px;font-weight:600}}
+.brief{{background:#f0fdfa;border:1px solid #99f6e4;border-radius:14px;padding:16px 18px;color:#1e293b}}
 .brief h4{{color:{TEAL};font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 4px}}
 .ai{{background:{TEAL};color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px}}
 .rb{{background:#64748b;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px}}
@@ -139,7 +145,7 @@ def go(p):
 
 
 LOGO = f"""<div class="brand"><svg width="46" height="52" viewBox="0 0 46 52" xmlns="http://www.w3.org/2000/svg">
-<path d="M23 2 L42 9 V24 C42 37 33 46 23 50 C13 46 4 37 4 24 V9 Z" fill="{TEAL}" stroke="#5eead4" stroke-width="2"/>
+<path d="M23 2 L42 9 V24 C42 37 33 46 23 50 C13 46 4 37 4 24 V9 Z" fill="{BLUE2}"/>
 <path d="M14 26 L20.5 32.5 L33 19" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg><div><div class="bname">ClaimGuard</div><div class="btag">Health claim fraud detection</div></div></div>"""
 
@@ -157,7 +163,7 @@ with st.sidebar:
     dmin, dmax = scored.service_date.min().date(), scored.service_date.max().date()
     with st.container(border=True):
         st.markdown('<div class="navlabel" style="margin-top:0">DATASET</div>', unsafe_allow_html=True)
-        st.markdown(f'<div style="font-size:14px;color:#fff;font-weight:600">{st.session_state.data_name}</div>',
+        st.markdown(f'<div style="font-size:14px;color:#0f2d52;font-weight:600">{st.session_state.data_name}</div>',
                     unsafe_allow_html=True)
         st.button("Change dataset", key="to-upload", on_click=go, args=("Data Upload",), width="stretch",
                   type="secondary")
