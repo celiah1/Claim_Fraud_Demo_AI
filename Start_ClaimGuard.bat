@@ -20,7 +20,7 @@ if not defined PY (
 )
 
 REM ---- Install packages on first run ----
-%PY% -c "import streamlit, pandas, plotly, sklearn, joblib, anthropic" >nul 2>&1
+%PY% -c "import streamlit, pandas, plotly, sklearn, joblib, anthropic, pypdf, openpyxl" >nul 2>&1
 if errorlevel 1 (
   echo Installing required packages, please wait...
   %PY% -m pip install --quiet --disable-pip-version-check -r requirements.txt

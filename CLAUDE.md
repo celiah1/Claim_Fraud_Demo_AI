@@ -11,6 +11,8 @@ Health insurance claim fraud detection MVP ("ClaimGuard"). Python + pandas + Str
 - Feedback loop: `src/feedback.py` (decisions in output/feedback.csv, latest per case wins). `src/simulate_feedback.py --reset` seeds demo reviews.
 - ML model: `src/ml_model.py` (run from src/ or with src on sys.path), saved to models/. Uses feedback labels at 50+ per class, else planted ground truth. Time split at 2026-09-01.
 - Launcher: `Start_ClaimGuard.bat` -> http://claimguard.localhost:8503 (8501 is used by the user's separate "VS code Demo" Northstar app).
+- Claim Intake page (first page): `src/intake.py` rule-based extraction from PDF (pypdf layout mode)/txt/eml/csv/xlsx into the 12-column schema, with status Ready/Check/Fix and reason strings. Messy samples in data/messy (`src/generate_messy_pdfs.py`). `extract(method="claude")` is a placeholder until API credit.
+- Style: "Executive Clean" (white sidebar, Inter font, soft cards); don't apply Inter to Material icon spans.
 - Next: Claude reads clinical notes for upcoding (needs API credit), Batch API nightly run (needs credit).
 - Verify the app headlessly with streamlit.testing AppTest if the browser pane is hidden.
 - Keep detection rules explainable; every flag needs a reason string.

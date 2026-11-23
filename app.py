@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "src"))
 import detect  # noqa: E402
 import feedback  # noqa: E402
+import intake  # noqa: E402
 import ml_model  # noqa: E402
 import summarize  # noqa: E402
 
@@ -23,7 +24,7 @@ RISK = {"High": "#dc2626", "Medium": "#d97706", "Low": "#16a34a"}
 TYPE_LABEL = {"duplicate": "Duplicate Billing", "near_duplicate": "Near-Duplicate",
               "impossible_day": "Impossible Day", "upcoding": "Upcoding"}
 TYPE_COLOR = {"Duplicate Billing": NAVY, "Near-Duplicate": BLUE2, "Impossible Day": BLUE, "Upcoding": "#93b4d9"}
-PAGES = {"Data Upload": "📥", "Fraud Overview": "📊", "Provider Risk": "🩺", "Investigator Queue": "🔍",
+PAGES = {"Claim Intake": "🧾", "Data Upload": "📥", "Fraud Overview": "📊", "Provider Risk": "🩺", "Investigator Queue": "🔍",
          "Feedback Loop": "🔁", "Model Evaluation": "✅"}
 REQUIRED = ["claim_id", "member_id", "provider_id", "provider_name", "specialty", "service_date", "submitted_date",
             "cpt_code", "cpt_description", "icd10_code", "units", "billed_amount"]
@@ -135,7 +136,7 @@ def money(x):
 
 
 # ---------------- Sidebar ----------------
-st.session_state.setdefault("page", "Data Upload")
+st.session_state.setdefault("page", "Claim Intake")
 st.session_state.setdefault("data_bytes", None)
 st.session_state.setdefault("data_name", "Sample dataset (synthetic, 8,498 claims)")
 
@@ -154,7 +155,7 @@ with st.sidebar:
     with st.container(border=True):
         st.markdown('<div class="navlabel" style="margin-top:0">PAGES</div>', unsafe_allow_html=True)
         for p in PAGES:
-            label = f"{p}  ✦ AI" if p == "Investigator Queue" else p   # marks a page with AI features
+            label = f"{p}  ✦ AI" if p == "Investigator Queue" else f"{p}  · NEW" if p == "Claim Intake" else p
             st.button(label, key=f"nav-{p}", on_click=go, args=(p,), width="stretch",
                       type="primary" if st.session_state.page == p else "secondary")
     page = st.session_state.page
@@ -197,6 +198,109 @@ flagged = scored[scored.claim_id.isin(flag_ids)].drop(columns="fraud_type", erro
 
 briefs = summarize.load_cache()
 open_cases = cases[~cases.status.isin([feedback.CONFIRMED, feedback.NOT_FRAUD])]
+
+# ================= 00. Claim Intake =================
+if page == "Claim Intake":
+    page_header("Claim Intake",
+                "Turn messy claim documents (receipts, superbills, emails, odd spreadsheets) into clean claim rows, "
+                "review them, and send them to the fraud checks.")
+    st.markdown('<div class="steps"><b>How it works</b><ol><li><b>Upload</b> PDFs, text/email files or spreadsheets '
+                '(or load the messy samples).</li><li><b>Extract</b>: rules pull out member, provider, date, procedure '
+                'code, units and amount, and explain every value they fill in.</li><li><b>Review</b>: fix any row '
+                'marked <span class="bad">Fix</span> and read the <b>Check</b> warnings.</li><li><b>Export</b> a clean CSV, '
+                'or add the rows to the dataset and run detection.</li></ol></div>', unsafe_allow_html=True)
+
+    section(1, "Upload Messy Claims", "Text PDFs, .txt / .eml notes, or .csv / .xlsx files with any column names. "
+            "Scanned images are not supported yet (that needs OCR or Claude).")
+    l, r = st.columns([1.5, 1])
+    with l:
+        ups = st.file_uploader("Claim documents", type=["pdf", "txt", "eml", "md", "csv", "xlsx"],
+                               accept_multiple_files=True, key="intake_up")
+    with r:
+        st.markdown('<div class="check"><b>Extraction engine</b><br>● Rules: active, $0<br>'
+                    '<span style="color:#94a3b8">○ Claude: off (no API credit yet)</span></div>', unsafe_allow_html=True)
+        st.write("")
+        use_samples = st.button("📂 Load messy samples", width="stretch")
+    if use_samples:
+        st.session_state.intake_files = [(p.name, p.read_bytes()) for p in sorted((ROOT / "data" / "messy").iterdir())
+                                         if p.suffix.lower() in (".pdf", ".txt", ".eml", ".md", ".csv", ".xlsx")]
+        st.session_state.pop("intake_df", None)
+    elif ups:
+        files = [(u.name, u.getvalue()) for u in ups]
+        if files != st.session_state.get("intake_files"):
+            st.session_state.intake_files = files
+            st.session_state.pop("intake_df", None)
+
+    files = st.session_state.get("intake_files")
+    if not files:
+        st.markdown('<div class="next">⬆ Upload documents or click <b>Load messy samples</b> to start.</div>',
+                    unsafe_allow_html=True)
+    else:
+        if "intake_df" not in st.session_state:
+            with st.spinner("Extracting claim lines..."):
+                st.session_state.intake_df, st.session_state.intake_src = intake.extract(files)
+        idf = st.session_state.intake_df
+        st.caption("Documents: " + " · ".join(n for n, _ in files))
+
+        n_fix, n_chk, n_ok = (idf.status == intake.FIX).sum(), (idf.status == intake.CHECK).sum(), (idf.status == intake.READY).sum()
+        section(2, "What Was Extracted", f"<b>{len(idf)}</b> claim lines from <b>{len(files)}</b> documents. "
+                f"The <b>How filled</b> column in the table below lists every value the rules inferred, and why.")
+        c1, c2, c3, c4 = st.columns(4)
+        kpi(c1, "Claim Lines", f"{len(idf)}", f"from {len(files)} documents")
+        kpi(c2, "Ready", f"{n_ok}", "nothing to check")
+        kpi(c3, "Check", f"{n_chk}", "usable, but read the warning")
+        kpi(c4, "Fix", f"{n_fix}", "a required value is missing")
+
+        section(3, "Review & Fix", "Edit any cell to correct it, then press <b>Re-check</b>. Rows marked "
+                "<span class='bad'>Fix</span> are left out of the export until they are complete.")
+        show = ["status", "claim_id", "member_id", "provider_id", "provider_name", "specialty", "service_date",
+                "submitted_date", "cpt_code", "cpt_description", "icd10_code", "units", "billed_amount", "issues",
+                "inferred", "source"]
+        badge = {intake.READY: "🟢 Ready", intake.CHECK: "🟠 Check", intake.FIX: "🔴 Fix"}
+        edited = st.data_editor(
+            idf[show].assign(status=idf.status.map(badge)), hide_index=True, width="stretch", height=420, key="intake_editor",
+            disabled=["status", "issues", "inferred", "source"],
+            column_config={
+                "status": st.column_config.TextColumn("Status", width="small"),
+                "service_date": st.column_config.DateColumn("service_date"),
+                "submitted_date": st.column_config.DateColumn("submitted_date"),
+                "units": st.column_config.NumberColumn("units", min_value=0, step=1),
+                "billed_amount": st.column_config.NumberColumn("billed_amount", format="$%.2f", min_value=0),
+                "issues": st.column_config.TextColumn("Issues", width="large"),
+                "inferred": st.column_config.TextColumn("How filled", width="large"),
+            })
+        b1, b2 = st.columns([1, 4])
+        if b1.button("↻ Re-check edits", width="stretch"):
+            merged = idf.copy()
+            for c in show:
+                if c not in ("status", "issues", "inferred", "source"):
+                    merged[c] = edited[c].values
+            st.session_state.intake_df = intake.validate(merged)
+            st.rerun()
+
+        with st.expander("📄 Source text of each document (what the rules read)"):
+            doc = st.selectbox("Document", list(st.session_state.intake_src))
+            st.code(st.session_state.intake_src[doc], language=None)
+
+        section(4, "Export", "Only rows that are Ready or Check are exported.")
+        out = intake.to_claims(st.session_state.intake_df)
+        e1, e2, e3 = st.columns([1.2, 1.6, 2])
+        e1.download_button(f"⬇ Download clean CSV ({len(out)} rows)", out.to_csv(index=False).encode(),
+                           "intake_claims.csv", "text/csv", width="stretch", disabled=out.empty)
+        if e2.button(f"▶ Add {len(out)} rows to the dataset & analyse", type="primary", width="stretch",
+                     disabled=out.empty):
+            base = pd.read_csv(pd.io.common.BytesIO(st.session_state.data_bytes), dtype={"cpt_code": str}) \
+                if st.session_state.data_bytes else pd.read_csv(ROOT / "data" / "claims.csv", dtype={"cpt_code": str})
+            base = base[~base.claim_id.astype(str).str.startswith("INT-")]   # replace any earlier intake rows
+            new = out.assign(planted_fraud=False, fraud_type="") if "planted_fraud" in base else out
+            combined = pd.concat([base, new], ignore_index=True)
+            st.session_state.data_bytes = combined.to_csv(index=False).encode()
+            st.session_state.data_name = f"Sample + {len(out)} intake claims ({len(combined):,} claims)"
+            st.session_state.page = "Data Upload"
+            st.rerun()
+        e3.markdown('<div style="font-size:14px;color:#64748b;padding-top:4px">Adding to the dataset lets the '
+                    'duplicate, impossible-day and upcoding checks compare these claims with each provider\'s '
+                    'history.</div>', unsafe_allow_html=True)
 
 # ================= 0. Data Upload =================
 if page == "Data Upload":
