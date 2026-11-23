@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClaimGuard Structure Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--green:#16a34a;--bg:#eef2f6;--line:#dfe5ec;--mut:#64748b;--txt:#1e293b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--txt)}
+header{background:var(--navy);color:#fff;padding:20px 32px}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:#cfe2f7;font-size:14px}
+.tabs{display:flex;gap:8px;padding:16px 32px 0;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font:600 14px Inter,"Segoe UI",sans-serif;color:var(--navy);text-align:left}
+.tab small{display:block;font-weight:500;color:var(--mut);font-size:12px}.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}.tab.on small{color:#cfe2f7}
+main{padding:16px 32px 40px;display:grid;grid-template-columns:1fr 330px;gap:20px;align-items:start}
+.frame{background:#fff;border:1px solid #cbd5e1;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(15,45,82,.10);height:600px;display:flex;flex-direction:column}
+.chrome{height:26px;background:#e2e8f0;display:flex;align-items:center;gap:6px;padding:0 12px;flex-shrink:0}.chrome i{width:9px;height:9px;border-radius:50%;background:#cbd5e1}
+/* top progress zone */
+.topz{flex-shrink:0;border-bottom:1px solid var(--line);background:#fff}
+.zl{position:absolute;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:#c2410c;background:#fff7ed;border:1px dashed #fdba74;border-radius:4px;padding:1px 5px}
+.body{flex:1;display:flex;min-height:0}
+.left{flex-shrink:0;position:relative;background:#fff;border-right:1px solid var(--line);overflow:auto;position:relative}
+.content{flex:1;background:#f6f8fb;padding:18px;position:relative}
+.ph{border:2px dashed #cbd5e1;border-radius:12px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#94a3b8;font-weight:600;font-size:14px;text-align:center}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--navy);font-size:15px;padding:14px 14px 10px}
+.brand i{width:20px;height:22px;background:var(--blue2);border-radius:5px 5px 10px 10px}
+.grp{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;margin:12px 16px 4px}
+.it{display:flex;align-items:center;gap:9px;margin:1px 8px;padding:8px 10px;border-radius:8px;font-size:13px;color:#475569;cursor:pointer}
+.it:hover{background:#f1f5fa}.it.on{background:#e8f1fb;color:var(--navy);font-weight:700;box-shadow:inset 3px 0 0 var(--navy)}
+.ic{width:18px;height:18px;border-radius:5px;background:#e2e8f0;flex-shrink:0}.it.on .ic{background:var(--navy)}
+.badge{margin-left:auto;font-size:10px;font-weight:700;background:#fde8e8;color:#b91c1c;border-radius:8px;padding:1px 6px}
+.foot{margin:14px 12px;border-top:1px solid var(--line);padding-top:10px;font-size:11px;color:var(--mut)}
+/* progress styles */
+.stepper{display:flex;align-items:center;gap:8px;padding:12px 18px}
+.st{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#94a3b8;cursor:pointer;white-space:nowrap}
+.st b{width:24px;height:24px;border-radius:50%;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-size:11px}
+.st.done{color:var(--green)}.st.done b{background:var(--green);border-color:var(--green);color:#fff}
+.st.on{color:var(--navy)}.st.on b{border-color:var(--navy);background:var(--navy);color:#fff}
+.ln{flex:1;height:2px;background:#e2e8f0;min-width:20px}.ln.done{background:var(--green)}
+.st small{display:block;font-size:10.5px;font-weight:500;color:var(--mut)}
+.pbar{padding:10px 18px 12px}.pbar .row{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-bottom:6px}.pbar .row b{color:var(--navy)}
+.track{display:flex;height:10px;border-radius:5px;overflow:hidden;background:#e2e8f0}.track i{display:block;height:100%}
+.segs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 18px}
+.seg{border-radius:8px;padding:6px 10px;background:#f1f5f9;font-size:12px;color:var(--mut);cursor:pointer}.seg b{display:block;color:var(--navy);font-size:13px}
+.seg .m{height:4px;border-radius:2px;background:#e2e8f0;margin-top:6px;overflow:hidden}.seg .m i{display:block;height:100%;background:var(--teal)}
+.seg.on{background:var(--navy);color:#cfe2f7}.seg.on b{color:#fff}.seg.on .m{background:#33557d}.seg.on .m i{background:#5eead4}
+.rail .it{justify-content:center;padding:10px;margin:2px 8px}.rail .it span:not(.ic){display:none}.rail .brand span,.rail .foot{display:none}.rail .brand{justify-content:center;padding:14px 0}.rail .it .ic{width:20px;height:20px}.rail .grp{display:none}
+.crumbbar{display:flex;align-items:center;gap:10px;padding:8px 18px;border-top:1px solid #f0f3f7;font-size:12px;color:var(--mut)}.crumbbar b{color:var(--navy)}
+.case{display:flex;align-items:center;gap:10px;padding:10px 18px;font-size:12.5px;color:var(--mut)}
+.chip{background:#e8f1fb;color:var(--navy);font-weight:700;border-radius:8px;padding:3px 8px;font-size:12px}
+/* info panel */
+.info{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:sticky;top:16px}
+.info h2{margin:0 0 6px;font-size:18px;color:var(--navy)}.info p{margin:0 0 12px;font-size:13.5px;line-height:1.55;color:#334155}
+.kv{font-size:13px;margin-bottom:10px}.kv b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:2px}
+.pro,.con{font-size:13px;line-height:1.55;border-radius:10px;padding:10px 12px;margin-bottom:8px}.pro{background:#f0fdf4;border:1px solid #bbf7d0}.con{background:#fef2f2;border:1px solid #fecaca}
+.pro ul,.con ul{margin:4px 0 0;padding-left:16px}.pro b,.con b{font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.reco{display:inline-block;background:#e6f4f2;color:var(--teal);font-size:11px;font-weight:800;border-radius:8px;padding:2px 8px;margin-bottom:8px}
+.try{font-size:12px;color:var(--blue2);font-weight:600;margin-top:8px}
+@media(max-width:1000px){main{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>ClaimGuard · structure options</h1><p>Every option uses the same rule: <b>the top shows progress</b> and <b>the left panel is navigation</b>, and the two never repeat each other. Content is left blank on purpose. Click the steps and menu items to see how each one behaves.</p></header>
+<div class="tabs" id="tabs"></div>
+<main><div class="frame" id="frame"></div><aside class="info" id="info"></aside></main>
+<script>
+const PAGES=[["Home","home"],["Claim Intake","intake"],["Data Upload","upload"],["Flag Overview","overview"],["Provider Risk","providers"],["Investigator Queue","queue"],["Review Outcomes","feedback"],["Executive Dashboard","exec"],["Model Evaluation","model"],["Data & Access","gov"],["How ClaimGuard Works","tech"]];
+const STAGE={intake:0,upload:0,overview:1,providers:1,queue:2,feedback:2,exec:3,model:3,gov:3,tech:3,home:-1};
+const STAGES=[["Bring in claims","intake"],["Find unusual claims","overview"],["Review cases","queue"],["Report","exec"]];
+const name=k=>PAGES.find(p=>p[1]===k)[0];
+let OPT=0,PAGE="queue";
+const nav=(groups,cls='')=>`<div class="brand"><i></i><span>ClaimGuard</span></div>`+groups.map(([g,items])=>(g?`<div class="grp">${g}</div>`:'')+items.map(k=>`<div class="it ${k===PAGE?'on':''}" data-p="${k}" title="${name(k)}"><span class="ic"></span><span>${name(k)}</span>${k==='queue'?'<span class="badge">2</span>':''}</div>`).join('')).join('')+(cls?'':`<div class="foot">Signed in: A. Chan<br>Dataset SYN-2026Q3</div>`);
+const stepper=(withSub)=>{const s=STAGE[PAGE];return `<div class="stepper">${STAGES.map(([l,k],i)=>`${i?`<span class="ln ${i<=s?'done':''}"></span>`:''}<span class="st ${i<s?'done':i===s?'on':''}" data-p="${k}"><b>${i<s?'✓':i+1}</b><span>${l}${withSub?`<small>${["14 rows added","186 flagged","60 of 186 reviewed","Report ready"][i]}</small>`:''}</span></span>`).join('')}</div>`};
+const OPTS=[
+ {t:"1 · Stage stepper + purpose menu",s:"Top: workflow stage · Left: pages by purpose",reco:true,
+  top:()=>stepper(true),
+  left:()=>nav([["Workspace",["home","queue","feedback"]],["Data",["intake","upload"]],["Insights",["overview","providers","exec"]],["Admin",["model","gov","tech"]]]),w:230,
+  why:"The top stepper answers <b>where am I in the workflow</b> (4 stages, ticked as they are done, with a one-line status). The left menu is grouped by <b>what the page is for</b> (Workspace, Data, Insights, Admin), not by stage, so the two never list the same thing.",
+  pro:["Clear progress for demos and new users","Daily pages (Queue) sit at the top of the menu","Closest to today's app"],con:["Two ways to reach a page (step or menu)"]},
+ {t:"2 · Stage tabs + context menu",s:"Top: stages · Left: only this stage's pages",
+  top:()=>stepper(false),
+  left:()=>{const s=STAGE[PAGE];const sets=[["intake","upload"],["overview","providers"],["queue","feedback"],["exec","model","gov","tech"]];return nav([[s<0?"Start":STAGES[s][0],s<0?["home"]:sets[s]],["",["home"]]])},w:210,
+  why:"The top shows the 4 stages and which one you're in. The left panel lists <b>only the pages inside the current stage</b>. Click a different stage on top and the left menu changes. Nothing is ever shown twice.",
+  pro:["Shortest left menu (2–4 items)","Very easy to follow","Strong sense of progress"],con:["Pages in other stages are one extra click away","Left panel changes, which some users find surprising"]},
+ {t:"3 · Progress bar + full menu",s:"Top: % of work done · Left: every page",
+  top:()=>`<div class="pbar"><div class="row"><span>Dataset <b>SYN-2026Q3</b> · 186 flagged cases</span><span><b>60 reviewed (32%)</b> · 31 substantiated · 126 open</span></div><div class="track"><i style="width:18%;background:#16a34a"></i><i style="width:14%;background:#3b7cc4"></i><i style="width:68%;background:#e2e8f0"></i></div><div class="row" style="margin:6px 0 0"><span>■ Substantiated &nbsp; ■ Other outcomes &nbsp; □ Not reviewed yet</span><span>You are on: <b>${name(PAGE)}</b></span></div></div>`,
+  left:()=>nav([["Bring in claims",["intake","upload"]],["Find unusual claims",["overview","providers"]],["Review",["queue","feedback"]],["Leadership & admin",["exec","model","gov","tech"]]]),w:230,
+  why:"The top is a <b>work progress bar</b> for the dataset: how many flagged cases have been reviewed and with what result. It measures the work, not the pages. The left panel is the full menu.",
+  pro:["Progress means something to managers (cases done)","Every page one click away"],con:["Doesn't show the step-by-step order","Bar is less useful on Intake pages"]},
+ {t:"4 · Progress cards + icon rail",s:"Top: 4 stage cards with counts · Left: slim icon menu",
+  top:()=>{const s=STAGE[PAGE];return `<div class="segs">${STAGES.map(([l,k],i)=>`<div class="seg ${i===s?'on':''}" data-p="${k}"><b>${i+1} · ${l}</b>${["14 of 17 rows accepted","186 flagged · $412K","60 of 186 reviewed","3 reports"][i]}<div class="m"><i style="width:${[82,100,32,60][i]}%"></i></div></div>`).join('')}</div>`},
+  left:()=>`<div class="rail">${nav([["",PAGES.map(p=>p[1])]],'rail')}</div>`,w:64,
+  why:"The top has <b>4 stage cards</b>, each with its own progress meter and a count, so progress is rich and clickable. The left panel shrinks to an <b>icon rail</b> (labels appear on hover), giving the content almost the full width.",
+  pro:["Most room for the queue table and charts","Progress shows numbers, not just ticks"],con:["Icons need learning; hover for labels","Top bar is taller"]},
+ {t:"5 · Case journey on top + menu",s:"Top: progress of the open case · Left: pages",
+  top:()=>PAGE==='queue'?`<div class="case"><span class="chip">Case DUP-INT-0003</span>${stepper(false).replace('class="stepper"','class="stepper" style="padding:0;flex:1"').replace(/Bring in claims/,'Flagged').replace(/Find unusual claims/,'Evidence checked').replace(/Review cases/,'Outcome recorded').replace(/Report/,'Approved & reported')}</div>`:stepper(false),
+  left:()=>nav([["Workspace",["home","queue","feedback"]],["Data",["intake","upload"]],["Insights",["overview","providers","exec"]],["Admin",["model","gov","tech"]]]),w:230,
+  why:"Like option 1, but inside the Investigator Queue the top switches to the <b>progress of the case you have open</b>: Flagged → Evidence checked → Outcome recorded → Approved &amp; reported. Elsewhere it shows the workflow stages.",
+  pro:["Progress is most useful where people spend their time","Shows the case's end-to-end journey"],con:["Top bar means two different things depending on the page"]}
+];
+function render(){const o=OPTS[OPT];
+ document.getElementById('tabs').innerHTML=OPTS.map((x,i)=>`<button class="tab ${i===OPT?'on':''}" data-o="${i}">${x.t}${x.reco?' ★':''}<small>${x.s}</small></button>`).join('');
+ document.getElementById('frame').innerHTML=`<div class="chrome"><i></i><i></i><i></i></div><div class="topz" style="position:relative"><span class="zl" style="left:8px;top:-1px">PROGRESS</span>${o.top()}</div>
+  <div class="body"><div class="left" style="width:${o.w}px"><span class="zl" style="left:6px;bottom:6px">NAV</span>${o.left()}</div><div class="content"><div class="ph">${name(PAGE)}<br><span style="font-weight:500;font-size:12px">page content</span></div></div></div>`;
+ document.getElementById('info').innerHTML=`${o.reco?'<span class="reco">★ RECOMMENDED</span>':''}<h2>${o.t.slice(4)}</h2><p>${o.why}</p><div class="kv"><b>Top</b>${o.s.split(' · ')[0].replace('Top: ','')}</div><div class="kv"><b>Left</b>${o.s.split(' · ')[1].replace('Left: ','')}</div>
+  <div class="pro"><b>Strengths</b><ul>${o.pro.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="con"><b>Watch out</b><ul>${o.con.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="try">Try it: click a step on top or an item on the left.</div>`}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-o]');if(t){OPT=+t.dataset.o;render();return}const p=e.target.closest('[data-p]');if(p){PAGE=p.dataset.p;render()}});
+render();
+</script>
+</body></html>

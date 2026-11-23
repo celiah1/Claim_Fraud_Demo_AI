@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClaimGuard Navigation Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--bg:#f3f5f8;--line:#e2e8f0;--mut:#64748b;--txt:#1e293b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--txt)}
+header{background:var(--navy);color:#fff;padding:22px 32px}header h1{margin:0;font-size:24px}header p{margin:4px 0 0;color:#cfe2f7;font-size:14px}
+main{max-width:1200px;margin:0 auto;padding:22px 24px 40px}
+.opt{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:20px;overflow:hidden}
+.opt>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 20px}
+.opt>summary::-webkit-details-marker{display:none}
+.opt>summary .l{width:36px;height:36px;border-radius:10px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.opt>summary h2{margin:0;font-size:18px;color:var(--navy)}.opt>summary p{margin:2px 0 0;font-size:13.5px;color:var(--mut)}
+.opt>summary .chev{margin-left:auto;color:var(--mut);transition:transform .2s}.opt[open]>summary .chev{transform:rotate(180deg)}
+.body{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;padding:0 20px 20px}
+.frame{border:1px solid #cbd5e1;border-radius:12px;overflow:hidden;background:#f8fafc;height:330px;display:flex;flex-direction:column;font-size:11px;box-shadow:0 8px 24px rgba(15,45,82,.08)}
+.chrome{height:22px;background:#e2e8f0;display:flex;align-items:center;gap:5px;padding:0 10px}.chrome i{width:8px;height:8px;border-radius:50%;background:#cbd5e1}
+.wf-top{background:var(--navy);color:#fff;display:flex;align-items:center;gap:4px;padding:0 10px;height:40px}
+.wf-top b{margin-right:14px;font-size:12px}
+.step{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:16px;color:#cfe2f7;font-weight:600}
+.step span{width:16px;height:16px;border-radius:50%;border:1.5px solid #8fb3dc;display:flex;align-items:center;justify-content:center;font-size:9px}
+.step.done span{background:#16a34a;border-color:#16a34a;color:#fff}.step.on{background:#fff;color:var(--navy)}.step.on span{border-color:var(--navy)}
+.sep{color:#5d7fa6}
+.subtabs{display:flex;gap:2px;background:#fff;border-bottom:1px solid var(--line);padding:0 12px}.subtabs span{padding:8px 10px;color:var(--mut);font-weight:600}.subtabs span.on{color:var(--navy);border-bottom:2px solid var(--navy)}
+.menu{margin-left:auto;border:1px solid #5d7fa6;border-radius:6px;padding:3px 8px;color:#cfe2f7}
+.content{flex:1;padding:12px;display:grid;gap:8px;grid-template-columns:1fr 1fr 1fr;align-content:start}
+.blkx{background:#fff;border:1px solid var(--line);border-radius:8px;height:46px}.blkx.w2{grid-column:span 2}.blkx.w3{grid-column:span 3}.blkx.t{height:120px}
+.row2{display:flex;flex:1;min-height:0}
+.side{width:150px;background:#fff;border-right:1px solid var(--line);padding:10px 8px}
+.side .g{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;margin:8px 4px 4px}
+.side .it{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:6px;color:#475569}
+.side .it span{width:14px;height:14px;border-radius:50%;border:1.5px solid #cbd5e1;font-size:8px;display:flex;align-items:center;justify-content:center}
+.side .it.done span{background:#16a34a;border-color:#16a34a;color:#fff}.side .it.on{background:var(--navy);color:#fff}.side .it.on span{border-color:#fff}
+.side .bar{height:4px;border-radius:2px;background:#e2e8f0;margin:2px 4px 8px;overflow:hidden}.side .bar i{display:block;height:100%;width:55%;background:var(--teal)}
+.crumbx{padding:10px 12px 0;color:var(--mut)}.crumbx b{color:var(--navy)}
+.hub{flex:1;padding:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-content:start}
+.tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;border-top:3px solid var(--blue2);height:110px}
+.tile b{display:block;color:var(--navy);font-size:12px;margin-bottom:4px}.tile small{color:var(--mut);line-height:1.4}.tile em{display:inline-block;margin-top:8px;font-style:normal;background:#e8f1fb;color:var(--navy);border-radius:8px;padding:2px 6px;font-weight:700}
+.hubhead{grid-column:span 4;background:linear-gradient(120deg,#0f2d52,#2b5f94);color:#fff;border-radius:10px;padding:12px 14px}.hubhead b{font-size:14px}
+.ws{background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 12px;height:36px}.ws .back{color:var(--blue2);font-weight:600}.ws .t{color:var(--navy);font-weight:700}
+.info h3{margin:0 0 8px;color:var(--navy);font-size:15px}.info p{margin:0 0 10px;font-size:14px;line-height:1.55;color:#334155}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.pc div{border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.5}.pc ul{margin:4px 0 0;padding-left:16px}
+.pro{background:#f0fdf4;border:1px solid #bbf7d0}.con{background:#fef2f2;border:1px solid #fecaca}.pc b{font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.best{font-size:13px;background:#eef4fc;border-radius:10px;padding:10px 12px}.best b{color:var(--navy)}
+.reco{background:#fff;border:2px solid var(--teal);border-radius:16px;padding:16px 20px;margin-bottom:20px}.reco h2{margin:0 0 6px;color:var(--teal);font-size:17px}.reco p{margin:0;font-size:14px;line-height:1.55}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid #eef1f5;text-align:left}th{background:#f8fafc;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+td.c{text-align:center}
+@media(max-width:900px){.body{grid-template-columns:1fr}.pc{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>ClaimGuard · 3 ways to organise the app</h1><p>Each option uses one navigation system. The left panel and a top progress bar never repeat the same steps. Click an option to expand or collapse it.</p></header>
+<main>
+<div class="reco"><h2>Recommendation: Option C, Home hub + workspaces</h2><p>Investigators spend their day in one place (the queue) and leaders in another (the dashboard). A hub opens straight into each workspace, and the workspace has only its own few tabs, so there's no long sidebar and no duplicate progress bar. Option A is the best fit if the demo is mainly a guided walkthrough for new viewers.</p></div>
+
+<details class="opt" open><summary><div class="l">A</div><div><h2>Top stepper only (no left panel)</h2><p>The 3 stages are the top bar; each stage has a few sub-tabs. Admin pages sit in one menu.</p></div><span class="chev">▾</span></summary>
+<div class="body">
+ <div class="frame"><div class="chrome"><i></i><i></i><i></i></div>
+  <div class="wf-top"><b>ClaimGuard</b><span class="step done"><span>✓</span>Bring in claims</span><span class="sep">›</span><span class="step on"><span>2</span>Find unusual claims</span><span class="sep">›</span><span class="step"><span>3</span>Review &amp; report</span><span class="menu">☰ Admin</span></div>
+  <div class="subtabs"><span class="on">Flag Overview</span><span>Provider Risk</span></div>
+  <div class="content"><div class="blkx"></div><div class="blkx"></div><div class="blkx"></div><div class="blkx t w2"></div><div class="blkx t"></div></div></div>
+ <div class="info"><h3>How it works</h3><p>The top bar is the only navigation: three stages in order, ticked off as you go. Inside a stage, 2–3 sub-tabs. Model Evaluation, Data &amp; Access and How ClaimGuard Works sit under an Admin menu.</p>
+  <div class="pc"><div class="pro"><b>Strengths</b><ul><li>Full page width for the queue and charts</li><li>Progress is obvious</li><li>Great for a guided demo</li></ul></div><div class="con"><b>Watch out</b><ul><li>Daily users click through stages to reach the queue</li><li>Admin pages less visible</li></ul></div></div>
+  <div class="best"><b>Best for:</b> stakeholder walkthroughs and first-time users.</div></div></div></details>
+
+<details class="opt" open><summary><div class="l">B</div><div><h2>Left panel only (progress built in)</h2><p>The sidebar holds the stages and shows progress itself. No top bar; each page has a small breadcrumb.</p></div><span class="chev">▾</span></summary>
+<div class="body">
+ <div class="frame"><div class="chrome"><i></i><i></i><i></i></div>
+  <div class="row2"><div class="side"><b style="color:var(--navy);font-size:12px;margin-left:4px">ClaimGuard</b>
+   <div class="g">Progress · 2 of 3</div><div class="bar"><i></i></div>
+   <div class="g">1 Bring in claims</div><div class="it done"><span>✓</span>Claim Intake</div><div class="it done"><span>✓</span>Data Upload</div>
+   <div class="g">2 Find unusual claims</div><div class="it on"><span>3</span>Flag Overview</div><div class="it"><span>4</span>Provider Risk</div>
+   <div class="g">3 Review &amp; report</div><div class="it"><span>5</span>Investigator Queue</div><div class="it"><span>6</span>Executive Dashboard</div></div>
+   <div style="flex:1;display:flex;flex-direction:column"><div class="crumbx">Find unusual claims › <b>Flag Overview</b></div><div class="content"><div class="blkx"></div><div class="blkx"></div><div class="blkx"></div><div class="blkx t w3"></div></div></div></div></div>
+ <div class="info"><h3>How it works</h3><p>One left panel holds every page, grouped by stage, with ticks and a small progress bar at the top of the panel. The page itself only shows a one-line breadcrumb, so nothing repeats.</p>
+  <div class="pc"><div class="pro"><b>Strengths</b><ul><li>Every page one click away</li><li>Closest to today's app, so the least rework</li><li>Familiar pattern</li></ul></div><div class="con"><b>Watch out</b><ul><li>Takes ~230 px of width from the queue</li><li>Long list of pages can feel heavy</li></ul></div></div>
+  <div class="best"><b>Best for:</b> analysts and admins who jump between many pages.</div></div></div></details>
+
+<details class="opt" open><summary><div class="l">C</div><div><h2>Home hub + workspaces (recommended)</h2><p>Home shows 4 workspaces. Inside a workspace, a slim tab bar lists just its pages, with a Home link back.</p></div><span class="chev">▾</span></summary>
+<div class="body">
+ <div class="frame"><div class="chrome"><i></i><i></i><i></i></div>
+  <div class="hub"><div class="hubhead"><b>Good morning. 126 flagged cases are open · 2 assigned to you</b></div>
+   <div class="tile"><b>Bring in claims</b><small>Claim Intake · Data Upload</small><br><em>3 rows to fix</em></div>
+   <div class="tile" style="border-top-color:var(--blue)"><b>Find unusual claims</b><small>Flag Overview · Provider Risk</small><br><em>186 flagged</em></div>
+   <div class="tile" style="border-top-color:var(--teal)"><b>Investigate</b><small>Investigator Queue · Review Outcomes</small><br><em>2 due this week</em></div>
+   <div class="tile" style="border-top-color:var(--navy)"><b>Leadership</b><small>Executive Dashboard · Model</small><br><em>52% substantiated</em></div></div></div>
+ <div class="info"><h3>How it works</h3><p>The home page is the map: four workspaces, each with a live count. Opening one shows a slim bar: <b>← Home · Investigate · [Queue] [Review Outcomes]</b>. How to Use and Common questions are on the home page.</p>
+  <div class="frame" style="height:120px;margin-bottom:10px"><div class="ws"><span class="back">← Home</span><span class="t">Investigate</span><span style="border-bottom:2px solid var(--navy);padding:9px 6px;font-weight:700;color:var(--navy)">Investigator Queue</span><span style="color:var(--mut)">Review Outcomes</span></div><div class="content"><div class="blkx w3"></div></div></div>
+  <div class="pc"><div class="pro"><b>Strengths</b><ul><li>Each user sees only 2–3 tabs at a time</li><li>Full width for work</li><li>Home answers "where do I start?"</li></ul></div><div class="con"><b>Watch out</b><ul><li>One extra click to switch workspace</li><li>Step-by-step order is less visible</li></ul></div></div>
+  <div class="best"><b>Best for:</b> daily investigators and leaders, and a clean demo.</div></div></div></details>
+
+<table><tr><th>Compare</th><th>A · Top stepper</th><th>B · Left panel</th><th>C · Hub + workspaces</th></tr>
+ <tr><td>Width for queue and charts</td><td class="c">Full</td><td class="c">Minus sidebar</td><td class="c">Full</td></tr>
+ <tr><td>Shows step-by-step progress</td><td class="c">Strong</td><td class="c">Good</td><td class="c">Light</td></tr>
+ <tr><td>Clicks to reach the queue</td><td class="c">1–2</td><td class="c">1</td><td class="c">1 from Home</td></tr>
+ <tr><td>Rework in app.py</td><td class="c">Medium</td><td class="c">Low</td><td class="c">Medium</td></tr>
+ <tr><td>Navigation systems on screen</td><td class="c">1 (top)</td><td class="c">1 (left)</td><td class="c">1 (hub, then slim tabs)</td></tr></table>
+</main></body></html>

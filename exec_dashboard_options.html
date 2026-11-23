@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Executive Dashboard · style options</title>
+<style>
+:root{--ink:#172033;--mut:#64748b;--line:#e5e9f0;--s1:#2a78d6;--s1l:#b7d3f6;--s3:#6250d6;--grey:#a3adbd;--red:#dc2626;--amber:#d97706;--green:#16a34a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:#f4f6f9;color:#1e293b}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 28px 60px}
+h1{font-size:26px;color:var(--ink);margin:0 0 4px}.lead{color:var(--mut);margin:0 0 18px;font-size:14.5px}
+.tabs{display:flex;gap:8px;margin-bottom:18px;position:sticky;top:0;background:#f4f6f9;padding:10px 0;z-index:5}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:22px;padding:9px 16px;font:600 14px Inter,"Segoe UI",sans-serif;color:#334155;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.opt{display:none}.opt.on{display:block}
+.why{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;color:#334155;margin-bottom:16px}.why b{color:var(--ink)}
+.frame{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06);overflow:hidden}
+.num{font-variant-numeric:tabular-nums}
+/* ---- A: Board brief ---- */
+.a-head{padding:22px 28px 6px;display:flex;justify-content:space-between;align-items:flex-end}
+.a-head .k{font-size:11.5px;letter-spacing:.12em;color:var(--s1);font-weight:700}.a-head h2{margin:4px 0 0;font-size:22px;color:var(--ink)}
+.a-head .per{font-size:13px;color:var(--mut)}
+.a-kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:14px}
+.a-kpis div{padding:16px 22px;border-right:1px solid var(--line)}.a-kpis div:last-child{border:0}
+.a-kpis .l{font-size:12.5px;color:var(--mut);font-weight:600}.a-kpis .v{font-size:32px;font-weight:800;color:var(--ink);margin:4px 0 2px;letter-spacing:-.02em}
+.a-kpis .d{font-size:12.5px;color:var(--mut)}.up{color:var(--green);font-weight:700}.dn{color:var(--red);font-weight:700}
+.a-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
+.a-body>section{padding:18px 24px;border-right:1px solid var(--line)}.a-body>section:last-child{border:0}
+.a-body h3,.c-main h3{margin:0 0 2px;font-size:15px;color:var(--ink)}.sub{margin:0 0 10px;font-size:12.5px;color:var(--mut)}
+.a-take{list-style:none;margin:0;padding:0}.a-take li{padding:10px 0;border-bottom:1px solid #f0f3f7;font-size:14px;line-height:1.45}.a-take li b{color:var(--ink)}
+.a-take li span{display:block;font-size:12px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);padding:7px 8px;border-bottom:1px solid var(--line)}td{padding:8px;border-bottom:1px solid #f0f3f7}td.r,th.r{text-align:right}
+/* ---- B: Scorecard ---- */
+.b-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px}
+.b-card{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fff}
+.b-card .top{display:flex;justify-content:space-between;align-items:center}.b-card h4{margin:0;font-size:14px;color:var(--ink)}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:12px}
+.st.g{background:#e7f6ec;color:#11793a}.st.a{background:#fdf1e1;color:#9a5a06}.st.r{background:#fde8e8;color:#b91c1c}
+.b-card .v{font-size:30px;font-weight:800;color:var(--ink);margin:10px 0 0}.b-card .t{font-size:12.5px;color:var(--mut)}
+.bullet{position:relative;height:16px;background:#eef2f7;border-radius:4px;margin:12px 0 4px}.bullet i{position:absolute;left:0;top:4px;height:8px;border-radius:3px;background:var(--ink)}.bullet em{position:absolute;top:-3px;width:3px;height:22px;background:var(--s1);border-radius:2px}
+.bscale{display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}
+.b-wide{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* ---- C: Analyst workspace ---- */
+.c-lay{display:grid;grid-template-columns:230px 1fr}
+.c-rail{background:#f8fafc;border-right:1px solid var(--line);padding:18px 16px;font-size:13px}
+.c-rail h5{margin:14px 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}.c-rail h5:first-child{margin-top:0}
+.c-rail label{display:flex;gap:8px;padding:4px 0;color:#334155}.c-rail select{width:100%;border:1px solid var(--line);border-radius:8px;padding:6px;font-size:13px;background:#fff}
+.c-main{padding:18px 22px}
+.c-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.c-kpis div{border:1px solid var(--line);border-radius:10px;padding:10px 12px}.c-kpis .l{font-size:11.5px;color:var(--mut)}.c-kpis .v{font-size:21px;font-weight:800;color:var(--ink)}
+.c-sm{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.c-sm>div{border:1px solid var(--line);border-radius:10px;padding:10px 12px}.c-sm b{font-size:13px;color:var(--ink)}.c-sm small{display:block;color:var(--mut);font-size:11.5px}
+.lg{display:flex;gap:16px;font-size:13px;color:#334155;margin:4px 0 6px}.lg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+svg text{font-family:Inter,"Segoe UI",sans-serif}
+</style></head><body><div class="wrap">
+<h1>Executive Dashboard: three style options</h1>
+<p class="lead">Same synthetic numbers in all three. Pick one (or mix parts) and I'll build it into the v6 demo. All use the new palette: ink #172033, blue #2a78d6, violet #6250d6 for a second series, red / amber / green only for status.</p>
+<div class="tabs"><button class="on" data-o="a">A · Board brief</button><button data-o="b">B · Scorecard vs targets</button><button data-o="c">C · Analyst workspace</button></div>
+
+<!-- ================= A ================= -->
+<div class="opt on" id="o-a">
+<div class="why"><b>Board brief.</b> Reads like a one-page report: four headline numbers with change vs last period, one main trend chart, and three written takeaways. Few colours (blue + grey, red only for substantiated). Best for a monthly leadership pack or a slide.</div>
+<div class="frame">
+ <div class="a-head"><div><div class="k">EXECUTIVE SUMMARY · SYNTHETIC DATA</div><h2>Claim screening, last 13 weeks</h2></div><div class="per">1 Jul – 30 Sep 2026 · vs previous 13 weeks</div></div>
+ <div class="a-kpis">
+  <div><div class="l">Billed on flagged claims</div><div class="v num">$412K</div><div class="d"><span class="up">▲ 8%</span> · 26% of all billed</div></div>
+  <div><div class="l">Cases reviewed</div><div class="v num">60<span style="font-size:15px;color:var(--mut);font-weight:600"> of 186</span></div><div class="d"><span class="dn">▼ 32% coverage</span> · 126 waiting</div></div>
+  <div><div class="l">Substantiated</div><div class="v num">52%</div><div class="d">31 of 60 reviewed · <span class="up">▲ 6 pts</span></div></div>
+  <div><div class="l">Median days to outcome</div><div class="v num">6.1</div><div class="d">target ≤ 7 · <span class="up">on target</span></div></div></div>
+ <div class="a-body">
+  <section><h3>New flags are outpacing reviews</h3><p class="sub">Cases per week · flagged vs reviewed</p>
+   <div class="lg"><span><i style="background:var(--s1)"></i>Flagged</span><span><i style="background:var(--grey)"></i>Reviewed</span></div>
+   <svg viewBox="0 0 640 230" width="100%"><g stroke="#eef2f7"><line x1="40" x2="630" y1="20" y2="20"/><line x1="40" x2="630" y1="70" y2="70"/><line x1="40" x2="630" y1="120" y2="120"/><line x1="40" x2="630" y1="170" y2="170"/></g>
+    <g font-size="12" fill="#64748b" text-anchor="end"><text x="32" y="24">24</text><text x="32" y="74">16</text><text x="32" y="124">8</text><text x="32" y="174">0</text></g>
+    <polyline fill="none" stroke="#a3adbd" stroke-width="2.5" points="50,128 97,122 144,116 191,125 238,112 285,118 332,106 379,110 426,100 473,104 520,96 567,100 614,92"/>
+    <polyline fill="none" stroke="#2a78d6" stroke-width="2.5" points="50,96 97,88 144,92 191,78 238,84 285,70 332,74 379,62 426,66 473,54 520,58 567,46 614,40"/>
+    <circle cx="614" cy="40" r="5" fill="#2a78d6"/><circle cx="614" cy="92" r="5" fill="#a3adbd"/><text x="608" y="30" font-size="12.5" text-anchor="end" fill="#172033" font-weight="700">21 flagged</text><text x="608" y="84" font-size="12.5" text-anchor="end" fill="#334155">13 reviewed</text>
+    <g font-size="12" fill="#64748b" text-anchor="middle"><text x="50" y="194">Wk 1</text><text x="191" y="194">Wk 4</text><text x="332" y="194">Wk 7</text><text x="473" y="194">Wk 10</text><text x="614" y="194">Wk 13</text></g></svg></section>
+  <section><h3>What leadership should know</h3><p class="sub">Written takeaways, each linked to its evidence</p>
+   <ul class="a-take"><li><b>Backlog is growing by ~6 cases a week.</b><span>Flags 21/wk vs reviews 13/wk in the last month. One extra reviewer would close the gap.</span></li>
+    <li><b>Unusual billed hours is the most productive rule.</b><span>$168K billed, 58% substantiated (14 of 24 reviewed).</span></li>
+    <li><b>$41K substantiated overpayment so far.</b><span>Prevented and recovered amounts: pending reconciliation with the claims system.</span></li></ul></section></div>
+ <div style="padding:6px 24px 20px"><h3 style="font-size:15px;color:var(--ink);margin:10px 0 6px">By flag reason</h3>
+  <table><tr><th>Flag reason</th><th class="r">Billed</th><th class="r">Cases</th><th class="r">Reviewed</th><th class="r">Substantiated</th></tr>
+   <tr><td>Unusual billed hours</td><td class="r num">$168K</td><td class="r num">48</td><td class="r num">24</td><td class="r num">14 (58%)</td></tr><tr><td>Repeated claim</td><td class="r num">$118K</td><td class="r num">61</td><td class="r num">22</td><td class="r num">13 (59%)</td></tr><tr><td>Visit level above peers</td><td class="r num">$89K</td><td class="r num">29</td><td class="r num">14</td><td class="r num">4 (29%)</td></tr><tr><td>Near-repeated claim</td><td class="r num">$37K</td><td class="r num">48</td><td class="r num">0</td><td class="r num">–</td></tr></table></div>
+</div></div>
+
+<!-- ================= B ================= -->
+<div class="opt" id="o-b">
+<div class="why"><b>Scorecard vs targets.</b> Every measure is shown against a target with a status badge (icon + word, never colour alone) and a bullet bar. Leadership sees at a glance what is on track. Best if the pilot has agreed targets.</div>
+<div class="frame"><div class="b-grid">
+ <div class="b-card"><div class="top"><h4>Review coverage</h4><span class="st r">✕ Off track</span></div><div class="v num">32%</div><div class="t">60 of 186 flagged cases reviewed · target 60%</div><div class="bullet"><i style="width:32%"></i><em style="left:60%"></em></div><div class="bscale"><span>0%</span><span>target 60%</span><span>100%</span></div></div>
+ <div class="b-card"><div class="top"><h4>Days from flag to outcome</h4><span class="st g">✓ On track</span></div><div class="v num">6.1 d</div><div class="t">median · target ≤ 7 days</div><div class="bullet"><i style="width:43.5%"></i><em style="left:50%"></em></div><div class="bscale"><span>0</span><span>7 d</span><span>14 d</span></div></div>
+ <div class="b-card"><div class="top"><h4>Substantiation rate</h4><span class="st g">✓ On track</span></div><div class="v num">52%</div><div class="t">31 of 60 reviewed · target ≥ 40%</div><div class="bullet"><i style="width:52%"></i><em style="left:40%"></em></div><div class="bscale"><span>0%</span><span>40%</span><span>100%</span></div></div>
+ <div class="b-card"><div class="top"><h4>Open over 30 days</h4><span class="st a">! Watch</span></div><div class="v num">26</div><div class="t">cases · target ≤ 15</div><div class="bullet"><i style="width:52%"></i><em style="left:30%"></em></div><div class="bscale"><span>0</span><span>15</span><span>50</span></div></div>
+ <div class="b-card"><div class="top"><h4>Substantiated overpayment</h4><span class="st a">! Pending</span></div><div class="v num">$41K</div><div class="t">reconciliation with claims system pending</div><div class="bullet"><i style="width:41%"></i><em style="left:50%"></em></div><div class="bscale"><span>$0</span><span>$50K goal</span><span>$100K</span></div></div>
+ <div class="b-card"><div class="top"><h4>Legitimate claims delayed</h4><span class="st g">✓ On track</span></div><div class="v num">0</div><div class="t">routing never holds payment · target 0</div><div class="bullet"><i style="width:0"></i><em style="left:2%"></em></div><div class="bscale"><span>0</span><span></span><span>10</span></div></div>
+ <div class="b-wide"><div class="b-card"><h4>Workload by investigator</h4><p class="sub">Open cases · bar = target capacity (20)</p>
+   <svg viewBox="0 0 520 190" width="100%"><g font-size="13" fill="#334155" text-anchor="end"><text x="88" y="27">A. Chan</text><text x="88" y="63">J. Ho</text><text x="88" y="99">R. Singh</text><text x="88" y="135">T. Lam</text><text x="88" y="171">SIU</text></g>
+    <g fill="#2a78d6"><rect x="98" y="14" width="138" height="18" rx="4"/><rect x="98" y="50" width="168" height="18" rx="4"/><rect x="98" y="86" width="276" height="18" rx="4" fill="#d97706"/><rect x="98" y="122" width="252" height="18" rx="4" fill="#d97706"/><rect x="98" y="158" width="60" height="18" rx="4"/></g>
+    <line x1="338" x2="338" y1="6" y2="184" stroke="#172033" stroke-dasharray="4 3"/><text x="342" y="12" font-size="11.5" fill="#172033">capacity 20</text>
+    <g font-size="12.5" fill="#172033"><text x="242" y="28">12</text><text x="272" y="64">14</text><text x="380" y="100">23 ! over</text><text x="356" y="136">21 ! over</text><text x="164" y="172">5</text></g></svg></div>
+  <div class="b-card"><h4>Backlog by age</h4><p class="sub">Open cases · status colours show urgency</p>
+   <svg viewBox="0 0 520 190" width="100%"><g><rect x="20" y="40" width="250" height="44" rx="6" fill="#2a78d6"/><rect x="272" y="40" width="148" height="44" rx="6" fill="#d97706"/><rect x="422" y="40" width="78" height="44" rx="6" fill="#dc2626"/></g>
+    <g font-size="13" fill="#fff" font-weight="700"><text x="32" y="67">48 · under 7 days</text><text x="284" y="67">52 · 7–30 d</text><text x="430" y="67">26 · 30+</text></g>
+    <text x="20" y="120" font-size="13" fill="#334155">126 open cases · 21% are older than 30 days (target ≤ 12%)</text></svg></div></div>
+</div></div></div>
+
+<!-- ================= C ================= -->
+<div class="opt" id="o-c">
+<div class="why"><b>Analyst workspace.</b> Filters live in a left rail; five compact KPIs; small multiples (one mini chart per flag reason, same scale) so rules can be compared side by side; a detailed table below. Dense but very readable. Best for the fraud-ops lead who uses it daily.</div>
+<div class="frame"><div class="c-lay">
+ <aside class="c-rail"><h5>Period</h5><select><option>Last 13 weeks</option></select>
+  <h5>Flag reason</h5><label><input type="checkbox" checked> Unusual billed hours</label><label><input type="checkbox" checked> Repeated claim</label><label><input type="checkbox" checked> Visit level above peers</label><label><input type="checkbox" checked> Near-repeated claim</label>
+  <h5>Team</h5><select><option>All investigators</option></select><h5>Routing</h5><label><input type="checkbox" checked> Priority (80+)</label><label><input type="checkbox" checked> Routine (50–79)</label></aside>
+ <div class="c-main">
+  <div class="c-kpis"><div><div class="l">Flagged</div><div class="v num">186</div></div><div><div class="l">Reviewed</div><div class="v num">60</div></div><div><div class="l">Substantiated</div><div class="v num">31</div></div><div><div class="l">Median days</div><div class="v num">6.1</div></div><div><div class="l">Substantiated $</div><div class="v num">$41K</div></div></div>
+  <h3>Flagged vs reviewed by week, per flag reason</h3><p class="sub">Same scale in every panel · <span style="color:var(--s1);font-weight:700">blue</span> flagged · <span style="color:var(--s3);font-weight:700">violet</span> reviewed</p>
+  <div class="c-sm">
+   <div><b>Unusual billed hours</b><small>48 cases · 58% substantiated</small><svg viewBox="0 0 200 80" width="100%"><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="5,50 35,44 65,46 95,36 125,40 155,30 195,24"/><polyline fill="none" stroke="#6250d6" stroke-width="2" points="5,62 35,58 65,56 95,54 125,50 155,48 195,44"/></svg></div>
+   <div><b>Repeated claim</b><small>61 cases · 59% substantiated</small><svg viewBox="0 0 200 80" width="100%"><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="5,40 35,36 65,30 95,34 125,26 155,24 195,20"/><polyline fill="none" stroke="#6250d6" stroke-width="2" points="5,60 35,56 65,54 95,50 125,52 155,46 195,44"/></svg></div>
+   <div><b>Visit level above peers</b><small>29 cases · 29% substantiated</small><svg viewBox="0 0 200 80" width="100%"><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="5,62 35,60 65,58 95,60 125,56 155,54 195,52"/><polyline fill="none" stroke="#6250d6" stroke-width="2" points="5,70 35,68 65,66 95,66 125,64 155,62 195,62"/></svg></div>
+   <div><b>Near-repeated claim</b><small>48 cases · none reviewed</small><svg viewBox="0 0 200 80" width="100%"><polyline fill="none" stroke="#2a78d6" stroke-width="2" points="5,56 35,52 65,50 95,46 125,48 155,44 195,40"/><polyline fill="none" stroke="#6250d6" stroke-width="2" points="5,76 35,76 65,76 95,76 125,76 155,76 195,76"/></svg></div></div>
+  <h3>Investigators</h3><p class="sub">Sorted by open cases</p>
+  <table><tr><th>Investigator</th><th class="r">Assigned</th><th class="r">Reviewed</th><th class="r">Substantiated</th><th class="r">Open</th><th class="r">Median days</th><th>Status</th></tr>
+   <tr><td>R. Singh</td><td class="r num">31</td><td class="r num">17</td><td class="r num">8</td><td class="r num">14</td><td class="r num">7.9</td><td><span class="st a">! Over 7 days</span></td></tr>
+   <tr><td>T. Lam</td><td class="r num">29</td><td class="r num">14</td><td class="r num">7</td><td class="r num">15</td><td class="r num">9.4</td><td><span class="st r">✕ Over 7 days</span></td></tr>
+   <tr><td>J. Ho</td><td class="r num">34</td><td class="r num">20</td><td class="r num">11</td><td class="r num">14</td><td class="r num">6.2</td><td><span class="st g">✓ On target</span></td></tr>
+   <tr><td>A. Chan</td><td class="r num">38</td><td class="r num">26</td><td class="r num">15</td><td class="r num">12</td><td class="r num">4.8</td><td><span class="st g">✓ On target</span></td></tr></table>
+ </div></div></div></div>
+</div>
+<script>document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-o]').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o.id==='o-'+b.dataset.o))})</script>
+</body></html>

@@ -37,7 +37,7 @@ SUGGESTIONS = {
     "Executive Dashboard": ["How much was billed on flagged claims, by flag reason?",
                             "Which flag reason has the lowest substantiation rate?", "How many cases are still open?"],
     "Data & Access": ["What can I ask you?", "What period does the data cover?"],
-    "Under the Hood": ["What can I ask you?", "Explain precision and recall simply"],
+    "How ClaimGuard Works": ["What can I ask you?", "Explain precision and recall simply"],
     "Model Evaluation": ["What happens if I raise the cut-off to 90?", "Explain precision and recall simply",
                          "Which flag reason has the lowest substantiation rate?"],
 }

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClaimGuard Left Panel Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2d52;--blue:#2b5f94;--blue2:#3b7cc4;--teal:#0f766e;--green:#16a34a;--bg:#eef2f6;--line:#dfe5ec;--mut:#64748b;--txt:#1e293b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--txt)}
+header{background:var(--navy);color:#fff;padding:20px 32px}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:#cfe2f7;font-size:14px}
+.tabs{display:flex;gap:8px;padding:16px 32px 0;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font:600 14px Inter,"Segoe UI",sans-serif;color:var(--navy);text-align:left}
+.tab small{display:block;font-weight:500;color:var(--mut);font-size:12px}.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}.tab.on small{color:#cfe2f7}
+main{padding:16px 32px 40px;display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+.frame{background:#fff;border:1px solid #cbd5e1;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(15,45,82,.10);height:620px;display:flex;flex-direction:column}
+.chrome{height:26px;background:#e2e8f0;display:flex;align-items:center;gap:6px;padding:0 12px;flex-shrink:0}.chrome i{width:9px;height:9px;border-radius:50%;background:#cbd5e1}
+.topz{flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:10px 18px;opacity:.55}
+.st{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#94a3b8;white-space:nowrap}.st b{width:20px;height:20px;border-radius:50%;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-size:10px}
+.st.done{color:var(--green)}.st.done b{background:var(--green);border-color:var(--green);color:#fff}.st.on{color:var(--navy)}.st.on b{background:var(--navy);border-color:var(--navy);color:#fff}
+.ln{flex:1;height:2px;background:#e2e8f0}.ln.done{background:var(--green)}
+.body{flex:1;display:flex;min-height:0}
+.content{flex:1;background:#f6f8fb;padding:18px}
+.ph{border:2px dashed #cbd5e1;border-radius:12px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#94a3b8;font-weight:600;font-size:14px}
+.ph small{font-weight:500;font-size:12px}
+.left{flex-shrink:0;background:#fff;border-right:1px solid var(--line);overflow:auto;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--navy);font-size:15px;padding:14px 14px 8px}.brand i{width:20px;height:22px;background:var(--blue2);border-radius:5px 5px 10px 10px;flex-shrink:0}
+.it{display:flex;align-items:center;gap:10px;margin:1px 8px;padding:8px 10px;border-radius:8px;font-size:13.5px;color:#334155;cursor:pointer}
+.it:hover{background:#f1f5fa}.it.on{background:#e8f1fb;color:var(--navy);font-weight:700;box-shadow:inset 3px 0 0 var(--navy)}
+.ic{width:18px;height:18px;border-radius:5px;background:#e2e8f0;flex-shrink:0}.it.on .ic{background:var(--navy)}
+.cnt{margin-left:auto;font-size:10.5px;font-weight:700;background:#eef2f7;color:#475569;border-radius:8px;padding:1px 7px}.cnt.r{background:#fde8e8;color:#b91c1c}
+.sub{margin:0 8px 0 36px;border-left:2px solid #e2e8f0}.sub .it{margin:1px 0 1px 6px;padding:6px 10px;font-size:13px}
+.grp{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;margin:14px 18px 4px}
+.acc{display:flex;align-items:center;gap:10px;margin:2px 8px;padding:9px 10px;border-radius:8px;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer}
+.acc:hover{background:#f1f5fa}.acc .chev{margin-left:auto;color:#94a3b8;transition:transform .2s}.acc.open .chev{transform:rotate(90deg)}
+.num{width:22px;height:22px;border-radius:50%;background:#eef2f7;color:#475569;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.acc.cur .num{background:var(--navy);color:#fff}
+.mywork{margin:4px 10px 6px;border-radius:12px;background:#f0f6fd;border:1px solid #cfe0f3;padding:10px}
+.mywork h6{margin:0 0 6px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.mywork .it{margin:1px 0;background:#fff}.mywork .it.on{background:#e8f1fb}
+.task{margin:4px 10px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer}
+.task:hover{border-color:#9db4d3}.task.on{border-color:var(--navy);background:#f0f6fd;box-shadow:inset 3px 0 0 var(--navy)}
+.task b{display:block;font-size:13.5px;color:var(--navy)}.task small{color:var(--mut);font-size:11.5px}
+.task .pages{display:none;margin-top:6px}.task.on .pages{display:block}.task .pages span{display:block;font-size:12.5px;padding:4px 8px;border-radius:6px;color:#334155}.task .pages span.on{background:#fff;font-weight:700;color:var(--navy)}
+.rail{width:64px;background:var(--navy);display:flex;flex-direction:column;align-items:center;padding-top:12px;gap:4px;flex-shrink:0}
+.rail .r{width:46px;padding:7px 0;border-radius:10px;text-align:center;font-size:9.5px;color:#9fb8d6;cursor:pointer}.rail .r i{display:block;width:20px;height:20px;border-radius:6px;background:#33557d;margin:0 auto 3px}
+.rail .r.on{background:#1d4776;color:#fff}.rail .r.on i{background:#5eead4}
+.fly{width:200px;background:#fff;border-right:1px solid var(--line);padding:14px 8px;flex-shrink:0}.fly h4{margin:0 10px 8px;font-size:13px;color:var(--navy)}
+.foot{margin-top:auto;border-top:1px solid var(--line);padding:10px 14px;font-size:11px;color:var(--mut)}
+.search{margin:4px 12px 8px;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12.5px;color:#94a3b8}
+.info{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:sticky;top:16px}
+.info h2{margin:0 0 6px;font-size:18px;color:var(--navy)}.info p{margin:0 0 12px;font-size:13.5px;line-height:1.55;color:#334155}
+.pro,.con{font-size:13px;line-height:1.55;border-radius:10px;padding:10px 12px;margin-bottom:8px}.pro{background:#f0fdf4;border:1px solid #bbf7d0}.con{background:#fef2f2;border:1px solid #fecaca}
+.pro ul,.con ul{margin:4px 0 0;padding-left:16px}.pro b,.con b{font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.reco{display:inline-block;background:#e6f4f2;color:var(--teal);font-size:11px;font-weight:800;border-radius:8px;padding:2px 8px;margin-bottom:8px}
+.try{font-size:12px;color:var(--blue2);font-weight:600;margin-top:8px}
+@media(max-width:1000px){main{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>ClaimGuard · left panel options</h1><p>The top progress stepper (faded) stays the same in every option. Only the left panel changes. Content is blank on purpose. Click items in each panel to try it.</p></header>
+<div class="tabs" id="tabs"></div>
+<main><div class="frame" id="frame"></div><aside class="info" id="info"></aside></main>
+<script>
+const N={home:"How to Use",queue:"Investigator Queue",feedback:"Review Outcomes",intake:"Claim Intake",upload:"Data Upload",overview:"Flag Overview",providers:"Provider Risk",exec:"Executive Dashboard",model:"Model Evaluation",gov:"Data & Access",tech:"How ClaimGuard Works"};
+const STG=[["Bring in claims",["intake","upload"]],["Find unusual claims",["overview","providers"]],["Review cases",["queue","feedback"]],["Report",["exec","model","gov","tech"]]];
+let OPT=0,PAGE="queue",OPEN=null;
+const stageOf=p=>STG.findIndex(s=>s[1].includes(p));
+const it=(k,extra='')=>`<div class="it ${k===PAGE?'on':''}" data-p="${k}"><span class="ic"></span><span>${N[k]}</span>${extra}</div>`;
+const brand=`<div class="brand"><i></i>ClaimGuard</div>`,foot=`<div class="foot">A. Chan · Investigator<br>Dataset SYN-2026Q3</div>`;
+const OPTS=[
+ {t:"A · Mirrors the stepper",s:"Same 4 stages as the top, current one open",reco:true,
+  html:()=>{const cur=OPEN??stageOf(PAGE);return brand+it("home")+STG.map(([l,ps],i)=>`<div class="acc ${i===cur?'open':''} ${i===stageOf(PAGE)?'cur':''}" data-acc="${i}"><span class="num">${i+1}</span>${l}<span class="chev">›</span></div>${i===cur?`<div class="sub">${ps.map(k=>it(k,k==='queue'?'<span class="cnt r">2</span>':'')).join('')}</div>`:''}`).join('')+foot},w:240,
+  why:"The left panel uses <b>the same 4 stages and numbers as the top stepper</b>, so the two read as one system: top = where you are, left = the pages in each stage. Only the current stage is open; click another to expand it.",
+  pro:["Top and left match exactly, nothing new to learn","Short: only one stage open at a time","Numbers guide first-time users"],con:["Admin pages sit under 'Report', which is a little loose"]},
+ {t:"B · My work first",s:"Pinned work list, then everything else",
+  html:()=>brand+`<div class="mywork"><h6>My work</h6>${it("queue",'<span class="cnt r">2 due</span>')}<div class="it ${PAGE==='feedback'?'on':''}" data-p="feedback"><span class="ic"></span><span>My outcomes</span><span class="cnt">5</span></div></div>`+`<div class="grp">Browse</div>`+["overview","providers","exec","intake","upload"].map(k=>it(k)).join('')+`<div class="grp">More</div>`+["home","model","gov","tech"].map(k=>it(k)).join('')+foot,w:240,
+  why:"The top block is <b>what needs you today</b> (your cases, your outcomes), with counts. Everything else is a plain list below, with rarely used pages under 'More'.",
+  pro:["Daily users see their work in one glance","Counts show what needs attention"],con:["The step order is only on the top stepper"]},
+ {t:"C · Short list + sub-tabs",s:"5 items only; sub-pages are tabs in the page",
+  html:()=>{const M=[["home","Home",["home"]],["queue","Cases",["queue","feedback"]],["overview","Insights",["overview","providers","exec"]],["intake","Data",["intake","upload"]],["model","Admin",["model","gov","tech"]]];
+   return brand+`<div style="height:8px"></div>`+M.map(([k,l,ps])=>`<div class="it ${ps.includes(PAGE)?'on':''}" data-p="${k}" style="padding:11px 12px;font-size:14px"><span class="ic"></span><span>${l}</span>${k==='queue'?'<span class="cnt r">2</span>':''}</div>`).join('')+foot},w:200,
+  sub:()=>{const M={queue:["queue","feedback"],feedback:["queue","feedback"],overview:["overview","providers","exec"],providers:["overview","providers","exec"],exec:["overview","providers","exec"],intake:["intake","upload"],upload:["intake","upload"],model:["model","gov","tech"],gov:["model","gov","tech"],tech:["model","gov","tech"],home:["home"]}[PAGE];return M.length>1?`<div style="display:flex;gap:4px;border-bottom:2px solid #e2e8f0;margin-bottom:12px">${M.map(k=>`<span data-p="${k}" style="cursor:pointer;padding:8px 12px;font-size:13px;font-weight:600;${k===PAGE?'color:#0f2d52;border-bottom:3px solid #0f2d52;margin-bottom:-2px':'color:#64748b'}">${N[k]}</span>`).join('')}</div>`:''},
+  why:"The left panel has <b>just 5 items</b>: Home, Cases, Insights, Data, Admin. Pages inside an area become <b>tabs at the top of the page</b> (see the content area).",
+  pro:["The simplest panel to scan","Big, easy targets"],con:["Some pages are two clicks away","Tabs inside pages add a second level"]},
+ {t:"D · Tasks (\"I want to…\")",s:"Panel organised by job, not page name",
+  html:()=>{const T=[["Review cases","Work my queue, record outcomes",["queue","feedback"]],["Add claims","Upload documents or a CSV",["intake","upload"]],["See what was flagged","Flags, providers, dashboard",["overview","providers","exec"]],["Check the system","Model, data access, how it works",["model","gov","tech"]]];
+   return brand+it("home")+`<div class="grp">I want to…</div>`+T.map(([l,d,ps])=>`<div class="task ${ps.includes(PAGE)?'on':''}" data-p="${ps[0]}"><b>${l}</b><small>${d}</small><div class="pages">${ps.map(k=>`<span class="${k===PAGE?'on':''}" data-p="${k}">${N[k]}</span>`).join('')}</div></div>`).join('')+foot},w:250,
+  why:"Each item is a <b>job described in plain words</b> with a one-line hint. The active job expands to show its pages.",
+  pro:["Very easy for non-experts and demo viewers","Explains each area without a guide"],con:["Takes more vertical space","Experienced users may prefer page names"]},
+ {t:"E · Icon rail + section panel",s:"Dark rail for areas, light panel for pages",
+  html:()=>{const A=[["Home",["home"]],["Cases",["queue","feedback"]],["Insights",["overview","providers","exec"]],["Data",["intake","upload"]],["Admin",["model","gov","tech"]]];const a=A.find(x=>x[1].includes(PAGE));
+   return `<div style="display:flex;height:100%"><div class="rail">${A.map(([l,ps])=>`<div class="r ${ps.includes(PAGE)?'on':''}" data-p="${ps[0]}"><i></i>${l}</div>`).join('')}</div><div class="fly"><h4>${a[0]}</h4>${a[1].map(k=>it(k,k==='queue'?'<span class="cnt r">2</span>':'')).join('')}</div></div>`},w:264,
+  why:"A <b>dark rail</b> picks the area (Home, Cases, Insights, Data, Admin); a <b>light panel</b> beside it lists only that area's pages. Common in professional tools.",
+  pro:["Clear two-level structure","Only 2–3 pages listed at a time","Looks like enterprise software"],con:["Uses the most width","Two columns to read"]},
+ {t:"F · Plain list + search",s:"One flat list, no groups, quick find",
+  html:()=>brand+`<div class="search">🔎 Go to page…</div>`+["home","queue","feedback","overview","providers","exec","intake","upload","model","gov","tech"].map(k=>it(k,k==='queue'?'<span class="cnt r">2</span>':'')).join('')+foot,w:230,
+  why:"No headings or groups at all: <b>11 pages in workflow order</b>, with a search box at the top. Nothing to interpret.",
+  pro:["Nothing to interpret","Search for power users"],con:["Long list","No sense of grouping"]}
+];
+function render(){const o=OPTS[OPT],s=stageOf(PAGE);
+ document.getElementById('tabs').innerHTML=OPTS.map((x,i)=>`<button class="tab ${i===OPT?'on':''}" data-o="${i}">${x.t}${x.reco?' ★':''}<small>${x.s}</small></button>`).join('');
+ document.getElementById('frame').innerHTML=`<div class="chrome"><i></i><i></i><i></i></div><div class="topz">${STG.map(([l],i)=>`${i?`<span class="ln ${i<=s?'done':''}"></span>`:''}<span class="st ${i<s?'done':i===s?'on':''}"><b>${i<s?'✓':i+1}</b>${l}</span>`).join('')}</div>
+  <div class="body"><div class="left" style="width:${o.w}px">${o.html()}</div><div class="content">${o.sub?o.sub():''}<div class="ph" style="height:${o.sub&&o.sub()?'calc(100% - 46px)':'100%'}">${N[PAGE]}<small>page content</small></div></div></div>`;
+ document.getElementById('info').innerHTML=`${o.reco?'<span class="reco">★ RECOMMENDED</span>':''}<h2>${o.t.slice(4)}</h2><p>${o.why}</p><div class="pro"><b>Strengths</b><ul>${o.pro.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="con"><b>Watch out</b><ul>${o.con.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="try">Try it: click items in the left panel.</div>`}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-o]');if(t){OPT=+t.dataset.o;OPEN=null;PAGE="queue";render();return}
+ const a=e.target.closest('[data-acc]');if(a){OPEN=+a.dataset.acc;const ps=STG[OPEN][1];if(!ps.includes(PAGE))PAGE=ps[0];render();return}
+ const p=e.target.closest('[data-p]');if(p){e.stopPropagation();PAGE=p.dataset.p;OPEN=null;render()}});
+render();
+</script>
+</body></html>

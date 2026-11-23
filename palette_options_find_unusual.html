@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Find unusual claims · 5 palette options</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:#f4f6f9;color:#1e293b}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 28px 60px}
+h1{font-size:26px;color:#172033;margin:0 0 4px}.lead{color:#64748b;margin:0 0 20px;font-size:14.5px;max-width:900px}
+.opt{background:#fff;border:1px solid #e5e9f0;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.05);padding:18px 22px;margin-bottom:18px}
+.oh{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}.oh h2{margin:0;font-size:18px;color:#172033}
+.sw{display:flex;gap:6px}.sw span{display:flex;align-items:center;gap:6px;font-size:12px;color:#475569;font-family:Consolas,monospace}.sw i{width:22px;height:22px;border-radius:6px;display:inline-block}
+.tag{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:12px;background:#e7f6ec;color:#11793a}.tag.w{background:#fdf1e1;color:#9a5a06}
+.note{font-size:13.5px;color:#475569;margin:0 0 10px}
+.row{display:grid;grid-template-columns:1fr 1.6fr;gap:16px}
+svg text{font-family:Inter,"Segoe UI",sans-serif}
+</style></head><body><div class="wrap">
+<h1>Find unusual claims: 5 professional palette options</h1>
+<p class="lead">Same Flag Overview charts in each palette. The 4 colours are the 4 flag reasons. Every option passed the colour-blindness check (run with the dataviz validator) in the order shown. Red, amber and green stay reserved for risk levels, and teal stays reserved for AI, so where a palette uses those hues it's noted.</p>
+<div id="opts"></div></div>
+<script>
+const R=[["Unusual billed hours",168],["Repeated claim",118],["Visit level above peers",89],["Near-repeated claim",37]];
+const P=[
+ ["Current · ClaimGuard v7","#2a78d6,#1baf7a,#6250d6,#e87ba4","Blue, aqua, violet, magenta. What the demo uses today.",""],
+ ["1 · IBM Carbon","#1192e8,#6929c4,#009d9a,#9f1853","IBM's enterprise data-viz palette. Cool, corporate and calm; deep wine for the fourth series.","Passes all checks"],
+ ["2 · Google Material","#1a73e8,#e8710a,#12b5cb,#9334e6","Google Workspace / Looker Studio look. Bright and friendly; the strongest separation of the five.","Passes all checks"],
+ ["3 · Financial Times","#0f5499,#ff8833,#0a9396,#990f3d","FT-style: oxford blue, mandarin, teal, claret. Editorial and serious, suits board packs. Its teal is close to the AI teal.","Passes all checks"],
+ ["4 · Tableau classic","#1f77b4,#ff7f0e,#9467bd,#2ca02c","The familiar Tableau / D3 colours most analysts recognise. Its green clashes with the 'good' status green.","Passes all checks"],
+ ["5 · Okabe-Ito","#0072b2,#e69f00,#009e73,#cc79a7","The scientific standard for colour-blind readers. Its orange is close to the amber risk colour.","Passes, with labels (CVD 7.6)"]];
+function donut(c){const cx=110,cy=110,r=92,ri=54,tot=412;let a0=-Math.PI/2,o='<svg viewBox="0 0 420 230" width="100%">';
+ R.forEach(([l,v],i)=>{const a1=a0+2*Math.PI*v/tot,lg=a1-a0>Math.PI?1:0,p=(a,rr)=>`${cx+rr*Math.cos(a)},${cy+rr*Math.sin(a)}`;o+=`<path d="M${p(a0,r)} A${r},${r} 0 ${lg} 1 ${p(a1,r)} L${p(a1,ri)} A${ri},${ri} 0 ${lg} 0 ${p(a0,ri)}Z" fill="${c[i]}" stroke="#fff" stroke-width="2"/>`;a0=a1});
+ o+=`<text x="${cx}" y="${cy}" font-size="20" font-weight="800" text-anchor="middle" fill="#172033">$412K</text><text x="${cx}" y="${cy+17}" font-size="11" text-anchor="middle" fill="#64748b">billed on flagged</text>`;
+ R.forEach(([l,v],i)=>{const y=50+i*40;o+=`<circle cx="236" cy="${y-4}" r="7" fill="${c[i]}"/><text x="250" y="${y}" font-size="13.5" fill="#1e293b">${l}</text><text x="250" y="${y+16}" font-size="12" fill="#64748b">$${v}K · ${Math.round(v/412*100)}%</text>`});return o+'</svg>'}
+let s=11;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;const WK=[...Array(13)].map(()=>R.map(([l,v])=>v/13*(0.6+rnd()*0.8)));
+function weekly(c){const W=620,H=260,x0=46,y0=H-30,y1=30,bw=(W-x0-16)/13-6,max=50,Y=v=>y0-(y0-y1)*v/max;let o=`<svg viewBox="0 0 ${W} ${H}" width="100%">`;
+ for(let i=0;i<=5;i++){const y=y0-(y0-y1)*i/5;o+=`<line x1="${x0}" x2="${W-8}" y1="${y}" y2="${y}" stroke="#eef2f7"/><text x="${x0-7}" y="${y+4}" font-size="11.5" text-anchor="end" fill="#475569">$${i*10}K</text>`}
+ WK.forEach((wk,w)=>{let b=0;const x=x0+6+w*(bw+6),t=wk.reduce((a,v)=>a+v,0);wk.forEach((v,i)=>{const hg=Math.max(0,Y(b)-Y(b+v)-2);o+=`<rect x="${x}" y="${Y(b+v)}" width="${bw}" height="${hg}" rx="3" fill="${c[i]}"/>`;b+=v});o+=`<text x="${x+bw/2}" y="${Y(t)-5}" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">$${Math.round(t)}K</text>`});
+ return o+'</svg>'}
+document.getElementById('opts').innerHTML=P.map(([n,h,d,t])=>{const c=h.split(',');return `<div class="opt"><div class="oh"><h2>${n}</h2><div class="sw">${c.map(x=>`<span><i style="background:${x}"></i>${x}</span>`).join('')}</div>${t?`<span class="tag ${t.includes('labels')?'w':''}">${t}</span>`:''}</div><p class="note">${d}</p><div class="row"><div>${donut(c)}</div><div>${weekly(c)}</div></div></div>`}).join('');
+</script></body></html>

@@ -1,9 +1,8 @@
 """ClaimGuard: health claim screening app.  Run:  streamlit run app.py
 
-Layout follows the locked design docs/design/layout_redesign_v5_FROZEN.html:
-How to Use (start) -> ① Bring in claims (Claim Intake, Data Upload) -> ② Find unusual claims (Flag Overview,
-Provider Risk) -> ③ Review & improve (Investigator Queue, Review Outcomes); Leadership (Executive Dashboard);
-Analyst & admin (Model Evaluation, Data & Access, Under the Hood); "Ask your data" on every page.
+Layout follows docs/design/layout_redesign_v6_FROZEN.html plus the v7 review changes (layout_redesign_v6_demo.html):
+a 4-stage progress stepper on top (Bring in claims · Find unusual claims · Review cases · Report), the same 4 stages as
+an accordion on the left, a signed-in user with Log out top right, and "Ask your data" on every page.
 
 Screening only: review outcomes are recorded here; payment, denial, recovery and formal fraud findings stay in the
 authorized claims / SIU processes.
@@ -27,21 +26,28 @@ import intake  # noqa: E402
 import ml_model  # noqa: E402
 import summarize  # noqa: E402
 
-NAVY, BLUE, BLUE2, TEAL, GREY = "#0f2d52", "#2b5f94", "#3b7cc4", "#0f766e", "#94a3b8"
+NAVY, BLUE, BLUE2, TEAL, GREY = "#172033", "#1c5cab", "#2a78d6", "#0f766e", "#a3adbd"
 RISK = {"High": "#dc2626", "Medium": "#d97706", "Low": "#16a34a"}
 FLAG = assistant.FLAG          # case_type -> flag reason (screening language)
 SHORT = {"duplicate": "Repeated claim", "near_duplicate": "Near-repeated claim",
          "impossible_day": "Unusual billed hours", "upcoding": "Visit level above peers"}
-FLAG_COLOR = {FLAG["duplicate"]: NAVY, FLAG["near_duplicate"]: BLUE2, FLAG["impossible_day"]: BLUE,
-              FLAG["upcoding"]: "#93b4d9"}
-GUIDE = "How to Use"
-ORDER = ["Claim Intake", "Data Upload", "Flag Overview", "Provider Risk", "Investigator Queue", "Review Outcomes",
-         "Model Evaluation"]                      # the 7-step reference tour
-STAGES = [("① Bring in claims", ORDER[0:2]), ("② Find unusual claims", ORDER[2:4]), ("③ Review & improve", ORDER[4:6])]
-EXTRA_NAV = [("Leadership", ["Executive Dashboard"]), ("Analyst & admin", ["Model Evaluation", "Data & Access", "Under the Hood"])]
-NAV_ICON = {"Executive Dashboard": "📊", "Model Evaluation": "7", "Data & Access": "🔒", "Under the Hood": "⚙"}
-SHORTNAME = dict(zip(ORDER, ["Intake", "Upload", "Overview", "Providers", "Queue", "Outcomes", "Model"]))
-FILTER_PAGES = {"Flag Overview", "Provider Risk", "Investigator Queue", "Review Outcomes", "Executive Dashboard"}
+# Flag reasons use IBM Carbon in a fixed order validated for colour-blind separation: blue, purple, teal, wine
+FLAG_ORDER = [FLAG["impossible_day"], FLAG["duplicate"], FLAG["upcoding"], FLAG["near_duplicate"]]
+FLAG_COLOR = dict(zip(FLAG_ORDER, ["#1192e8", "#6929c4", "#009d9a", "#9f1853"]))
+FLAG_SHORT = {FLAG[k]: v for k, v in SHORT.items()}
+GUIDE, TECH = "How to Use", "How ClaimGuard Works"
+# Top = progress stepper over these 4 stages; left = How to Use + the same 4 stages as an accordion
+STAGES = [("Bring in claims", ["Claim Intake", "Data Upload"]),
+          ("Find unusual claims", ["Flag Overview", "Provider Risk"]),
+          ("Review cases", ["Investigator Queue", "Review Outcomes"]),
+          ("Report", ["Executive Dashboard", "Model Evaluation", "Data & Access", TECH])]
+ALL_PAGES = [GUIDE] + [p for _, ps in STAGES for p in ps]
+AI_PAGES = {"Claim Intake": "AI-assisted: document extraction reads messy PDFs and emails (planned)",
+            "Investigator Queue": "AI-assisted: the case brief summarises evidence and next steps",
+            "Executive Dashboard": "AI-assisted: Ask your data answers questions in plain English (read-only)"}
+FILTER_PAGES = {"Flag Overview", "Provider Risk", "Review Outcomes", "Executive Dashboard"}   # the Queue has its own filters
+ROUTES = ["Priority review", "Routine review", "No additional review recommended"]
+CAPACITY = 20                   # open cases per investigator (demo target)
 REQUIRED = intake.REQUIRED
 SAMPLE_NAME = "Sample dataset (synthetic, 8,498 claims)"
 USERS = {"A. Chan": "Investigator", "B. Ho": "Investigator", "J. Wong": "Supervisor", "R. Patel": "Analyst"}
@@ -134,7 +140,7 @@ html,body,[data-testid="stApp"],[data-testid="stApp"] :is(p,div,span,label,butto
 .callout{{border-left:4px solid {BLUE2};background:#eef4fc;border-radius:8px;padding:10px 14px;font-size:15px;color:#1e293b;margin:0 0 14px}}
 .warn{{background:#fff7e6;border:1px solid #f6d28b;color:#6b4700;border-radius:12px;padding:11px 14px;font-size:14px;margin-bottom:14px}}
 .legend3{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}}.legend3 div{{border-radius:12px;padding:12px 14px;font-size:13.5px}}.legend3 b{{display:block;font-size:14.5px;margin-bottom:2px}}
-.hero{{background:linear-gradient(125deg,#0f2d52,#2b5f94);color:#fff;border-radius:16px;padding:22px 26px;height:100%}}
+.hero{{background:linear-gradient(125deg,#172033,#1c5cab);color:#fff;border-radius:16px;padding:22px 26px;height:100%}}
 .hero .c{{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9cc3ee}}
 .hero h3{{margin:4px 0 8px;font-size:24px;color:#fff}}.hero p{{margin:0;color:#d5e5f7;font-size:14.5px;line-height:1.5}}
 .qs{{background:#fff;border:1px solid #e6eaf0;border-radius:16px;padding:16px 18px;box-shadow:{SH};height:100%}}.qs h4{{margin:0 0 6px;color:{NAVY};font-size:16px}}
@@ -190,7 +196,7 @@ html,body,[data-testid="stApp"],[data-testid="stApp"] :is(p,div,span,label,butto
 .prio table{{width:100%;font-size:13px;margin-top:6px;border-collapse:collapse}}.prio td{{padding:4px 8px;border-bottom:1px solid #eef1f5}}.prio td:first-child{{color:#64748b;width:190px}}
 .pill{{font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px}}.pill.md{{background:#fdf1e1;color:#a35d07}}.pill.ok{{background:#e3f4ea;color:#16a34a}}.pill.gr{{background:#eef2f7;color:#475569}}
 .dup{{width:100%;border-collapse:collapse;font-size:13px}}.dup th{{text-align:left;color:#64748b;font-weight:600;width:170px;padding:5px 8px}}.dup td{{padding:5px 8px;border-bottom:1px solid #f0f3f7}}.dup td.diff{{background:#fff4e5;font-weight:700}}
-.pilot{{background:linear-gradient(120deg,#0f2d52,#2b5f94);color:#fff;border-radius:16px;padding:18px 22px;margin-bottom:14px}}
+.pilot{{background:linear-gradient(120deg,#172033,#1c5cab);color:#fff;border-radius:16px;padding:18px 22px;margin-bottom:14px}}
 .pilot h3{{margin:0 0 4px;font-size:19px;color:#fff}}.pilot p{{margin:0;color:#d5e5f7;font-size:14px}}
 .crit{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}}.crit div{{background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;font-size:12.5px;color:#d5e5f7}}
 .crit b{{display:block;font-size:18px;color:#fff}}.crit i{{font-style:normal;display:block;margin-top:4px;color:#fff;font-weight:600}}
@@ -200,6 +206,59 @@ html,body,[data-testid="stApp"],[data-testid="stApp"] :is(p,div,span,label,butto
 .who{{font-size:12px;color:#64748b;margin-top:2px}}
 @media(max-width:900px){{.ctx,.sbs,.crit{{grid-template-columns:1fr}}}}
 @media(max-width:900px){{.todo,.flow,.roles,.legend3{{grid-template-columns:1fr}}}}
+/* ---- v7: 4-stage navigation, signed-in user, +/- toggles, big upload, pinned queue, scorecard ---- */
+[class*="st-key-stg-"] button{{padding:9px 10px !important}}
+[class*="st-key-stg-"] button p{{font-weight:700 !important;color:#172033 !important;font-size:14px !important}}
+[class*="st-key-stg-"] button::after{{content:"›";margin-left:auto;color:#94a3b8;font-size:18px;line-height:1;padding-left:6px}}
+[class*="st-key-stg-"][class*="-open"] button::after{{content:"▾";font-size:15px}}
+[class*="st-key-stg-"][class*="-cur"] button{{background:#f1f5fa !important}}
+[class*="st-key-sub-"]{{margin:-6px 0 6px 16px;border-left:2px solid #e2e8f0;padding-left:6px}}
+[class*="st-key-sub-"] .stButton button p{{font-size:13.5px !important}}
+[data-testid="stSidebar"] .stButton [data-testid="stIconMaterial"]{{color:#0f766e;font-size:17px}}
+[class*="st-key-stp-"] button{{background:#fff;border:1px solid #e6eaf0;border-radius:12px;padding:6px 10px;min-height:0;justify-content:flex-start;text-align:left}}
+[class*="st-key-stp-"] button > div,[class*="st-key-stp-"] button [data-testid="stMarkdownContainer"]{{justify-content:flex-start;text-align:left;width:100%}}
+[class*="st-key-stp-"] button p{{font-size:12px;line-height:1.35;text-align:left;color:#94a3b8;margin:0}}
+[class*="st-key-stp-"] button strong{{font-size:13.5px}}
+[class*="st-key-stp-"][class*="-on"] button{{border-color:#172033;box-shadow:inset 0 -3px 0 #172033}}
+[class*="st-key-stp-"][class*="-on"] button p{{color:#172033}}
+[class*="st-key-stp-"][class*="-done"] button p{{color:#16a34a}}
+.synth.top{{margin:0;font-size:11px;padding:4px 9px}}
+.user{{display:flex;align-items:center;gap:9px;justify-content:flex-end}}
+.avatar{{width:36px;height:36px;border-radius:50%;background:#e2e8f0;color:#94a3b8;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}}
+.avatar svg{{width:26px;height:26px;margin-top:7px}}
+.uname{{display:flex;flex-direction:column;line-height:1.15;white-space:nowrap}}.uname small{{font-size:10.5px;color:#64748b}}
+.uname b{{font-size:13.5px;color:#172033}}.uname em{{font-style:normal;font-size:11.5px;color:#64748b}}
+.st-key-logout button{{border:1px solid #d5dde8;background:#fff;border-radius:8px;min-height:0;padding:6px 10px}}
+.st-key-logout button p{{font-size:12.5px;font-weight:600;color:#172033}}
+.st-key-logout button:hover{{background:#fde8e8;border-color:#f5b5b5}}
+[data-testid="stExpander"] summary{{display:flex;align-items:center}}
+[data-testid="stExpander"] summary [data-testid="stIconMaterial"]{{display:none}}
+[data-testid="stExpander"] summary::after{{content:"+";margin-left:auto;width:28px;height:28px;border-radius:8px;border:1px solid #d5dde8;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;color:#334155;flex-shrink:0}}
+[data-testid="stExpander"] details[open] > summary::after{{content:"−"}}
+.st-key-upbox [data-testid="stFileUploaderDropzone"]{{min-height:250px;flex-direction:column;justify-content:center;gap:14px;border:2px dashed #9ec5f4;background:#f7faff;border-radius:16px}}
+.st-key-upbox [data-testid="stFileUploader"] > label p{{font-size:18px !important;font-weight:700;color:#172033}}
+.st-key-qtable,.st-key-qtable_s{{position:sticky;top:3.75rem;z-index:40;background:#f6f8fb;padding:4px 0 6px}}
+.st-key-casehead,.st-key-casehead_s{{position:sticky;z-index:39;background:#f6f8fb;padding-bottom:4px}}
+.st-key-casehead{{top:calc(3.75rem + 318px)}}.st-key-casehead_s{{top:calc(3.75rem + 218px)}}
+.qcount{{font-size:13px;color:#64748b;font-weight:600;white-space:nowrap}}
+.case1{{background:#fff;border:1px solid #e6eaf0;border-radius:14px;padding:10px 14px;box-shadow:0 6px 10px -8px rgba(15,23,42,.25)}}
+.case1 .chead .score{{width:44px;height:44px;font-size:17px;border-radius:11px}}.case1 .chead h3{{font-size:18px}}
+.keyband{{display:grid;grid-template-columns:repeat(6,auto);gap:4px 18px;margin-top:8px;padding-top:8px;border-top:1px solid #f0f3f7}}
+.keyband div{{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.04em}}.keyband b{{display:block;font-size:14.5px;color:#172033;text-transform:none;letter-spacing:0}}
+.keyband .urgent b{{color:#dc2626}}
+.payline{{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 6px}}.payline span{{border-radius:8px;padding:6px 10px;font-size:13px;border:1px solid #cbd5e1;background:#f8fafc}}
+.flagnote{{margin:6px 0 10px;border:1px solid #e6eaf0;background:#f8fafc;border-radius:10px;padding:9px 12px;font-size:13px;color:#475569}}.flagnote b{{color:#172033}}
+.wfh b{{display:block;font-size:18px;color:#172033}}.wfh span{{font-size:13.5px;color:#64748b}}
+.sc-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:4px 0 16px}}
+.sc{{background:#fff;border:1px solid #e6eaf0;border-radius:14px;box-shadow:0 1px 2px rgba(15,45,82,.04),0 4px 14px rgba(15,45,82,.05);padding:16px 18px}}
+.sc .sch{{display:flex;justify-content:space-between;align-items:center;gap:8px}}.sc h4{{margin:0;font-size:14.5px;color:#172033}}
+.stb{{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap}}
+.stb.g{{background:#e7f6ec;color:#11793a}}.stb.a{{background:#fdf1e1;color:#9a5a06}}.stb.r{{background:#fde8e8;color:#b91c1c}}
+.sc .v{{font-size:32px;font-weight:800;color:#172033;margin:10px 0 0;letter-spacing:-.02em}}.sc .t{{font-size:13px;color:#64748b}}
+.bul{{position:relative;height:18px;background:#eef2f7;border-radius:5px;margin:14px 0 5px}}.bul i{{position:absolute;left:0;top:5px;height:8px;border-radius:3px;background:#172033}}
+.bul em{{position:absolute;top:-3px;width:3px;height:24px;background:#2a78d6;border-radius:2px}}
+.bsc{{display:flex;justify-content:space-between;font-size:11.5px;color:#64748b}}
+@media(max-width:1100px){{.sc-grid{{grid-template-columns:1fr}}.keyband{{grid-template-columns:repeat(3,auto)}}}}
 </style>""", unsafe_allow_html=True)
 
 
@@ -224,19 +283,40 @@ def load(file_bytes: bytes | None):
     return scored, all_days, res["upcoders"], cases
 
 
+def stage_of(p):
+    return next((i for i, (_, ps) in enumerate(STAGES) if p in ps), None)
+
+
 def go(p, case_id=None):
     st.session_state.page = p
+    st.session_state.side_open = None          # the left panel follows the page again
     if case_id:
         st.session_state.case_id = case_id
 
 
 def page_header(title, purpose, step=None):
-    stage = next((s[0][0] for s in STAGES if title in s[1]), None)
-    crumb = "Start here" if step is None else (f"Stage {stage} · Step {step} of {len(ORDER)}" if stage else
-                                               f"Analyst view · step {step} of the reference tour")
+    i = stage_of(title)
+    crumb = "Start here" if title.startswith(GUIDE) else f"Stage {i + 1} · {STAGES[i][0]}" if i is not None else ""
     st.markdown(f'<div class="crumb">{crumb}</div>', unsafe_allow_html=True)
     st.markdown(f"## {title}")
     st.markdown(f'<div class="purpose">{purpose}</div>', unsafe_allow_html=True)
+
+
+def take_click(name, apply):
+    """Turn a Plotly point click from the previous run into a one-off event: apply it, then give the chart a
+    fresh key so its selection clears (clicking the same mark again toggles). Returns this run's chart key."""
+    n = st.session_state.get(f"_{name}_n", 0)
+    sel = st.session_state.get(f"{name}_{n}")
+    pts = (sel or {}).get("selection", {}).get("points", []) if sel else []
+    if pts:
+        apply(pts[0])
+        st.session_state[f"_{name}_n"] = n = n + 1
+    return f"{name}_{n}"
+
+
+def fade(hex_, a):
+    h = hex_.lstrip("#")
+    return f"rgba({int(h[0:2], 16)},{int(h[2:4], 16)},{int(h[4:6], 16)},{a})"
 
 
 def todo(*items):
@@ -265,7 +345,8 @@ def kpi(col, label, value, detail, teal=False):
 def style(fig, height=360, title=None):
     fig.update_layout(height=height, plot_bgcolor="#fff", paper_bgcolor="#fff", margin=dict(t=50 if title else 20, b=10, l=10, r=10),
                       title=dict(text=title, font=dict(size=17, color="#0f172a")) if title else None,
-                      font=dict(size=14, color="#0f172a"), legend=dict(font=dict(size=13), title_text=""))
+                      font=dict(size=14, color="#0f172a"), legend=dict(font=dict(size=14), title_text=""),
+                      hoverlabel=dict(font_size=13, bgcolor="#172033", font_color="#fff"))
     fig.update_xaxes(tickfont=dict(size=13, color="#000"), title_font=dict(size=14, color="#000"), gridcolor="#eef2f7")
     fig.update_yaxes(tickfont=dict(size=13, color="#000"), title_font=dict(size=14, color="#000"), gridcolor="#eef2f7")
     return fig
@@ -296,6 +377,37 @@ ss.setdefault("visited", set())
 ss.setdefault("case_id", None)
 ss.setdefault("chat", [])
 ss.setdefault("user", "A. Chan")
+for k, v in {"signed_in": True, "side_open": None, "brief_open": False, "q_short": False, "ov_week": None,
+             "sel_pid": None, "pf_day": None, "pf_lev": None, "ex_hi": "None", "_qt_last": None, "_tbl_pid": None,
+             "q_spec": "All", "q_prov": "All", "q_own": "Anyone", "q_bill": 0, "q_open": False, "q_over": False}.items():
+    ss.setdefault(k, v)
+_qp = st.query_params.get("page")          # links in the How to Use diagram
+if _qp in ALL_PAGES:
+    ss.page = _qp
+    st.query_params.clear()
+
+LOGO = f"""<div class="brand"><svg width="40" height="45" viewBox="0 0 46 52" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 2 L42 9 V24 C42 37 33 46 23 50 C13 46 4 37 4 24 V9 Z" fill="{BLUE2}"/>
+<path d="M14 26 L20.5 32.5 L33 19" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><div><div class="bname">ClaimGuard</div><div class="btag">Health claim screening</div></div></div>"""
+AVATAR = ('<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4.2" fill="currentColor"/>'
+          '<path d="M3.8 21c0-4.6 3.7-7.6 8.2-7.6s8.2 3 8.2 7.6z" fill="currentColor"/></svg>')
+
+# ---------------- Sign-in (demo) ----------------
+if not ss.signed_in:
+    _, mid, _ = st.columns([1, 1.1, 1])
+    with mid:
+        st.markdown('<div style="height:7vh"></div>' + LOGO, unsafe_allow_html=True)
+        st.markdown(f'<div class="card" style="text-align:center"><div class="avatar" style="width:56px;height:56px;margin:0 auto 8px">'
+                    f'{AVATAR}</div><h3>Sign in to ClaimGuard</h3><p class="sub" style="margin:0">Demo sign-in: choose a '
+                    'demo user. The pilot uses single sign-on (SSO), which also sets the role.</p></div>',
+                    unsafe_allow_html=True)
+        pick = st.selectbox("Demo user", list(USERS), index=list(USERS).index(ss.user),
+                            format_func=lambda u: f"{u} · {USERS[u]}")
+        if st.button("Sign in", type="primary", width="stretch", key="signin"):
+            ss.user, ss.signed_in = pick, True
+            st.rerun()
+    st.stop()
 for k, v in {"f_dup": True, "f_imp": True, "f_upc": True, "q_routes": ["Priority review", "Routine review"],
              "q_reasons": list(FLAG.values()), "q_view": "all"}.items():
     ss.setdefault(k, v)
@@ -318,8 +430,6 @@ if ss.page is None:
     if mine_before:
         ss.q_view = "mine"
 page = ss.page
-if page in ORDER:
-    ss.visited.add(page)
 
 # ---------------- Filters (kept in session state, edited behind the ⚙ Filters button) ----------------
 rng = ss.f_rng
@@ -344,31 +454,28 @@ reviewed = fb[fb.decision.isin(feedback.FINAL)]
 DATA = {"scored": scored, "cases": cases, "flagged": flagged, "all_days": pdays, "fb": fb,
         "intake_df": ss.get("intake_df")}
 
-# ---------------- Sidebar ----------------
-LOGO = f"""<div class="brand"><svg width="40" height="45" viewBox="0 0 46 52" xmlns="http://www.w3.org/2000/svg">
-<path d="M23 2 L42 9 V24 C42 37 33 46 23 50 C13 46 4 37 4 24 V9 Z" fill="{BLUE2}"/>
-<path d="M14 26 L20.5 32.5 L33 19" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg><div><div class="bname">ClaimGuard</div><div class="btag">Health claim screening</div></div></div>"""
+# ---------------- Sidebar: How to Use + the 4 stages as an accordion ----------------
+def toggle_stage(i, open_i):
+    ss.side_open = -1 if i == open_i else i     # expand / fold a stage without navigating
 
+
+cur_stage = stage_of(page)
 with st.sidebar:
     st.markdown(LOGO, unsafe_allow_html=True)
-    st.button("❓ How to Use ClaimGuard", key="nav-help", on_click=go, args=(GUIDE,), width="stretch",
+    st.button("How to Use", key="nav-help", on_click=go, args=(GUIDE,), width="stretch",
               type="primary" if page == GUIDE else "secondary")
     mine_open = int(((open_cases.owner == ss.user) & open_cases.status.isin([feedback.OPEN, feedback.PENDING])).sum())
-    for label, pages in STAGES + EXTRA_NAV:
-        st.markdown(f'<div class="stagelbl">{label}</div>', unsafe_allow_html=True)
-        for p in pages:
-            if p in ORDER and p != "Model Evaluation":
-                n = ORDER.index(p) + 1
-                mark = "✓" if (p in ss.visited and p != page) else str(n)
-            else:
-                mark = NAV_ICON[p]
-            extra = f"  · {mine_open} mine" if p == "Investigator Queue" else ""
-            st.button(f"{mark}  {p}{extra}", key=f"nav-{p}", on_click=go, args=(p,), width="stretch",
-                      type="primary" if page == p else "secondary")
-    st.markdown('<div class="stagelbl">Signed in (demo)</div>', unsafe_allow_html=True)
-    st.selectbox("Signed in as", list(USERS), key="user", label_visibility="collapsed",
-                 format_func=lambda u: f"{u} · {USERS[u]}", help="Demo sign-in. The pilot uses single sign-on (SSO).")
+    open_i = cur_stage if ss.side_open is None else ss.side_open
+    for i, (label, pages) in enumerate(STAGES):
+        badge = f"  ·  {mine_open} mine" if i == 2 and mine_open else ""
+        st.button(f"{i + 1}   {label}{badge}", width="stretch", on_click=toggle_stage, args=(i, open_i),
+                  key=f"stg-{i}{'-cur' if i == cur_stage else ''}{'-open' if i == open_i else ''}")
+        if i == open_i:
+            with st.container(key=f"sub-{i}"):
+                for p in pages:
+                    st.button(p + ("  :material/auto_awesome:" if p in AI_PAGES else ""), key=f"nav-{p}", on_click=go,
+                              args=(p,), width="stretch", type="primary" if page == p else "secondary",
+                              help=AI_PAGES.get(p))
     st.markdown(f'<div class="ds"><b>{ss.data_name}</b><br>{dmin:%d %b} – {dmax:%d %b %Y}<br>Org <b>{feedback.ORG}</b> · '
                 f'dataset <b>{DS}</b>{" (synthetic, isolated from pilot data)" if is_sample else ""}</div>',
                 unsafe_allow_html=True)
@@ -435,16 +542,39 @@ def chat_dialog(first_q=None):
                "'How I got this' · read-only, it can't change data or decisions")
 
 
-# ---------------- Top bar: progress tracker, demo badge, filters, assistant ----------------
-cur = ORDER.index(page) if page in ORDER else -1
-track = '<span class="tk-sep">›</span>'.join(
-    f'<span class="tk {"on" if i == cur else "done" if p in ss.visited else ""}">'
-    f'{"✓" if (p in ss.visited and i != cur) else i + 1} {SHORTNAME[p]}</span>' for i, p in enumerate(ORDER))
-badge = '<span class="synth" title="All claims, providers and decisions in the sample are made up.">⚠ Synthetic demo data · outcomes can be reversed (kept in history)</span>' if is_sample else ""
-t1, t2, t3 = st.columns([6, 1.05, 1.25], vertical_alignment="center")
-t1.markdown(f'<div class="topwrap">{track}{badge}</div>', unsafe_allow_html=True)
+# ---------------- Top bar: 4-stage progress stepper, filters, assistant, signed-in user ----------------
+def stage_status(i):
+    if i == 0:
+        idf_ = ss.get("intake_df")
+        if idf_ is not None:
+            return f"{int((idf_.status != intake.FIX).sum())} rows ready · {int((idf_.status == intake.FIX).sum())} to fix"
+        return f"{len(scored):,} claims loaded"
+    if i == 1:
+        return f"{len(cases)} flagged · {money(flagged.billed_amount.sum())}"
+    if i == 2:
+        return f"{len(reviewed)} of {len(cases)} reviewed"
+    return "Dashboard ready"
+
+
+def log_out():
+    feedback.log(DS, ss.user, "sign out", "")
+    ss.signed_in = False
+
+
+tc = st.columns([1.2, 1.45, 1.3, 1.05, 1.45, 0.62], vertical_alignment="center", gap="small")
+for i, (label, pages) in enumerate(STAGES):
+    stt_ = "on" if i == cur_stage else "done" if cur_stage is not None and i < cur_stage else "todo"
+    tc[i].button(f"**{'✓' if stt_ == 'done' else i + 1} · {label}**  \n{stage_status(i)}", key=f"stp-{i}-{stt_}",
+                 on_click=go, args=(pages[0],), width="stretch")
+tc[4].markdown(f'<div class="user"><span class="avatar">{AVATAR}</span><span class="uname"><small>Signed in as</small>'
+               f'<b>{ss.user}</b><em>{ROLE}</em></span></div>', unsafe_allow_html=True)
+tc[5].button("Log out", key="logout", on_click=log_out, width="stretch")
+tb = st.columns([4.3, 1.25, 1.15, 1.45], vertical_alignment="center", gap="small")
+if is_sample:
+    tb[1].markdown('<span class="synth top" title="All claims, providers and decisions in the sample are made up. Outcomes '
+                   'can be reversed and are kept in history.">⚠ Synthetic demo data</span>', unsafe_allow_html=True)
 if page in FILTER_PAGES:
-    with t2.popover("⚙ Filters", width="stretch"):
+    with tb[2].popover("⚙ Filters", width="stretch"):
         st.markdown("**Applies to all analysis pages**")
         v = st.date_input("Service date range", ss.f_rng, min_value=dmin, max_value=dmax, key="w_rng")
         if isinstance(v, tuple) and len(v) == 2 and v != ss.f_rng:
@@ -455,110 +585,111 @@ if page in FILTER_PAGES:
             if nv != ss[k]:
                 ss[k] = nv
                 st.rerun()
-        if page == "Investigator Queue":
-            st.markdown("**Queue only**")
-            rt = st.multiselect("Routing", ["Priority review", "Routine review", "No additional review recommended"],
-                                ss.q_routes, key="w_rt")
-            rs = st.multiselect("Flag reason", list(FLAG.values()), ss.q_reasons, key="w_rs")
-            if (rt, rs) != (ss.q_routes, ss.q_reasons):
-                ss.q_routes, ss.q_reasons = rt, rs
-                st.rerun()
-if t3.button("✦ Ask your data", key="askbtn", width="stretch"):
+if tb[3].button("✦ Ask your data", key="askbtn", width="stretch"):
     ss._asked_first = False
     chat_dialog()
 
 # ================= How to Use =================
+FAQ = [
+    ("Getting started", "Where do I start?", "Click **Review a sample duplicate case** above. It opens a case with the evidence, "
+     "checklist and outcome form. Or click any card in the workflow."),
+    ("Getting started", "Do I need to upload anything to try it?", "No. The synthetic sample dataset is already loaded."),
+    ("Flags & scores", "Does a flag mean the provider committed fraud?", "No. A flag means \"worth a review\". Reviewers record "
+     "outcomes such as \"Billing or coding issue substantiated\"; formal fraud findings stay with SIU."),
+    ("Flags & scores", "What does the review priority (0–100) mean?", "How strongly the rules suggest a review: 80+ priority "
+     "review, 50–79 routine review, below 50 no additional review. It is not a probability of fraud."),
+    ("Flags & scores", "What are the four flag reasons?", "Repeated claim (exact duplicate), near-repeated claim (±1 day, "
+     "±10%), unusual billed hours in one day, and visit level above specialty peers."),
+    ("Cases & outcomes", "How do I record an outcome?", "Open a case, go to the **Record outcome** tab, choose an outcome, a "
+     "reason and at least one evidence reference. A substantiated outcome also needs an amount, or **Amount pending**; the "
+     "billed amount is never assumed."),
+    ("Cases & outcomes", "Why does a duplicate need payment history?", "Two matching submissions show there is something to "
+     "review. Only the payment records show whether money was actually overpaid."),
+    ("Cases & outcomes", "Can I undo an outcome?", "Yes. Reverse it with a reason. The reversal is added to the case history; "
+     "nothing is deleted."),
+    ("Cases & outcomes", "Where is the case brief?", "Click **📄 Case brief** in the case header for a short summary: why it "
+     "was flagged, key evidence, legitimate explanations and the first step."),
+    ("Cases & outcomes", "Will my decisions change the scores?", "Not automatically. Any change to rules or the model needs "
+     "independent validation and approval first."),
+    ("Data & privacy", "Is this real data?", "No. Everything in the sample is synthetic, including the accuracy figures."),
+    ("Data & privacy", "Does any data leave the system?", "Not today. The case brief and Ask your data are rule-based and run "
+     "locally. AI features stay off until their data flow is reviewed."),
+    ("Getting started", "Can I just ask a question?", "Yes. Click **✦ Ask your data** at the top of any page."),
+]
+GLOSSARY = [
+    ("Billed · Flagged · Substantiated", "What was charged · what a rule found unusual · what a reviewer substantiated with evidence."),
+    ("Outcomes", "No issue found · Billing or coding issue substantiated · Insufficient evidence · Refer to SIU."),
+    ("Case", "One or more related flagged claims, reviewed together."),
+    ("Repeated claim (duplicate)", "The same service billed twice."),
+    ("Unusual billed hours", "Estimated hours from billed codes and units exceed what fits in a day."),
+    ("Visit level above peers (upcoding)", "Billing a more expensive visit than peers usually do."),
+    ("Pending reconciliation", "An amount not yet confirmed by the claims system. Not the same as $0."),
+    ("Ready / Check / Fix", "Intake row status: usable, read the warning, or missing a value."),
+]
+WF_LINKS = {"intake": "Claim Intake", "upload": "Data Upload", "overview": "Flag Overview", "queue": "Investigator Queue",
+            "exec": "Executive Dashboard", "model": "Model Evaluation"}
+
+
+@st.cache_data(show_spinner=False)
+def workflow_svg():
+    """The AI / Automated / People diagram; each card links to its page and shows details on hover."""
+    import re
+    import urllib.parse
+    s = (ROOT / "docs" / "design" / "pipeline_ai_human_guide.svg").read_text(encoding="utf-8")
+    for o, n in [("#0f2d52", "#172033"), ("#2b5f94", "#1c5cab"), ("#3b7cc4", "#2a78d6"), ("#93b4d9", "#9ec5f4")]:
+        s = s.replace(o, n)
+
+    def link(m):
+        page_ = WF_LINKS[m.group(1)]
+        return (f'<a href="?page={urllib.parse.quote(page_)}" target="_self"><title>{m.group(2)}</title>'
+                f'<rect class="hit" {m.group(3)}/></a>')
+    s = re.sub(r'<g class="wfn" data-go="(\w+)" data-tip="([^"]*)"><rect ([^>]*)/></g>', link, s)
+    s = s.replace('class="wf"', 'width="100%" style="display:block;font-family:Inter,Segoe UI,sans-serif"', 1)
+    s = "\n".join(l_.strip() for l_ in s.splitlines() if l_.strip())     # no blank lines: keeps markdown from splitting it
+    return ("<style>svg a .hit{cursor:pointer}svg a:hover .hit{stroke:#2a78d6;stroke-width:2}</style>" + s)
+
+
 if page == GUIDE:
-    page_header("How to Use ClaimGuard",
-                "ClaimGuard screens health claims with explainable rules and helps investigators decide which ones "
-                "need a closer look. It works in three stages. Follow them left to right, or jump straight to the part "
-                "your role needs.")
-    l, r = st.columns([1.3, 1])
+    page_header("How to Use ClaimGuard", "ClaimGuard screens health claims with explainable rules and helps investigators "
+                "decide which ones need a closer look. Follow the workflow below; click any card to open that page.")
+    with st.container(border=True, key="wfcard"):
+        h1, h2 = st.columns([3, 1.15], vertical_alignment="center")
+        h1.markdown('<div class="wfh"><b>The workflow</b><span>Where AI supports investigators, and where human judgment '
+                    'is required. Hover a card for details; click it to open the page.</span></div>', unsafe_allow_html=True)
+        dups = open_cases[open_cases.case_type == "duplicate"]
+        sample_case = dups.case_id.iloc[0] if len(dups) else (open_cases.case_id.iloc[0] if len(open_cases) else None)
+        h2.button("▶ Review a sample duplicate case", type="primary", width="stretch", on_click=go,
+                  args=("Investigator Queue", sample_case), key="g-sample")
+        st.markdown(workflow_svg(), unsafe_allow_html=True)
+    l, r = st.columns([1.45, 1], gap="large")
     with l:
-        st.markdown('<div class="hero"><div class="c">For claims investigators &amp; payment-integrity teams</div>'
-                    '<h3>See it in 1 minute: review a real-looking case</h3><p>Opens the top flagged case from the '
-                    'sample data. You\'ll see why it was flagged, what to check, and where to record a decision. No '
-                    'upload needed.</p></div>', unsafe_allow_html=True)
-        b1, b2, b3 = st.columns([1.15, 1.25, 1])
-        top_case = open_cases.case_id.iloc[0] if len(open_cases) else None
-        b1.button("▶ Review a sample case", type="primary", width="stretch", on_click=go,
-                  args=("Investigator Queue", top_case), key="g-sample")
-        b2.button("Prepare documents", width="stretch", on_click=go, args=("Claim Intake",), key="g-prep")
-        b3.button("7-step reference tour", width="stretch", on_click=go, args=("Claim Intake",), key="g-tour")
-        st.caption(f"Returning investigators open straight in **My cases** ({mine_open} open for {ss.user}). "
-                   "Leadership: see the **Executive Dashboard** in the sidebar.")
+        section("", "Common Questions", "Filter by topic; click a question to expand it.")
+        topic = st.pills("Topic", ["All", "Getting started", "Flags & scores", "Cases & outcomes", "Data & privacy"],
+                         default="All", key="faq_topic", label_visibility="collapsed")
+        for cat, qq, aa in FAQ:
+            if topic in (None, "All", cat):
+                with st.expander(qq, expanded=qq == "Where do I start?"):
+                    st.markdown(aa)
     with r:
-        st.markdown('<div class="qs"><h4>Every case answers three questions</h4>'
-                    '<div class="q"><i>1</i><div><b>Why was this flagged?</b>The rule, the comparison and the exact claim rows.</div></div>'
-                    '<div class="q"><i>2</i><div><b>What should I check next?</b>A checklist for that flag reason.</div></div>'
-                    '<div class="q"><i>3</i><div><b>Where do I record the outcome?</b>A structured outcome with a reason and evidence. Every change is kept in the case history.</div></div>'
-                    '</div>', unsafe_allow_html=True)
-
-    st.markdown('<div class="card" style="border-left:4px solid #0f766e;margin-top:16px"><h3>Pilot scope: duplicate billing '
-                '(shadow pilot)</h3><p class="sub" style="margin:0">Investigators review ClaimGuard\'s duplicate-billing flags '
-                '<b>alongside</b> the existing process. Payments, denials and recoveries stay in the claims system. Success '
-                'criteria are agreed in advance: see the Executive Dashboard.</p></div>', unsafe_allow_html=True)
-    section("", "The Workflow", "Each stage feeds the next. The tracker at the top of every page shows where you are.")
-    st.markdown("""<div class="flow">
-      <div class="fstage"><h4>① Bring in claims</h4><p>Get claims into a clean, standard table.</p>
-        <div>Claim Intake<em>messy PDFs, emails, spreadsheets → rows</em></div><div>Data Upload<em>check and load a claims CSV</em></div></div>
-      <div class="fstage" style="border-top-color:#2b5f94"><h4>② Find unusual claims</h4><p>Rules score every claim and show where the flags are.</p>
-        <div>Flag Overview<em>how many, how much billed, why</em></div><div>Provider Risk<em>who is behind it</em></div></div>
-      <div class="fstage" style="border-top-color:#0f2d52"><h4>③ Review &amp; improve</h4><p>People decide; their decisions make the system smarter.</p>
-        <div>Investigator Queue<em>work cases one by one</em></div><div>Review Outcomes<em>what reviewers found, with denominators</em></div><div>Executive Dashboard<em>yield, backlog, verified value</em></div></div>
-    </div>""", unsafe_allow_html=True)
-
-    section("", "Pick Your Path", "You don't need every page. Start from the one that matches your job.")
-    st.markdown("""<div class="roles">
-      <div class="role"><b>🧾 Claims processor</b>I receive claim documents.<ol><li>Claim Intake: upload, fix red rows</li><li>Add rows to the dataset</li><li>Check Flag Overview for new flags</li></ol></div>
-      <div class="role"><b>🔍 Investigator</b>I review flagged cases.<ol><li>Investigator Queue: click the top case</li><li>Read why it was flagged, tick the checks</li><li>Record an outcome with a reason and evidence</li></ol></div>
-      <div class="role"><b>📊 Manager</b>I need the big picture.<ol><li>Executive Dashboard: yield, backlog, value</li><li>Flag Overview: where flags come from</li><li>Provider Risk: top providers</li></ol></div>
-    </div>""", unsafe_allow_html=True)
-
-    l, r = st.columns(2)
-    with l:
-        section("", "Words You'll See")
-        st.markdown("""<div class="card gloss">
-          <div><b>Review priority (0–100)</b>: how strongly the rules suggest a review: the rule's base score plus any adjustment, both shown in the case. 80+ priority review, 50–79 routine review, below 50 no additional review recommended. <b>Not</b> a probability of fraud.</div>
-          <div><b>Billed · Flagged · Substantiated</b>: what was charged · what a rule found unusual · what a reviewer substantiated with evidence.</div>
-          <div><b>Outcomes</b>: No issue found · Billing or coding issue substantiated · Insufficient evidence · Refer to SIU. Formal fraud findings stay with SIU.</div>
-          <div><b>Case</b>: one or more related flagged claims, reviewed together.</div>
-          <div><b>Repeated claim</b>: the same service billed twice.</div>
-          <div><b>Unusual billed hours</b>: estimated hours from billed codes and units exceed what fits in a day.</div>
-          <div><b>Visit level above peers</b>: billing the most expensive visit far more often than peers.</div>
-          <div><b>Ready / Check / Fix</b>: intake row status: usable, read the warning, or missing a value.</div></div>""",
-                    unsafe_allow_html=True)
-    with r:
-        section("", "Common Questions")
-        for qq, aa in [
-            ("Where do I start?", "Click **Review a sample case** above for the 1-minute version, or **7-step reference tour** to walk through every page."),
-            ("Does a flag mean the provider committed fraud?", "No. A flag means \"worth a review\". Investigators record outcomes such as \"Billing or coding issue substantiated\"; formal fraud findings stay with the authorized SIU process."),
-            ("Why can't ClaimGuard read my scanned image?", "Intake reads text PDFs, emails and spreadsheets. Scanned images need the Claude AI reader, coming once API credit is added."),
-            ("Will my decisions change the scores?", "Not automatically. Outcomes are logged with full history. Any change to rules, the priority adjustment or the model needs independent validation and approval first."),
-            ("Can I just ask a question?", "Yes. Click **✦ Ask your data** at the top right of any page. It answers from the loaded claims, shows how it got the answer, and suggests questions for the page you're on."),
-            ("Is this real data?", "No. The sample is synthetic, including the accuracy figures, and is stored as its own dataset. Outcomes can be reversed; the history keeps every change.")]:
-            with st.expander(qq, expanded=qq == "Where do I start?"):
-                st.markdown(aa)
+        section("", "Words You'll See", "Click a term to see what it means.")
+        for term, meaning in GLOSSARY:
+            with st.expander(term):
+                st.markdown(meaning)
 
 # ================= Claim Intake =================
 if page == "Claim Intake":
     page_header("Claim Intake", "Turn messy claim documents (receipts, superbills, emails, odd spreadsheets) into clean "
-                "claim rows the screening rules can check.", 1)
-    todo(("You will", "Upload documents", "PDF receipts, emails or spreadsheets"),
-         ("Then", "Fix rows marked red", "a required value is missing"),
-         ("Finish by", "Adding rows to the dataset", "so the screening rules see them"))
-
-    section(1, "Upload Messy Claims", "Text PDFs, .txt / .eml notes, or .csv / .xlsx files with any column names. "
-            "Scanned images are not supported yet (that needs OCR or Claude).")
-    l, r = st.columns([1.5, 1])
-    with l:
-        ups = st.file_uploader("Claim documents", type=["pdf", "txt", "eml", "md", "csv", "xlsx"],
-                               accept_multiple_files=True, key="intake_up")
-    with r:
-        st.markdown('<div class="check"><b>Extraction engine</b><br>● Rules: active, $0<br>'
-                    '<span style="color:#94a3b8">○ Claude: off (no API credit yet)</span></div>', unsafe_allow_html=True)
-        st.write("")
-        use_samples = st.button("📂 Load messy samples", width="stretch")
+                "claim rows the screening rules can check.")
+    section(1, "Upload", "Add the raw claim files you received: PDF receipts and superbills, emails, or spreadsheets. "
+            "Text PDFs, .txt / .eml notes and .csv / .xlsx files with any column names work; scanned images are not "
+            "supported yet.")
+    with st.container(key="upbox"):
+        ups = st.file_uploader("Upload your medical claims", type=["pdf", "txt", "eml", "md", "csv", "xlsx"],
+                               accept_multiple_files=True, key="intake_up", help="Drag and drop files, or click Browse files.")
+        b1, b2 = st.columns([1.35, 3], vertical_alignment="center")
+        use_samples = b1.button("No files to hand? Use the sample claims", key="use_samples", width="stretch")
+        b2.markdown('<div class="hint">Extraction engine: rules (active, $0) · ✦ Claude document reading: off until API '
+                    'credit and a data-flow review.</div>', unsafe_allow_html=True)
     if use_samples:
         ss.intake_files = [(p.name, p.read_bytes()) for p in sorted((ROOT / "data" / "messy").iterdir())
                            if p.suffix.lower() in (".pdf", ".txt", ".eml", ".md", ".csv", ".xlsx")]
@@ -571,10 +702,9 @@ if page == "Claim Intake":
 
     files = ss.get("intake_files")
     if not files:
-        st.markdown('<div class="next">⬆ Upload documents or click <b>Load messy samples</b> to start. You can also '
-                    'skip this step: the sample dataset is already loaded.</div>', unsafe_allow_html=True)
-        next_bar("the sample dataset is already loaded; check it before screening.", "Go to Data Upload →",
-                 "Data Upload", "nx-intake0")
+        st.markdown('<div class="hint" style="margin-top:6px">The extracted rows, review &amp; fix, reconciliation and '
+                    'inferred values appear here after you upload claim files. You can also skip this step: the sample '
+                    'dataset is already loaded.</div>', unsafe_allow_html=True)
     else:
         if "intake_df" not in ss:
             with st.spinner("Extracting claim lines..."):
@@ -684,9 +814,6 @@ if page == "Claim Intake":
 # ================= Data Upload =================
 if page == "Data Upload":
     page_header("Data Upload", "Check that the claims table has everything the screening rules need, then run them.", 2)
-    todo(("You will", "Choose a dataset", "sample data, or your own CSV"),
-         ("Then", "Read the green checks", f"all {len(REQUIRED)} columns must be present"),
-         ("Finish by", "Running the analysis", "takes a few seconds"))
     section(1, "Choose Your Data", "Upload your own claims CSV, or keep using the built-in sample dataset.")
     l, r = st.columns([1.4, 1])
     with l:
@@ -737,8 +864,13 @@ if page == "Data Upload":
                          f"{c} &nbsp;&nbsp; " for c in REQUIRED)
         st.markdown(f'<div class="check"><b>Required columns</b><br>{checks}</div>', unsafe_allow_html=True)
 
-        section(3, "Preview", "The first 100 rows, exactly as they will be analysed.")
-        st.dataframe(df.head(100), hide_index=True, width="stretch", height=320)
+        section(3, "Data Preview", "The rows exactly as the screening rules will read them. Filter to check a claim, "
+                "member, provider or code.")
+        qv = st.text_input("Filter the preview", key="pv_q", placeholder="Filter by claim, member, provider or code…",
+                           label_visibility="collapsed").strip().lower()
+        pv = df[df.astype(str).apply(lambda c: c.str.lower().str.contains(qv, regex=False)).any(axis=1)] if qv else df
+        st.caption(f"Showing {min(len(pv), 200):,} of {len(pv):,} {'matching ' if qv else ''}rows")
+        st.dataframe(pv.head(200), hide_index=True, width="stretch", height=360)
 
         if up is not None:
             section(4, "Run The Analysis")
@@ -755,23 +887,47 @@ if page == "Data Upload":
 
 # ================= Flag Overview =================
 if page == "Flag Overview":
-    page_header("Flag Overview", "How many claims the rules flagged, how much was billed on them, and which flag "
-                "reasons drive it. Amounts are <b>billed</b>, not substantiated losses.", 3)
-    billed_flag = flagged.billed_amount.sum()
+    page_header("Flag Overview", "How many claims the rules flagged, how much was billed on them, and which flag reasons "
+                "drive it. Amounts are <b>billed</b>, not substantiated losses. Click a bar or a reason chip to filter the page.")
+    wk_all = flagged.assign(week=flagged.service_date.dt.to_period("W").dt.start_time)
+
+    def _pick_week(pt):
+        w = pd.Timestamp(pt["x"]).normalize()
+        ss.ov_week = None if ss.ov_week is not None and pd.Timestamp(ss.ov_week) == w else w
+
+    wk_key = take_click("ovwk", _pick_week)
+    f1, f2 = st.columns([3.4, 1], vertical_alignment="bottom")
+    with f1:
+        reason_sel = st.pills("Filter by flag reason", FLAG_ORDER, key="ov_reason", selection_mode="single",
+                              format_func=lambda r: FLAG_SHORT[r])
+    if ss.ov_week is not None:
+        f2.button(f"Week of {pd.Timestamp(ss.ov_week):%d %b}  ✕", key="ov-clr", width="stretch",
+                  on_click=lambda: ss.__setitem__("ov_week", None), help="Clear the week filter")
+    week_sel = pd.Timestamp(ss.ov_week) if ss.ov_week is not None else None
+    fl = wk_all if not reason_sel else wk_all[wk_all.flag_reason == reason_sel]
+    if week_sel is not None:
+        fl = fl[fl.week == week_sel]
+    filt = bool(reason_sel) or week_sel is not None
+    cs = cases[cases.case_id.isin(set(fl.case_id))]
+    revs = fb[fb.case_id.isin(cs.case_id) & fb.decision.isin(feedback.FINAL)]
+    n_conf = int((revs.decision == feedback.SUBST).sum())
+    billed_flag = fl.billed_amount.sum()
     by_reason = flagged.groupby("flag_reason").billed_amount.sum().sort_values(ascending=False)
-    n_conf = int((fb.decision == feedback.SUBST).sum())
-    st.markdown(f'<div class="callout">📌 <b>Key finding:</b> {len(cases)} flagged cases · {money(billed_flag)} billed. '
-                + (f'"{by_reason.index[0]}" accounts for the most billed dollars. ' if len(by_reason) else "")
-                + f'{n_conf} of {len(reviewed)} reviewed cases substantiated so far.</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="callout">📌 <b>Key finding:</b> {len(cases)} flagged cases · {money(flagged.billed_amount.sum())} '
+                'billed. ' + (f'"{by_reason.index[0]}" accounts for the most billed dollars. ' if len(by_reason) else "")
+                + f'{int((reviewed.decision == feedback.SUBST).sum())} of {len(reviewed)} reviewed cases substantiated so far.'
+                '</div>', unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
-    kpi(c1, "Billed On Flagged Claims", money(billed_flag), f"of {money(scored.billed_amount.sum())} billed in total")
-    kpi(c2, "Flagged Cases", f"{len(cases)}", f"{int((cases.risk_level == 'High').sum())} in priority review (80+) · "
-        f"{len(flagged):,} claims")
-    prov = flagged.groupby("provider_name").billed_amount.sum().sort_values(ascending=False)
-    kpi(c3, "Providers With Flags", f"{flagged.provider_id.nunique()}",
+    kpi(c1, "Billed On Flagged Claims", money(billed_flag),
+        f"{billed_flag / max(flagged.billed_amount.sum(), 1):.0%} of all flagged billing" if filt
+        else f"of {money(scored.billed_amount.sum())} billed in total")
+    kpi(c2, "Flagged Cases", f"{len(cs)}", "in this selection" if filt else
+        f"{int((cs.risk_level == 'High').sum())} in priority review (80+) · {len(fl):,} claims")
+    prov = fl.groupby("provider_name").billed_amount.sum().sort_values(ascending=False)
+    kpi(c3, "Providers With Flags", f"{fl.provider_id.nunique()}",
         f"top 5 hold {prov.head(5).sum() / max(billed_flag, 1):.0%} of flagged $")
-    kpi(c4, "Substantiated After Review", f"{n_conf}", f"of {len(reviewed)} reviewed ({n_conf / max(len(reviewed), 1):.0%}) · "
-        f"{int((cases.status == feedback.OPEN).sum())} not yet reviewed", teal=True)
+    kpi(c4, "Substantiated After Review", f"{n_conf}", f"of {len(revs)} reviewed ({n_conf / max(len(revs), 1):.0%}) · "
+        f"{int((cs.status == feedback.OPEN).sum())} not yet reviewed", teal=True)
 
     section(1, "Three Different Numbers", "Don't mix them up.")
     st.markdown('<div class="legend3"><div style="background:#f1f5fa"><b>Billed</b>What providers charged. Every claim '
@@ -779,44 +935,84 @@ if page == "Flag Overview":
                 'review, not proof.</div><div style="background:#fde8e8"><b>Substantiated</b>A reviewer recorded "Billing or coding '
                 'issue substantiated" with evidence.</div></div>', unsafe_allow_html=True)
 
-    section(2, "Where The Flags Come From",
-            f"<b>{by_reason.index[0]}</b> accounts for the largest share of billed dollars on flagged claims "
-            f"(<b>{by_reason.iloc[0] / max(billed_flag, 1):.0%}</b>)." if len(by_reason) else "")
-    l, r = st.columns([1, 1.4])
+    section(2, "Where The Flags Come From", "Hover any slice or bar for its numbers. Click a weekly bar to filter the page to "
+            "that week; use the chips above to filter by flag reason.")
+    l, r = st.columns([1, 1.55])
     with l:
-        d = by_reason.reset_index()
-        fig = px.pie(d, names="flag_reason", values="billed_amount", hole=0.55, color="flag_reason",
-                     color_discrete_map=FLAG_COLOR)
-        fig.update_traces(textinfo="percent", textfont_size=15, hovertemplate="%{label}: $%{value:,.0f}")
-        st.plotly_chart(style(fig, 360, "Billed On Flagged Claims, By Flag Reason"), width="stretch")
+        src = wk_all if week_sel is None else wk_all[wk_all.week == week_sel]
+        br = src.groupby("flag_reason").agg(billed=("billed_amount", "sum"), n=("case_id", "nunique")).reindex(FLAG_ORDER).fillna(0)
+        fig = go_.Figure(go_.Pie(
+            labels=[f"{FLAG_SHORT[x]} · {money(v)}" for x, v in zip(FLAG_ORDER, br.billed)], values=br.billed, hole=.58,
+            sort=False, direction="clockwise",
+            marker=dict(colors=[FLAG_COLOR[x] if not reason_sel or x == reason_sel else fade(FLAG_COLOR[x], .25) for x in FLAG_ORDER],
+                        line=dict(color="#fff", width=2)),
+            pull=[.06 if x == reason_sel else 0 for x in FLAG_ORDER], textinfo="percent", textfont=dict(size=14, color="#fff"),
+            insidetextorientation="horizontal",
+            customdata=br.n.astype(int), hovertemplate="<b>%{label}</b><br>%{percent} of billed on flagged claims<br>"
+                                                       "%{customdata} flagged cases<extra></extra>"))
+        center = br.billed.get(reason_sel, 0) if reason_sel else br.billed.sum()
+        fig.add_annotation(text=f"<b>{money(center)}</b><br><span style='font-size:12px;color:#64748b'>"
+                                f"{'week of ' + f'{week_sel:%d %b}' if week_sel is not None else 'billed on flagged'}</span>",
+                           showarrow=False, font=dict(size=20, color=NAVY))
+        fig.update_layout(legend=dict(orientation="h", y=-0.08, x=0, font=dict(size=14)))
+        st.plotly_chart(style(fig, 430, "Billed On Flagged Claims, By Flag Reason"), width="stretch")
     with r:
-        wk = flagged.assign(week=flagged.service_date.dt.to_period("W").dt.start_time)
-        wk = wk.groupby(["week", "flag_reason"]).billed_amount.sum().reset_index()
-        fig = px.bar(wk, x="week", y="billed_amount", color="flag_reason", color_discrete_map=FLAG_COLOR,
-                     labels={"week": "Week Of Service", "billed_amount": "Billed On Flagged Claims"})
-        fig.update_yaxes(tickprefix="$", tickformat=",.0f")
-        st.plotly_chart(style(fig, 360, "Billed On Flagged Claims, By Week"), width="stretch")
-    stats = feedback.rule_stats(fb).set_index("rule") if len(fb) else pd.DataFrame()
-    tbl = cases.groupby("case_type").agg(cases=("case_id", "count"), billed=("billed_amount", "sum")).reset_index()
-    tbl["substantiated_reviewed"] = tbl.case_type.map(
-        lambda t: f"{int(stats.loc[t, 'substantiated'])} of {int(stats.loc[t, 'reviewed'])}"
-        if t in stats.index else "0 reviewed")
-    tbl.insert(0, "flag_reason", tbl.case_type.map(FLAG))
-    st.dataframe(tbl.drop(columns="case_type").sort_values("billed", ascending=False), hide_index=True, width="stretch",
-                 column_config={"flag_reason": "Flag Reason", "cases": "Flagged Cases",
-                                "billed": st.column_config.NumberColumn("Billed On Flagged Claims", format="$%.0f"),
-                                "substantiated_reviewed": "Substantiated / Reviewed"})
+        wk = wk_all.groupby(["week", "flag_reason"]).billed_amount.sum().unstack().reindex(columns=FLAG_ORDER).fillna(0) / 1000
+        weeks = list(wk.index)
+        fig = go_.Figure()
+        for x in FLAG_ORDER:
+            dim = bool(reason_sel) and x != reason_sel
+            op = [(0.3 if week_sel is not None and w != week_sel else 1) * (0.25 if dim else 1) for w in weeks]
+            fig.add_bar(x=weeks, y=wk[x], name=f"{FLAG_SHORT[x]} · {money(wk[x].sum() * 1000)}",
+                        marker=dict(color=FLAG_COLOR[x], opacity=op, line=dict(color="#fff", width=1)),
+                        texttemplate="%{y:.0f}", textposition="inside", insidetextanchor="middle", textangle=0,
+                        textfont=dict(color="#fff", size=12),
+                        hovertemplate=f"<b>Week of %{{x|%d %b}}</b><br>{x}: $%{{y:.1f}}K<extra></extra>")
+        tot = wk.sum(axis=1)
+        fig.add_scatter(x=weeks, y=tot, mode="text", text=[f"${v:.0f}K" for v in tot], textposition="top center",
+                        textfont=dict(size=12, color=NAVY), showlegend=False, hoverinfo="skip")
+        fig.update_layout(barmode="stack", uniformtext=dict(minsize=10, mode="hide"), bargap=.18,
+                          legend=dict(orientation="h", y=-0.16, x=0, font=dict(size=14)))
+        fig.update_yaxes(tickprefix="$", ticksuffix="K", range=[0, float(tot.max()) * 1.18 if len(tot) else 1])
+        fig.update_xaxes(tickformat="%d %b")
+        st.plotly_chart(style(fig, 430, "Billed On Flagged Claims, By Week"), width="stretch", key=wk_key,
+                        on_select="rerun", selection_mode="points")
+        st.caption("Inside bars: $K billed per flag reason · on top: week total. Click a bar to filter to that week.")
 
-    section(3, "Who Is Behind The Flags",
-            f"Flags are concentrated: the top 5 providers account for <b>{prov.head(5).sum() / max(billed_flag, 1):.0%}</b> "
-            "of billed dollars on flagged claims.")
-    top = (flagged[flagged.provider_name.isin(prov.head(10).index)]
-           .groupby(["provider_name", "flag_reason"]).billed_amount.sum().reset_index())
-    fig = px.bar(top, x="billed_amount", y="provider_name", color="flag_reason", orientation="h",
-                 color_discrete_map=FLAG_COLOR, category_orders={"provider_name": list(prov.head(10).index)},
-                 labels={"billed_amount": "Billed On Flagged Claims", "provider_name": ""})
-    fig.update_xaxes(tickprefix="$", tickformat=",.0f")
-    st.plotly_chart(style(fig, 420, "Top 10 Providers By Billed On Flagged Claims"), width="stretch")
+    section(3, "Flagged Cases In This Selection",
+            f"<b>{len(cs)}</b> case{'s' if len(cs) != 1 else ''}{' match the filters' if filt else ''}. Highest review "
+            "priority first; select a row to open it.")
+    tbl = cs[["risk_score", "case_id", "flag_reason", "provider_name", "service_date", "claims", "billed_amount", "status"]]
+    ev_ = st.dataframe(tbl, hide_index=True, width="stretch", height=300, on_select="rerun", selection_mode="single-row",
+                       key=f"ovc-{reason_sel}-{week_sel}", column_config={
+                           "risk_score": st.column_config.NumberColumn("Priority", format="%d"), "case_id": "Case",
+                           "flag_reason": "Flag Reason", "provider_name": "Provider",
+                           "service_date": st.column_config.DateColumn("Service Date", format="D MMM YYYY"),
+                           "claims": "Claims", "billed_amount": st.column_config.NumberColumn("Billed", format="$%.0f"),
+                           "status": "Status"})
+    if ev_.selection.rows:
+        cid = tbl.iloc[ev_.selection.rows[0]].case_id
+        st.button(f"Open {cid} in the Investigator Queue →", type="primary", key="ov-open", on_click=go,
+                  args=("Investigator Queue", cid))
+
+    with st.expander("More detail: billed and review results by flag reason, top providers"):
+        stats = feedback.rule_stats(fb).set_index("rule") if len(fb) else pd.DataFrame()
+        tb = cases.groupby("case_type").agg(cases=("case_id", "count"), billed=("billed_amount", "sum")).reset_index()
+        tb["substantiated_reviewed"] = tb.case_type.map(
+            lambda t: f"{int(stats.loc[t, 'substantiated'])} of {int(stats.loc[t, 'reviewed'])}" if t in stats.index else "0 reviewed")
+        tb.insert(0, "flag_reason", tb.case_type.map(FLAG))
+        st.dataframe(tb.drop(columns="case_type").sort_values("billed", ascending=False), hide_index=True, width="stretch",
+                     column_config={"flag_reason": "Flag Reason", "cases": "Flagged Cases",
+                                    "billed": st.column_config.NumberColumn("Billed On Flagged Claims", format="$%.0f"),
+                                    "substantiated_reviewed": "Substantiated / Reviewed"})
+        top_p = prov.head(10)
+        top = (fl[fl.provider_name.isin(top_p.index)].groupby(["provider_name", "flag_reason"]).billed_amount.sum().reset_index())
+        fig = px.bar(top, x="billed_amount", y="provider_name", color="flag_reason", orientation="h",
+                     color_discrete_map=FLAG_COLOR, category_orders={"provider_name": list(top_p.index), "flag_reason": FLAG_ORDER},
+                     labels={"billed_amount": "Billed On Flagged Claims", "provider_name": "", "flag_reason": ""})
+        fig.update_xaxes(tickprefix="$", tickformat=",.0f")
+        fig.update_layout(legend=dict(orientation="h", y=-0.2, font=dict(size=14)))
+        st.plotly_chart(style(fig, 440, "Top 10 Providers By Billed On Flagged Claims"), width="stretch")
 
     section(4, "How Open Cases Are Routed", "Routing sets review effort only. Payment, denial, recovery and provider "
             "actions stay in the authorized claims process.")
@@ -832,54 +1028,100 @@ if page == "Flag Overview":
 
 # ================= Provider Risk =================
 if page == "Provider Risk":
-    page_header("Provider Risk", "Which providers are behind the flagged billing. Pick a provider to see their profile "
-                "against peers. Comparisons use the <b>rendering</b> provider within specialty; providers with fewer than "
-                f"{detect.UPCODE_MIN_VISITS} office visits are left out of visit-level comparisons as low-volume.", 4)
-    todo(("You will", "Scan the ranking", "most billed on flagged claims first"),
-         ("Then", "Pick a provider", "tick a row; the profile below updates"),
-         ("Finish by", "Opening their top case", "in the Investigator Queue"))
-    p = (flagged.groupby(["provider_id", "provider_name", "specialty"])
-         .agg(flagged_claims=("claim_id", "count"), billed_flagged=("billed_amount", "sum"),
-              flag_reasons=("flag_reason", lambda t: ", ".join(sorted(set(t.dropna())))), max_score=("risk_score", "max"))
-         .reset_index().sort_values("billed_flagged", ascending=False))
+    page_header("Provider Risk", "Which providers are behind the flagged billing. Click a row, a dot or a bar to filter the "
+                "page; hover anything for its numbers. Comparisons use the <b>rendering</b> provider within specialty; "
+                f"providers with fewer than {detect.UPCODE_MIN_VISITS} office visits are left out of visit-level comparisons.")
+    p_all = (flagged.groupby(["provider_id", "provider_name", "specialty"])
+             .agg(flagged_claims=("claim_id", "count"), billed_flagged=("billed_amount", "sum"),
+                  flag_reasons=("flag_reason", lambda t: ", ".join(sorted(set(t.dropna())))), max_score=("risk_score", "max"))
+             .reset_index().sort_values("billed_flagged", ascending=False))
     em = scored[scored.cpt_code.isin(detect.EM_CODES)]
     mix = (em.groupby(["provider_id", "provider_name", "specialty"])
              .agg(visits=("claim_id", "count"), top=("cpt_code", lambda c: (c == "99215").mean()))
              .reset_index().query("visits >= @detect.UPCODE_MIN_VISITS"))
     mix["flag"] = mix.provider_id.isin(upcoders.provider_id).map({True: "Flagged", False: "Within Peer Range"})
     over = pdays[pdays.billed_hours > detect.IMPOSSIBLE_HOURS_MED]
-    total_flag = max(p.billed_flagged.sum(), 1)
+    has_flags = set(p_all.provider_id)
+
+    def _pick_spec(pt):
+        ss.pf_spec = None if ss.get("pf_spec") == pt["y"] else pt["y"]
+
+    def _pick_prov(pt):
+        cd = pt.get("customdata") or []
+        pid_ = cd[0] if cd else None
+        if pid_ in has_flags:
+            if pid_ != ss.sel_pid:
+                ss.pf_lev = None
+            ss.sel_pid = pid_
+            ss.pf_day = pd.Timestamp(cd[1]).normalize() if len(cd) > 1 and cd[1] else None
+        elif pid_:
+            st.toast(f"{pid_} has no flagged claims")
+
+    def _pick_day(pt):
+        d_ = pd.Timestamp(pt["x"]).normalize()
+        ss.pf_day = None if ss.pf_day is not None and pd.Timestamp(ss.pf_day) == d_ else d_
+
+    def _pick_lev(pt):
+        ss.pf_lev = None if ss.pf_lev == pt["x"] else pt["x"]
+
+    k_spec, k_scat, k_strip = take_click("pfsp", _pick_spec), take_click("pfsc", _pick_prov), take_click("pfst", _pick_prov)
+    k_days, k_lev = take_click("pfdy", _pick_day), take_click("pflv", _pick_lev)
+    f1, f2 = st.columns([3.4, 1], vertical_alignment="bottom")
+    with f1:
+        spec = st.pills("Filter by specialty", sorted(p_all.specialty.unique()), key="pf_spec", selection_mode="single")
+    if ss.pf_day is not None:
+        f2.button(f"Day: {pd.Timestamp(ss.pf_day):%d %b}  ✕", key="pf-clr", width="stretch",
+                  on_click=lambda: ss.__setitem__("pf_day", None), help="Clear the day filter")
+    p = p_all[p_all.specialty == spec] if spec else p_all
+    total_flag = max(p_all.billed_flagged.sum(), 1)
+    if ss.sel_pid not in set(p.provider_id):
+        ss.sel_pid = p.provider_id.iloc[0] if len(p) else None
+        ss.pf_day, ss.pf_lev = None, None
 
     section(1, "The Overall Picture",
-            f"<b>{len(p)} of {scored.provider_id.nunique()} providers</b> have at least one flag, but the money is "
-            f"concentrated: the top 5 hold <b>{p.billed_flagged.head(5).sum() / total_flag:.0%}</b> of flagged billed dollars.")
+            f"<b>{len(p_all)} of {scored.provider_id.nunique()} providers</b> have at least one flag, but the money is "
+            f"concentrated: the top 5 hold <b>{p_all.billed_flagged.head(5).sum() / total_flag:.0%}</b> of flagged billed dollars.")
     c1, c2, c3, c4 = st.columns(4)
-    kpi(c1, "Providers With Flags", f"{len(p)}", f"of {scored.provider_id.nunique()} providers billing")
-    kpi(c2, "With Unusual Billed Hours", f"{over.provider_id.nunique()}", f"{len(over)} days over 12 estimated hours")
-    kpi(c3, "Visit Level Above Peers", f"{len(upcoders)}", "far above peers on 99215")
-    kpi(c4, "Top 5 Share", f"{p.billed_flagged.head(5).sum() / total_flag:.0%}", money(p.billed_flagged.head(5).sum()), teal=True)
+    kpi(c1, "Providers With Flags", f"{len(p)}", f"{'in ' + spec if spec else 'of ' + str(scored.provider_id.nunique()) + ' providers billing'}")
+    ov_ = over[over.specialty == spec] if spec else over
+    kpi(c2, "With Unusual Billed Hours", f"{ov_.provider_id.nunique()}", f"{len(ov_)} days over 12 estimated hours")
+    up_ = upcoders[upcoders.specialty == spec] if spec and "specialty" in upcoders else upcoders
+    kpi(c3, "Visit Level Above Peers", f"{len(up_)}", "far above peers on 99215")
+    kpi(c4, "Top 5 Share", f"{p.billed_flagged.head(5).sum() / max(p.billed_flagged.sum(), 1):.0%}",
+        money(p.billed_flagged.head(5).sum()), teal=True)
     st.write("")
-    spec = flagged.groupby(["specialty", "flag_reason"]).billed_amount.sum().reset_index()
-    fig = px.bar(spec, x="billed_amount", y="specialty", color="flag_reason", orientation="h",
-                 color_discrete_map=FLAG_COLOR, labels={"billed_amount": "Billed On Flagged Claims", "specialty": ""})
+    sp_ = flagged.groupby(["specialty", "flag_reason"]).billed_amount.sum().reset_index()
+    fig = go_.Figure()
+    order_sp = list(flagged.groupby("specialty").billed_amount.sum().sort_values().index)
+    for x in FLAG_ORDER:
+        d_ = sp_[sp_.flag_reason == x].set_index("specialty").billed_amount.reindex(order_sp).fillna(0).reset_index()
+        fig.add_bar(y=d_.specialty, x=d_.billed_amount, orientation="h", name=FLAG_SHORT[x],
+                    marker=dict(color=FLAG_COLOR[x], opacity=[.25 if spec and s_ != spec else 1 for s_ in d_.specialty]),
+                    hovertemplate="<b>%{y}</b><br>" + x + ": $%{x:,.0f}<br>click to filter to this specialty<extra></extra>")
+    fig.update_layout(barmode="stack", legend=dict(orientation="h", y=-0.25, font=dict(size=14)))
     fig.update_xaxes(tickprefix="$", tickformat=",.0f")
-    fig.update_yaxes(categoryorder="total ascending")
-    st.plotly_chart(style(fig, 300, "Billed On Flagged Claims By Specialty And Flag Reason"), width="stretch")
+    st.plotly_chart(style(fig, 320, "Billed On Flagged Claims By Specialty (Click A Bar To Filter)"), width="stretch",
+                    key=k_spec, on_select="rerun", selection_mode="points")
 
-    section(2, "Provider Ranking", "Tick the box at the start of a row to see that provider's profile in step 3. "
-            "The top provider is shown until you pick one.")
+    section(2, "Provider Ranking", "Select a row to see that provider's profile below." +
+            (f" Showing {spec} only." if spec else ""))
     pr = p.reset_index(drop=True)
     sel = st.dataframe(pr, hide_index=True, width="stretch", height=300, on_select="rerun",
-                       selection_mode="single-row", key="prov_table", column_config={
+                       selection_mode="single-row", key=f"prov_table-{spec}", column_config={
                            "provider_id": "ID", "provider_name": "Provider", "specialty": "Specialty",
                            "flagged_claims": "Flagged Claims",
                            "billed_flagged": st.column_config.NumberColumn("Billed On Flagged", format="$%.0f"),
                            "flag_reasons": "Flag Reasons",
                            "max_score": st.column_config.ProgressColumn("Highest Review Priority", min_value=0, max_value=100, format="%d")})
-    pid = None
-    if len(pr):
-        row = pr.iloc[sel.selection.rows[0]] if sel.selection.rows else pr.iloc[0]
-        pid, pname, pspec = row.provider_id, row.provider_name, row.specialty
+    if sel.selection.rows:
+        tp = pr.iloc[sel.selection.rows[0]].provider_id
+        if tp != ss._tbl_pid:
+            ss._tbl_pid, ss.sel_pid, ss.pf_day, ss.pf_lev = tp, tp, None, None
+    pid = ss.sel_pid
+    pname = None
+    if pid:
+        row = p_all[p_all.provider_id == pid].iloc[0]
+        pname, pspec = row.provider_name, row.specialty
         ss.prov_pid = pid
         mine_days = pdays[pdays.provider_id == pid].sort_values("service_date")
         n_imp = int((mine_days.billed_hours > detect.IMPOSSIBLE_HOURS_MED).sum())
@@ -902,25 +1144,67 @@ if page == "Provider Risk":
         st.write("")
         l, r = st.columns(2)
         with l:
-            d = mine_days.assign(level=np.select(
-                [mine_days.billed_hours > detect.IMPOSSIBLE_HOURS_HIGH, mine_days.billed_hours > detect.IMPOSSIBLE_HOURS_MED],
-                ["Over 16 h (high)", "12–16 h (review)"], "Normal day"))
-            fig = px.bar(d, x="service_date", y="billed_hours", color="level",
-                         color_discrete_map={"Over 16 h (high)": RISK["High"], "12–16 h (review)": RISK["Medium"], "Normal day": BLUE2},
-                         labels={"service_date": "Service Date", "billed_hours": "Estimated Hours"})
+            med = float(mine_days.peer_median_hours.iloc[0]) if len(mine_days) else 0
+            day_sel = pd.Timestamp(ss.pf_day) if ss.pf_day is not None else None
+            colr = np.select([mine_days.billed_hours > detect.IMPOSSIBLE_HOURS_HIGH,
+                              mine_days.billed_hours > detect.IMPOSSIBLE_HOURS_MED], [RISK["High"], RISK["Medium"]], BLUE2)
+            fig = go_.Figure(go_.Bar(
+                x=mine_days.service_date, y=mine_days.billed_hours, marker=dict(
+                    color=list(colr), opacity=[1 if day_sel is None or d_ == day_sel else .35 for d_ in mine_days.service_date]),
+                customdata=mine_days.claims, hovertemplate="<b>%{x|%d %b %Y}</b><br>%{y:.1f} estimated hours · %{customdata} claims"
+                f"<br>peer median {med:.1f} h · click for this day<extra></extra>"))
             fig.add_hline(y=detect.IMPOSSIBLE_HOURS_MED, line_dash="dash", line_color=RISK["Medium"])
-            st.plotly_chart(style(fig, 340, "Estimated Hours On Each Working Day"), width="stretch")
+            fig.add_hline(y=med, line_dash="dot", line_color=GREY, annotation_text=f"peer median {med:.1f} h",
+                          annotation_font_size=12)
+            fig.update_yaxes(title_text="Estimated hours")
+            st.plotly_chart(style(fig, 340, "Estimated Hours On Each Working Day"), width="stretch", key=k_days,
+                            on_select="rerun", selection_mode="points")
+            if day_sel is not None:
+                dd = mine_days[mine_days.service_date == day_sel]
+                if len(dd):
+                    h_ = float(dd.billed_hours.iloc[0])
+                    same = pdays[pdays.specialty == pspec]
+                    lower = (same.billed_hours < h_).mean()
+                    dc = my_cases[my_cases.service_date == day_sel]
+                    st.markdown(f'<div class="flagnote"><b>{day_sel:%d %b %Y}:</b> {h_:.1f} estimated hours from '
+                                f'{int(dd.claims.iloc[0])} claims · '
+                                + ("<b style='color:#dc2626'>priority review</b>" if h_ > detect.IMPOSSIBLE_HOURS_HIGH else
+                                   "<b style='color:#d97706'>routine review</b>" if h_ > detect.IMPOSSIBLE_HOURS_MED else "no flag")
+                                + f' · higher than {lower:.0%} of {pspec.lower()} provider-days.'
+                                + (f' Case: <b>{", ".join(dc.case_id)}</b>' if len(dc) else "") + '</div>', unsafe_allow_html=True)
+                    if len(dc):
+                        st.button(f"Open {dc.case_id.iloc[0]} →", key="pf-day-case", on_click=go,
+                                  args=("Investigator Queue", dc.case_id.iloc[0]))
+                else:
+                    st.markdown('<div class="flagnote">This provider did not bill on the selected day.</div>',
+                                unsafe_allow_html=True)
+            else:
+                st.caption("Click a bar to see that day against peers.")
         with r:
             if len(mine_em):
-                lv = pd.concat([mine_em.cpt_code.value_counts(normalize=True).rename(pname),
-                                peers_em.cpt_code.value_counts(normalize=True).rename(f"{pspec} peers")], axis=1) \
-                    .reindex(detect.EM_CODES).fillna(0).reset_index(names="code").melt(id_vars="code")
-                lv["code"] = lv.code.map({"99213": "99213 Low", "99214": "99214 Moderate", "99215": "99215 High"})
-                fig = px.bar(lv, x="code", y="value", color="variable", barmode="group", text_auto=".0%",
-                             color_discrete_sequence=[RISK["High"] if pid in set(upcoders.provider_id) else NAVY, GREY],
-                             labels={"code": "Office Visit Level", "value": "Share Of Visits", "variable": ""})
-                fig.update_yaxes(tickformat=".0%")
-                st.plotly_chart(style(fig, 340, "Office Visit Levels Vs Peers"), width="stretch")
+                labs = {"99213": "99213 Low", "99214": "99214 Moderate", "99215": "99215 High"}
+                mine_s = mine_em.cpt_code.value_counts(normalize=True).reindex(detect.EM_CODES).fillna(0)
+                peer_s = peers_em.cpt_code.value_counts(normalize=True).reindex(detect.EM_CODES).fillna(0)
+                xs = [labs[c] for c in detect.EM_CODES]
+                mcol = RISK["High"] if pid in set(upcoders.provider_id) else BLUE2
+                fig = go_.Figure()
+                for nm, vals, col in [(pname, mine_s, mcol), (f"{pspec} peers", peer_s, GREY)]:
+                    fig.add_bar(x=xs, y=vals.values, name=nm, text=[f"{v:.0%}" for v in vals.values], textposition="outside",
+                                marker=dict(color=col, opacity=[1 if ss.pf_lev in (None, x_) else .3 for x_ in xs]),
+                                hovertemplate=f"<b>%{{x}}</b><br>{nm}: %{{y:.0%}} of visits<extra></extra>")
+                fig.update_layout(barmode="group", legend=dict(orientation="h", y=-0.2, font=dict(size=14)))
+                fig.update_yaxes(tickformat=".0%", range=[0, max(mine_s.max(), peer_s.max()) * 1.25 + .01])
+                st.plotly_chart(style(fig, 340, "Office Visit Levels Vs Peers"), width="stretch", key=k_lev,
+                                on_select="rerun", selection_mode="points")
+                if ss.pf_lev in xs:
+                    i_ = xs.index(ss.pf_lev)
+                    a_, b_ = mine_s.iloc[i_], peer_s.iloc[i_]
+                    st.markdown(f'<div class="flagnote"><b>{ss.pf_lev}:</b> {pname} {a_:.0%} vs {pspec.lower()} peers '
+                                f'{b_:.0%} ({(a_ - b_) * 100:+.0f} pts).'
+                                + (" Far above the peer range: this is what the visit-level rule flags." if i_ == 2 and
+                                   pid in set(upcoders.provider_id) else "") + '</div>', unsafe_allow_html=True)
+                else:
+                    st.caption("Click a visit level to compare it with peers.")
             else:
                 st.info(f"{pname} bills no office visits, so the visit-level check does not apply.")
         st.markdown("**Their Cases**")
@@ -931,42 +1215,60 @@ if page == "Provider Risk":
                          "risk_score": st.column_config.NumberColumn("Review Priority", format="%d"),
                          "route": "Routing", "status": "Status"})
 
-    section(4, "Estimated Billed Hours Across All Providers",
-            f"Each dot is one provider on one day. Almost all of the {len(pdays):,} provider-days sit below 10 hours; "
-            f"<b>{len(over)}</b> go above 12." + (f" <b>{pname}</b>'s days are ringed in red." if pid else ""))
-    fig = px.scatter(pdays, x="service_date", y="billed_hours", color="specialty", hover_name="provider_name",
-                     color_discrete_sequence=[NAVY, BLUE, BLUE2, TEAL, "#64748b", GREY],
-                     labels={"service_date": "Service Date", "billed_hours": "Estimated Hours", "specialty": ""})
-    if pid:
-        m = pdays[pdays.provider_id == pid]
-        fig.add_scatter(x=m.service_date, y=m.billed_hours, mode="markers", name=pname, hovertext=m.provider_name,
-                        marker=dict(size=14, color="rgba(0,0,0,0)", line=dict(color=RISK["High"], width=2.5)))
-    fig.add_hline(y=detect.IMPOSSIBLE_HOURS_MED, line_dash="dash", line_color=RISK["Medium"],
-                  annotation_text="12 h: review", annotation_font_size=13)
-    fig.add_hline(y=detect.IMPOSSIBLE_HOURS_HIGH, line_dash="dash", line_color=RISK["High"],
-                  annotation_text="16 h: high risk", annotation_font_size=13)
-    st.plotly_chart(style(fig, 400), width="stretch")
-
-    section(5, "Visit Levels Across All Providers",
-            f"Each dot is a provider. <b>{len(upcoders)} providers</b> (red) bill the top-level visit far more often "
-            "than peers." + (f" <b>{pname}</b> is ringed." if pid and pid in set(mix.provider_id) else ""))
-    fig = px.strip(mix, x="specialty", y="top", color="flag", hover_name="provider_name",
-                   color_discrete_map={"Flagged": RISK["High"], "Within Peer Range": BLUE},
-                   labels={"specialty": "", "top": "Share Of Visits Billed 99215"})
-    fig.update_traces(marker_size=12)
-    if pid and pid in set(mix.provider_id):
-        m = mix[mix.provider_id == pid]
-        fig.add_scatter(x=m.specialty, y=m.top, mode="markers", name=pname,
-                        marker=dict(size=22, color="rgba(0,0,0,0)", line=dict(color="#000", width=2.5)))
-    fig.update_yaxes(tickformat=".0%")
-    st.plotly_chart(style(fig, 380), width="stretch")
+    with st.expander("More detail: all providers compared (estimated hours and visit levels)", expanded=bool(spec)):
+        st.markdown(f"**Estimated billed hours across all providers.** Each dot is one provider on one day; "
+                    f"<b>{len(over)}</b> of {len(pdays):,} provider-days go above 12 hours." +
+                    (f" <b>{pname}</b>'s days are ringed." if pid else "") + " Click a dot to open that provider.",
+                    unsafe_allow_html=True)
+        lvl = np.select([pdays.billed_hours > detect.IMPOSSIBLE_HOURS_HIGH, pdays.billed_hours > detect.IMPOSSIBLE_HOURS_MED],
+                        ["Over 16 h", "Over 12 h"], "Normal day")
+        fig = go_.Figure()
+        for nm, col in [("Normal day", GREY), ("Over 12 h", RISK["Medium"]), ("Over 16 h", RISK["High"])]:
+            d_ = pdays[lvl == nm]
+            fig.add_scatter(x=d_.service_date, y=d_.billed_hours, mode="markers", name=nm,
+                            marker=dict(color=col, size=5 if nm == "Normal day" else 8,
+                                        opacity=[.06 if spec and s_ != spec else (.45 if nm == "Normal day" else .95)
+                                                 for s_ in d_.specialty]),
+                            customdata=np.stack([d_.provider_id, d_.service_date.dt.strftime("%Y-%m-%d"), d_.provider_name,
+                                                 d_.specialty, d_.peer_median_hours.round(1)], axis=-1),
+                            hovertemplate="<b>%{customdata[2]}</b> (%{customdata[0]}) · %{customdata[3]}<br>%{x|%d %b}: "
+                                          "%{y:.1f} estimated hours · peer median %{customdata[4]} h<extra></extra>")
+        if pid:
+            m = pdays[pdays.provider_id == pid]
+            fig.add_scatter(x=m.service_date, y=m.billed_hours, mode="markers", name=pname, hoverinfo="skip",
+                            marker=dict(size=14, color="rgba(0,0,0,0)", line=dict(color=NAVY, width=2)))
+        fig.add_hline(y=detect.IMPOSSIBLE_HOURS_MED, line_dash="dash", line_color=RISK["Medium"],
+                      annotation_text="12 h: routine review", annotation_font_size=13)
+        fig.add_hline(y=detect.IMPOSSIBLE_HOURS_HIGH, line_dash="dash", line_color=RISK["High"],
+                      annotation_text="16 h: priority review", annotation_font_size=13)
+        fig.update_layout(legend=dict(orientation="h", y=-0.15, font=dict(size=14)))
+        fig.update_yaxes(title_text="Estimated hours")
+        st.plotly_chart(style(fig, 420), width="stretch", key=k_scat, on_select="rerun", selection_mode="points")
+        st.markdown(f"**Visit levels across all providers.** Each dot is a provider with {detect.UPCODE_MIN_VISITS}+ office "
+                    f"visits; <b>{len(upcoders)}</b> (red) bill the top level far more often than peers. Click a dot to open "
+                    "that provider.", unsafe_allow_html=True)
+        fig = go_.Figure()
+        for nm, col in [("Within Peer Range", BLUE2), ("Flagged", RISK["High"])]:
+            d_ = mix[mix.flag == nm]
+            fig.add_scatter(x=d_.specialty, y=d_.top, mode="markers", name="Flagged: far above peers" if nm == "Flagged" else nm,
+                            marker=dict(color=col, size=12, line=dict(color="#fff", width=1.5),
+                                        opacity=[.12 if spec and s_ != spec else .85 for s_ in d_.specialty]),
+                            customdata=np.stack([d_.provider_id, [""] * len(d_), d_.provider_name, d_.visits], axis=-1),
+                            hovertemplate="<b>%{customdata[2]}</b> (%{customdata[0]})<br>%{y:.0%} of %{customdata[3]} visits "
+                                          "at 99215<extra></extra>")
+        if pid and pid in set(mix.provider_id):
+            m = mix[mix.provider_id == pid]
+            fig.add_scatter(x=m.specialty, y=m.top, mode="markers", name=pname, hoverinfo="skip",
+                            marker=dict(size=24, color="rgba(0,0,0,0)", line=dict(color=NAVY, width=2.5)))
+        fig.update_yaxes(tickformat=".0%", title_text="Share of visits billed 99215")
+        fig.update_layout(legend=dict(orientation="h", y=-0.15, font=dict(size=14)))
+        st.plotly_chart(style(fig, 400), width="stretch", key=k_strip, on_select="rerun", selection_mode="points")
     top_case = None
     if pid:
         oc = open_cases[open_cases.provider_id == pid]
         top_case = oc.case_id.iloc[0] if len(oc) else None
     next_bar(f"review {pname}'s top open case." if top_case else "work through the open cases.",
              "Open their top case →" if top_case else "Go to the Queue →", "Investigator Queue", "nx-prov", top_case)
-
 
 # ================= Investigator Queue =================
 def case_story(case):
@@ -1060,279 +1362,332 @@ def in_view(df, view):
 
 
 if page == "Investigator Queue":
-    page_header("Investigator Queue", "Your cases first. Click a case; it opens beside the list with its evidence, "
-                "checklist, outcome form and full history.", 5)
-    todo(("1 · Why", "Verify the evidence", "rule, comparison, claim rows, explanations"),
-         ("2 · Check", "Work the checklist", "saved with the case"),
-         ("3 · Record", "Record a structured outcome", "reason + evidence · full history kept"))
+    st.markdown('<div class="crumb">Stage 3 · Review cases</div>', unsafe_allow_html=True)
     base = cases[cases.route.isin(ss.q_routes) | cases.status.isin(feedback.FINAL + [feedback.PENDING])]
     base = base[base.flag_reason.isin(ss.q_reasons)]
-    VIEWS = {"mine": "My cases", "unassigned": "Unassigned", "referred": "Referred", "all": "All"}
+    if ss.q_spec != "All":
+        base = base[base.specialty == ss.q_spec]
+    if ss.q_prov != "All":
+        base = base[base.provider_name == ss.q_prov]
+    if ss.q_own == "Unassigned":
+        base = base[base.owner.isna()]
+    elif ss.q_own != "Anyone":
+        base = base[base.owner == ss.q_own]
+    if ss.q_bill:
+        base = base[base.billed_amount >= ss.q_bill]
+    active = base.status.isin([feedback.OPEN, feedback.PENDING])
+    if ss.q_open:
+        base = base[active]
+    if ss.q_over:
+        base = base[(base.due < pd.Timestamp.now()) & base.status.isin([feedback.OPEN, feedback.PENDING])]
+    VIEWS = {"mine": "Mine", "unassigned": "Unassigned", "referred": "Referred", "all": "All"}
     counts = {k: len(in_view(base, k)) for k in VIEWS}
-    left, right = st.columns([1, 1.85], gap="medium")
-    with left:
-        st.segmented_control("View", list(VIEWS), key="q_view", format_func=lambda k: f"{VIEWS[k]} {counts[k]}",
-                             label_visibility="collapsed")
-        qs = st.text_input("Find", key="q_search", placeholder="🔎 Find by case, claim or provider ID…",
-                           label_visibility="collapsed").strip().lower()
+
+    # ---- Pinned queue table (all flagged cases, sortable) ----
+    with st.container(key="qtable_s" if ss.q_short else "qtable"):
+        a, b, c, d, e = st.columns([3.0, 2.1, 1.45, 1.05, 1.25], vertical_alignment="center")
+        a.segmented_control("View", list(VIEWS), key="q_view", format_func=lambda k: f"{VIEWS[k]} {counts[k]}",
+                            label_visibility="collapsed")
+        qs = b.text_input("Find", key="q_search", placeholder="🔎 Find by case, claim or provider ID…",
+                          label_visibility="collapsed").strip().lower()
         q = in_view(base, ss.q_view or "all")
-        if qs:
-            hit = q.apply(lambda r: qs in r.case_id.lower() or qs in r.provider_id.lower() or qs in r.provider_name.lower()
-                          or any(qs in c.lower() for c in r.claim_ids), axis=1)
-            q = q[hit] if len(q) else q
-        st.markdown(f"**{len(q)} case{'s' if len(q) != 1 else ''} · {money(q.billed_amount.sum())} billed**")
-        with st.container(height=760, key="qlist"):
-            if q.empty:
-                st.info("No cases in this view.")
-            for r_ in q.head(80).itertuples():
-                icon = {"High": "🔴", "Medium": "🟠", "Low": "🟢"}[r_.risk_level]
-                done = "" if r_.status == feedback.OPEN else f" · ✓ {r_.status}"
-                due = f"{r_.due:%d %b}" if pd.notna(r_.due) else "-"
-                lab = (f"{icon} **{r_.risk_score:.0f}** · {SHORT[r_.case_type]}{done}  \n{r_.provider_name} · "
-                       f"${r_.billed_amount:,.0f}  \n👤 {r_.owner or 'Unassigned'} · {r_.age_days}d old · due {due}")
-                st.button(lab, key=f"case-{r_.case_id}", width="stretch",
-                          type="primary" if r_.case_id == ss.case_id else "secondary",
-                          on_click=go, args=("Investigator Queue", r_.case_id))
-            if len(q) > 80:
-                st.caption(f"Showing the top 80 of {len(q)}. Narrow the list with ⚙ Filters or search.")
+        if qs and len(q):
+            q = q[q.apply(lambda r: qs in r.case_id.lower() or qs in r.provider_id.lower() or qs in r.provider_name.lower()
+                          or any(qs in c_.lower() for c_ in r.claim_ids), axis=1)]
+        c.markdown(f'<div class="qcount">{len(q)} case{"s" if len(q) != 1 else ""} · {money(q.billed_amount.sum())} billed</div>',
+                   unsafe_allow_html=True)
+        with d.popover("⚙ Filters", width="stretch"):
+            st.multiselect("Routing", ROUTES, key="q_routes")
+            st.multiselect("Flag reason", FLAG_ORDER, key="q_reasons")
+            st.selectbox("Specialty", ["All"] + sorted(cases.specialty.unique()), key="q_spec")
+            st.selectbox("Provider", ["All"] + sorted(cases.provider_name.unique()), key="q_prov")
+            st.selectbox("Owner", ["Anyone", "Unassigned"] + sorted(cases.owner.dropna().unique()), key="q_own")
+            st.selectbox("Billed amount", [0, 1000, 5000], key="q_bill",
+                         format_func=lambda v: "Any amount" if not v else f"${v:,} or more")
+            st.checkbox("Open cases only", key="q_open")
+            st.checkbox("Overdue only", key="q_over")
+        e.button("▾ Show more" if ss.q_short else "▴ Shrink list", key="qshrink", width="stretch",
+                 on_click=lambda: ss.__setitem__("q_short", not ss.q_short))
+        tbl = q[["risk_score", "case_id", "flag_reason", "provider_name", "specialty", "claims", "billed_amount", "owner",
+                 "age_days", "due", "status"]].assign(owner=lambda t: t.owner.fillna("Unassigned"))
+        qev = st.dataframe(tbl, hide_index=True, width="stretch", height=140 if ss.q_short else 240, on_select="rerun",
+                           selection_mode="single-row", key=f"qt-{ss.q_view}-{qs}", column_config={
+                               "risk_score": st.column_config.NumberColumn("Priority", format="%d", width="small"),
+                               "case_id": "Case", "flag_reason": "Flag Reason", "provider_name": "Provider",
+                               "specialty": "Specialty", "claims": st.column_config.NumberColumn("Claims", width="small"),
+                               "billed_amount": st.column_config.NumberColumn("Billed", format="$%.0f"), "owner": "Owner",
+                               "age_days": st.column_config.NumberColumn("Age (d)", width="small"),
+                               "due": st.column_config.DateColumn("Due", format="D MMM"), "status": "Status"})
+    if qev.selection.rows:
+        cid_ = tbl.iloc[qev.selection.rows[0]].case_id
+        if cid_ != ss._qt_last:
+            ss.case_id, ss._qt_last = cid_, cid_
     if ss.case_id not in set(cases.case_id):
         ss.case_id = q.case_id.iloc[0] if len(q) else None
-    with right:
-        if ss.case_id is None:
-            st.info("Pick a case from the list.")
-        else:
-            case = cases[cases.case_id == ss.case_id].iloc[0]
-            if ss.get("_viewed") != (DS, case.case_id, ss.user):
-                ss._viewed = (DS, case.case_id, ss.user)
-                feedback.log(DS, ss.user, "view case", case.case_id)
-            ctx, reason, cmp, unit, rows, checks, info, extra_expl = case_story(case)
-            RI = RULE_INFO[case.case_type]
-            hist = feedback.history(DS, case.case_id)
-            last = hist.iloc[0] if len(hist) else None
+    if q.empty:
+        st.info("No cases match. Try another view, or reset the filters.")
+
+    if ss.case_id is not None:
+        case = cases[cases.case_id == ss.case_id].iloc[0]
+        if ss.get("_viewed") != (DS, case.case_id, ss.user):
+            ss._viewed = (DS, case.case_id, ss.user)
+            feedback.log(DS, ss.user, "view case", case.case_id)
+        ctx, reason, cmp, unit, rows, checks, info, extra_expl = case_story(case)
+        RI = RULE_INFO[case.case_type]
+        hist = feedback.history(DS, case.case_id)
+        last = hist.iloc[0] if len(hist) else None
+        b = briefs.get(case.case_id) or summarize.rule_based_brief(ctx) | {"source": "rules"}
+        stt = feedback.state(DS).set_index("case_id")
+        saved = stt.loc[case.case_id]
+        import json as _json
+        ticks = _json.loads(saved.checklist or "[]") + [False] * len(checks)
+        overdue = pd.notna(case.due) and case.due < pd.Timestamp.now() and case.status in (feedback.OPEN, feedback.PENDING)
+
+        # ---- Frozen case header ----
+        with st.container(key="casehead_s" if ss.q_short else "casehead"):
             st.markdown(
-                f'<div class="card"><div class="chead"><div class="score s-{case.risk_level}" title="Review priority">{case.risk_score:.0f}</div>'
-                f'<div><div class="crumb" style="margin:0">Case {case.case_id} · {status_tag(case.status)} · {case.route}</div>'
-                f'<h3>{FLAG[case.case_type]}</h3><p>{case.provider_name} ({case.provider_id}) · {case.specialty}</p></div></div>'
-                f'<div class="facts"><span>Service date <b>{case.service_date:%d %b %Y}</b></span><span>Claims <b>{int(case.claims)}</b></span>'
-                f'<span>Billed <b>${case.billed_amount:,.2f}</b></span><span>Owner <b>{case.owner or "Unassigned"}</b></span>'
-                f'<span>Age <b>{case.age_days} days</b></span><span>Due <b>{case.due:%d %b %Y}</b></span>'
-                f'<span>Last action <b>{case.last_action}</b></span></div></div>', unsafe_allow_html=True)
-            a1, a2, _ = st.columns([1.1, 1.3, 2])
-            if not case.owner and ROLE in ("Investigator", "Supervisor") and case.status in (feedback.OPEN, feedback.PENDING):
-                if a1.button("👤 Assign to me", key="assign"):
-                    feedback.assign(DS, case, ss.user, ss.user, ROLE)
-                    st.rerun()
-            if a2.button("✦ Ask about this case", key="askcase"):
+                f'<div class="case1"><div class="chead"><div class="score s-{case.risk_level}" title="Review priority">'
+                f'{case.risk_score:.0f}</div><div><div class="crumb" style="margin:0">Case {case.case_id} · '
+                f'{status_tag(case.status)} · {case.route}</div><h3>{FLAG[case.case_type]}</h3><p>{case.provider_name} '
+                f'({case.provider_id}) · {case.specialty}</p></div></div>'
+                f'<div class="keyband"><div>Billed<b>${case.billed_amount:,.2f}</b></div><div>Claims<b>{int(case.claims)}</b></div>'
+                f'<div>Service date<b>{case.service_date:%d %b %Y}</b></div><div>Owner<b>{case.owner or "Unassigned"}</b></div>'
+                f'<div class="{"urgent" if overdue else ""}">Due<b>{"⚠ " if overdue else ""}{case.due:%d %b %Y}</b></div>'
+                f'<div>Age<b>{case.age_days} days</b></div></div></div>', unsafe_allow_html=True)
+            hb = st.columns([1, 1.35, 1.15, 3.2])
+            hb[0].button("📄 Case brief", key="briefbtn", width="stretch", type="primary" if ss.brief_open else "secondary",
+                         on_click=lambda: ss.__setitem__("brief_open", not ss.brief_open))
+            if hb[1].button("✦ Ask about this case", key="askcase", width="stretch"):
                 ss.chat.clear()
                 ss._asked_first = False
                 chat_dialog("Why was this case flagged?")
-
-            # ---- 1. Why was this flagged? ----
-            with st.container(border=True):
-                st.markdown('<div class="bh"><i>1</i><b>Why was this flagged?</b><span>Rule-based, explainable</span></div>'
-                            f'<p class="reason">{reason}</p>', unsafe_allow_html=True)
-                fig = go_.Figure(go_.Bar(x=[v for _, v, _ in cmp], y=[l_ for l_, _, _ in cmp], orientation="h",
-                                         marker_color=[c for _, _, c in cmp],
-                                         text=[(f"${v:,.2f}" if unit == "$" else f"{v:.0f}%" if unit == "%" else f"{v:.1f} h")
-                                               for _, v, _ in cmp], textposition="outside"))
-                fig.update_yaxes(autorange="reversed")
-                fig.update_xaxes(range=[0, max(v for _, v, _ in cmp) * 1.25 or 1])
-                fig.update_layout(showlegend=False)
-                st.plotly_chart(style(fig, 70 + 42 * len(cmp)), width="stretch", config={"displayModeBar": False})
-                if case.case_type == "impossible_day":
-                    others = pdays[pdays.provider_id != case.provider_id]
-                    mine = pdays[pdays.provider_id == case.provider_id]
-                    hi = mine[mine.service_date == case.service_date]
-                    f2 = go_.Figure()
-                    f2.add_scatter(x=others.service_date, y=others.billed_hours, mode="markers", name="All other provider-days",
-                                   marker=dict(size=4, color="#cbd5e1"), hoverinfo="skip")
-                    f2.add_scatter(x=mine.service_date, y=mine.billed_hours, mode="markers", name="This provider",
-                                   marker=dict(size=7, color=NAVY))
-                    f2.add_scatter(x=hi.service_date, y=hi.billed_hours, mode="markers", name="Flagged day",
-                                   marker=dict(size=13, color=RISK["High"]))
-                    f2.add_hline(y=detect.IMPOSSIBLE_HOURS_HIGH, line_dash="dash", line_color=RISK["High"])
-                    f2.update_layout(legend=dict(orientation="h", y=1.15))
-                    f2.update_yaxes(title_text="Est. hours")
-                    st.plotly_chart(style(f2, 250, "This Provider's Days In Context"), width="stretch",
-                                    config={"displayModeBar": False})
-                adj_txt = (f"<b>+{feedback.ADJ_VALUE}</b> Prior substantiated billing issue on another case "
-                           f"<span class='pill md'>{'applied' if feedback.ADJ_ENABLED else 'not validated · not applied'}</span>"
-                           if case.adjustment_eligible else "None")
-                st.markdown(f'<div class="prio"><div><b>Review priority {case.risk_score:.0f}</b> · {case.route}</div><table>'
-                            f'<tr><td>Rule</td><td>{RI["rule"]}</td></tr><tr><td>Threshold</td><td>{RI["thr"]}</td></tr>'
-                            f'<tr><td>Base score from the rule</td><td><b>{case.base_score:.0f}</b></td></tr>'
-                            f'<tr><td>Adjustment</td><td>{adj_txt}</td></tr></table>'
-                            '<div class="hint">Review priority says how strongly the rules suggest a review. It is not a '
-                            'probability of fraud.</div></div>', unsafe_allow_html=True)
-                st.markdown(f'<div class="ctx"><div><b>Peer cohort</b>{info["cohort"]}</div><div><b>Time / match assumptions</b>'
-                            f'{info["assume"]}</div><div><b>Code coverage</b>{info["coverage"]}</div><div><b>Billing vs rendering</b>'
-                            f'{info["billing"]}</div></div>', unsafe_allow_html=True)
-                b = briefs.get(case.case_id) or summarize.rule_based_brief(ctx) | {"source": "rules"}
-                sup = "".join(f"<li>{x}</li>" for x in b["evidence"][:5])
-                alt = "".join(f"<li>{x}</li>" for x in list(dict.fromkeys(b["innocent_explanations"] + extra_expl)))
-                st.markdown(f'<div class="sbs"><div class="sup"><h5>Supports a review</h5><ul>{sup}</ul></div>'
-                            f'<div class="alt"><h5>Possible legitimate explanations</h5><ul>{alt}</ul></div></div>',
-                            unsafe_allow_html=True)
-                if info["dup"]:
-                    trs = "".join(f'<tr><th>{k}</th><td>{a}</td><td class="{"diff" if a != b_ else ""}">{b_}</td></tr>'
-                                  for k, a, b_ in info["dup"])
-                    st.markdown(f'<div class="card" style="padding:10px 12px"><b style="color:{NAVY}">Original vs later submission</b>'
-                                f'<table class="dup"><tr><th></th><th>Original</th><th>Later submission</th></tr>{trs}</table>'
-                                '<div class="hint">Highlighted cells differ. The pilot adds paid amounts and replacement codes '
-                                'so legitimate corrections are easy to recognise.</div></div>', unsafe_allow_html=True)
-                lf = feedback.line_findings(DS, case.case_id).set_index("claim_id").finding
-                with st.expander(f"▸ Show the {len(rows)} claim rows used, with each line's contribution and your line findings"):
-                    ed = rows.copy()
-                    ed["line_finding"] = ed.claim_id.map(lf).map(feedback.FINDINGS).fillna("Not reviewed")
-                    can_edit = ROLE in ("Investigator", "Supervisor")
-                    edited = st.data_editor(
-                        ed, hide_index=True, width="stretch", height=min(40 + 35 * len(ed), 360), key=f"lf-{case.case_id}",
-                        disabled=[c for c in ed.columns if c != "line_finding" or not can_edit],
-                        column_config={"billed_amount": st.column_config.NumberColumn("billed", format="$%.2f"),
-                                       "service_date": st.column_config.DateColumn("service_date"),
-                                       "est_minutes": st.column_config.NumberColumn("est. minutes"),
-                                       "share_of_day": st.column_config.NumberColumn("share of day %"),
-                                       "line_finding": st.column_config.SelectboxColumn("Line finding", options=list(feedback.FINDINGS.values()))})
-                    vals = edited.line_finding.value_counts()
-                    st.caption(f"Line findings: {vals.get('Substantiated', 0)} substantiated · {vals.get('Not substantiated', 0)} "
-                               f"not substantiated · {vals.get('Uncertain', 0)} uncertain · {vals.get('Not reviewed', 0)} not reviewed. "
-                               "Only substantiated / not-substantiated lines can become training labels.")
-                    c1, c2 = st.columns([1, 1])
-                    inv = {v: k for k, v in feedback.FINDINGS.items()}
-                    if can_edit and c1.button("💾 Save line findings", key="savelf"):
-                        feedback.save_line_findings(DS, case.case_id, dict(zip(edited.claim_id, edited.line_finding.map(inv))), ss.user)
-                        st.toast("Line findings saved")
-                    c2.download_button("⬇ Download these rows", rows.to_csv(index=False), f"{case.case_id}_claims.csv",
-                                       "text/csv", key=f"dl-{case.case_id}", on_click=log_export, args=(f"{case.case_id} rows",))
-                tag = '<span class="ai">✦ CLAUDE</span>' if b.get("source") == "claude" else \
-                    '<span class="rb">RULE-BASED</span> <span style="font-size:11px;color:#64748b">· ✦ AI version when enabled, each statement linked to the rows above</span>'
-                ev = "".join(f"<li>{x}</li>" for x in b["evidence"])
-                st.markdown(f'<div class="brief"><div style="display:flex;justify-content:space-between;gap:8px"><b>CASE BRIEF</b>'
-                            f'<span>{tag}</span></div><p style="margin:6px 0 0"><b>{b["headline"]}</b></p>'
-                            f'<h4>Finding</h4><p style="margin:0">{b["finding"]}</p><h4>Evidence</h4><ul>{ev}</ul>'
-                            f'<h4>Recommended next step</h4><p style="margin:0">{b["recommended_action"]}</p></div>',
-                            unsafe_allow_html=True)
-                with st.expander("⚙ Technical details: rule logic, score formula, data lineage"):
-                    st.markdown(f"**Rule:** {RI['rule']}  \n**Score formula:** {RI['formula']}  \n**Source:** `{RI['src']}`  \n"
-                                f"**Ruleset:** {RULESET} · **dataset:** {DS} · **org:** {feedback.ORG}")
-                    st.code(RI["sql"], language="sql")
-                    st.caption("Equivalent SQL for review. The rule runs in pandas; every flag keeps its reason string and input claim IDs.")
-
-            # ---- 2. Checklist ----
-            stt = feedback.state(DS).set_index("case_id")
-            saved = stt.loc[case.case_id]
-            import json as _json
-            ticks = _json.loads(saved.checklist or "[]") + [False] * len(checks)
-            with st.container(border=True):
-                st.markdown(f'<div class="bh"><i>2</i><b>What should I check next?</b><span>{sum(ticks[:len(checks)])} of '
-                            f'{len(checks)} done · saved with the case</span></div>', unsafe_allow_html=True)
-                new_ticks = [st.checkbox(f"**{t}**  \n{sub}", value=bool(ticks[i]), key=f"chk-{case.case_id}-{i}")
-                             for i, (t, sub) in enumerate(checks)]
-                if new_ticks != [bool(x) for x in ticks[:len(checks)]]:
-                    feedback.save_checklist(DS, case.case_id, new_ticks)
+            if not case.owner and ROLE in ("Investigator", "Supervisor") and case.status in (feedback.OPEN, feedback.PENDING):
+                if hb[2].button("👤 Assign to me", key="assign", width="stretch"):
+                    feedback.assign(DS, case, ss.user, ss.user, ROLE)
                     st.rerun()
-                notes = st.text_area("Evidence notes (saved with the case)", value=saved.evidence_notes or "",
-                                     key=f"evn-{case.case_id}", height=70)
-                if notes != (saved.evidence_notes or "") and st.button("💾 Save notes", key="savenotes"):
-                    feedback.save_notes(DS, case.case_id, notes)
-                    st.toast("Notes saved")
-                    st.rerun()
+            hb[3].markdown(f'<div class="hint" style="padding-top:8px">Last action: {case.last_action}</div>',
+                           unsafe_allow_html=True)
+        if ss.brief_open:
+            tag = '<span class="ai">✦ CLAUDE</span>' if b.get("source") == "claude" else \
+                '<span class="rb">RULE-BASED</span> <span style="font-size:11px;color:#64748b">· ✦ AI version when enabled, each statement linked to the claim rows</span>'
+            ev = "".join(f"<li>{x}</li>" for x in b["evidence"])
+            alt0 = "; ".join(list(dict.fromkeys(b["innocent_explanations"] + extra_expl))[:3])
+            st.markdown(f'<div class="brief"><div style="display:flex;justify-content:space-between;gap:8px"><b>CASE BRIEF</b>'
+                        f'<span>{tag}</span></div><p style="margin:6px 0 0"><b>{b["headline"]}</b></p>'
+                        f'<h4>Finding</h4><p style="margin:0">{b["finding"]}</p><h4>Key evidence</h4><ul>{ev}</ul>'
+                        f'<h4>Could be legitimate if</h4><p style="margin:0">{alt0}</p>'
+                        f'<h4>Suggested first step</h4><p style="margin:0">{checks[0][0]}. {b["recommended_action"]}</p></div>',
+                        unsafe_allow_html=True)
 
-            # ---- 3. Outcome ----
-            with st.container(border=True):
-                st.markdown(f'<div class="bh"><i>3</i><b>Record the outcome</b><span>Signed in as {ss.user} ({ROLE}) · '
-                            'every change is kept</span></div>', unsafe_allow_html=True)
-                if case.status == feedback.OPEN:
-                    if ROLE not in ("Investigator", "Supervisor"):
-                        st.info(f"{ROLE}s can view cases but not record outcomes.")
-                    else:
-                        caps = {feedback.SUBST: "Evidence shows the billing is wrong", feedback.NO_ISSUE: "Records support the billing",
-                                feedback.INSUFF: "Can't conclude either way", feedback.SIU: "Possible intent; SIU owns formal findings"}
-                        out = st.radio("Outcome", feedback.FINAL, index=None, key=f"out-{case.case_id}",
-                                       format_func=lambda o: "Refer to SIU" if o == feedback.SIU else o, captions=[caps[o] for o in feedback.FINAL])
-                        if out:
-                            f1, f2 = st.columns(2)
-                            reason_ = f1.selectbox("Reason (required)", feedback.REASONS[out], index=None, key=f"rs-{case.case_id}-{out}")
-                            if out != feedback.INSUFF:
-                                evl = f2.multiselect("Evidence: claim lines (required: lines or a document reference)",
-                                                     list(rows.claim_id), key=f"evl-{case.case_id}")
-                            else:
-                                evl = []
-                            evt = st.text_input("Evidence: document reference (records request #, page…)", key=f"evt-{case.case_id}")
-                            owner_, nxt, amt = None, "", None
-                            if out == feedback.SIU:
-                                g1, g2 = st.columns(2)
-                                owner_ = g1.selectbox("SIU owner (required)", feedback.SIU_OWNERS, index=None, key=f"siuo-{case.case_id}")
-                                nxt = g2.text_input("Next step (required)", key=f"siun-{case.case_id}", placeholder="e.g. Records request, due 8 Dec")
-                            if out == feedback.SUBST:
-                                amt = st.number_input("Substantiated amount ($, counted once per claim line in reports)",
-                                                      min_value=0.0, value=float(case.billed_amount), key=f"amt-{case.case_id}")
-                            note = st.text_area("Note for the record", key=f"note-{case.case_id}", height=70)
-                            if st.button("Save outcome", type="primary", key="saveout"):
-                                ev_ = ", ".join(evl + ([evt] if evt.strip() else []))
-                                err = ("Choose a reason." if not reason_ else
-                                       "Add at least one evidence reference (a claim line or a document reference)."
-                                       if out != feedback.INSUFF and not ev_ else
-                                       "A referral needs an SIU owner and a next step." if out == feedback.SIU and (not owner_ or not nxt.strip())
-                                       else "")
-                                if err:
-                                    st.error(err)
-                                else:
-                                    status_, appr = out, ""
-                                    if out == feedback.SUBST and (amt or 0) > feedback.APPROVAL_LIMIT and ROLE != "Supervisor":
-                                        status_, appr = feedback.PENDING, "Awaiting supervisor approval"
-                                    feedback.record(DS, case, status_, ss.user, ROLE, reason=reason_, evidence=ev_, note=note,
-                                                    amount=amt, owner=owner_, next_step=nxt, approval=appr)
-                                    st.toast(f"{case.case_id}: {status_}")
-                                    st.rerun()
-                elif case.status == feedback.PENDING:
-                    st.warning(f"Substantiated amount is over ${feedback.APPROVAL_LIMIT:,} and needs supervisor approval before the "
-                               "case closes.")
-                    if ROLE == "Supervisor":
-                        if st.button("✓ Approve substantiation", type="primary", key="approve"):
-                            p = hist[hist.new_status == feedback.PENDING].iloc[0]
-                            feedback.record(DS, case, feedback.SUBST, ss.user, ROLE, reason="Approved substantiation",
-                                            evidence=p.evidence, amount=p.amount, approval=f"Approved by {ss.user}")
-                            st.rerun()
-                    else:
-                        st.caption("Switch the demo sign-in to J. Wong (Supervisor) in the sidebar to approve.")
-                if case.status != feedback.OPEN:
-                    st.markdown(f'<div class="recorded">✅ Current status: <b>{case.status}</b>'
-                                + (f' · owner <b>{case.owner}</b>' if case.status == feedback.SIU else "")
-                                + (f'<div class="who">Last change {last.ts[:16].replace("T", " ")} by {last.reviewer}: {last.reason}</div>'
-                                   if last is not None else "") + '</div>', unsafe_allow_html=True)
-                    if ROLE in ("Investigator", "Supervisor"):
-                        r1, r2, r3 = st.columns([1.6, 1, 1])
-                        rr = r1.selectbox("Reason for reversing", feedback.REVERSE_REASONS, index=None, key=f"rev-{case.case_id}",
-                                          label_visibility="collapsed", placeholder="Reason for reversing…")
-                        if r2.button("↶ Reverse outcome", key="reverse", width="stretch"):
-                            if not rr:
-                                st.error("Choose a reason for reversing first.")
-                            else:
-                                feedback.record(DS, case, feedback.OPEN, ss.user, ROLE, reason=f"Outcome reversed: {rr}", kind="reversal")
-                                st.rerun()
-                        nxt_ = in_view(base, "mine")
-                        nxt_ = nxt_[nxt_.case_id != case.case_id]
-                        nxt_ = nxt_ if len(nxt_) else open_cases[(open_cases.status == feedback.OPEN) & (open_cases.case_id != case.case_id)]
-                        if len(nxt_):
-                            r3.button("Next case →", key="nextcase", type="primary", width="stretch", on_click=go,
-                                      args=("Investigator Queue", nxt_.case_id.iloc[0]))
-                        st.caption("Reversing adds a new entry to the history; nothing is deleted.")
-                st.markdown('<p class="hint">Payment, denial, recovery and provider actions stay in the authorized claims '
-                            'process. ClaimGuard records the review outcome only. Formal fraud findings belong to SIU.</p>',
-                            unsafe_allow_html=True)
+        n_done = sum(bool(x) for x in ticks[:len(checks)])
+        t_ev, t_chk, t_out, t_hist = st.tabs(["Evidence", f"Checklist {n_done}/{len(checks)}",
+                                              "Record outcome" + ("" if case.status == feedback.OPEN else " ✓"),
+                                              f"History {len(hist)}"])
+        # ---- Evidence ----
+        with t_ev:
+            st.markdown(f'<div class="bh"><b>Why was this flagged?</b><span>Rule-based, explainable</span></div>'
+                        f'<p class="reason">{reason}</p>', unsafe_allow_html=True)
+            if info["dup"]:
+                o_id, l_id = info["dup"][0][1], info["dup"][0][2]
+                st.markdown(f'<div class="payline"><span><b>{o_id}</b> · payment status: not in this dataset</span>'
+                            f'<span><b>{l_id}</b> · payment status: not in this dataset</span></div>'
+                            '<div class="hint" style="margin-bottom:10px">Two matching submissions are a reason to review. '
+                            'Payment records decide whether there was an overpayment; the pilot adds paid / not paid from '
+                            'the claims system.</div>', unsafe_allow_html=True)
+            fig = go_.Figure(go_.Bar(x=[v for _, v, _ in cmp], y=[l_ for l_, _, _ in cmp], orientation="h",
+                                     marker_color=[c for _, _, c in cmp],
+                                     text=[(f"${v:,.2f}" if unit == "$" else f"{v:.0f}%" if unit == "%" else f"{v:.1f} h")
+                                           for _, v, _ in cmp], textposition="outside"))
+            fig.update_yaxes(autorange="reversed")
+            fig.update_xaxes(range=[0, max(v for _, v, _ in cmp) * 1.25 or 1])
+            fig.update_layout(showlegend=False)
+            st.plotly_chart(style(fig, 70 + 42 * len(cmp)), width="stretch", config={"displayModeBar": False})
+            if case.case_type == "impossible_day":
+                others = pdays[pdays.provider_id != case.provider_id]
+                mine = pdays[pdays.provider_id == case.provider_id]
+                hi = mine[mine.service_date == case.service_date]
+                f2 = go_.Figure()
+                f2.add_scatter(x=others.service_date, y=others.billed_hours, mode="markers", name="All other provider-days",
+                               marker=dict(size=4, color="#cbd5e1"), hoverinfo="skip")
+                f2.add_scatter(x=mine.service_date, y=mine.billed_hours, mode="markers", name="This provider",
+                               marker=dict(size=7, color=BLUE2), hovertemplate="%{x|%d %b}: %{y:.1f} h<extra></extra>")
+                f2.add_scatter(x=hi.service_date, y=hi.billed_hours, mode="markers", name="Flagged day",
+                               marker=dict(size=13, color=RISK["High"]), hovertemplate="%{x|%d %b}: %{y:.1f} h<extra></extra>")
+                f2.add_hline(y=detect.IMPOSSIBLE_HOURS_HIGH, line_dash="dash", line_color=RISK["High"])
+                f2.update_layout(legend=dict(orientation="h", y=1.15, font=dict(size=14)))
+                f2.update_yaxes(title_text="Est. hours")
+                st.plotly_chart(style(f2, 250, "This Provider's Days In Context"), width="stretch",
+                                config={"displayModeBar": False})
+            adj_txt = (f"<b>+{feedback.ADJ_VALUE}</b> Prior substantiated billing issue on another case "
+                       f"<span class='pill md'>{'applied' if feedback.ADJ_ENABLED else 'not validated · not applied'}</span>"
+                       if case.adjustment_eligible else "None")
+            st.markdown(f'<div class="prio"><div><b>Review priority {case.risk_score:.0f}</b> · {case.route}</div><table>'
+                        f'<tr><td>Rule</td><td>{RI["rule"]}</td></tr><tr><td>Threshold</td><td>{RI["thr"]}</td></tr>'
+                        f'<tr><td>Base score from the rule</td><td><b>{case.base_score:.0f}</b></td></tr>'
+                        f'<tr><td>Adjustment</td><td>{adj_txt}</td></tr></table>'
+                        '<div class="hint">Review priority says how strongly the rules suggest a review. It is not a '
+                        'probability of fraud.</div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="ctx"><div><b>Peer cohort</b>{info["cohort"]}</div><div><b>Time / match assumptions</b>'
+                        f'{info["assume"]}</div><div><b>Code coverage</b>{info["coverage"]}</div><div><b>Billing vs rendering</b>'
+                        f'{info["billing"]}</div></div>', unsafe_allow_html=True)
+            sup = "".join(f"<li>{x}</li>" for x in b["evidence"][:5])
+            alt = "".join(f"<li>{x}</li>" for x in list(dict.fromkeys(b["innocent_explanations"] + extra_expl)))
+            st.markdown(f'<div class="sbs"><div class="sup"><h5>Supports a review</h5><ul>{sup}</ul></div>'
+                        f'<div class="alt"><h5>Possible legitimate explanations</h5><ul>{alt}</ul></div></div>',
+                        unsafe_allow_html=True)
+            if info["dup"]:
+                trs = "".join(f'<tr><th>{k}</th><td>{a_}</td><td class="{"diff" if a_ != b_ else ""}">{b_}</td></tr>'
+                              for k, a_, b_ in info["dup"])
+                st.markdown(f'<div class="card" style="padding:10px 12px"><b style="color:{NAVY}">Original vs later submission</b>'
+                            f'<table class="dup"><tr><th></th><th>Original</th><th>Later submission</th></tr>{trs}</table>'
+                            '<div class="hint">Highlighted cells differ. The pilot adds paid amounts and replacement codes '
+                            'so legitimate corrections are easy to recognise.</div></div>', unsafe_allow_html=True)
+            lf = feedback.line_findings(DS, case.case_id).set_index("claim_id").finding
+            with st.expander(f"Show the {len(rows)} claim rows used, with each line's contribution and your line findings"):
+                ed = rows.copy()
+                ed["line_finding"] = ed.claim_id.map(lf).map(feedback.FINDINGS).fillna("Not reviewed")
+                can_edit = ROLE in ("Investigator", "Supervisor")
+                edited = st.data_editor(
+                    ed, hide_index=True, width="stretch", height=min(40 + 35 * len(ed), 360), key=f"lf-{case.case_id}",
+                    disabled=[c for c in ed.columns if c != "line_finding" or not can_edit],
+                    column_config={"billed_amount": st.column_config.NumberColumn("billed", format="$%.2f"),
+                                   "service_date": st.column_config.DateColumn("service_date"),
+                                   "est_minutes": st.column_config.NumberColumn("est. minutes"),
+                                   "share_of_day": st.column_config.NumberColumn("share of day %"),
+                                   "line_finding": st.column_config.SelectboxColumn("Line finding", options=list(feedback.FINDINGS.values()))})
+                vals = edited.line_finding.value_counts()
+                st.caption(f"Line findings: {vals.get('Substantiated', 0)} substantiated · {vals.get('Not substantiated', 0)} "
+                           f"not substantiated · {vals.get('Uncertain', 0)} uncertain · {vals.get('Not reviewed', 0)} not reviewed. "
+                           "Only substantiated / not-substantiated lines can become training labels.")
+                c1, c2 = st.columns([1, 1])
+                inv = {v: k for k, v in feedback.FINDINGS.items()}
+                if can_edit and c1.button("💾 Save line findings", key="savelf"):
+                    feedback.save_line_findings(DS, case.case_id, dict(zip(edited.claim_id, edited.line_finding.map(inv))), ss.user)
+                    st.toast("Line findings saved")
+                c2.download_button("⬇ Download these rows", rows.to_csv(index=False), f"{case.case_id}_claims.csv",
+                                   "text/csv", key=f"dl-{case.case_id}", on_click=log_export, args=(f"{case.case_id} rows",))
+            with st.expander("⚙ Technical details: rule logic, score formula, data lineage"):
+                st.markdown(f"**Rule:** {RI['rule']}  \n**Score formula:** {RI['formula']}  \n**Source:** `{RI['src']}`  \n"
+                            f"**Ruleset:** {RULESET} · **dataset:** {DS} · **org:** {feedback.ORG}")
+                st.code(RI["sql"], language="sql")
+                st.caption("Equivalent SQL for review. The rule runs in pandas; every flag keeps its reason string and input claim IDs.")
 
-            # ---- 4. History ----
-            with st.container(border=True):
-                st.markdown(f'<div class="bh"><i>4</i><b>Case history</b><span>Full audit trail · dataset {DS} · org '
-                            f'{feedback.ORG}</span></div>', unsafe_allow_html=True)
-                if hist.empty:
-                    st.caption("Flagged by rule; no actions yet.")
+        # ---- Checklist ----
+        with t_chk:
+            st.markdown(f'<div class="bh"><b>What should I check next?</b><span>{n_done} of {len(checks)} done · saved with '
+                        'the case</span></div>', unsafe_allow_html=True)
+            new_ticks = [st.checkbox(f"**{t}**  \n{sub}", value=bool(ticks[i]), key=f"chk-{case.case_id}-{i}")
+                         for i, (t, sub) in enumerate(checks)]
+            if new_ticks != [bool(x) for x in ticks[:len(checks)]]:
+                feedback.save_checklist(DS, case.case_id, new_ticks)
+                st.rerun()
+            notes = st.text_area("Evidence notes (saved with the case)", value=saved.evidence_notes or "",
+                                 key=f"evn-{case.case_id}", height=70)
+            if notes != (saved.evidence_notes or "") and st.button("💾 Save notes", key="savenotes"):
+                feedback.save_notes(DS, case.case_id, notes)
+                st.toast("Notes saved")
+                st.rerun()
+
+        # ---- Record outcome ----
+        with t_out:
+            st.markdown(f'<div class="bh"><b>Record the outcome</b><span>Signed in as {ss.user} ({ROLE}) · every change is '
+                        'kept</span></div>', unsafe_allow_html=True)
+            if case.status == feedback.OPEN:
+                if ROLE not in ("Investigator", "Supervisor"):
+                    st.info(f"{ROLE}s can view cases but not record outcomes.")
                 else:
-                    h = hist.assign(when=hist.ts.str[:16].str.replace("T", " "),
-                                    change=hist.prior_status + " → " + hist.new_status)
-                    st.dataframe(h[["when", "reviewer", "role", "kind", "change", "reason", "evidence", "approval", "note"]],
-                                 hide_index=True, width="stretch", height=min(40 + 35 * len(h), 280))
+                    caps = {feedback.SUBST: "Evidence shows the billing is wrong", feedback.NO_ISSUE: "Records support the billing",
+                            feedback.INSUFF: "Can't conclude either way", feedback.SIU: "Possible intent; SIU owns formal findings"}
+                    out = st.radio("Outcome", feedback.FINAL, index=None, key=f"out-{case.case_id}",
+                                   format_func=lambda o: "Refer to SIU" if o == feedback.SIU else o, captions=[caps[o] for o in feedback.FINAL])
+                    if out:
+                        f1, f2 = st.columns(2)
+                        reason_ = f1.selectbox("Reason (required)", feedback.REASONS[out], index=None, key=f"rs-{case.case_id}-{out}")
+                        evl = f2.multiselect("Evidence: claim lines (required: lines or a document reference)",
+                                             list(rows.claim_id), key=f"evl-{case.case_id}") if out != feedback.INSUFF else []
+                        evt = st.text_input("Evidence: document reference (records request #, page…)", key=f"evt-{case.case_id}")
+                        owner_, nxt, amt, pend = None, "", None, False
+                        if out == feedback.SIU:
+                            g1, g2 = st.columns(2)
+                            owner_ = g1.selectbox("SIU owner (required)", feedback.SIU_OWNERS, index=None, key=f"siuo-{case.case_id}")
+                            nxt = g2.text_input("Next step (required)", key=f"siun-{case.case_id}", placeholder="e.g. Records request, due 8 Dec")
+                        if out == feedback.SUBST:
+                            g1, g2 = st.columns([1.5, 1], vertical_alignment="bottom")
+                            amt = g1.number_input("Substantiated amount ($, required unless pending)", min_value=0.0, value=None,
+                                                  step=10.0, key=f"amt-{case.case_id}", placeholder="Amount supported by the evidence")
+                            pend = g2.checkbox("Amount pending", key=f"pend-{case.case_id}",
+                                               help="Tick if the amount isn't known yet. A supervisor confirms it later.")
+                            st.caption(f"The billed amount (${case.billed_amount:,.2f}) is never assumed to be the substantiated amount.")
+                        note = st.text_area("Note for the record", key=f"note-{case.case_id}", height=70)
+                        if st.button("Save outcome", type="primary", key="saveout"):
+                            ev_ = ", ".join(evl + ([evt] if evt.strip() else []))
+                            err = ("Choose a reason." if not reason_ else
+                                   "Add at least one evidence reference (a claim line or a document reference)."
+                                   if out != feedback.INSUFF and not ev_ else
+                                   "A referral needs an SIU owner and a next step." if out == feedback.SIU and (not owner_ or not nxt.strip())
+                                   else "Enter an amount or tick Amount pending, not both." if out == feedback.SUBST and pend and amt
+                                   else "Enter the substantiated amount (more than $0), or tick Amount pending."
+                                   if out == feedback.SUBST and not pend and not (amt and amt > 0) else "")
+                            if err:
+                                st.error(err)
+                            else:
+                                status_, appr = out, ""
+                                if out == feedback.SUBST and pend:
+                                    status_, appr = feedback.PENDING, "Amount pending · supervisor to confirm"
+                                elif out == feedback.SUBST and amt > feedback.APPROVAL_LIMIT and ROLE != "Supervisor":
+                                    status_, appr = feedback.PENDING, "Awaiting supervisor approval"
+                                feedback.record(DS, case, status_, ss.user, ROLE, reason=reason_ + (" · amount pending" if pend else ""),
+                                                evidence=ev_, note=note, amount=None if pend else amt, owner=owner_,
+                                                next_step=nxt, approval=appr)
+                                st.toast(f"{case.case_id}: {status_}")
+                                st.rerun()
+            elif case.status == feedback.PENDING:
+                st.warning(f"A substantiated outcome over ${feedback.APPROVAL_LIMIT:,}, or with the amount pending, needs "
+                           "supervisor approval before the case closes.")
+                if ROLE == "Supervisor":
+                    if st.button("✓ Approve substantiation", type="primary", key="approve"):
+                        p_ = hist[hist.new_status == feedback.PENDING].iloc[0]
+                        feedback.record(DS, case, feedback.SUBST, ss.user, ROLE, reason="Approved substantiation",
+                                        evidence=p_.evidence, amount=p_.amount, approval=f"Approved by {ss.user}")
+                        st.rerun()
+                else:
+                    st.caption("Log out (top right) and sign in as J. Wong (Supervisor) to approve.")
+            if case.status != feedback.OPEN:
+                st.markdown(f'<div class="recorded">✅ Current status: <b>{case.status}</b>'
+                            + (f' · owner <b>{case.owner}</b>' if case.status == feedback.SIU else "")
+                            + (f'<div class="who">Last change {last.ts[:16].replace("T", " ")} by {last.reviewer}: {last.reason}</div>'
+                               if last is not None else "") + '</div>', unsafe_allow_html=True)
+                if ROLE in ("Investigator", "Supervisor"):
+                    r1, r2, r3 = st.columns([1.6, 1, 1])
+                    rr = r1.selectbox("Reason for reversing", feedback.REVERSE_REASONS, index=None, key=f"rev-{case.case_id}",
+                                      label_visibility="collapsed", placeholder="Reason for reversing…")
+                    if r2.button("↶ Reverse outcome", key="reverse", width="stretch"):
+                        if not rr:
+                            st.error("Choose a reason for reversing first.")
+                        else:
+                            feedback.record(DS, case, feedback.OPEN, ss.user, ROLE, reason=f"Outcome reversed: {rr}", kind="reversal")
+                            st.rerun()
+                    nxt_ = in_view(base, "mine")
+                    nxt_ = nxt_[nxt_.case_id != case.case_id]
+                    nxt_ = nxt_ if len(nxt_) else open_cases[(open_cases.status == feedback.OPEN) & (open_cases.case_id != case.case_id)]
+                    if len(nxt_):
+                        r3.button("Next case →", key="nextcase", type="primary", width="stretch", on_click=go,
+                                  args=("Investigator Queue", nxt_.case_id.iloc[0]))
+                    st.caption("Reversing adds a new entry to the history; nothing is deleted.")
+            st.markdown('<p class="hint">Payment, denial, recovery and provider actions stay in the authorized claims '
+                        'process. ClaimGuard records the review outcome only. Formal fraud findings belong to SIU.</p>',
+                        unsafe_allow_html=True)
+
+        # ---- History ----
+        with t_hist:
+            st.markdown(f'<div class="bh"><b>Case history</b><span>Full audit trail · dataset {DS} · org '
+                        f'{feedback.ORG}</span></div>', unsafe_allow_html=True)
+            if hist.empty:
+                st.caption("Flagged by rule; no actions yet.")
+            else:
+                h = hist.assign(when=hist.ts.str[:16].str.replace("T", " "), change=hist.prior_status + " → " + hist.new_status)
+                st.dataframe(h[["when", "reviewer", "role", "kind", "change", "reason", "evidence", "approval", "note"]],
+                             hide_index=True, width="stretch", height=min(40 + 35 * len(h), 280))
     st.download_button("⬇ Export flagged claims", flagged.drop(columns=["planted_fraud"], errors="ignore").to_csv(index=False),
                        "flagged_claims.csv", "text/csv", on_click=log_export, args=("flagged claims CSV",))
     next_bar("after a few outcomes, see what reviewers found.", "Go to Review Outcomes →", "Review Outcomes", "nx-q")
@@ -1501,84 +1856,155 @@ if page == "Model Evaluation":
 
 # ================= Executive Dashboard =================
 if page == "Executive Dashboard":
-    st.markdown('<div class="crumb">Leadership</div>', unsafe_allow_html=True)
-    st.markdown("## Executive Dashboard")
-    st.markdown(f'<div class="purpose">Three questions: are we finding actionable cases, can the team keep up, and what '
-                f'financial value did we verify? Reporting cohort: cases flagged for services {ss.f_rng[0]:%d %b} – '
-                f'{ss.f_rng[-1]:%d %b %Y}.</div>', unsafe_allow_html=True)
+    page_header("Executive Dashboard", "Each measure against its target: are we finding actionable cases, can the team keep "
+                "up, and what value did we verify? The filters change every card and chart; hover any bar or point for its "
+                "numbers, click an investigator to highlight them.")
     if is_sample:
-        st.markdown('<div class="warn">⚠ <b>Synthetic demo figures.</b> In the pilot, financial measures are reconciled to '
-                    'the claims system before they are reported.</div>', unsafe_allow_html=True)
-    cnt = reviewed.decision.value_counts()
-    dup = feedback.rule_stats(fb)
-    dup = dup[dup.rule == "duplicate"]
-    dy = f"{dup.rate.iloc[0]:.0%}" if len(dup) else "–"
-    rev_all = reviewed
-    complete = ((rev_all.reason.fillna("") != "") & ((rev_all.evidence.fillna("") != "") | (rev_all.decision == feedback.INSUFF))).mean() \
-        if len(rev_all) else 0
-    st.markdown(f"""<div class="pilot"><h3>Shadow pilot · duplicate billing</h3><p>Investigators review ClaimGuard's
-      duplicate-billing queue alongside the existing process; payments stay in the claims system. A random sample of 200
-      unflagged claims is also reviewed to estimate what the rules miss. Agreed success criteria and where we are now:</p>
-      <div class="crit"><div><b>≥ 40%</b>review yield (substantiated ÷ reviewed)<i>now {dy}</i></div>
-      <div><b>≤ 30 min</b>median handling time<i>not tracked yet (pilot adds timers)</i></div>
-      <div><b>100%</b>outcomes with reason + evidence<i>now {complete:.0%}</i></div>
-      <div><b>0</b>legitimate claims delayed<i>0 · shadow mode, no payment holds</i></div></div></div>""",
-                unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        section("", "1 · Are We Finding Actionable Cases?")
-        fun = pd.DataFrame({"stage": ["Flagged", "Assigned", "Reviewed", "Substantiated", "No issue found", "Insufficient", "Referred to SIU"],
-                            "cases": [len(cases), int(cases.owner.notna().sum()), len(rev_all), cnt.get(feedback.SUBST, 0),
-                                      cnt.get(feedback.NO_ISSUE, 0), cnt.get(feedback.INSUFF, 0), cnt.get(feedback.SIU, 0)]})
-        fig = px.bar(fun, x="cases", y="stage", orientation="h", text="cases",
-                     color="stage", color_discrete_sequence=[BLUE2, BLUE2, NAVY, RISK["High"], RISK["Low"], GREY, RISK["Medium"]])
-        fig.update_yaxes(autorange="reversed", title_text="")
-        fig.update_layout(showlegend=False)
-        st.plotly_chart(style(fig, 300), width="stretch", config={"displayModeBar": False})
-        st_ = feedback.rule_stats(fb)
-        if len(st_):
-            st.dataframe(st_.assign(flag_reason=st_.rule.map(SHORT))[["flag_reason", "reviewed", "substantiated", "rate"]],
-                         hide_index=True, width="stretch", column_config={
-                             "rate": st.column_config.ProgressColumn("Yield", min_value=0, max_value=1, format="percent")})
-    with c2:
-        section("", "2 · Can The Team Keep Up?")
-        op = cases[cases.status.isin([feedback.OPEN, feedback.PENDING])]
-        bk = pd.cut(op.age_days, [-1, 6, 30, 10_000], labels=["Under 7 days", "7–30 days", "Over 30 days"]).value_counts().reindex(
-            ["Under 7 days", "7–30 days", "Over 30 days"]).fillna(0).reset_index()
-        bk.columns = ["age", "cases"]
-        fig = px.bar(bk, x="age", y="cases", text="cases", color="age",
-                     color_discrete_sequence=[BLUE2, RISK["Medium"], RISK["High"]], labels={"age": "", "cases": "Open cases"})
-        fig.update_layout(showlegend=False)
-        st.plotly_chart(style(fig, 230, "Open Backlog By Age"), width="stretch", config={"displayModeBar": False})
-        ev = feedback.events(DS)
-        fo = ev[ev.new_status.isin(feedback.FINAL) & ev.case_id.isin(cases.case_id)].groupby("case_id").ts.min()
-        cr = cases.set_index("case_id").created_at
-        ttr = (pd.to_datetime(fo) - cr.reindex(fo.index)).dt.total_seconds() / 86400
-        st.markdown(f'<div class="mrow"><span>Median time to outcome</span><b>{ttr.median():.1f} days</b></div>'
-                    if len(ttr.dropna()) else '<div class="mrow"><span>Median time to outcome</span><b>–</b></div>',
-                    unsafe_allow_html=True)
-        st.markdown(f'<div class="mrow"><span>Open cases past due date</span><b>{int((op.due < pd.Timestamp.now()).sum())}</b></div>'
-                    f'<div class="mrow"><span>Unassigned open cases</span><b>{int(op.owner.isna().sum())}</b></div>'
-                    '<div class="mrow"><span>Median handling time</span><b>not tracked yet</b></div>'
-                    '<div class="mrow"><span>Legitimate claims delayed</span><b>0 (shadow mode)</b></div>', unsafe_allow_html=True)
-        wl = op.assign(owner=op.owner.fillna("Unassigned")).groupby("owner").size().rename("open").reset_index()
-        done7 = ev[(pd.to_datetime(ev.ts) > pd.Timestamp.now() - pd.Timedelta(days=7)) & ev.new_status.isin(feedback.FINAL)] \
-            .groupby("reviewer").size().rename("outcomes_7d").reset_index().rename(columns={"reviewer": "owner"})
-        st.dataframe(wl.merge(done7, on="owner", how="outer").fillna(0), hide_index=True, width="stretch")
-    with c3:
-        section("", "3 · What Value Did We Verify?")
-        sub_amt = float(fb.loc[fb.decision == feedback.SUBST, "amount"].fillna(0).sum())
-        st.markdown(f'<div class="mrow"><span>Billed on flagged claims</span><b>{money(flagged.billed_amount.sum())}</b></div>'
-                    '<div class="mrow"><span>Allowed</span><b>not in dataset</b></div>'
-                    '<div class="mrow"><span>Paid</span><b>not in dataset</b></div>'
-                    f'<div class="mrow"><span>Substantiated (reviewer-entered)</span><b style="color:#dc2626">{money(sub_amt)}</b></div>'
-                    '<div class="mrow"><span>Prevented payment</span><b>$0 · shadow pilot</b></div>'
-                    '<div class="mrow"><span>Recovered (reconciled)</span><b>claims system not connected</b></div>',
-                    unsafe_allow_html=True)
-        overlap = sum(len(ids) for ids in cases.claim_ids) - len(flag_ids)
-        st.markdown(f'<div class="hint" style="margin-top:8px">Billed is counted once per claim line: {overlap} line(s) '
-                    'appear in more than one case. Allowed, paid, prevented and recovered amounts come from the claims '
-                    'system in the pilot, not from ClaimGuard.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="warn">⚠ <b>Synthetic demo figures.</b> Financial measures are reconciled to the claims system '
+                    'before they are reported. Targets are placeholders until the pilot agrees them.</div>', unsafe_allow_html=True)
+    owners = sorted(cases.owner.dropna().unique())
+
+    def _pick_inv(pt):
+        cd = pt.get("customdata") or []
+        nm = cd[0] if cd else pt.get("y")
+        if nm in owners:
+            ss.ex_hi = "None" if ss.ex_hi == nm else nm
+
+    k_load, k_time, k_age = take_click("exld", _pick_inv), take_click("extm", _pick_inv), take_click("exag", _pick_inv)
+    f1, f2, f3, _ = st.columns([1, 1.5, 1.3, 1.4])
+    per = f1.selectbox("Period", [13, 8, 4], format_func=lambda w: f"Last {w} weeks", key="ex_per")
+    rs_ = f2.selectbox("Flag reason", ["All reasons"] + FLAG_ORDER, key="ex_reason")
+    hi = f3.selectbox("Highlight investigator", ["None"] + owners, key="ex_hi")
+    end = cases.service_date.max() if len(cases) else pd.Timestamp.now()
+    cx = cases[cases.service_date > end - pd.Timedelta(weeks=per)]
+    if rs_ != "All reasons":
+        cx = cx[cx.flag_reason == rs_]
+    fbx = fb[fb.case_id.isin(cx.case_id)]
+    revx = fbx[fbx.decision.isin(feedback.FINAL)]
+    n_flag, n_rev, n_sub = len(cx), len(revx), int((revx.decision == feedback.SUBST).sum())
+    evs = feedback.events(DS)
+    fin = evs[evs.new_status.isin(feedback.FINAL) & evs.case_id.isin(cx.case_id)].sort_values("id").drop_duplicates("case_id")
+    cr = cx.set_index("case_id").created_at
+    fin = fin.assign(days=(pd.to_datetime(fin.ts) - cr.reindex(fin.case_id).values).dt.total_seconds() / 86400)
+    fin = fin[~fin.reviewer.str.startswith("demo seed", na=False)]     # seeded demo outcomes have no real review time
+    med_days = float(fin.days.median()) if len(fin) else float("nan")
+    openx = cx[cx.status.isin([feedback.OPEN, feedback.PENDING])]
+    old30 = int((openx.age_days > 30).sum())
+    oldp = old30 / max(len(openx), 1)
+    sub_amt = float(fbx.loc[fbx.decision == feedback.SUBST, "amount"].fillna(0).sum())
+    cov, sr = n_rev / max(n_flag, 1), n_sub / max(n_rev, 1)
+    STB = {"g": "✓ On track", "a": "! Watch", "r": "✕ Off track", "p": "! Pending"}
+
+    def card(t, st_, v, sub, pct, tgt, scale, tip):
+        return (f'<div class="sc"><div class="sch"><h4>{t}</h4><span class="stb {"a" if st_ == "p" else st_}">{STB[st_]}</span></div>'
+                f'<div class="v">{v}</div><div class="t">{sub}</div><div class="bul" title="{tip}"><i style="width:'
+                f'{max(0, min(100, pct)):.0f}%"></i><em style="left:{min(99, tgt)}%"></em></div><div class="bsc"><span>{scale[0]}'
+                f'</span><span>{scale[1]}</span><span>{scale[2]}</span></div></div>')
+    md = med_days if med_days == med_days else 0
+    st.markdown('<div class="sc-grid">' + "".join([
+        card("Review coverage", "g" if cov >= .6 else "a" if cov >= .45 else "r", f"{cov:.0%}",
+             f"{n_rev} of {n_flag} flagged cases reviewed · target 60%", cov * 100, 60, ["0%", "target 60%", "100%"],
+             f"{n_rev} of {n_flag} flagged cases reviewed"),
+        card("Days from flag to outcome", ("g" if md <= 7 else "a" if md <= 9 else "r") if med_days == med_days else "p",
+             f"{med_days:.1f} d" if med_days == med_days else "–",
+             "median · target ≤ 7 days" if med_days == med_days else "no investigator outcomes yet (seeded demo outcomes "
+             "are excluded) · target ≤ 7 days", md / 14 * 100, 50,
+             ["0", "7 days", "14 days"], f"Median over {len(fin)} cases with an outcome"),
+        card("Substantiation rate", "g" if sr >= .4 else "a" if sr >= .3 else "r", f"{sr:.0%}",
+             f"{n_sub} of {n_rev} reviewed · target ≥ 40%", sr * 100, 40, ["0%", "40%", "100%"],
+             "Reviewed cases are a selected subset, not a random sample"),
+        card("Open over 30 days", "g" if oldp <= .12 else "a" if oldp <= .2 else "r", f"{old30}",
+             f"{oldp:.0%} of {len(openx)} open cases · target ≤ 12%", oldp / .4 * 100, 30, ["0%", "12%", "40%"],
+             f"{old30} of {len(openx)} open cases are older than 30 days"),
+        card("Substantiated overpayment", "p", money(sub_amt), "prevented and recovered: pending reconciliation",
+             sub_amt / 100000 * 100, 50, ["$0", "$50K goal", "$100K"], "Reviewer-entered; reconciled with the claims system before reporting"),
+        card("Legitimate claims delayed", "g", "0", "routing never holds a payment · target 0", 0, 2, ["0", "", "10"],
+             "Routing sets review effort only")]) + "</div>", unsafe_allow_html=True)
+
+    op_ = lambda n: [1 if hi == "None" or x == hi else .25 for x in n]
+    l, r = st.columns(2)
+    with l:
+        wl = openx[openx.owner.notna()].groupby("owner").size().sort_values()
+        fig = go_.Figure(go_.Bar(x=wl.values, y=wl.index, orientation="h", text=wl.values, textposition="outside",
+                                 marker=dict(color=[RISK["Medium"] if v > CAPACITY else BLUE2 for v in wl.values], opacity=op_(wl.index)),
+                                 customdata=np.array(wl.index)[:, None],
+                                 hovertemplate="<b>%{y}</b><br>%{x} open cases (capacity " + str(CAPACITY) + ")<extra></extra>"))
+        fig.add_vline(x=CAPACITY, line_dash="dash", line_color=NAVY, annotation_text=f"capacity {CAPACITY}", annotation_font_size=12)
+        fig.update_xaxes(range=[0, max(CAPACITY * 1.3, float(wl.max()) * 1.2 if len(wl) else 1)])
+        st.plotly_chart(style(fig, 330, "Workload By Investigator (Open Cases)"), width="stretch", key=k_load,
+                        on_select="rerun", selection_mode="points")
+        st.caption(f"{int(openx.owner.isna().sum())} open cases are unassigned and not shown.")
+    with r:
+        tt = fin.groupby("reviewer").days.median().sort_values() if len(fin) else pd.Series(dtype=float)
+        if tt.empty:
+            st.markdown('<div class="card"><h3>Days From Flag To Outcome</h3><p class="sub" style="margin:0">No outcomes recorded '
+                        'by investigators in this period yet. Seeded demo outcomes are left out because they have no real '
+                        'review time. Record an outcome in the Investigator Queue to see it here.</p></div>',
+                        unsafe_allow_html=True)
+        else:
+            fig = go_.Figure(go_.Bar(x=tt.values, y=tt.index, orientation="h", text=[f"{v:.1f} d" for v in tt.values],
+                                     textposition="outside", customdata=np.array(tt.index)[:, None],
+                                     marker=dict(color=[RISK["Medium"] if v > 7 else BLUE2 for v in tt.values],
+                                                 opacity=op_(tt.index)),
+                                     hovertemplate="<b>%{y}</b><br>median %{x:.1f} days from flag to outcome<extra></extra>"))
+            fig.add_vline(x=7, line_dash="dash", line_color=NAVY, annotation_text="7-day target", annotation_font_size=12)
+            fig.update_xaxes(range=[0, max(10, float(tt.max()) * 1.25)])
+            st.plotly_chart(style(fig, 330, "Days From Flag To Outcome"), width="stretch", key=k_time,
+                            on_select="rerun", selection_mode="points")
+    l, r = st.columns(2)
+    with l:
+        wkf = cx.assign(week=cx.service_date.dt.to_period("W").dt.start_time)
+        tr = pd.DataFrame({"Flagged": wkf.groupby("week").size(),
+                           "Reviewed": wkf[wkf.case_id.isin(revx.case_id)].groupby("week").size()}).fillna(0)
+        fig = go_.Figure()
+        for nm, col in [("Flagged", BLUE2), ("Reviewed", "#6250d6")]:
+            fig.add_scatter(x=tr.index, y=tr[nm], mode="lines+markers", name=nm, line=dict(color=col, width=2.5),
+                            marker=dict(size=8, line=dict(color="#fff", width=1.5)),
+                            hovertemplate=f"<b>Week of %{{x|%d %b}}</b><br>{nm}: %{{y:.0f}} cases<extra></extra>")
+        fig.update_layout(legend=dict(orientation="h", y=-0.2, font=dict(size=14)))
+        st.plotly_chart(style(fig, 330, "Flagged Vs Reviewed, By Week Of Service"), width="stretch")
+    with r:
+        ag = openx.assign(owner=openx.owner.fillna("Unassigned"),
+                          age=pd.cut(openx.age_days, [-1, 6, 30, 10_000], labels=["Under 7 days", "7–30 days", "Over 30 days"]))
+        agt = ag.groupby(["owner", "age"], observed=False).size().unstack(fill_value=0)
+        fig = go_.Figure()
+        for nm, col in [("Under 7 days", BLUE2), ("7–30 days", RISK["Medium"]), ("Over 30 days", RISK["High"])]:
+            if nm in agt:
+                fig.add_bar(x=agt.index, y=agt[nm], name=nm, marker=dict(color=col, opacity=op_(agt.index)),
+                            customdata=np.array(agt.index)[:, None],
+                            hovertemplate=f"<b>%{{x}}</b><br>{nm}: %{{y}} open cases<extra></extra>")
+        fig.update_layout(barmode="stack", legend=dict(orientation="h", y=-0.2, font=dict(size=14)))
+        st.plotly_chart(style(fig, 330, "Open Backlog By Age"), width="stretch", key=k_age, on_select="rerun",
+                        selection_mode="points")
+
+    with st.expander("More detail: funnel, yield by flag reason and value"):
+        cnt = revx.decision.value_counts()
+        c1, c2 = st.columns(2)
+        with c1:
+            fun = pd.DataFrame({"stage": ["Flagged", "Assigned", "Reviewed", "Substantiated", "No issue found", "Insufficient",
+                                          "Referred to SIU"],
+                                "cases": [n_flag, int(cx.owner.notna().sum()), n_rev, cnt.get(feedback.SUBST, 0),
+                                          cnt.get(feedback.NO_ISSUE, 0), cnt.get(feedback.INSUFF, 0), cnt.get(feedback.SIU, 0)]})
+            fig = px.bar(fun, x="cases", y="stage", orientation="h", text="cases", color="stage",
+                         color_discrete_sequence=[BLUE2, BLUE2, BLUE, RISK["High"], RISK["Low"], GREY, RISK["Medium"]])
+            fig.update_yaxes(autorange="reversed", title_text="")
+            fig.update_layout(showlegend=False)
+            st.plotly_chart(style(fig, 300, "Review Funnel"), width="stretch", config={"displayModeBar": False})
+            st_ = feedback.rule_stats(fbx)
+            if len(st_):
+                st.dataframe(st_.assign(flag_reason=st_.rule.map(SHORT))[["flag_reason", "reviewed", "substantiated", "rate"]],
+                             hide_index=True, width="stretch", column_config={
+                                 "rate": st.column_config.ProgressColumn("Yield", min_value=0, max_value=1, format="percent")})
+        with c2:
+            st.markdown(f'<div class="card"><div class="mrow"><span>Billed on flagged claims</span><b>{money(cx.billed_amount.sum())}</b></div>'
+                        '<div class="mrow"><span>Allowed</span><b>not in dataset</b></div>'
+                        '<div class="mrow"><span>Paid</span><b>not in dataset</b></div>'
+                        f'<div class="mrow"><span>Substantiated (reviewer-entered)</span><b style="color:#dc2626">{money(sub_amt)}</b></div>'
+                        '<div class="mrow"><span>Prevented payment</span><span class="pill md">Pending reconciliation</span></div>'
+                        '<div class="mrow"><span>Recovered</span><span class="pill md">Pending reconciliation</span></div>'
+                        '<div class="hint" style="margin-top:8px">Billed is counted once per claim line. Allowed, paid, '
+                        'prevented and recovered amounts come from the claims system in the pilot, not from ClaimGuard.</div></div>',
+                        unsafe_allow_html=True)
 
 # ================= Data & Access =================
 if page == "Data & Access":
@@ -1613,32 +2039,14 @@ if page == "Data & Access":
             ("View cases", Y, Y, Y), ("Record outcome", Y, Y, N), (f"Approve substantiation > ${feedback.APPROVAL_LIMIT:,}", N, Y, N),
             ("Export case rows (logged)", Y, Y, N), ("Export aggregates", N, Y, Y), ("Propose rule / model change", N, N, Y)],
             columns=["Action", "Investigator", "Supervisor", "Analyst"]), hide_index=True, width="stretch")
-        st.caption("Demo users: " + " · ".join(f"{u} ({r_})" for u, r_ in USERS.items()) + ". Change user in the sidebar.")
+        st.caption("Demo users: " + " · ".join(f"{u} ({r_})" for u, r_ in USERS.items()) + ". Log out (top right) to sign in as another demo user.")
         section("", "Audit Log", "Views, exports, outcomes and assignments, newest first.")
         st.dataframe(feedback.audit(DS, 100), hide_index=True, width="stretch", height=320)
 
-# ================= Under the Hood =================
-if page == "Under the Hood":
-    st.markdown('<div class="crumb">Analyst &amp; admin</div>', unsafe_allow_html=True)
-    st.markdown("## Under the Hood")
-    st.markdown('<div class="purpose">How ClaimGuard works technically: the pipeline, the data contract, the rules and their '
-                'scores, the model, the assistant and the pilot deployment plan.</div>', unsafe_allow_html=True)
-    section("", "Pipeline", "Every stage is deterministic and logged; AI steps are optional and off by default.")
-    st.markdown("""<div class="card"><svg class="arch" viewBox="0 0 1000 250" role="img" style="font-family:Inter,Segoe UI,sans-serif">
-    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#64748b"/></marker></defs>
-    <g font-size="12" text-anchor="middle">
-     <rect x="10" y="30" width="140" height="74" rx="10" fill="#eef4fc" stroke="#3b7cc4"/><text x="80" y="58" font-weight="700" fill="#0f2d52">1 · Ingest</text><text x="80" y="76" fill="#334155">PDF · email · CSV · XLSX</text><text x="80" y="92" fill="#334155">837 / bordereaux (next)</text>
-     <rect x="180" y="30" width="140" height="74" rx="10" fill="#eef4fc" stroke="#3b7cc4"/><text x="250" y="58" font-weight="700" fill="#0f2d52">2 · Normalise</text><text x="250" y="76" fill="#334155">12-column schema</text><text x="250" y="92" fill="#334155">reasons for every inference</text>
-     <rect x="350" y="30" width="140" height="74" rx="10" fill="#eef4fc" stroke="#3b7cc4"/><text x="420" y="58" font-weight="700" fill="#0f2d52">3 · Screen</text><text x="420" y="76" fill="#334155">4 explainable rules</text><text x="420" y="92" fill="#334155">base score + reason</text>
-     <rect x="520" y="30" width="140" height="74" rx="10" fill="#eef4fc" stroke="#3b7cc4"/><text x="590" y="58" font-weight="700" fill="#0f2d52">4 · Build cases</text><text x="590" y="76" fill="#334155">group related lines</text><text x="590" y="92" fill="#334155">review priority + route</text>
-     <rect x="690" y="30" width="140" height="74" rx="10" fill="#0f2d52"/><text x="760" y="58" font-weight="700" fill="#fff">5 · Review</text><text x="760" y="76" fill="#cfe2f7">queue · checklist</text><text x="760" y="92" fill="#cfe2f7">structured outcome</text>
-     <rect x="860" y="30" width="130" height="74" rx="10" fill="#eef4fc" stroke="#3b7cc4"/><text x="925" y="58" font-weight="700" fill="#0f2d52">6 · Report</text><text x="925" y="76" fill="#334155">dashboard · exports</text><text x="925" y="92" fill="#334155">audit log</text>
-     <rect x="520" y="160" width="140" height="70" rx="10" fill="#f0fdfa" stroke="#0f766e"/><text x="590" y="186" font-weight="700" fill="#0f766e">✦ AI (optional)</text><text x="590" y="203" fill="#334155">case brief · Ask your data</text><text x="590" y="219" fill="#334155">rule-based fallback</text>
-     <rect x="690" y="160" width="140" height="70" rx="10" fill="#fff7e6" stroke="#d97706"/><text x="760" y="186" font-weight="700" fill="#8a5a00">Line-level labels</text><text x="760" y="203" fill="#334155">substantiated / not only</text><text x="760" y="219" fill="#334155">unlabeled otherwise</text>
-     <rect x="860" y="160" width="130" height="70" rx="10" fill="#fff7e6" stroke="#d97706"/><text x="925" y="186" font-weight="700" fill="#8a5a00">Validate + approve</text><text x="925" y="203" fill="#334155">before any rule or</text><text x="925" y="219" fill="#334155">model change</text>
-    </g>
-    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar)"><path d="M150,67 H178"/><path d="M320,67 H348"/><path d="M490,67 H518"/><path d="M660,67 H688"/><path d="M830,67 H858"/><path d="M590,104 V158"/><path d="M760,104 V158"/><path d="M830,195 H858"/><path d="M925,160 C925,135 420,150 420,106" stroke-dasharray="5 4"/></g>
-    </svg></div>""", unsafe_allow_html=True)
+# ================= How ClaimGuard Works =================
+if page == TECH:
+    page_header(TECH, "How ClaimGuard works technically: the data contract, the rules and their scores, the model, the "
+                "assistant and the pilot deployment plan. The workflow diagram is on How to Use.")
     l, r = st.columns(2)
     with l:
         section("", f"Data Contract ({len(REQUIRED)} Required Columns)")
