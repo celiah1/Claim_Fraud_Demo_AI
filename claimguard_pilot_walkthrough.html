@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClaimGuard | Duplicate billing pilot</title>
+<style>
+:root { color-scheme: light; --navy:#102b4b; --teal:#08655c; --ink:#23374c; --muted:#4c6176; --line:#d7e0ea; --pale:#edf4ff; --bg:#f5f7fa; }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 "Segoe UI",system-ui,sans-serif; font-variant-numeric:tabular-nums }
+h1,h2,h3,p { margin:0 0 .65rem } h1,h2,h3 { color:var(--navy); line-height:1.2 }
+h1 { font-size:clamp(1.8rem,4vw,2.55rem) } h2 { font-size:1.3rem }
+header { background:var(--navy); color:white; padding:1rem max(1rem, calc((100vw - 1230px)/2)); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap }
+header strong { font-size:1.2rem } header span { color:#d9e8fa }
+.shell { max-width:1260px; margin:auto; padding:1.5rem 1rem; display:grid; grid-template-columns:225px minmax(0,1fr); gap:1.5rem }
+aside,.card { background:white; border:1px solid var(--line); border-radius:14px; padding:1.15rem }
+aside { align-self:start } nav { display:grid; gap:.4rem; margin:1rem 0 }
+nav button { display:flex; justify-content:space-between; align-items:center; text-align:left }
+nav button[aria-current="page"] { background:var(--pale); box-shadow:inset 4px 0 var(--navy) }
+nav small { color:var(--teal); font-size:.75rem }
+button,input,select,textarea { font:inherit }
+button,select,input,textarea { border:1px solid #a9b9ca; border-radius:8px; background:white; color:var(--navy); padding:.55rem .7rem }
+button { cursor:pointer; font-weight:600 } button:hover { background:var(--pale) }
+button.primary { background:var(--teal); border-color:var(--teal); color:white }
+button.primary:hover { background:#074e48 } :focus-visible { outline:3px solid #225eae; outline-offset:3px }
+label { display:block; font-weight:600 } label select,label input,label textarea { display:block; width:100%; margin:.3rem 0 .85rem }
+textarea { min-height:84px; resize:vertical }
+.intro { margin-bottom:1rem } .muted { color:var(--muted) }
+.badge { display:inline-block; background:#fff1d7; color:#704600; padding:.2rem .55rem; border-radius:6px; font-weight:600; font-size:.85rem }
+.card { margin-bottom:1rem } .actions { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:.85rem }
+.split { display:grid; grid-template-columns:minmax(155px, .35fr) minmax(0,1fr); gap:1rem; align-items:start }
+.selected { background:var(--pale); border-left:4px solid var(--navy) }
+.scroll { overflow:auto } table { width:100%; border-collapse:collapse; margin:.65rem 0 }
+th,td { padding:.55rem .65rem; text-align:left; border-bottom:1px solid var(--line) }
+th { background:#f2f5f9; color:var(--navy) } .money { text-align:right; white-space:nowrap }
+.metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.8rem }
+.metric { background:#f2f6fb; border-radius:8px; padding:.8rem } .metric strong { display:block; font-size:1.35rem; color:var(--navy) }
+#notice { min-height:1.55em; color:var(--teal); margin-top:.75rem }
+[hidden] { display:none !important }
+@media(max-width:820px) { .shell,.split { grid-template-columns:1fr } nav { grid-template-columns:repeat(auto-fit,minmax(135px,1fr)) } }
+@media(max-width:520px) { .metrics { grid-template-columns:1fr } }
+</style>
+<header><strong>ClaimGuard</strong><span>Payment integrity · Synthetic shadow pilot</span></header>
+<div class="shell">
+<aside aria-label="Workspace">
+  <label for="role">Demo role</label>
+  <select id="role"><option>Investigator</option><option>Claims intake</option><option>Claims executive</option><option>Analyst</option></select>
+  <button id="workspace" type="button">Go to my workspace</button>
+  <nav aria-label="Pages">
+    <button data-page="start">Overview</button>
+    <button data-page="intake">Claim Intake</button>
+    <button data-page="review">Investigator Queue</button>
+    <button data-page="report">Executive Dashboard</button>
+    <button data-page="technical">Technical Overview</button>
+  </nav>
+  <p class="muted">Role selection personalizes navigation in this demo.</p>
+</aside>
+<main>
+  <section id="start">
+    <h1 tabindex="-1">Review a possible duplicate payment</h1>
+    <p class="intro">Follow two matching submissions, check the payment records, and see how the investigator’s finding appears in pilot reporting.</p>
+    <div class="card"><h2>Duplicate-billing shadow pilot</h2><p>ClaimGuard supports prioritization and evidence review. The claims system handles payment, denial, and recovery.</p>
+    <div class="actions"><button class="primary" data-page="review">Review the sample case</button><button data-page="report">View pilot results</button><button data-page="intake">Trace the source claims</button></div></div>
+  </section>
+  <section id="intake" hidden>
+    <h1 tabindex="-1">Claim Intake</h1>
+    <div class="card"><h2>Source batch SYN-NOV-01</h2><p>Two claim lines received and accepted. Both retain their source identifiers. The batch contains $450.00 in submitted charges.</p>
+      <div class="scroll"><table><thead><tr><th>Source claim</th><th>Submission</th><th>Service</th><th class="money">Billed</th></tr></thead><tbody>
+        <tr><td>CLM-501</td><td>3 Nov 2026</td><td>99215 · 2 Nov 2026</td><td class="money">$225.00</td></tr>
+        <tr><td>CLM-502</td><td>5 Nov 2026</td><td>99215 · 2 Nov 2026</td><td class="money">$225.00</td></tr>
+      </tbody></table></div>
+      <button class="primary" data-page="review">Open linked case DUP-0042</button>
+    </div>
+  </section>
+  <section id="review" hidden>
+    <h1 tabindex="-1">Investigator Queue</h1>
+    <div class="split">
+      <div class="card selected"><h2>DUP-0042</h2><p>Repeated claim</p><p>A. Chan · Assigned</p><span class="badge" id="caseStatus">Awaiting review</span></div>
+      <div>
+        <div class="card"><h2>Why the two claims matched</h2><p>Both submissions share a member, rendering provider, service date, procedure code, and billed amount. Check payment history before substantiating an overpayment.</p>
+        <div class="scroll"><table><thead><tr><th>Evidence</th><th>Original · CLM-501</th><th>Repeat · CLM-502</th></tr></thead><tbody>
+          <tr><th scope="row">Billed</th><td>$225.00</td><td>$225.00</td></tr>
+          <tr><th scope="row">Paid</th><td>$180.00</td><td>$180.00</td></tr>
+          <tr><th scope="row">Remittance</th><td>REM-8101 · 7 Nov</td><td>REM-8109 · 10 Nov</td></tr>
+          <tr><th scope="row">Adjustments</th><td colspan="2">No replacement or reversal in the synthetic ledger through 24 Nov 2026</td></tr>
+        </tbody></table></div><button data-page="intake">View source batch</button></div>
+        <form class="card" id="outcome">
+          <h2>Record a review outcome</h2>
+          <label for="finding">Outcome</label><select id="finding" required><option value="">Choose an outcome</option><option value="substantiated">Duplicate payment substantiated</option><option value="cleared">No issue found</option><option value="pending">Further evidence required</option></select>
+          <label for="reason">Reason and evidence reference</label><textarea id="reason" required placeholder="Explain your finding and cite the claim or remittance record."></textarea>
+          <div id="amountField" hidden><label for="amount">Substantiated overpayment (USD)</label><input id="amount" type="number" min="0.01" max="180" step="0.01" placeholder="Enter an evidence-backed amount"></div>
+          <button class="primary" type="submit">Save demo outcome</button>
+          <div id="notice" role="status"></div>
+        </form>
+        <div class="card"><h2>Case history</h2><p>Assigned to A. Chan after the duplicate rule matched both claim lines.</p><ol id="history"></ol><button data-page="report">See dashboard impact</button></div>
+      </div>
+    </div>
+  </section>
+  <section id="report" hidden>
+    <h1 tabindex="-1">Executive Dashboard</h1>
+    <p class="intro">Duplicate-billing sample · November 2026 · One synthetic flagged case</p>
+    <div class="card"><h2>Pilot results</h2><div class="metrics">
+      <div class="metric">Reviewed<strong id="reviewed">0 / 1</strong>Flagged cases</div>
+      <div class="metric">Substantiation yield<strong id="yield">Pending</strong><span id="yieldDetail">Awaiting first review</span></div>
+      <div class="metric">Substantiated overpayment<strong id="total">Pending</strong>Reviewer-entered</div>
+    </div></div>
+    <div class="card"><h2>Financial reconciliation</h2><p>$450.00 billed · $360.00 paid in the synthetic ledger</p><p>Recovery: pending reconciliation. Unflagged sample review and handling time: pending.</p><button data-page="review">Trace results to case DUP-0042</button></div>
+  </section>
+  <section id="technical" hidden>
+    <h1 tabindex="-1">Technical Overview</h1>
+    <div class="card"><h2>Working in this HTML</h2><p>Role recommendations, evidence navigation, outcome validation, case history, and dashboard updates run in the browser.</p>
+    <h2>Simulated for the walkthrough</h2><p>Claims, payment records, reviewer identity, and case assignment are synthetic. Demo changes reset on reload.</p>
+    <h2>Required for a pilot</h2><p>Authenticated reviewer and approver roles, durable case history, access-controlled evidence, and reconciliation against the claims system.</p></div>
+  </section>
+</main>
+</div>
+<script>
+const get = id => document.getElementById(id);
+const rolePages = {
+  Investigator: ["review", "report"],
+  "Claims intake": ["intake", "review"],
+  "Claims executive": ["report", "review"],
+  Analyst: ["technical", "report"]
+};
+const navButtons = [...document.querySelectorAll("nav button")];
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+function showPage(page, focus = true) {
+  document.querySelectorAll("main > section").forEach(section => { section.hidden = section.id !== page; });
+  navButtons.forEach(button => {
+    if (button.dataset.page === page) button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
+  });
+  if (focus) get(page).querySelector("h1").focus();
+}
+function highlightRole() {
+  const recommended = rolePages[get("role").value];
+  navButtons.forEach(button => {
+    button.querySelector("small")?.remove();
+    if (recommended.includes(button.dataset.page)) {
+      const label = document.createElement("small");
+      label.textContent = "For your role";
+      button.append(label);
+    }
+  });
+}
+document.querySelectorAll("[data-page]").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+get("role").addEventListener("change", highlightRole);
+get("workspace").addEventListener("click", () => showPage(rolePages[get("role").value][0]));
+get("finding").addEventListener("change", () => {
+  const needsAmount = get("finding").value === "substantiated";
+  get("amountField").hidden = !needsAmount;
+  get("amount").disabled = !needsAmount;
+  get("amount").required = needsAmount;
+});
+get("reason").addEventListener("input", () => get("reason").setCustomValidity(""));
+get("outcome").addEventListener("submit", event => {
+  event.preventDefault();
+  const reason = get("reason").value.trim();
+  if (!reason) {
+    get("reason").setCustomValidity("Enter the reason and an evidence reference.");
+    get("reason").reportValidity();
+    return;
+  }
+  const finding = get("finding");
+  const substantiated = finding.value === "substantiated";
+  const pending = finding.value === "pending";
+  const status = finding.selectedOptions[0].textContent;
+  const amount = substantiated ? currency.format(get("amount").valueAsNumber) : null;
+  const entry = document.createElement("li");
+  entry.textContent = `A. Chan (demo) · ${status}${amount ? " · " + amount : ""} · ${reason}`;
+  get("history").prepend(entry);
+  get("caseStatus").textContent = status;
+  get("reviewed").textContent = pending ? "0 / 1" : "1 / 1";
+  get("yield").textContent = pending ? "Pending" : substantiated ? "100%" : "0%";
+  get("yieldDetail").textContent = pending ? "Evidence review open" : `${substantiated ? 1 : 0} substantiated / 1 completed`;
+  get("total").textContent = amount ?? (pending ? "Pending" : currency.format(0));
+  get("notice").textContent = "Outcome saved in this demo session.";
+});
+highlightRole();
+showPage("start", false);
+</script>
+</html>
